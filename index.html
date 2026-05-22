@@ -57,6 +57,8 @@ nav .nl a:hover{border-color:var(--pink);color:var(--pink)}
 /* ===== HERO ===== */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px 40px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(57,255,20,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(255,0,110,.06) 0%,transparent 60%)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='%2339ff14' opacity='0.04'%3E%3Cellipse cx='50' cy='80' rx='12' ry='8' transform='rotate(30 50 80)'/%3E%3Cellipse cx='150' cy='40' rx='10' ry='7' transform='rotate(-20 150 40)'/%3E%3Cellipse cx='250' cy='60' rx='11' ry='7' transform='rotate(45 250 60)'/%3E%3Cellipse cx='350' cy='90' rx='13' ry='8' transform='rotate(-35 350 90)'/%3E%3Cellipse cx='80' cy='200' rx='10' ry='7' transform='rotate(15 80 200)'/%3E%3Cellipse cx='200' cy='180' rx='12' ry='8' transform='rotate(-40 200 180)'/%3E%3Cellipse cx='320' cy='220' rx='11' ry='7' transform='rotate(25 320 220)'/%3E%3Cellipse cx='60' cy='320' rx='10' ry='6' transform='rotate(-15 60 320)'/%3E%3Cellipse cx='180' cy='340' rx='12' ry='8' transform='rotate(50 180 340)'/%3E%3Cellipse cx='300' cy='300' rx='11' ry='7' transform='rotate(-25 300 300)'/%3E%3Ccircle cx='120' cy='140' r='2'/%3E%3Ccircle cx='240' cy='130' r='2.5'/%3E%3Ccircle cx='370' cy='160' r='1.8'/%3E%3Ccircle cx='40' cy='260' r='2'/%3E%3Ccircle cx='280' cy='280' r='2.2'/%3E%3C/g%3E%3C/svg%3E");background-size:400px;animation:hb 30s linear infinite}
+@keyframes hb{0%{background-position:0 0}100%{background-position:400px 400px}}
 .hero-badge{display:inline-block;padding:6px 16px;border:2px solid var(--neon);color:var(--neon);font-size:11px;text-transform:uppercase;letter-spacing:3px;margin-bottom:24px;animation:bp 2s infinite}
 @keyframes bp{0%,100%{box-shadow:0 0 0 0 rgba(57,255,20,.4)}50%{box-shadow:0 0 0 10px rgba(57,255,20,0)}}
 .hero h1{font-size:clamp(48px,12vw,160px);font-weight:900;line-height:.9;color:var(--white);letter-spacing:-6px;position:relative;z-index:1}
@@ -122,6 +124,26 @@ nav .nl a:hover{border-color:var(--pink);color:var(--pink)}
 .pcard:hover .pimg img{transform:scale(1.08)}
 .pimg-ov{position:absolute;inset:0;background:linear-gradient(transparent 50%,var(--gray) 100%);z-index:1}
 .pimg .psvg{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.15}
+.pimg .coffee-icon{position:absolute;bottom:12px;right:16px;z-index:3;font-size:28px;opacity:.85;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+.pimg .coffee-bean{position:absolute;top:-20px;right:-20px;z-index:2;width:100px;height:100px;opacity:.1;transform:rotate(25deg)}
+/* ===== SERIES NAVIGATION ===== */
+.series-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:20px 0 40px}
+.series-card{position:relative;border:4px solid var(--white);overflow:hidden;cursor:pointer;min-height:180px;display:flex;align-items:flex-end;transition:all .3s;background-size:cover;background-position:center}
+.series-card:hover{border-color:var(--neon);transform:scale(1.02)}
+.series-card .sc-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.85));z-index:1}
+.series-card .sc-content{position:relative;z-index:2;padding:20px;width:100%}
+.series-card .sc-title{font-size:20px;font-weight:900;letter-spacing:2px}
+.series-card .sc-sub{font-size:11px;color:var(--neon);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+.series-card .sc-count{position:absolute;top:12px;right:16px;z-index:2;background:var(--neon);color:var(--black);padding:3px 10px;font-size:10px;font-weight:900;letter-spacing:1px}
+/* ===== WHY RAW SELLING POINTS ===== */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.why-card{position:relative;padding:24px;border:3px solid var(--border-color,var(--white));background:var(--gray);transition:all .3s;overflow:hidden}
+.why-card:hover{border-color:var(--neon);background:rgba(57,255,20,.03)}
+.why-card .wi{font-size:32px;margin-bottom:12px;display:block}
+.why-card h4{font-size:14px;font-weight:900;margin-bottom:6px}
+.why-card p{font-size:11px;color:#888;line-height:1.6}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--neon);transition:width .4s}
+.why-card:hover::after{width:100%}
 .pbody{padding:20px}
 .pbody h3{font-size:18px;margin-bottom:6px}
 .pbody .pori{color:var(--neon);font-size:11px;text-transform:uppercase;letter-spacing:1px}
@@ -385,6 +407,7 @@ footer .cr{color:#555;font-size:11px}
     <span class="jnav-it on" onclick="jump('hero')">首页</span>
     <span class="jnav-it" onclick="jump('creed')">信条</span>
     <span class="jnav-it" onclick="jump('products')">产品</span>
+    <span class="jnav-it" onclick="jump('whyraw')">为何选择</span>
     <span class="jnav-it" onclick="jump('process')">工艺</span>
     <span class="jnav-it" onclick="jump('reviews')">评价</span>
     <span class="jnav-it" onclick="jump('survey')">问卷</span>
@@ -473,9 +496,39 @@ footer .cr{color:#555;font-size:11px}
     <button onclick="filterProducts('blend',this)">大师拼配</button>
     <button onclick="filterProducts('limited',this)">限量系列</button>
   </div>
+
+  <!-- Series Navigation (Luckin-style category cards) -->
+  <div class="series-nav reveal">
+    <div class="series-card" style="background-image:url('https://picsum.photos/seed/single-origin/600/300')" onclick="filterProducts('single',document.querySelectorAll('.sec-tag button')[1])">
+      <div class="sc-overlay"></div>
+      <span class="sc-count">4款</span>
+      <div class="sc-content"><div class="sc-title" style="color:var(--neon)">🌍 单一产地</div><div class="sc-sub">Single Origin · 探索风土之味</div></div>
+    </div>
+    <div class="series-card" style="background-image:url('https://picsum.photos/seed/blend-craft/600/300')" onclick="filterProducts('blend',document.querySelectorAll('.sec-tag button')[2])">
+      <div class="sc-overlay"></div>
+      <span class="sc-count">2款</span>
+      <div class="sc-content"><div class="sc-title" style="color:var(--pink)">🎨 大师拼配</div><div class="sc-sub">Blend · 平衡即是艺术</div></div>
+    </div>
+    <div class="series-card" style="background-image:url('https://picsum.photos/seed/geisha-limited/600/300')" onclick="filterProducts('limited',document.querySelectorAll('.sec-tag button')[3])">
+      <div class="sc-overlay"></div>
+      <span class="sc-count">1款</span>
+      <div class="sc-content"><div class="sc-title" style="color:var(--yellow)">👑 限量系列</div><div class="sc-sub">Limited · 可遇不可求</div></div>
+    </div>
+  </div>
   
   <div class="pgrid" id="productsGrid">
     <!-- Product data will be injected by JS -->
+  </div>
+</section>
+
+<!-- WHY RAW (LK-style selling points) -->
+<section class="sec" id="whyraw">
+  <div class="sec-h reveal"><h2>为什么选择<br><span style="color:var(--neon)">RAW BEAN</span>？</h2><p>四个理由，让我们的咖啡与众不同</p></div>
+  <div class="why-grid">
+    <div class="why-card reveal-l" style="--border-color:var(--neon)"><span class="wi">🔬</span><h4>SCA 80+ 精品生豆</h4><p>每一颗豆子都经过 SCA 标准杯测评分，只选中 80 分以上的微批次。拒绝商业豆，从源头定义品质。</p></div>
+    <div class="why-card reveal" style="--border-color:var(--pink)"><span class="wi">⚡</span><h4>下单即烘 · 48H 直达</h4><p>不像大型品牌提前数月烘焙后囤积。你下单，我们才烘。48 小时内从烘豆机到你家门口，风味巅峰期送达。</p></div>
+    <div class="why-card reveal" style="--border-color:var(--yellow)"><span class="wi">🌱</span><h4>直接贸易 · 公平透明</h4><p>绕过层层中间商，每年团队深入产地与庄园主对话。每批豆子可查完整溯源链——从哪个庄园、哪天采摘到哪天到港。</p></div>
+    <div class="why-card reveal-r" style="--border-color:var(--cyan)"><span class="wi">🏆</span><h4>冠军团队出品</h4><p>烘焙师团队含 WBC 中国区决赛选手，Agtron 烘焙色度仪精确控色（±2），每批出品附杯测报告。</p></div>
   </div>
 </section>
 
@@ -643,8 +696,8 @@ footer .cr{color:#555;font-size:11px}
 <!-- FOOTER -->
 <footer>
   <div class="fl">
-    <a href="#products">产品</a><a href="#process">工艺</a><a href="#survey">问卷</a>
-    <a onclick="openAdmin()">管理</a><a href="#cta">订阅</a><a href="#">隐私政策</a>
+    <a href="#whyraw">为何选择</a><a href="#process">工艺</a><a href="#survey">问卷</a>
+    <a onclick="openAdmin()" style="cursor:pointer">数据管理</a><a href="survey-admin.html">📊 问卷看板</a><a href="#cta">订阅</a>
   </div>
   <div class="cr">© 2026 RAW BEAN COFFEE — 粗野主义咖啡体验 — All Rights Reserved</div>
 </footer>
@@ -805,6 +858,7 @@ function renderProducts(filter='all') {
         <span class="psvg">${p.imgSvg}</span>
         <img src="${p.img}" alt="${p.nameZh}" loading="lazy" onerror="this.style.display='none'">
         <div class="pimg-ov"></div>
+        <span class="coffee-icon">☕</span>
         ${badgeHTML}
       </div>
       <div class="pbody">
