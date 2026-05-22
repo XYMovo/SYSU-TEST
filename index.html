@@ -1174,7 +1174,7 @@ function openAuth(mode){
 function closeAuth(){document.getElementById('authOverlay').classList.remove('on')}
 function toggleAuthMode(){openAuth(authMode==='login'?'register':'login')}
 
-function handleAuth(e){
+async function handleAuth(e){
   e.preventDefault();
   const email=document.getElementById('authEmail').value.trim();
   const password=document.getElementById('authPassword').value;
