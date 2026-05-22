@@ -759,6 +759,20 @@ footer .cr{color:#555;font-size:11px}
 <div class="toast" id="toast">已加入购物车 ✓</div>
 
 <script>
+/* ===== CONFIG: use backend API on localhost, localStorage on GitHub Pages ===== */
+const USE_API = ['localhost','127.0.0.1'].includes(location.hostname);
+const API_URL = USE_API ? '' : null; // relative URL when on server, null when static
+async function apiCall(path, opts={}) {
+  if (!USE_API) return null; // signal to caller to use localStorage
+  const token = localStorage.getItem('rb_token') || '';
+  const res = await fetch((API_URL||'') + path, {
+    ...opts,
+    headers: { 'Content-Type':'application/json', 'Authorization':'Bearer '+token, ...(opts.headers||{}) }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
 /* ===== PRODUCT DATABASE (7 products, 3 tiers) ===== */
 const P = {
   // --- SINGLE ORIGIN ---
@@ -1095,11 +1109,42 @@ function nextCheckout(){checkoutStep++;renderCheckout()}
 function submitOrder(){
   const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const shipping=total>=199?0:15;
+  const orderData={
+    items: cart.map(i=>({ productId:i.id, name:i.name, price:i.price, quantity:i.qty })),
+    total: total+shipping,
+    shippingAddress: (document.getElementById('coName')?.value||'')+'|'+(document.getElementById('coCity')?.value||'')+'|'+(document.getElementById('coAddr')?.value||''),
+    paymentMethod: document.querySelector('input[name="payMethod"]:checked')?.value||'wechat'
+  };
+
+  if(USE_API){
+    apiCall('/api/orders', { method:'POST', body:JSON.stringify(orderData) })
+      .then(data=>{
+        closeCheckout();
+        showToast('🎉 下单成功！订单号 '+data.id);
+        cart=[]; saveCart(); renderCartBadge();
+      })
+      .catch(err=>{
+        console.error('Order submit error:', err);
+        // Fallback: save to localStorage
+        const localOrders=JSON.parse(localStorage.getItem('rb_orders')||'[]');
+        const localId='LOCAL'+Date.now().toString(36).toUpperCase();
+        localOrders.push({...orderData,id:localId,status:'pending',createdAt:new Date().toISOString()});
+        localStorage.setItem('rb_orders',JSON.stringify(localOrders));
+        closeCheckout();
+        showToast('🎉 下单成功（离线模式）！订单号 '+localId);
+        cart=[]; saveCart(); renderCartBadge();
+      });
+    return;
+  }
+
+  // Offline mode: save to localStorage
+  const localOrders=JSON.parse(localStorage.getItem('rb_orders')||'[]');
+  const localId='LOCAL'+Date.now().toString(36).toUpperCase();
+  localOrders.push({...orderData,id:localId,status:'pending',createdAt:new Date().toISOString()});
+  localStorage.setItem('rb_orders',JSON.stringify(localOrders));
   closeCheckout();
-  showToast('🎉 下单成功！订单号 RAW'+Date.now().toString(36).toUpperCase());
-  cart=[];
-  saveCart();
-  renderCartBadge();
+  showToast('🎉 下单成功（离线模式）！订单号 '+localId);
+  cart=[]; saveCart(); renderCartBadge();
 }
 
 /* ===== LOGIN/REGISTER ===== */
@@ -1131,17 +1176,37 @@ function toggleAuthMode(){openAuth(authMode==='login'?'register':'login')}
 
 function handleAuth(e){
   e.preventDefault();
-  const email=document.getElementById('authEmail').value;
+  const email=document.getElementById('authEmail').value.trim();
   const password=document.getElementById('authPassword').value;
   const errEl=document.getElementById('authError');
   errEl.style.display='none';
-  
+
+  if(USE_API){
+    try {
+      const endpoint = authMode==='register' ? '/api/register' : '/api/login';
+      const body = authMode==='register'
+        ? { email, password, name: document.getElementById('authName')?.value||email.split('@')[0] }
+        : { email, password };
+      const data = await apiCall(endpoint, { method:'POST', body:JSON.stringify(body) });
+      if(data.error){ errEl.textContent=data.error; errEl.style.display='block'; return; }
+      // Success
+      localStorage.setItem('rb_token', data.token);
+      currentUser = data.user;
+      localStorage.setItem('rbuser',JSON.stringify(currentUser));
+      updateNavUser();
+      closeAuth();
+      showToast(authMode==='register' ? '🎉 注册成功！欢迎 '+data.user.name : '👋 欢迎回来，'+data.user.name+'！');
+    } catch(err){
+      errEl.textContent='网络错误：'+err.message; errEl.style.display='block';
+    }
+    return;
+  }
+
+  // Fallback: localStorage mode
   if(authMode==='register'){
     const name=document.getElementById('authName').value||email.split('@')[0];
-    // Check if exists
     const users=JSON.parse(localStorage.getItem('rbusers')||'{}');
     if(users[email]){errEl.textContent='该邮箱已注册';errEl.style.display='block';return}
-    // Store (simple hash = btoa)
     users[email]={password:btoa(password),name};
     localStorage.setItem('rbusers',JSON.stringify(users));
     currentUser={email,name};
@@ -1167,22 +1232,25 @@ function submitSurvey(e){
   const form=document.getElementById('surveyForm');
   const fd=new FormData(form);
   const data={};
-  // Manually get checkboxes
   const checkboxGroups=['time','flavorPref','brandVal','wantService'];
   checkboxGroups.forEach(g=>{
     const vals=form.querySelectorAll(`input[name="${g}"]:checked`);
     data[g]=Array.from(vals).map(v=>v.value);
   });
-  // Get other fields
   for(let[k,v]of fd.entries()){
     if(!checkboxGroups.includes(k))data[k]=v;
   }
-  data.timestamp=new Date().toISOString();
-  // Store
+  data.submittedAt=new Date().toISOString();
+  data.userEmail=currentUser?.email||null;
+  // Post to API
+  if(USE_API){
+    apiCall('/api/surveys', { method:'POST', body:JSON.stringify({ answers:data }) })
+      .catch(err=>console.warn('Survey API post failed:',err));
+  }
+  // Always save to localStorage
   const surveys=JSON.parse(localStorage.getItem('rbsurveys')||'[]');
   surveys.push(data);
   localStorage.setItem('rbsurveys',JSON.stringify(surveys));
-  // Show done
   form.style.display='none';
   document.getElementById('surveyDone').style.display='block';
 }
@@ -1305,6 +1373,13 @@ document.querySelectorAll('.snum').forEach(el=>statObs.observe(el));
 renderProducts();
 renderCartBadge();
 
+// Verify token on localhost (USE_API)
+if(USE_API && localStorage.getItem('rb_token')){
+  fetch('/api/me', { headers:{'Authorization':'Bearer '+localStorage.getItem('rb_token')} })
+    .then(r=>r.ok ? r.json() : Promise.reject())
+    .then(u=>{ currentUser=u; localStorage.setItem('rbuser',JSON.stringify(u)); updateNavUser(); })
+    .catch(()=>{ localStorage.removeItem('rb_token'); localStorage.removeItem('rbuser'); currentUser=null; updateNavUser(); });
+}
 /* Keyboard: ESC closes overlays */
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){

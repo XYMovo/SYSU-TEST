@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAW BEAN — 管理后台</title>
+<style>
+/* ===== RESET & BASE ===== */
+*,*:before,*:after{margin:0;padding:0;box-sizing:border-box}
+:root{--neon:#39ff14;--pink:#ff006e;--yellow:#ffbe0b;--blue:#3a86ff;--red:#ff0033;--cyan:#00f0ff;--black:#0a0a0a;--white:#f5f5f0;--gray:#1a1a1a;--card:#222}
+body{background:var(--black);color:var(--white);font-family:'Courier New',monospace;overflow-x:hidden}
+a{color:var(--neon);text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+input,select,textarea{font-family:inherit;background:var(--black);color:var(--white);border:2px solid #555;padding:8px 12px;font-size:13px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--neon)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:var(--neon)}
+
+/* ===== LOGIN OVERLAY ===== */
+#loginOverlay{position:fixed;inset:0;z-index:10000;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column}
+#loginOverlay h1{font-size:clamp(32px,6vw,64px);color:var(--neon);letter-spacing:-2px;margin-bottom:8px}
+#loginOverlay .sub{color:#888;margin-bottom:32px;font-size:13px}
+#loginOverlay .box{border:4px solid var(--neon);padding:32px;background:var(--gray);width:340px}
+#loginOverlay .box h2{font-size:18px;margin-bottom:20px;color:var(--white)}
+#loginOverlay .f{margin-bottom:16px}
+#loginOverlay .f label{display:block;font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+#loginOverlay .f input{width:100%}
+#loginOverlay .btn{width:100%;padding:12px;border:2px solid var(--neon);background:var(--neon);color:var(--black);font-weight:900;font-size:14px;cursor:pointer;transition:all .2s}
+#loginOverlay .btn:hover{background:var(--black);color:var(--neon)}
+#loginOverlay .err{color:var(--pink);font-size:12px;margin-top:8px;display:none}
+#loginOverlay .hint{color:#555;font-size:11px;margin-top:16px;text-align:center}
+
+/* ===== LAYOUT ===== */
+.admin-wrap{display:flex;min-height:100vh}
+.sidebar{width:220px;background:var(--gray);border-right:3px solid var(--neon);padding:20px 0;position:fixed;top:0;left:0;bottom:0;z-index:100;display:flex;flex-direction:column;overflow-y:auto}
+.sidebar .logo{font-size:18px;font-weight:900;color:var(--neon);letter-spacing:2px;padding:0 20px;margin-bottom:24px}
+.sidebar .nav-item{padding:10px 20px;font-size:13px;cursor:pointer;transition:all .2s;border-left:3px solid transparent;display:flex;align-items:center;gap:8px}
+.sidebar .nav-item:hover{background:rgba(57,255,20,.05);color:var(--neon)}
+.sidebar .nav-item.active{background:rgba(57,255,20,.08);color:var(--neon);border-left-color:var(--neon)}
+.sidebar .nav-item .ni-icon{font-size:16px}
+.sidebar .admin-email{margin-top:auto;padding:16px 20px;font-size:11px;color:#555;border-top:1px solid #333}
+.sidebar .logout{margin:8px 20px 0;padding:8px 0;font-size:12px;color:var(--pink);cursor:pointer;border:none;background:none;text-align:left}
+
+/* ===== MAIN CONTENT ===== */
+.main-content{margin-left:220px;flex:1;padding:24px;min-width:0}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.page-header h2{font-size:clamp(20px,4vw,36px);font-weight:900;letter-spacing:-1px}
+.page-header h2 span{color:var(--neon)}
+
+/* ===== STAT CARDS ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.stat-card{border:3px solid var(--white);padding:20px;background:var(--gray);position:relative;overflow:hidden;transition:all .2s}
+.stat-card:hover{border-color:var(--neon);transform:translateY(-2px)}
+.stat-card .sc-num{font-size:clamp(24px,4vw,40px);font-weight:900;color:var(--neon)}
+.stat-card .sc-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.stat-card .sc-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;opacity:.15}
+
+/* ===== CHART BAR ===== */
+.chart-section{margin-bottom:32px}
+.chart-title{font-size:14px;font-weight:900;margin-bottom:12px;color:var(--yellow)}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:200px;border-bottom:2px solid #333;padding-bottom:8px}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+.bar-fill{width:100%;background:var(--neon);transition:height .6s;min-height:2px;position:relative}
+.bar-fill:hover{background:var(--pink)}
+.bar-label{font-size:10px;color:#888;margin-top:4px;text-align:center;transform:rotate(-45deg);transform-origin:center top;white-space:nowrap}
+
+/* ===== TABLE ===== */
+.table-wrap{overflow-x:auto;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--gray);padding:10px 12px;text-align:left;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--neon);border-bottom:2px solid var(--neon);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid #222;color:#ccc;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+tr:hover td{background:rgba(57,255,20,.03)}
+.status-badge{padding:3px 8px;font-size:10px;font-weight:900;border:1px solid;white-space:nowrap}
+.status-pending_payment{color:#ffbe0b;border-color:#ffbe0b}
+.status-paid{color:var(--neon);border-color:var(--neon)}
+.status-processing{color:var(--blue);border-color:var(--blue)}
+.status-shipped{color:var(--cyan);border-color:var(--cyan)}
+.status-delivered{color:var(--neon);border-color:var(--neon)}
+.status-cancelled{color:var(--pink);border-color:var(--pink)}
+
+/* ===== BUTTONS ===== */
+.btn-sm{padding:5px 10px;font-size:11px;border:1px solid #555;background:transparent;color:var(--white);cursor:pointer;transition:all .2s}
+.btn-sm:hover{border-color:var(--neon);color:var(--neon)}
+.btn-danger{border-color:var(--pink);color:var(--pink)}
+.btn-danger:hover{background:var(--pink);color:var(--white)}
+.btn-primary-sm{padding:6px 14px;font-size:12px;background:var(--neon);color:var(--black);border:2px solid var(--neon);font-weight:900;cursor:pointer}
+.btn-primary-sm:hover{background:var(--black);color:var(--neon)}
+
+/* ===== FILTER BAR ===== */
+.filter-bar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.filter-bar input,.filter-bar select{padding:7px 10px;font-size:12px}
+.filter-bar .search-input{flex:1;min-width:200px}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal{background:var(--gray);border:4px solid var(--neon);padding:28px;max-width:600px;width:90%;max-height:85vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s}
+.modal-overlay.active .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--white);font-size:24px;cursor:pointer}
+.modal h3{font-size:18px;margin-bottom:16px}
+.form-row{margin-bottom:14px}
+.form-row label{display:block;font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.form-row input,.form-row select,.form-row textarea{width:100%}
+.form-row textarea{resize:vertical;min-height:80px}
+.form-actions{display:flex;gap:12px;margin-top:20px}
+
+/* ===== PRODUCT FORM ===== */
+.product-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.product-form-grid .span2{grid-column:span 2}
+
+/* ===== EMPTY STATE ===== */
+.empty{text-align:center;padding:60px 20px;color:#555;font-size:14px}
+
+/* ===== PAGINATION ===== */
+.pagination{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.pagination button{padding:6px 12px;border:1px solid #555;background:transparent;color:#888;cursor:pointer}
+.pagination button.active,.pagination button:hover{border-color:var(--neon);color:var(--neon);background:rgba(57,255,20,.08)}
+
+/* ===== TAB CONTENT ===== */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .sidebar{width:100%;position:relative;flex-direction:row;overflow-x:auto;border-right:none;border-bottom:3px solid var(--neon);padding:12px}
+  .sidebar .logo{display:none}
+  .sidebar .nav-item{white-space:nowrap;border-left:none;border-bottom:3px solid transparent;padding:8px 12px}
+  .sidebar .nav-item.active{border-bottom-color:var(--neon);border-left:none}
+  .sidebar .admin-email,.sidebar .logout{display:none}
+  .main-content{margin-left:0;padding:16px}
+  .product-form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay">
+  <h1>RAW BEAN</h1>
+  <div class="sub">管理后台 · Admin Panel</div>
+  <div class="box">
+    <h2>管理员登录</h2>
+    <div class="f">
+      <label>邮箱 Email</label>
+      <input type="email" id="loginEmail" value="admin@rawbean.com" placeholder="admin@rawbean.com">
+    </div>
+    <div class="f">
+      <label>密码 Password</label>
+      <input type="password" id="loginPass" value="admin123" placeholder="密码" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn" onclick="doLogin()">登 录 →</button>
+    <div class="err" id="loginErr"></div>
+    <div class="hint">默认账号：admin@rawbean.com / admin123</div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div class="admin-wrap" id="app" style="display:none">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">RAW BEAN<br><span style="font-size:11px;color:#888;letter-spacing:0">管理后台</span></div>
+    <div class="nav-item active" onclick="switchTab('dashboard',this)"><span class="ni-icon">📊</span>数据仪表盘</div>
+    <div class="nav-item" onclick="switchTab('orders',this)"><span class="ni-icon">📦</span>订单管理</div>
+    <div class="nav-item" onclick="switchTab('users',this)"><span class="ni-icon">👥</span>用户管理</div>
+    <div class="nav-item" onclick="switchTab('products',this)"><span class="ni-icon">☕</span>产品管理</div>
+    <div class="nav-item" onclick="switchTab('surveys',this)"><span class="ni-icon">📋</span>问卷管理</div>
+    <div class="admin-email" id="adminEmail"></div>
+    <button class="logout" onclick="doLogout()">← 退出登录</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- DASHBOARD TAB -->
+    <div class="tab-content active" id="tab-dashboard">
+      <div class="page-header"><h2>数据<span>仪表盘</span></h2></div>
+      <div class="stats-grid" id="statsCards"></div>
+      <div class="chart-section">
+        <div class="chart-title">📈 近7天收入趋势</div>
+        <div class="bar-chart" id="revenueChart"></div>
+      </div>
+      <div class="chart-section">
+        <div class="chart-title">🏆 热销产品 TOP 5</div>
+        <div class="bar-chart" id="topProductsChart"></div>
+      </div>
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div class="tab-content" id="tab-orders">
+      <div class="page-header"><h2>订单<span>管理</span></h2>
+        <button class="btn-primary-sm" onclick="refreshOrders()">🔄 刷新</button>
+      </div>
+      <div class="filter-bar">
+        <input class="search-input" id="orderSearch" placeholder="🔍 搜索订单号/邮箱..." oninput="filterOrders()">
+        <select id="orderStatusFilter" onchange="filterOrders()">
+          <option value="">全部状态</option>
+          <option value="pending_payment">待付款</option>
+          <option value="paid">已付款</option>
+          <option value="processing">处理中</option>
+          <option value="shipped">已发货</option>
+          <option value="delivered">已完成</option>
+          <option value="cancelled">已取消</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>订单号</th><th>用户</th><th>金额</th><th>状态</th><th>时间</th><th>操作</th></tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="ordersEmpty" style="display:none">暂无订单数据</div>
+    </div>
+
+    <!-- USERS TAB -->
+    <div class="tab-content" id="tab-users">
+      <div class="page-header"><h2>用户<span>管理</span></h2>
+        <button class="btn-primary-sm" onclick="refreshUsers()">🔄 刷新</button>
+      </div>
+      <div class="filter-bar">
+        <input class="search-input" id="userSearch" placeholder="🔍 搜索邮箱/姓名..." oninput="filterUsers()">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>姓名</th><th>邮箱</th><th>手机</th><th>管理员</th><th>注册时间</th><th>操作</th></tr></thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="usersEmpty" style="display:none">暂无用户数据</div>
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div class="tab-content" id="tab-products">
+      <div class="page-header"><h2>产品<span>管理</span></h2>
+        <button class="btn-primary-sm" onclick="openProductModal()">＋ 新增产品</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>名称</th><th>分类</th><th>价格</th><th>SCA</th><th>操作</th></tr></thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="productsEmpty" style="display:none">暂无产品数据</div>
+    </div>
+
+    <!-- SURVEYS TAB -->
+    <div class="tab-content" id="tab-surveys">
+      <div class="page-header"><h2>问卷<span>管理</span></h2>
+        <button class="btn-primary-sm" onclick="exportSurveys()">📥 导出 CSV</button>
+        <button class="btn-primary-sm" onclick="refreshSurveys()">🔄 刷新</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>提交时间</th><th>用户邮箱</th><th>操作</th></tr></thead>
+          <tbody id="surveysBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="surveysEmpty" style="display:none">暂无问卷数据</div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal" style="max-width:700px">
+    <button class="modal-close" onclick="closeModal('orderModal')">×</button>
+    <h3 id="orderModalTitle">订单详情</h3>
+    <div id="orderModalBody"></div>
+  </div>
+</div>
+
+<!-- USER EDIT MODAL -->
+<div class="modal-overlay" id="userModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('userModal')">×</button>
+    <h3>编辑用户</h3>
+    <div id="userModalBody"></div>
+  </div>
+</div>
+
+<!-- PRODUCT EDIT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" style="max-width:750px">
+    <button class="modal-close" onclick="closeModal('productModal')">×</button>
+    <h3 id="productModalTitle">新增/编辑产品</h3>
+    <div id="productModalBody"></div>
+  </div>
+</div>
+
+<!-- SURVEY DETAIL MODAL -->
+<div class="modal-overlay" id="surveyModal">
+  <div class="modal" style="max-width:700px">
+    <button class="modal-close" onclick="closeModal('surveyModal')">×</button>
+    <h3>问卷详情</h3>
+    <div id="surveyModalBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== CONFIG =====
+const API = '';  // same origin, empty = relative
+let TOKEN = localStorage.getItem('rb_admin_token') || '';
+let CURRENT_TAB = 'dashboard';
+let ALL_ORDERS = [];
+let ALL_USERS = [];
+let ALL_PRODUCTS = [];
+let ALL_SURVEYS = [];
+
+// ===== API HELPER =====
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, {
+    ...opts,
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN, ...(opts.headers || {}) }
+  });
+  if (res.status === 401 || res.status === 403) { doLogout(); throw new Error('认证失败'); }
+  return res.json();
+}
+
+// ===== AUTH =====
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPass').value;
+  const errEl = document.getElementById('loginErr');
+  errEl.style.display = 'none';
+  if (!email || !password) { errEl.textContent = '请输入邮箱和密码'; errEl.style.display = 'block'; return; }
+  try {
+    const data = await api('/api/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+    if (data.error) { errEl.textContent = data.error; errEl.style.display = 'block'; return; }
+    if (!data.user.isAdmin) { errEl.textContent = '非管理员账号'; errEl.style.display = 'block'; return; }
+    TOKEN = data.token;
+    localStorage.setItem('rb_admin_token', TOKEN);
+    enterAdmin(data.user);
+  } catch(e) {
+    errEl.textContent = '登录失败：' + e.message; errEl.style.display = 'block';
+  }
+}
+function doLogout() {
+  TOKEN = '';
+  localStorage.removeItem('rb_admin_token');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginOverlay').style.display = 'flex';
+}
+function enterAdmin(user) {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('adminEmail').textContent = user.email;
+  loadDashboard();
+}
+
+// ===== CHECK EXISTING TOKEN =====
+(async function init() {
+  if (TOKEN) {
+    try {
+      const user = await api('/api/me');
+      if (user.isAdmin) { enterAdmin(user); return; }
+    } catch(e) { /* token invalid */ }
+    localStorage.removeItem('rb_admin_token');
+    TOKEN = '';
+  }
+})();
+
+// ===== TAB SWITCH =====
+function switchTab(tab, el) {
+  CURRENT_TAB = tab;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (tab === 'dashboard') loadDashboard();
+  if (tab === 'orders') loadOrders();
+  if (tab === 'users') loadUsers();
+  if (tab === 'products') loadProducts();
+  if (tab === 'surveys') loadSurveys();
+}
+
+// ===== DASHBOARD =====
+async function loadDashboard() {
+  try {
+    const stats = await api('/api/admin/stats');
+    const cards = [
+      { num: '¥' + (stats.totalRevenue || 0).toLocaleString(), label: '总收入', icon: '💰' },
+      { num: stats.totalOrders || 0, label: '总订单', icon: '📦' },
+      { num: stats.totalUsers || 0, label: '总用户', icon: '👥' },
+      { num: stats.totalProducts || 0, label: '产品数', icon: '☕' },
+      { num: stats.totalSurveys || 0, label: '问卷数', icon: '📋' }
+    ];
+    document.getElementById('statsCards').innerHTML = cards.map(c =>
+      `<div class="stat-card"><div class="sc-num">${c.num}</div><div class="sc-label">${c.label}</div><div class="sc-icon">${c.icon}</div></div>`
+    ).join('');
+
+    // Revenue chart
+    const rc = document.getElementById('revenueChart');
+    const maxRev = Math.max(...stats.last7Days.map(d => d.revenue), 1);
+    rc.innerHTML = stats.last7Days.map(d => {
+      const h = maxRev ? (d.revenue / maxRev * 180) : 0;
+      return `<div class="bar-item"><div class="bar-fill" style="height:${h}px" title="¥${d.revenue}"></div><div class="bar-label">${d.date.slice(5)}</div></div>`;
+    }).join('');
+
+    // Top products chart
+    const tp = document.getElementById('topProductsChart');
+    const maxQty = Math.max(...stats.topProducts.map(p => p.qty), 1);
+    tp.innerHTML = stats.topProducts.map(p => {
+      const h = maxQty ? (p.qty / maxQty * 180) : 0;
+      return `<div class="bar-item"><div class="bar-fill" style="height:${h}px;background:var(--pink)" title="${p.name}: ${p.qty}件"></div><div class="bar-label">${p.name}</div></div>`;
+    }).join('');
+  } catch(e) { console.error('Dashboard load error:', e); }
+}
+
+// ===== ORDERS =====
+async function loadOrders() {
+  try {
+    ALL_ORDERS = await api('/api/admin/orders');
+    renderOrders(ALL_ORDERS);
+  } catch(e) { console.error(e); }
+}
+function renderOrders(orders) {
+  const tbody = document.getElementById('ordersBody');
+  if (orders.length === 0) { tbody.innerHTML = ''; document.getElementById('ordersEmpty').style.display = 'block'; return; }
+  document.getElementById('ordersEmpty').style.display = 'none';
+  tbody.innerHTML = orders.map(o => `
+    <tr>
+      <td style="color:var(--neon);font-weight:900">${o.id}</td>
+      <td>${o.userEmail || '-'}</td>
+      <td style="font-weight:900">¥${(o.total || 0).toLocaleString()}</td>
+      <td><span class="status-badge status-${o.status}">${statusText(o.status)}</span></td>
+      <td>${o.createdAt ? o.createdAt.slice(0, 10) : '-'}</td>
+      <td><button class="btn-sm" onclick="viewOrder('${o.id}')">查看</button></td>
+    </tr>
+  `).join('');
+}
+function filterOrders() {
+  const search = document.getElementById('orderSearch').value.toLowerCase();
+  const status = document.getElementById('orderStatusFilter').value;
+  let filtered = ALL_ORDERS;
+  if (search) filtered = filtered.filter(o => o.id.toLowerCase().includes(search) || (o.userEmail || '').toLowerCase().includes(search));
+  if (status) filtered = filtered.filter(o => o.status === status);
+  renderOrders(filtered);
+}
+function statusText(s) {
+  return { pending_payment:'待付款', paid:'已付款', processing:'处理中', shipped:'已发货', delivered:'已完成', cancelled:'已取消' }[s] || s;
+}
+async function viewOrder(id) {
+  try {
+    const o = await api('/api/admin/orders/' + id);
+    const itemsHtml = (o.items || []).map(i => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #333"><span>${i.name} × ${i.quantity}</span><span>¥${(i.price * i.quantity).toLocaleString()}</span></div>`).join('');
+    const historyHtml = (o.statusHistory || []).map(h => `<div style="font-size:12px;color:#888;padding:3px 0">${h.time ? h.time.slice(0, 16) : '-'} — ${statusText(h.status)} ${h.note || ''}</div>`).join('');
+    document.getElementById('orderModalTitle').textContent = '订单 ' + o.id;
+    document.getElementById('orderModalBody').innerHTML = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+        <div><div style="font-size:11px;color:#888">状态</div><div style="font-size:16px;font-weight:900;color:var(--neon)">${statusText(o.status)}</div></div>
+        <div><div style="font-size:11px;color:#888">金额</div><div style="font-size:16px;font-weight:900">¥${(o.total || 0).toLocaleString()}</div></div>
+        <div><div style="font-size:11px;color:#888">用户</div><div>${o.userEmail || '-'}</div></div>
+        <div><div style="font-size:11px;color:#888">支付方式</div><div>${o.paymentMethod || '-'}</div></div>
+        <div style="grid-column:span 2"><div style="font-size:11px;color:#888">收货地址</div><div>${o.shippingAddress || '-'}</div></div>
+      </div>
+      <div style="margin-bottom:20px"><div style="font-size:13px;font-weight:900;margin-bottom:8px;color:var(--yellow)">商品明细</div>${itemsHtml}</div>
+      <div style="margin-bottom:20px"><div style="font-size:13px;font-weight:900;margin-bottom:8px;color:var(--cyan)">状态变更记录</div>${historyHtml}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn-sm" onclick="updateOrderStatus('${o.id}','paid')" ${o.status==='paid'?'disabled':''}>标记已付款</button>
+        <button class="btn-sm" onclick="updateOrderStatus('${o.id}','processing')" ${o.status==='processing'?'disabled':''}>开始处理</button>
+        <button class="btn-sm" onclick="updateOrderStatus('${o.id}','shipped')" ${o.status==='shipped'?'disabled':''}>标记已发货</button>
+        <button class="btn-sm" onclick="updateOrderStatus('${o.id}','delivered')" ${o.status==='delivered'?'disabled':''}>标记已完成</button>
+        <button class="btn-sm btn-danger" onclick="updateOrderStatus('${o.id}','cancelled')" ${o.status==='cancelled'?'disabled':''}>取消订单</button>
+      </div>
+    `;
+    document.getElementById('orderModal').classList.add('active');
+  } catch(e) { alert('加载失败：' + e.message); }
+}
+async function updateOrderStatus(id, status) {
+  if (!confirm('确认将订单状态更新为「' + statusText(status) + '」？')) return;
+  try {
+    await api('/api/admin/orders/' + id + '/status', { method: 'PUT', body: JSON.stringify({ status }) });
+    closeModal('orderModal');
+    loadOrders();
+  } catch(e) { alert('更新失败：' + e.message); }
+}
+function refreshOrders() { loadOrders(); }
+
+// ===== USERS =====
+async function loadUsers() {
+  try {
+    ALL_USERS = await api('/api/admin/users');
+    renderUsers(ALL_USERS);
+  } catch(e) { console.error(e); }
+}
+function renderUsers(users) {
+  const tbody = document.getElementById('usersBody');
+  if (users.length === 0) { tbody.innerHTML = ''; document.getElementById('usersEmpty').style.display = 'block'; return; }
+  document.getElementById('usersEmpty').style.display = 'none';
+  tbody.innerHTML = users.filter(u => !u.isAdmin).map(u => `
+    <tr>
+      <td style="color:#888;font-size:11px">${u.id}</td>
+      <td>${u.name || '-'}</td>
+      <td style="color:var(--neon)">${u.email}</td>
+      <td>${u.phone || '-'}</td>
+      <td>${u.isAdmin ? '✅' : '❌'}</td>
+      <td>${u.createdAt ? u.createdAt.slice(0, 10) : '-'}</td>
+      <td>
+        <button class="btn-sm" onclick="editUser('${u.id}')">编辑</button>
+        <button class="btn-sm btn-danger" onclick="deleteUser('${u.id}')">删除</button>
+      </td>
+    </tr>
+  `).join('');
+}
+function filterUsers() {
+  const search = document.getElementById('userSearch').value.toLowerCase();
+  renderUsers(ALL_USERS.filter(u =>
+    !u.isAdmin && (u.email.toLowerCase().includes(search) || u.name.toLowerCase().includes(search))
+  ));
+}
+async function editUser(id) {
+  try {
+    const u = await api('/api/admin/users/' + id);
+    document.getElementById('userModalBody').innerHTML = `
+      <div class="form-row"><label>姓名</label><input id="editUserName" value="${u.name || ''}"></div>
+      <div class="form-row"><label>手机</label><input id="editUserPhone" value="${u.phone || ''}"></div>
+      <div class="form-row"><label>管理员</label>
+        <select id="editUserAdmin"><option value="false" ${!u.isAdmin?'selected':''}>否</option><option value="true" ${u.isAdmin?'selected':''}>是</option></select>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary-sm" onclick="saveUser('${id}')">保存</button>
+        <button class="btn-sm" onclick="closeModal('userModal')">取消</button>
+      </div>
+    `;
+    document.getElementById('userModal').classList.add('active');
+  } catch(e) { alert('加载失败：' + e.message); }
+}
+async function saveUser(id) {
+  try {
+    await api('/api/admin/users/' + id, { method: 'PUT', body: JSON.stringify({
+      name: document.getElementById('editUserName').value,
+      phone: document.getElementById('editUserPhone').value,
+      isAdmin: document.getElementById('editUserAdmin').value === 'true'
+    }) });
+    closeModal('userModal');
+    loadUsers();
+  } catch(e) { alert('保存失败：' + e.message); }
+}
+async function deleteUser(id) {
+  if (!confirm('确认删除该用户？')) return;
+  try {
+    await api('/api/admin/users/' + id, { method: 'DELETE' });
+    loadUsers();
+  } catch(e) { alert('删除失败：' + e.message); }
+}
+function refreshUsers() { loadUsers(); }
+
+// ===== PRODUCTS =====
+async function loadProducts() {
+  try {
+    ALL_PRODUCTS = await api('/api/admin/products');
+    renderProducts(ALL_PRODUCTS);
+  } catch(e) { console.error(e); }
+}
+function renderProducts(products) {
+  const tbody = document.getElementById('productsBody');
+  if (products.length === 0) { tbody.innerHTML = ''; document.getElementById('productsEmpty').style.display = 'block'; return; }
+  document.getElementById('productsEmpty').style.display = 'none';
+  tbody.innerHTML = products.map(p => `
+    <tr>
+      <td style="color:#888;font-size:11px">${p.id}</td>
+      <td style="font-weight:900">${p.name}</td>
+      <td><span style="color:var(--cyan)">${{single:'单一产地',blend:'拼配',limited:'限量'}[p.category]||p.category}</span></td>
+      <td style="font-weight:900">¥${p.price}</td>
+      <td>${p.sca || '-'}</td>
+      <td>
+        <button class="btn-sm" onclick="editProduct('${p.id}')">编辑</button>
+        <button class="btn-sm btn-danger" onclick="deleteProduct('${p.id}')">删除</button>
+      </td>
+    </tr>
+  `).join('');
+}
+function openProductModal(id = null) {
+  const isEdit = !!id;
+  const p = isEdit ? ALL_PRODUCTS.find(p => p.id === id) : {};
+  document.getElementById('productModalTitle').textContent = isEdit ? '编辑产品' : '新增产品';
+  document.getElementById('productModalBody').innerHTML = `
+    <div class="product-form-grid">
+      <div class="form-row"><label>产品名称（中文）</label><input id="pName" value="${p.name || ''}"></div>
+      <div class="form-row"><label>英文名</label><input id="pNameEn" value="${p.nameEn || ''}"></div>
+      <div class="form-row"><label>产地/描述</label><input id="pOrigin" value="${p.origin || ''}"></div>
+      <div class="form-row"><label>分类</label>
+        <select id="pCategory"><option value="single" ${(p.category||'single')==='single'?'selected':''}>单一产地</option><option value="blend" ${p.category==='blend'?'selected':''}>拼配</option><option value="limited" ${p.category==='limited'?'selected':''}>限量</option></select>
+      </div>
+      <div class="form-row"><label>价格（元）</label><input id="pPrice" type="number" value="${p.price || 0}"></div>
+      <div class="form-row"><label>SCA评分</label><input id="pSca" type="number" value="${p.sca || 0}"></div>
+      <div class="form-row"><label>海拔</label><input id="pAltitude" value="${p.altitude || ''}"></div>
+      <div class="form-row"><label>处理法</label><input id="pProcess" value="${p.process || ''}"></div>
+      <div class="form-row"><label>烘焙度</label><input id="pRoast" value="${p.roast || ''}"></div>
+      <div class="form-row"><label>Badge</label><input id="pBadge" value="${p.badge || ''}" placeholder="热门/经典/限量..."></div>
+      <div class="form-row"><label>图片URL</label><input id="pImg" value="${p.img || ''}"></div>
+      <div class="form-row span2"><label>描述</label><textarea id="pDesc">${p.desc || ''}</textarea></div>
+      <div class="form-row span2"><label>风味JSON</label><input id="pFlavorJson" value="${p.flavorJson || ''}" placeholder='{"蓝莓":9,"茉莉":8}'></div>
+      <div class="form-row span2"><label>冲泡JSON</label><input id="pBrewJson" value="${p.brewJson || ''}" placeholder='{"粉水比":"1:15",...}'></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-primary-sm" onclick="saveProduct('${id || ''}')">保存</button>
+      <button class="btn-sm" onclick="closeModal('productModal')">取消</button>
+    </div>
+  `;
+  document.getElementById('productModal').classList.add('active');
+}
+function editProduct(id) { openProductModal(id); }
+async function saveProduct(id) {
+  const data = {
+    name: document.getElementById('pName').value,
+    nameEn: document.getElementById('pNameEn').value,
+    origin: document.getElementById('pOrigin').value,
+    category: document.getElementById('pCategory').value,
+    price: +document.getElementById('pPrice').value,
+    sca: +document.getElementById('pSca').value,
+    altitude: document.getElementById('pAltitude').value,
+    process: document.getElementById('pProcess').value,
+    roast: document.getElementById('pRoast').value,
+    badge: document.getElementById('pBadge').value,
+    img: document.getElementById('pImg').value,
+    desc: document.getElementById('pDesc').value,
+    flavorJson: document.getElementById('pFlavorJson').value,
+    brewJson: document.getElementById('pBrewJson').value,
+  };
+  try {
+    if (id) {
+      await api('/api/admin/products/' + id, { method: 'PUT', body: JSON.stringify(data) });
+    } else {
+      await api('/api/admin/products', { method: 'POST', body: JSON.stringify(data) });
+    }
+    closeModal('productModal');
+    loadProducts();
+  } catch(e) { alert('保存失败：' + e.message); }
+}
+async function deleteProduct(id) {
+  if (!confirm('确认删除该产品？')) return;
+  try {
+    await api('/api/admin/products/' + id, { method: 'DELETE' });
+    loadProducts();
+  } catch(e) { alert('删除失败：' + e.message); }
+}
+
+// ===== SURVEYS =====
+async function loadSurveys() {
+  try {
+    ALL_SURVEYS = await api('/api/admin/surveys');
+    renderSurveys(ALL_SURVEYS);
+  } catch(e) { console.error(e); }
+}
+function renderSurveys(surveys) {
+  const tbody = document.getElementById('surveysBody');
+  if (surveys.length === 0) { tbody.innerHTML = ''; document.getElementById('surveysEmpty').style.display = 'block'; return; }
+  document.getElementById('surveysEmpty').style.display = 'none';
+  tbody.innerHTML = surveys.map(s => `
+    <tr>
+      <td style="color:#888;font-size:11px">${s.id}</td>
+      <td>${s.submittedAt ? s.submittedAt.slice(0, 16) : '-'}</td>
+      <td>${s.userEmail || '匿名'}</td>
+      <td>
+        <button class="btn-sm" onclick="viewSurvey('${s.id}')">查看</button>
+        <button class="btn-sm btn-danger" onclick="deleteSurvey('${s.id}')">删除</button>
+      </td>
+    </tr>
+  `).join('');
+}
+async function viewSurvey(id) {
+  const s = ALL_SURVEYS.find(s => s.id === id);
+  if (!s) return;
+  const answers = s.answers || {};
+  const qLabels = { frequency:'饮用频率', time:'偏好时段', roast:'烘焙度', flavor:'风味偏好', brew:'冲泡方式', budget:'预算/月', brand:'品牌价值', channel:'发现渠道', service:'期望服务', msg:'留言' };
+  const answersHtml = Object.entries(answers).map(([k, v]) =>
+    `<div style="display:flex;padding:6px 0;border-bottom:1px solid #333"><div style="width:120px;color:#888;font-size:12px">${qLabels[k]||k}</div><div style="flex:1;font-size:13px">${Array.isArray(v)?v.join(', '):v}</div></div>`
+  ).join('');
+  document.getElementById('surveyModalBody').innerHTML = `
+    <div style="margin-bottom:12px;font-size:12px;color:#888">提交时间：${s.submittedAt || '-'}</div>
+    ${answersHtml}
+    <div style="margin-top:20px"><button class="btn-sm btn-danger" onclick="deleteSurvey('${s.id}');closeModal('surveyModal')">删除此问卷</button></div>
+  `;
+  document.getElementById('surveyModal').classList.add('active');
+}
+async function deleteSurvey(id) {
+  if (!confirm('确认删除该问卷？')) return;
+  try { await api('/api/admin/surveys/' + id, { method: 'DELETE' }); loadSurveys(); } catch(e) { alert('删除失败：' + e.message); }
+}
+function exportSurveys() { window.open('/api/admin/surveys/export', '_blank'); }
+function refreshSurveys() { loadSurveys(); }
+
+// ===== MODAL HELPER =====
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active')); } });
+</script>
+</body>
+</html>
