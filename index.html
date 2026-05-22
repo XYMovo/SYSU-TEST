@@ -5,17 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RAW BEAN — 生豆咖啡 | Brutalist Coffee</title>
 <meta name="description" content="RAW BEAN Coffee - 粗野主义咖啡体验，源头直采，48小时鲜烘">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BRUTALIST BASE ===== */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 :root {
   --neon: #39ff14; --pink: #ff006e; --yellow: #ffbe0b; --blue: #3a86ff;
   --red: #ff0033; --cyan: #00f0ff; --black: #0a0a0a; --white: #f5f5f0;
-  --gray: #1a1a1a; --font-mono: 'Courier New', monospace;
+  --gray: #1a1a1a; --ink: #1a1a2e; --paper: #f5f0e8;
+  --font-serif: 'Noto Serif SC', 'SimSun', serif;
+  --font-sans: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--black); color: var(--white); font-family: var(--font-mono);
+  background: var(--black); color: var(--white); font-family: var(--font-sans);
   overflow-x: hidden; cursor: crosshair;
 }
 ::selection { background: var(--pink); color: var(--white); }
@@ -28,7 +31,7 @@ body {
   background-size: 256px;
 }
 
-/* ===== SCANLINE ===== */
+/* ===== SCANLINES ===== */
 .scanlines {
   position: fixed; inset:0; z-index:9998; pointer-events:none;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
@@ -53,18 +56,45 @@ body {
   transition: opacity 0.6s, visibility 0.6s;
 }
 #loader.hidden { opacity:0; visibility:hidden; }
-#loader h1 { font-size: clamp(40px,10vw,120px); color: var(--neon); letter-spacing: -4px; }
+#loader h1 { font-size: clamp(40px,10vw,120px); color: var(--neon); letter-spacing: -4px; font-family: var(--font-sans); }
 #loader .bar { width: 200px; height: 4px; background: #333; margin-top: 20px; overflow: hidden; }
 #loader .bar-fill { width: 0%; height: 100%; background: var(--neon); transition: width 0.3s; }
+
+/* ===== TOP JUMP NAV ===== */
+.jump-nav {
+  position: fixed; top:0; left:0; right:0; z-index: 10002;
+  display: flex; justify-content: center; gap: 0;
+  background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--neon);
+  transform: translateY(-100%);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+.jump-nav.visible { transform: translateY(0); }
+.jump-nav-inner {
+  display: flex; align-items: center; gap: 0; width: 100%; max-width: 1200px;
+  padding: 0 20px; height: 48px; overflow-x: auto;
+}
+.jump-nav-inner::-webkit-scrollbar { display: none; }
+.jump-nav-item {
+  padding: 8px 16px; color: #888; text-decoration: none; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all 0.2s; cursor: pointer;
+}
+.jump-nav-item:hover, .jump-nav-item.active { color: var(--neon); border-bottom-color: var(--neon); }
+.jump-nav-logo {
+  font-size: 16px; font-weight: 900; color: var(--neon); letter-spacing: 2px;
+  margin-right: auto; text-decoration: none; padding: 8px 16px 8px 0;
+}
 
 /* ===== NAV ===== */
 nav {
   position: fixed; top:0; left:0; right:0; z-index: 1000;
   display: flex; justify-content: space-between; align-items: center;
   padding: 12px 24px; background: rgba(10,10,10,0.9); backdrop-filter: blur(8px);
-  border-bottom: 3px solid var(--neon);
+  border-bottom: 3px solid var(--neon); transition: top 0.3s;
 }
-nav .logo { font-size: 20px; font-weight: 900; color: var(--neon); letter-spacing: 2px; }
+nav .logo { font-size: 20px; font-weight: 900; color: var(--neon); letter-spacing: 2px; text-decoration: none; }
 nav .nav-links { display: flex; gap: 16px; }
 nav .nav-links a {
   color: var(--white); text-decoration: none; font-size: 13px; text-transform: uppercase;
@@ -208,14 +238,18 @@ nav .nav-links a:hover { border-color: var(--pink); color: var(--pink); }
 }
 .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 0 var(--pink); }
 .product-img {
-  height: 220px; display: flex; align-items: center; justify-content: center;
-  font-size: 80px; position: relative; overflow: hidden;
+  height: 260px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
-.product-img::after {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(transparent 60%, var(--gray));
+.product-img img {
+  width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
 }
-.product-img .bg { position:absolute; inset:0; opacity: 0.15; font-size: 120px; display:flex; align-items:center; justify-content:center; }
+.product-card:hover .product-img img { transform: scale(1.08); }
+.product-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(transparent 50%, var(--gray) 100%);
+  z-index: 1;
+}
 .product-body { padding: 20px; }
 .product-body h3 { font-size: 18px; margin-bottom: 8px; }
 .product-body .origin { color: var(--neon); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
@@ -224,6 +258,196 @@ nav .nav-links a:hover { border-color: var(--pink); color: var(--pink); }
   font-size: 22px; font-weight: 900; color: var(--yellow); margin: 12px 0;
 }
 .product-body .btn { width: 100%; justify-content: center; padding: 10px; font-size: 12px; }
+.product-detail-btn {
+  display: block; width: 100%; padding: 8px; margin-top: 8px;
+  background: transparent; border: 2px solid #555; color: #aaa;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+  cursor: pointer; transition: all 0.2s; text-align: center;
+}
+.product-detail-btn:hover { border-color: var(--neon); color: var(--neon); }
+
+/* ===== PRODUCT DETAIL PAGE (Ancient + Brutalism) ===== */
+.detail-overlay {
+  position: fixed; inset: 0; z-index: 10003; background: var(--black);
+  overflow-y: auto; opacity: 0; visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+.detail-overlay.active { opacity: 1; visibility: visible; }
+.detail-page {
+  min-height: 100vh; position: relative;
+  background: var(--black);
+}
+/* Ancient ink wash background */
+.detail-ink-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.06;
+}
+.detail-ink-bg svg { width: 100%; height: 100%; }
+/* Scanline over ink */
+.detail-scanlines {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px);
+}
+/* Close button */
+.detail-close {
+  position: fixed; top: 16px; right: 16px; z-index: 10005;
+  width: 48px; height: 48px; background: var(--black); border: 3px solid var(--neon);
+  color: var(--neon); font-size: 24px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.detail-close:hover { background: var(--neon); color: var(--black); }
+/* Back button */
+.detail-back {
+  position: fixed; top: 16px; left: 16px; z-index: 10005;
+  padding: 8px 16px; background: var(--black); border: 3px solid var(--pink);
+  color: var(--pink); font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;
+}
+.detail-back:hover { background: var(--pink); color: var(--black); }
+
+/* Detail header - Ancient style */
+.detail-header {
+  position: relative; z-index: 2; padding: 80px 20px 40px;
+  text-align: center;
+}
+.detail-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 8vw, 96px); font-weight: 900;
+  color: var(--paper); letter-spacing: 8px;
+  position: relative; display: inline-block;
+}
+/* Brush stroke under title */
+.detail-header h1::after {
+  content: ''; position: absolute; bottom: -8px; left: -10%; width: 120%;
+  height: 4px; background: var(--neon);
+  transform: skewX(-20deg);
+}
+.detail-header .subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 2vw, 20px); color: #888;
+  margin-top: 20px; letter-spacing: 4px;
+}
+/* Ancient seal stamp */
+.detail-seal {
+  display: inline-block; padding: 8px 12px; border: 3px solid var(--pink);
+  color: var(--pink); font-family: var(--font-serif);
+  font-size: 14px; transform: rotate(-8deg);
+  margin-top: 16px; letter-spacing: 2px;
+}
+
+/* Detail hero image */
+.detail-hero-img {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 800px; margin: 0 auto;
+  border: 4px solid var(--neon); overflow: hidden;
+}
+.detail-hero-img img {
+  width: 100%; height: 400px; object-fit: cover; display: block;
+}
+/* Ink frame around image */
+.detail-hero-img::before {
+  content: ''; position: absolute; inset: 8px;
+  border: 2px solid rgba(245,240,232,0.3);
+  pointer-events: none; z-index: 2;
+}
+
+/* Detail content */
+.detail-content {
+  position: relative; z-index: 2;
+  max-width: 900px; margin: 0 auto; padding: 40px 20px;
+}
+/* Ancient style section divider */
+.detail-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin: 40px 0; color: var(--neon); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 3px;
+}
+.detail-divider::before, .detail-divider::after {
+  content: ''; flex: 1; height: 2px; background: var(--neon);
+}
+/* Flavor profile - brutalism style */
+.flavor-profile {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 12px; margin: 24px 0;
+}
+.flavor-item {
+  border: 3px solid var(--white); padding: 16px; text-align: center;
+  background: var(--gray); transition: all 0.2s;
+}
+.flavor-item:hover { border-color: var(--neon); transform: translateY(-4px); }
+.flavor-item .flavor-name {
+  font-size: 14px; font-weight: 900; color: var(--neon);
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.flavor-item .flavor-bar {
+  height: 6px; background: #333; position: relative; overflow: hidden;
+}
+.flavor-item .flavor-bar-fill {
+  height: 100%; background: var(--neon);
+  transition: width 1s ease-out;
+}
+/* Brewing guide */
+.brewing-guide {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 16px; margin: 24px 0;
+}
+.brew-step {
+  border: 3px solid var(--cyan); padding: 20px; background: rgba(0,240,255,0.03);
+  position: relative;
+}
+.brew-step .step-num {
+  font-size: 36px; font-weight: 900; color: rgba(0,240,255,0.15);
+  position: absolute; top: 4px; right: 8px; line-height: 1;
+}
+.brew-step .step-icon { font-size: 32px; display: block; margin-bottom: 8px; }
+.brew-step .step-title { font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+.brew-step .step-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+/* Ancient poem style description */
+.detail-poem {
+  font-family: var(--font-serif);
+  font-size: 16px; line-height: 2.2; color: #ccc;
+  padding: 24px; border-left: 3px solid var(--pink);
+  margin: 24px 0; background: rgba(255,0,110,0.03);
+}
+.detail-poem .poem-title {
+  font-size: 20px; font-weight: 900; color: var(--paper);
+  margin-bottom: 12px; letter-spacing: 4px;
+}
+
+/* Detail price */
+.detail-price {
+  font-size: 36px; font-weight: 900; color: var(--yellow);
+  margin: 24px 0;
+}
+.detail-price span { font-size: 16px; color: #888; }
+
+/* Detail add to cart */
+.detail-cart-row {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  margin: 24px 0;
+}
+.detail-size-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.detail-size-btn {
+  padding: 8px 16px; border: 2px solid #555; background: transparent;
+  color: var(--white); cursor: pointer; font-size: 13px; transition: all 0.2s;
+}
+.detail-size-btn.active, .detail-size-btn:hover { border-color: var(--neon); color: var(--neon); }
+.detail-qty-row { display: flex; align-items: center; gap: 8px; }
+.detail-qty-btn {
+  width: 36px; height: 36px; border: 2px solid #555; background: transparent;
+  color: var(--white); font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+}
+.detail-qty-val { font-size: 18px; min-width: 32px; text-align: center; }
+.detail-add-cart {
+  padding: 14px 32px; background: var(--neon); color: var(--black);
+  border: none; font-size: 16px; font-weight: 900; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 2px; transition: background 0.2s;
+}
+.detail-add-cart:hover { background: var(--pink); color: var(--white); }
 
 /* ===== PROCESS ===== */
 .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
@@ -266,16 +490,16 @@ nav .nav-links a:hover { border-color: var(--pink); color: var(--pink); }
 }
 .cta-section h2 {
   font-size: clamp(32px,7vw,72px); font-weight: 900; margin-bottom: 16px;
-  position: relative; z-index:1;
+  position: relative; z-index: 1;
 }
-.cta-section p { color: #888; margin-bottom: 32px; font-size: 16px; position: relative; z-index:1; }
+.cta-section p { color: #888; margin-bottom: 32px; font-size: 16px; position: relative; z-index: 1; }
 .cta-form {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index:1;
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;
 }
 .cta-input {
   padding: 14px 20px; font-size: 14px; border: 3px solid var(--neon);
   background: var(--black); color: var(--white); min-width: 280px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
 }
 .cta-input:focus { outline: none; border-color: var(--pink); }
 
@@ -289,58 +513,7 @@ footer .footer-links a { color: #888; text-decoration: none; font-size: 12px; te
 footer .footer-links a:hover { color: var(--neon); }
 footer .copyright { color: #555; font-size: 11px; }
 
-/* ===== SHOP MODAL ===== */
-.modal-overlay {
-  position: fixed; inset:0; z-index: 10001; background: rgba(0,0,0,0.85);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; visibility: hidden; transition: all 0.3s;
-}
-.modal-overlay.active { opacity:1; visibility:visible; }
-.modal {
-  background: var(--gray); border: 4px solid var(--neon); padding: 32px;
-  max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;
-  transform: translateY(20px); transition: transform 0.3s; position: relative;
-}
-.modal-overlay.active .modal { transform: translateY(0); }
-.modal-close {
-  position: absolute; top:12px; right:16px; background:none; border:none;
-  color: var(--white); font-size: 28px; cursor:pointer;
-}
-.modal h3 { font-size: 22px; margin-bottom: 8px; }
-.modal .modal-origin { color: var(--neon); font-size: 12px; text-transform: uppercase; }
-.modal .modal-desc { color: #aaa; font-size: 14px; line-height: 1.6; margin: 16px 0; }
-.modal .modal-price { font-size: 28px; font-weight: 900; color: var(--yellow); margin-bottom: 20px; }
-.modal .size-options { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-.modal .size-btn {
-  padding: 8px 16px; border: 2px solid #555; background: transparent; color: var(--white);
-  cursor: pointer; font-size: 13px; transition: all 0.2s;
-}
-.modal .size-btn.active, .modal .size-btn:hover { border-color: var(--neon); color: var(--neon); }
-.modal .qty-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-.modal .qty-btn {
-  width: 36px; height: 36px; border: 2px solid #555; background: transparent;
-  color: var(--white); font-size: 18px; cursor: pointer; display: flex;
-  align-items: center; justify-content: center;
-}
-.modal .qty-btn:hover { border-color: var(--neon); }
-.modal .qty-val { font-size: 18px; min-width: 32px; text-align: center; }
-.modal .add-cart-btn {
-  width: 100%; padding: 14px; background: var(--neon); color: var(--black);
-  border: none; font-size: 16px; font-weight: 900; cursor: pointer;
-  text-transform: uppercase; letter-spacing: 2px; transition: background 0.2s;
-}
-.modal .add-cart-btn:hover { background: var(--pink); color: var(--white); }
-
-/* ===== CART NOTIFICATION ===== */
-.cart-toast {
-  position: fixed; bottom: 24px; right: 24px; z-index: 10002;
-  background: var(--neon); color: var(--black); padding: 12px 20px;
-  font-size: 14px; font-weight: 900; border: 3px solid var(--black);
-  transform: translateY(100px); opacity: 0; transition: all 0.3s;
-}
-.cart-toast.show { transform: translateY(0); opacity:1; }
-
-/* ===== CART COUNT BADGE ===== */
+/* ===== CART BADGE ===== */
 .cart-badge {
   position: fixed; top: 12px; right: 24px; z-index: 1001;
   background: var(--pink); color: var(--white); width: 36px; height: 36px;
@@ -349,6 +522,54 @@ footer .copyright { color: #555; font-size: 11px; }
   transition: transform 0.2s;
 }
 .cart-badge:hover { transform: scale(1.1); }
+
+/* ===== CART SIDEBAR ===== */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 10004; background: rgba(0,0,0,0.85);
+  display: flex; opacity: 0; visibility: hidden; transition: all 0.3s;
+}
+.cart-overlay.active { opacity: 1; visibility: visible; }
+.cart-sidebar {
+  margin-left: auto; width: 90%; max-width: 400px; height: 100%;
+  background: var(--gray); border-left: 4px solid var(--neon);
+  display: flex; flex-direction: column; padding: 24px;
+  transform: translateX(100%); transition: transform 0.3s;
+}
+.cart-overlay.active .cart-sidebar { transform: translateX(0); }
+.cart-close {
+  position: absolute; top: 12px; right: 16px; background: none; border: none;
+  color: var(--white); font-size: 28px; cursor: pointer;
+}
+.cart-items { flex: 1; overflow-y: auto; }
+.cart-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid #333;
+}
+.cart-item-name { font-weight: 900; font-size: 14px; }
+.cart-item-price { color: #888; font-size: 12px; }
+.cart-item-qty { display: flex; gap: 8px; align-items: center; }
+.cart-item-qty button {
+  width: 28px; height: 28px; background: none; border: 1px solid #555;
+  color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.cart-total {
+  border-top: 2px solid #333; padding-top: 16px; margin-top: 16px;
+  font-size: 18px; font-weight: 900;
+}
+.cart-checkout {
+  width: 100%; padding: 14px; background: var(--neon); color: var(--black);
+  border: none; font-size: 16px; font-weight: 900; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 2px; margin-top: 16px;
+}
+
+/* ===== TOAST ===== */
+.cart-toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 10002;
+  background: var(--neon); color: var(--black); padding: 12px 20px;
+  font-size: 14px; font-weight: 900; border: 3px solid var(--black);
+  transform: translateY(100px); opacity: 0; transition: all 0.3s;
+}
+.cart-toast.show { transform: translateY(0); opacity: 1; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -364,7 +585,9 @@ footer .copyright { color: #555; font-size: 11px; }
   .stat-item:last-child { border-bottom: none; }
   .cta-form { flex-direction: column; align-items: center; }
   .cta-input { min-width: 0; width: 100%; max-width: 320px; }
-  .modal { padding: 20px; }
+  .detail-header h1 { letter-spacing: 4px; }
+  .detail-hero-img img { height: 250px; }
+  .detail-cart-row { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 480px) {
   .hero { padding: 80px 12px 24px; }
@@ -380,25 +603,9 @@ footer .copyright { color: #555; font-size: 11px; }
 .reveal-right { opacity:0; transform:translateX(40px); transition: opacity 0.6s, transform 0.6s; }
 .reveal-right.visible { opacity:1; transform:translateX(0); }
 
-/* ===== PARALLAX FLOAT ===== */
+/* ===== FLOAT ===== */
 .float-el { animation: floatY 4s ease-in-out infinite; }
 @keyframes floatY { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
-
-/* ===== TYPING CURSOR ===== */
-.typed-cursor { animation: blink 1s infinite; }
-@keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0; } }
-
-/* ===== COFFEE STEAM ===== */
-.steam-container { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); }
-.steam {
-  width: 4px; height: 20px; background: rgba(255,255,255,0.15); border-radius: 50%;
-  position: absolute; animation: steamRise 2s infinite;
-}
-@keyframes steamRise { 0%{ transform: translateY(0) scaleX(1); opacity:0.6; } 100%{ transform: translateY(-40px) scaleX(2); opacity:0; } }
-
-/* ===== PULSE GLOW ===== */
-.pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
-@keyframes pulseGlow { 0%,100%{ box-shadow: 0 0 20px rgba(57,255,20,0.3); } 50%{ box-shadow: 0 0 40px rgba(57,255,20,0.6); } }
 </style>
 </head>
 <body>
@@ -417,12 +624,25 @@ footer .copyright { color: #555; font-size: 11px; }
 <div class="noise"></div>
 <div class="scanlines"></div>
 
+<!-- JUMP NAV -->
+<div class="jump-nav" id="jumpNav">
+  <div class="jump-nav-inner">
+    <a href="#" class="jump-nav-logo">RAW BEAN</a>
+    <a class="jump-nav-item" onclick="jumpTo('hero')">首页</a>
+    <a class="jump-nav-item" onclick="jumpTo('creed')">信条</a>
+    <a class="jump-nav-item" onclick="jumpTo('products')">产品</a>
+    <a class="jump-nav-item" onclick="jumpTo('process')">工艺</a>
+    <a class="jump-nav-item" onclick="jumpTo('reviews')">评价</a>
+    <a class="jump-nav-item" onclick="jumpTo('cta')">订阅</a>
+  </div>
+</div>
+
 <!-- CART BADGE -->
-<div class="cart-badge" id="cartBadge" onclick="toggleCartView()" title="购物车">0</div>
+<div class="cart-badge" id="cartBadge" onclick="toggleCart()" title="购物车">0</div>
 
 <!-- NAV -->
-<nav>
-  <div class="logo">RAW BEAN</div>
+<nav id="mainNav">
+  <a href="#" class="logo">RAW BEAN</a>
   <div class="nav-links" id="navLinks">
     <a href="#creed">信条</a>
     <a href="#products">产品</a>
@@ -440,17 +660,12 @@ footer .copyright { color: #555; font-size: 11px; }
     <span class="glitch" data-text="RAW">RAW</span><br>BEAN
   </h1>
   <p class="hero-sub">
-    拒绝妥协的粗野咖啡体验。我们不烘「好喝的咖啡」，我们烘「真实的风味」。
+    拒绝妥协的粗野咖啡体验。我们不烘「好喝的咖啡」，我们烘「真实的风味」。<br>
     每一颗豆子都带着产地脉搏，直达你的杯子。
   </p>
   <div class="hero-cta">
     <a href="#products" class="btn btn-primary">探索产品 ↓</a>
     <a href="#process" class="btn btn-secondary">了解工艺</a>
-  </div>
-  <div class="steam-container" style="top:auto; bottom:40px;">
-    <div class="steam" style="left:-20px; animation-delay:0s;"></div>
-    <div class="steam" style="left:0; animation-delay:0.5s;"></div>
-    <div class="steam" style="left:20px; animation-delay:1s;"></div>
   </div>
 </section>
 
@@ -466,7 +681,6 @@ footer .copyright { color: #555; font-size: 11px; }
     <span class="neon">☕ 中国云南 · 普洱 · 厌氧</span>
     <span class="pink">★ 本土之光 ★</span>
     <span class="yellow">🚀 订阅即享9折</span>
-    <!-- duplicate for seamless loop -->
     <span class="neon">☕ 埃塞俄比亚 · 耶加雪菲 · 日晒</span>
     <span class="pink">★ 2025金豆奖得主 ★</span>
     <span class="yellow">🚀 48小时鲜烘直达</span>
@@ -533,11 +747,11 @@ footer .copyright { color: #555; font-size: 11px; }
     <p>三款代表作，覆盖从清晨到深夜的每一种状态</p>
   </div>
   <div class="products-grid">
-    <!-- Product 1 -->
-    <div class="product-card reveal-left" onclick="openModal('ethiopia')">
+    <!-- Product 1: Ethiopia -->
+    <div class="product-card reveal-left">
       <div class="product-img" style="background: linear-gradient(135deg, #1a2a1a, #0a1a0a);">
-        <span class="bg">☕</span>
-        <span style="position:relative;z-index:1;font-size:60px">🇪🇹</span>
+        <img src="https://images.unsplash.com/photo-1495471479518-90d9f46b6f41?w=600&q=80" alt="埃塞俄比亚耶加雪菲咖啡豆" loading="lazy">
+        <div class="product-img-overlay"></div>
       </div>
       <div class="product-body">
         <div class="origin">埃塞俄比亚 · 耶加雪菲</div>
@@ -545,13 +759,14 @@ footer .copyright { color: #555; font-size: 11px; }
         <div class="flavor">蓝莓 · 茉莉 · 蜂蜜 · 柠檬</div>
         <div class="price">¥ 89<span style="font-size:13px;color:#888">/200g</span></div>
         <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('ethiopia','日出耶加',89,event)">加入购物车</button>
+        <button class="product-detail-btn" onclick="event.stopPropagation(); showDetail('ethiopia')">查看详情 →</button>
       </div>
     </div>
-    <!-- Product 2 -->
-    <div class="product-card reveal" onclick="openModal('colombia')">
+    <!-- Product 2: Colombia -->
+    <div class="product-card reveal">
       <div class="product-img" style="background: linear-gradient(135deg, #2a1a0a, #1a0a00);">
-        <span class="bg">☕</span>
-        <span style="position:relative;z-index:1;font-size:60px">🇨🇴</span>
+        <img src="https://images.unsplash.com/photo-1559055747-56251bb97549?w=600&q=80" alt="哥伦比亚慧兰咖啡豆" loading="lazy">
+        <div class="product-img-overlay"></div>
       </div>
       <div class="product-body">
         <div class="origin">哥伦比亚 · 慧兰</div>
@@ -559,13 +774,14 @@ footer .copyright { color: #555; font-size: 11px; }
         <div class="flavor">巧克力 · 坚果 · 红苹果 · 焦糖</div>
         <div class="price">¥ 79<span style="font-size:13px;color:#888">/200g</span></div>
         <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('colombia','慧兰之心',79,event)">加入购物车</button>
+        <button class="product-detail-btn" onclick="event.stopPropagation(); showDetail('colombia')">查看详情 →</button>
       </div>
     </div>
-    <!-- Product 3 -->
-    <div class="product-card reveal-right" onclick="openModal('yunnan')">
+    <!-- Product 3: Yunnan -->
+    <div class="product-card reveal-right">
       <div class="product-img" style="background: linear-gradient(135deg, #0a1a2a, #001a1a);">
-        <span class="bg">☕</span>
-        <span style="position:relative;z-index:1;font-size:60px">🇨🇳</span>
+        <img src="https://images.unsplash.com/photo-1461023054333-1c5c0c5b7e7e?w=600&q=80" alt="云南普洱咖啡豆" loading="lazy">
+        <div class="product-img-overlay"></div>
       </div>
       <div class="product-body">
         <div class="origin">中国 · 云南普洱</div>
@@ -573,6 +789,7 @@ footer .copyright { color: #555; font-size: 11px; }
         <div class="flavor">红酒 · 黑巧克力 · 烟熏 · 陈皮</div>
         <div class="price">¥ 69<span style="font-size:13px;color:#888">/200g</span></div>
         <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('yunnan','普洱夜曲',69,event)">加入购物车</button>
+        <button class="product-detail-btn" onclick="event.stopPropagation(); showDetail('yunnan')">查看详情 →</button>
       </div>
     </div>
   </div>
@@ -659,193 +876,422 @@ footer .copyright { color: #555; font-size: 11px; }
   <div class="copyright">© 2026 RAW BEAN COFFEE — 粗野主义咖啡体验 — All Rights Reserved</div>
 </footer>
 
-<!-- PRODUCT MODAL -->
-<div class="modal-overlay" id="productModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h3 id="modalTitle">产品名称</h3>
-    <div class="modal-origin" id="modalOrigin">产地信息</div>
-    <div class="modal-desc" id="modalDesc">产品描述</div>
-    <div class="modal-price" id="modalPrice">¥ 0</div>
-    <div class="size-options" id="sizeOptions"></div>
-    <div class="qty-row">
-      <button class="qty-btn" onclick="changeQty(-1)">−</button>
-      <span class="qty-val" id="qtyVal">1</span>
-      <button class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
-    <button class="add-cart-btn" id="addCartBtn" onclick="confirmAddToCart()">加入购物车</button>
+<!-- PRODUCT DETAIL PAGES -->
+<div class="detail-overlay" id="detailOverlay">
+  <!-- Ink wash background -->
+  <div class="detail-ink-bg">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="inkBlur">
+          <feGaussianBlur stdDeviation="40"/>
+        </filter>
+      </defs>
+      <ellipse cx="200" cy="300" rx="300" ry="200" fill="#1a2a1a" filter="url(#inkBlur)" opacity="0.5"/>
+      <ellipse cx="900" cy="500" rx="400" ry="250" fill="#1a1a2a" filter="url(#inkBlur)" opacity="0.4"/>
+      <ellipse cx="600" cy="100" rx="350" ry="150" fill="#2a1a0a" filter="url(#inkBlur)" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="detail-scanlines"></div>
+  
+  <!-- Close & Back -->
+  <button class="detail-close" onclick="closeDetail()">✕</button>
+  
+  <!-- Detail content will be injected here -->
+  <div id="detailContent"></div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(event.target===this)toggleCart()">
+  <div class="cart-sidebar">
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+    <h3 style="margin-bottom:20px">购物车</h3>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-total" id="cartTotal"></div>
+    <button class="cart-checkout" onclick="checkout()">结算</button>
   </div>
 </div>
 
 <!-- CART TOAST -->
 <div class="cart-toast" id="cartToast">已加入购物车 ✓</div>
 
-<!-- CART SIDEBAR -->
-<div class="modal-overlay" id="cartOverlay" onclick="if(event.target===this)toggleCartView()">
-  <div class="modal" style="margin-left:auto;max-width:380px;height:100%;border-right:none;border-top:none;border-bottom:none">
-    <button class="modal-close" onclick="toggleCartView()">×</button>
-    <h3 style="margin-bottom:20px">购物车</h3>
-    <div id="cartItems" style="flex:1;overflow-y:auto"></div>
-    <div id="cartTotal" style="border-top:2px solid #333;padding-top:16px;margin-top:16px;font-size:18px;font-weight:900"></div>
-    <button class="add-cart-btn" style="margin-top:16px" onclick="checkout()">结算</button>
-  </div>
-</div>
-
 <script>
+/* ===== PRODUCT DATA ===== */
+const products = {
+  ethiopia: {
+    id: 'ethiopia',
+    name: '日出耶加',
+    nameZh: '日出耶加',
+    origin: '埃塞俄比亚 · 耶加雪菲 · 日晒',
+    originEn: 'Ethiopia · Yirgacheffe · Natural',
+    price: 89,
+    img: 'https://images.unsplash.com/photo-1495471479518-90d9f46b6f41?w=800&q=80',
+    desc: 'SCA 89分。海拔2100m，日照充足。蓝莓与茉莉的爆炸组合，尾韵蜂蜜甜感持久。耶加雪菲是埃塞俄比亚最具代表性的产区，以其独特的花香和柑橘调闻名于世。这款日晒处理版本，充分展现了埃塞俄比亚咖啡的精髓——明亮果酸、细腻花香与纯净甜感。',
+    poem: '耶加雪菲出高原，日照金山云海间。\n蓝莓茉莉相辉映，一杯清甜入喉鲜。\n日晒果香弥漫处，蜂蜜尾韵绕舌尖。\n此味只应天上有，人间能得几回品？',
+    flavor: { blueberry: 95, jasmine: 88, honey: 82, lemon: 78, berry: 85 },
+    brew: [
+      { icon: '💧', title: '粉水比', desc: '1:15（15g粉:225g水）' },
+      { icon: '🌡️', title: '水温', desc: '92°C（接近沸腾）' },
+      { icon: '⏱️', title: '萃取时间', desc: '2:30-3:00分钟' },
+      { icon: '🔄', title: '冲泡方式', desc: '手冲/滴滤（V60滤杯）' }
+    ],
+    sizes: { 200: '¥89/200g', 500: '¥199/500g', 1000: '¥369/1kg' },
+    altitude: '2100m',
+    process: '日晒 Natural',
+    roast: '浅烘 Light',
+    sca: '89分'
+  },
+  colombia: {
+    id: 'colombia',
+    name: '慧兰之心',
+    nameZh: '慧兰之心',
+    origin: '哥伦比亚 · 慧兰 · 水洗',
+    originEn: 'Colombia · Huila · Washed',
+    price: 79,
+    img: 'https://images.unsplash.com/photo-1559055747-56251bb97549?w=800&q=80',
+    desc: 'SCA 87分。海拔1800m，水洗处理带来极致干净度。巧克力与坚果的经典组合，尾韵红苹果酸质明亮。慧兰产区位于哥伦比亚南部，安第斯山脉纵贯其间，高海拔与火山土壤造就了这款咖啡的卓越品质。水洗处理法最大程度保留了咖啡豆本身的风味特征。',
+    poem: '慧兰山谷云雾深，火山灰土育灵根。\n水洗尽去浮华色，巧克力香透心门。\n坚果红苹相映趣，一杯醇厚慰风尘。\n此物最宜午后品，静看时光慢吞吞。',
+    flavor: { chocolate: 92, nut: 88, apple: 75, caramel: 82, citrus: 68 },
+    brew: [
+      { icon: '💧', title: '粉水比', desc: '1:14（18g粉:250g水）' },
+      { icon: '🌡️', title: '水温', desc: '90°C（稍降温）' },
+      { icon: '⏱️', title: '萃取时间', desc: '2:00-2:30分钟' },
+      { icon: '🔄', title: '冲泡方式', desc: '意式浓缩/手冲均可' }
+    ],
+    sizes: { 200: '¥79/200g', 500: '¥179/500g', 1000: '¥329/1kg' },
+    altitude: '1800m',
+    process: '水洗 Washed',
+    roast: '中烘 Medium',
+    sca: '87分'
+  },
+  yunnan: {
+    id: 'yunnan',
+    name: '普洱夜曲',
+    nameZh: '普洱夜曲',
+    origin: '中国 · 云南普洱 · 厌氧',
+    originEn: 'China · Yunnan Pu\'er · Anaerobic',
+    price: 69,
+    img: 'https://images.unsplash.com/photo-1461023054333-1c5c0c5b7e7e?w=800&q=80',
+    desc: 'SCA 86分。海拔1600m，厌氧处理72小时。红酒与黑巧克力的深度组合，尾韵陈皮回甘悠长。云南普洱，中国咖啡的新希望。厌氧处理工艺借鉴红酒酿造技术，在无氧环境下进行72小时发酵，赋予咖啡豆独特的红酒香气和复杂层次。这是一款令人惊艳的国产精品咖啡。',
+    poem: '普洱山高云雾绕，厌氧发酵七十二。\n红酒黑巧相纠缠，陈皮回甘韵味奇。\n国产咖啡今胜昔，一杯饮尽古今意。\n夜曲悠扬心自静，月照滇南咖啡树。',
+    flavor: { redwine: 90, darkchocolate: 88, smoke: 72, chenpi: 85, berry: 76 },
+    brew: [
+      { icon: '💧', title: '粉水比', desc: '1:16（20g粉:320g水）' },
+      { icon: '🌡️', title: '水温', desc: '94°C（高温萃取）' },
+      { icon: '⏱️', title: '萃取时间', desc: '4:00分钟（法压壶）' },
+      { icon: '🔄', title: '冲泡方式', desc: '法压壶/冷萃推荐' }
+    ],
+    sizes: { 200: '¥69/200g', 500: '¥159/500g', 1000: '¥299/1kg' },
+    altitude: '1600m',
+    process: '厌氧 Anaerobic',
+    roast: '中深烘 Medium-Dark',
+    sca: '86分'
+  }
+};
+
+/* ===== DETAIL PAGE RENDER ===== */
+let currentDetailProduct = null;
+let currentDetailQty = 1;
+let currentDetailSize = '200';
+
+function showDetail(id) {
+  currentDetailProduct = id;
+  currentDetailQty = 1;
+  currentDetailSize = '200';
+  const p = products[id];
+  
+  const flavorHTML = Object.entries(p.flavor).map(([k,v]) => {
+    const labels = { blueberry:'蓝莓', jasmine:'茉莉', honey:'蜂蜜', lemon:'柠檬', berry:'浆果',
+                    chocolate:'巧克力', nut:'坚果', apple:'苹果', caramel:'焦糖', citrus:'柑橘',
+                    redwine:'红酒', darkchocolate:'黑巧克力', smoke:'烟熏', chenpi:'陈皮' };
+    return `<div class="flavor-item">
+      <div class="flavor-name">${labels[k]||k}</div>
+      <div class="flavor-bar"><div class="flavor-bar-fill" style="width:0%" data-w="${v}"></div></div>
+    </div>`;
+  }).join('');
+  
+  const brewHTML = p.brew.map(b => `<div class="brew-step">
+    <div class="step-num">${b.icon}</div>
+    <div class="step-icon">${b.icon}</div>
+    <div class="step-title">${b.title}</div>
+    <div class="step-desc">${b.desc}</div>
+  </div>`).join('');
+  
+  const sizeHTML = Object.entries(p.sizes).map(([k,v]) => 
+    `<button class="detail-size-btn${k==='200'?' active':''}" onclick="selectSize('${k}',this)">${v}</button>`
+  ).join('');
+  
+  document.getElementById('detailContent').innerHTML = `
+    <!-- Header -->
+    <div class="detail-header">
+      <h1>${p.nameZh}</h1>
+      <div class="subtitle">${p.originEn}</div>
+      <div class="detail-seal">精品咖啡 · SCA ${p.sca}</div>
+    </div>
+    
+    <!-- Hero Image -->
+    <div style="position:relative;z-index:2;padding:0 20px;max-width:800px;margin:0 auto;">
+      <div class="detail-hero-img">
+        <img src="${p.img}" alt="${p.nameZh}" style="width:100%;height:400px;object-fit:cover;display:block;">
+      </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="detail-content">
+      <!-- Origin Info -->
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
+        <div style="border:2px solid #333;padding:12px 16px;background:var(--gray);">
+          <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">产地</div>
+          <div style="font-size:16px;font-weight:900;color:var(--neon);">${p.origin}</div>
+        </div>
+        <div style="border:2px solid #333;padding:12px 16px;background:var(--gray);">
+          <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">海拔</div>
+          <div style="font-size:16px;font-weight:900;color:var(--pink);">${p.altitude}</div>
+        </div>
+        <div style="border:2px solid #333;padding:12px 16px;background:var(--gray);">
+          <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">处理法</div>
+          <div style="font-size:16px;font-weight:900;color:var(--yellow);">${p.process}</div>
+        </div>
+        <div style="border:2px solid #333;padding:12px 16px;background:var(--gray);">
+          <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">烘焙度</div>
+          <div style="font-size:16px;font-weight:900;color:var(--cyan);">${p.roast}</div>
+        </div>
+      </div>
+      
+      <!-- Divider -->
+      <div class="detail-divider">风味描述 Flavor Profile</div>
+      
+      <!-- Flavor Profile -->
+      <div class="flavor-profile">${flavorHTML}</div>
+      
+      <!-- Divider -->
+      <div class="detail-divider">品鉴笔记 Tasting Notes</div>
+      
+      <!-- Poem -->
+      <div class="detail-poem">
+        <div class="poem-title">—— 品鉴手记 ——</div>
+        ${p.poem.split('\n').map(line => `<div>${line}</div>`).join('')}
+      </div>
+      
+      <!-- Description -->
+      <div style="color:#aaa;font-size:14px;line-height:1.8;margin:24px 0;">
+        ${p.desc}
+      </div>
+      
+      <!-- Divider -->
+      <div class="detail-divider">冲泡指南 Brewing Guide</div>
+      
+      <!-- Brewing Guide -->
+      <div class="brewing-guide">${brewHTML}</div>
+      
+      <!-- Price & Cart -->
+      <div class="detail-price">¥ ${p.price}<span>/200g</span></div>
+      <div class="detail-cart-row">
+        <div class="detail-size-btns">${sizeHTML}</div>
+        <div class="detail-qty-row">
+          <button class="detail-qty-btn" onclick="changeDetailQty(-1)">−</button>
+          <span class="detail-qty-val" id="detailQtyVal">1</span>
+          <button class="detail-qty-btn" onclick="changeDetailQty(1)">+</button>
+        </div>
+        <button class="detail-add-cart" onclick="addDetailToCart()">加入购物车</button>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('detailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Animate flavor bars
+  setTimeout(() => {
+    document.querySelectorAll('.flavor-bar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 300);
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function selectSize(size, btn) {
+  currentDetailSize = size;
+  document.querySelectorAll('.detail-size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function changeDetailQty(d) {
+  currentDetailQty = Math.max(1, currentDetailQty + d);
+  document.getElementById('detailQtyVal').textContent = currentDetailQty;
+}
+
+function addDetailToCart() {
+  const p = products[currentDetailProduct];
+  addToCart(currentDetailProduct, p.name + ' (' + currentDetailSize + 'g)', p.price, null);
+  closeDetail();
+}
+
+/* ===== CART ===== */
+let cart = JSON.parse(localStorage.getItem('rawbean_cart') || '[]');
+
+function renderCartBadge() {
+  document.getElementById('cartBadge').textContent = cart.reduce((s, i) => s + i.qty, 0);
+}
+
+function addToCart(id, name, price, e) {
+  if (e) e.stopPropagation();
+  const existing = cart.find(i => i.id === id);
+  if (existing) { existing.qty++; } else { cart.push({ id, name, price, qty: 1 }); }
+  localStorage.setItem('rawbean_cart', JSON.stringify(cart));
+  renderCartBadge();
+  showToast(name + ' 已加入购物车');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('cartToast');
+  t.textContent = msg + ' ✓';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function toggleCart() {
+  const overlay = document.getElementById('cartOverlay');
+  overlay.classList.toggle('active');
+  if (overlay.classList.contains('active')) {
+    renderCartItems();
+  }
+}
+
+function renderCartItems() {
+  const container = document.getElementById('cartItems');
+  if (cart.length === 0) {
+    container.innerHTML = '<p style="color:#888">购物车是空的</p>';
+    document.getElementById('cartTotal').textContent = '';
+    return;
+  }
+  container.innerHTML = cart.map((item, i) => `
+    <div class="cart-item">
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">¥${item.price} × ${item.qty}</div>
+      </div>
+      <div class="cart-item-qty">
+        <button onclick="updateCartQty(${i},-1)">−</button>
+        <span>${item.qty}</span>
+        <button onclick="updateCartQty(${i},1)">+</button>
+        <button onclick="removeCartItem(${i})" style="color:var(--pink);">🗑</button>
+      </div>
+    </div>
+  `).join('');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = '合计：¥' + total.toLocaleString();
+}
+
+function updateCartQty(i, d) {
+  cart[i].qty = Math.max(1, cart[i].qty + d);
+  localStorage.setItem('rawbean_cart', JSON.stringify(cart));
+  renderCartItems();
+  renderCartBadge();
+}
+
+function removeCartItem(i) {
+  cart.splice(i, 1);
+  localStorage.setItem('rawbean_cart', JSON.stringify(cart));
+  renderCartItems();
+  renderCartBadge();
+}
+
+function checkout() {
+  alert('🛒 结算功能即将上线！目前请联系客服微信：rawbean_coffee');
+}
+
+/* ===== SUBSCRIBE ===== */
+function subscribe() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) { alert('请输入有效邮箱'); return; }
+  alert('🎉 订阅成功！我们会在24小时内发送新手礼包到 ' + email);
+  document.getElementById('emailInput').value = '';
+}
+
+/* ===== JUMP NAV ===== */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('jumpNav');
+  if (window.scrollY > 100) {
+    nav.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+  }
+});
+
+function jumpTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+  // Update active nav item
+  document.querySelectorAll('.jump-nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(id)) {
+      item.classList.add('active');
+    }
+  });
+}
+
 /* ===== LOADER ===== */
 const loaderEl = document.getElementById('loader');
 const loaderBar = document.getElementById('loaderBar');
 let loadProgress = 0;
-const loadInterval = setInterval(()=>{
-  loadProgress += Math.random()*15;
-  if(loadProgress>=100){ loadProgress=100; clearInterval(loadInterval); setTimeout(()=>loaderEl.classList.add('hidden'),400); }
-  loaderBar.style.width = loadProgress+'%';
+const loadInterval = setInterval(() => {
+  loadProgress += Math.random() * 15;
+  if (loadProgress >= 100) { loadProgress = 100; clearInterval(loadInterval); setTimeout(() => loaderEl.classList.add('hidden'), 400); }
+  loaderBar.style.width = loadProgress + '%';
 }, 150);
 
 /* ===== CUSTOM CURSOR ===== */
 const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
-let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e=>{
-  mx=e.clientX; my=e.clientY;
-  dot.style.left=mx+'px'; dot.style.top=my+'px';
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
 });
-function animRing(){
-  rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+function animRing() {
+  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
   requestAnimationFrame(animRing);
 }
 animRing();
-document.querySelectorAll('a,button,.product-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ dot.style.transform='translate(-50%,-50%) scale(2)'; ring.style.width='48px'; ring.style.height='48px'; });
-  el.addEventListener('mouseleave',()=>{ dot.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='32px'; ring.style.height='32px'; });
+document.querySelectorAll('a,button,.product-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { dot.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.width = '48px'; ring.style.height = '48px'; });
+  el.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.width = '32px'; ring.style.height = '32px'; });
 });
 
 /* ===== SCROLL REVEAL ===== */
 const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
-const revealObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
-},{threshold:0.15});
-revealEls.forEach(el=>revealObs.observe(el));
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObs.observe(el));
 
 /* ===== STAT COUNTER ANIMATION ===== */
 const statNums = document.querySelectorAll('.stat-num');
-const statObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
+const statObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
       const el = e.target;
       const target = +el.dataset.target;
-      const suffix = el.dataset.suffix||'';
+      const suffix = el.dataset.suffix || '';
       let current = 0;
-      const step = Math.ceil(target/40);
-      const timer = setInterval(()=>{
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
         current += step;
-        if(current>=target){ current=target; clearInterval(timer); }
-        el.textContent = current.toLocaleString()+suffix;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current.toLocaleString() + suffix;
       }, 30);
       statObs.unobserve(el);
     }
   });
-},{threshold:0.5});
-statNums.forEach(el=>statObs.observe(el));
-
-/* ===== PRODUCT DATA ===== */
-const products = {
-  ethiopia: {
-    name:'日出耶加', origin:'埃塞俄比亚 · 耶加雪菲 · 日晒',
-    desc:'SCA 89分。海拔2100m，日照充足。蓝莓与茉莉的爆炸组合，尾韵蜂蜜甜感持久。适合手冲，水温92°C，粉水比1:15。',
-    price:89, prices:{200:'¥89/200g', 500:'¥199/500g', 1000:'¥369/1kg'}
-  },
-  colombia: {
-    name:'慧兰之心', origin:'哥伦比亚 · 慧兰 · 水洗',
-    desc:'SCA 87分。海拔1800m，水洗处理带来极致干净度。巧克力与坚果的经典组合，尾韵红苹果酸质明亮。适合意式浓缩，水温90°C。',
-    price:79, prices:{200:'¥79/200g', 500:'¥179/500g', 1000:'¥329/1kg'}
-  },
-  yunnan: {
-    name:'普洱夜曲', origin:'中国 · 云南普洱 · 厌氧',
-    desc:'SCA 86分。海拔1600m，厌氧处理72小时。红酒与黑巧克力的深度组合，尾韵陈皮回甘悠长。适合法压壶，水温94°C，浸泡4分钟。',
-    price:69, prices:{200:'¥69/200g', 500:'¥159/500g', 1000:'¥299/1kg'}
-  }
-};
-
-/* ===== MODAL ===== */
-let currentProduct = null; let currentQty = 1; let currentSize = '200';
-function openModal(id){
-  currentProduct = id; currentQty=1; currentSize='200';
-  const p = products[id];
-  document.getElementById('modalTitle').textContent = p.name;
-  document.getElementById('modalOrigin').textContent = p.origin;
-  document.getElementById('modalDesc').textContent = p.desc;
-  document.getElementById('modalPrice').textContent = '¥'+p.price+'/200g';
-  const sizeOpt = document.getElementById('sizeOptions');
-  sizeOpt.innerHTML = '';
-  Object.entries(p.prices).forEach(([k,v])=>{
-    const btn = document.createElement('button');
-    btn.className = 'size-btn'+(k==='200'?' active':'');
-    btn.textContent = v;
-    btn.onclick = ()=>{ document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentSize=k; };
-    sizeOpt.appendChild(btn);
-  });
-  document.getElementById('qtyVal').textContent = '1';
-  document.getElementById('productModal').classList.add('active');
-}
-function closeModal(){ document.getElementById('productModal').classList.remove('active'); }
-function changeQty(d){ currentQty=Math.max(1,currentQty+d); document.getElementById('qtyVal').textContent=currentQty; }
-function confirmAddToCart(){
-  const p = products[currentProduct];
-  addToCart(currentProduct, p.name+' ('+currentSize+'g)', p.price, null);
-  closeModal();
-}
-
-/* ===== CART ===== */
-let cart = JSON.parse(localStorage.getItem('rawbean_cart')||'[]');
-function renderCartBadge(){ document.getElementById('cartBadge').textContent=cart.reduce((s,i)=>s+i.qty,0); }
-function addToCart(id,name,price,e){
-  if(e) e.stopPropagation();
-  const existing = cart.find(i=>i.id===id);
-  if(existing){ existing.qty++; } else { cart.push({id,name,price,qty:1}); }
-  localStorage.setItem('rawbean_cart',JSON.stringify(cart));
-  renderCartBadge();
-  showToast(name+' 已加入购物车');
-}
-function showToast(msg){
-  const t = document.getElementById('cartToast');
-  t.textContent = msg+' ✓'; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2200);
-}
-function toggleCartView(){
-  const overlay = document.getElementById('cartOverlay');
-  overlay.classList.toggle('active');
-  if(overlay.classList.contains('active')) renderCartItems();
-}
-function renderCartItems(){
-  const container = document.getElementById('cartItems');
-  if(cart.length===0){ container.innerHTML='<p style="color:#888">购物车是空的</p>'; document.getElementById('cartTotal').textContent=''; return; }
-  container.innerHTML = cart.map((item,i)=>`
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #333">
-      <div><div style="font-weight:900">${item.name}</div><div style="color:#888;font-size:12px">¥${item.price}×${item.qty}</div></div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button onclick="updateCartQty(${i},-1)" style="background:none;border:1px solid #555;color:#fff;width:28px;height:28px;cursor:pointer">−</button>
-        <span>${item.qty}</span>
-        <button onclick="updateCartQty(${i},1)" style="background:none;border:1px solid #555;color:#fff;width:28px;height:28px;cursor:pointer">+</button>
-        <button onclick="removeCartItem(${i})" style="background:none;border:none;color:var(--pink);cursor:pointer;font-size:16px">🗑</button>
-      </div>
-    </div>
-  `).join('');
-  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  document.getElementById('cartTotal').textContent = '合计：¥'+total.toLocaleString();
-}
-function updateCartQty(i,d){ cart[i].qty=Math.max(1,cart[i].qty+d); localStorage.setItem('rawbean_cart',JSON.stringify(cart)); renderCartItems(); renderCartBadge(); }
-function removeCartItem(i){ cart.splice(i,1); localStorage.setItem('rawbean_cart',JSON.stringify(cart)); renderCartItems(); renderCartBadge(); }
-function checkout(){ alert('🚧 结算功能即将上线！目前请联系客服微信：rawbean_coffee'); }
-
-/* ===== SUBSCRIBE ===== */
-function subscribe(){
-  const email = document.getElementById('emailInput').value;
-  if(!email||!email.includes('@')){ alert('请输入有效邮箱'); return; }
-  alert('🎉 订阅成功！我们会在24小时内发送新手礼包到 '+email);
-  document.getElementById('emailInput').value='';
-}
+}, { threshold: 0.5 });
+statNums.forEach(el => statObs.observe(el));
 
 /* ===== INIT ===== */
 renderCartBadge();
