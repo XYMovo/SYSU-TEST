@@ -194,7 +194,7 @@
   .product-info .desc{font-size:.85rem;color:var(--clr-text-muted);margin-bottom:.8rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .product-info .meta{display:flex;align-items:center;justify-content:space-between}
   .product-info .price{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--clr-primary-dark)}
-  .product-info .price .unit{font-size:.7rem;color:var(--clr-text-muted);font-weight:400}
+  .product-info .price .unit{font-size:.72rem;color:var(--clr-primary);font-weight:500;margin-left:1px}
   .product-info .rating{display:flex;align-items:center;gap:.25rem;font-size:.8rem;color:var(--clr-accent)}
 
   /* ===== About Section ===== */
@@ -352,6 +352,10 @@
   [data-theme="dark"] .blog-card .blog-excerpt{color:var(--clr-text-light)}
   [data-theme="dark"] .product-card .product-price,
   [data-theme="dark"] .store-card .store-meta{color:var(--clr-primary)}
+  [data-theme="dark"] .product-badge{opacity:.88}
+  [data-theme="dark"] .roast-indicator .roast-dot{background:rgba(255,255,255,.12)}
+  [data-theme="dark"] .roast-indicator .roast-dot.filled{background:var(--clr-accent)}
+  [data-theme="dark"] .cart-empty-cta{background:var(--clr-primary);color:var(--clr-white)}
   [data-theme="dark"] .btn-primary{background:var(--clr-primary);color:var(--clr-white)}
   [data-theme="dark"] .btn-secondary{background:var(--clr-white);color:var(--clr-text);border-color:var(--clr-border)}
   [data-theme="dark"] input,
@@ -504,6 +508,18 @@
   .product-meta-row{display:flex;gap:1rem;margin:.3rem 0;font-size:.72rem;color:var(--clr-text-muted)}
   .product-meta-row span{display:flex;align-items:center;gap:.2rem}
 </style>
+<!-- Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+</script>
+<script>
+var _hmt=_hmt||[];(function(){var hm=document.createElement("script");
+hm.src="https://hm.baidu.com/hm.js?XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();
+</script>
+
 </head>
 <body>
 
@@ -666,6 +682,7 @@
             <rect x="25" y="15" width="70" height="12" rx="6" fill="#A0522D"/>
             <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#FEFAE0" font-weight="bold">COLOMBIA</text>
           </svg>
+          <span class="product-badge" style="background:#A0522D" data-i18n="products.classic">经典</span>
         </div>
         <div class="product-info">
           <p class="category" data-i18n="products.single_origin">单品咖啡</p>
@@ -714,6 +731,7 @@
             <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#1A1A2E" font-weight="bold">GOOD MORNING</text>
             <text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#5C6370">BLEND</text>
           </svg>
+          <span class="product-badge" style="background:#D2B48C;color:#451A03" data-i18n="products.daily">日常必备</span>
         </div>
         <div class="product-info">
           <p class="category" data-i18n="products.blend">拼配咖啡</p>
@@ -737,8 +755,8 @@
             <rect x="15" y="20" width="90" height="14" rx="7" fill="#6E6352"/>
             <text x="60" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#FEFAE0" font-weight="bold">GOOD NIGHT</text>
             <text x="60" y="75" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#C4C4C4">BLEND</text>
-            <text x="60" y="90" text-anchor="middle" font-size="18">☕</text>
           </svg>
+          <span class="product-badge" style="background:#6E6352" data-i18n="products.decaf">低因处理</span>
         </div>
         <div class="product-info">
           <p class="category" data-i18n="products.blend">拼配咖啡</p>
@@ -761,7 +779,7 @@
             <rect x="20" y="15" width="80" height="80" rx="6" fill="#C9A96E"/>
             <rect x="15" y="10" width="90" height="14" rx="7" fill="#B8944E" />
             <circle cx="60" cy="55" r="22" fill="#FEFAE0" opacity="0.3"/>
-            <text x="60" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#451A03" font-weight="bold">G</text>
+            <text x="60" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#451A03" font-weight="bold">★</text>
             <text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#5C6370">GEISHA·LIMITED</text>
           </svg>
           <span class="product-badge" style="background:#E76F51" data-i18n="products.limited">限量</span>
@@ -1414,7 +1432,7 @@ const i18nData = {
     "stats.origins": "咖啡产地", "stats.stores": "线下门店", "stats.customers": "满意顾客", "stats.years": "年烘焙经验",
     "products.tag": "精选产品", "products.title": "来自世界各地的精品咖啡",
     "products.desc": "从埃塞俄比亚高原到哥伦比亚山谷，我们亲赴产地，只为找到最好的那一颗豆子。",
-    "products.bestseller": "热卖", "products.new": "新品", "products.limited": "限量",
+    "products.bestseller": "热卖", "products.classic": "经典", "products.new": "新品", "products.limited": "限量", "products.daily": "日常必备", "products.decaf": "低因处理",
     "products.single_origin": "单品咖啡", "products.blend": "拼配咖啡", "products.limited_edition": "限量系列",
     "products.p1_name": "埃塞俄比亚 耶加雪菲", "products.p1_desc": "水洗处理，柑橘与茉莉花香，明亮酸质，回甘悠长",
     "products.p2_name": "哥伦比亚 慧兰", "products.p2_desc": "水洗处理，焦糖甜感与坚果风味，口感醇厚均衡",
@@ -1476,7 +1494,7 @@ const i18nData = {
     "stats.origins": "Origins", "stats.stores": "Stores", "stats.customers": "Happy Customers", "stats.years": "Years Roasting",
     "products.tag": "Featured Products", "products.title": "Specialty Coffee from Around the World",
     "products.desc": "From the Ethiopian highlands to Colombian valleys, we travel to origin to find the very best beans.",
-    "products.bestseller": "Best Seller", "products.new": "New", "products.limited": "Limited",
+    "products.bestseller": "Best Seller", "products.classic": "Classic", "products.new": "New", "products.limited": "Limited", "products.daily": "Daily Essential", "products.decaf": "Decaf",
     "products.single_origin": "Single Origin", "products.blend": "Blend", "products.limited_edition": "Limited Edition",
     "products.p1_name": "Ethiopia Yirgacheffe", "products.p1_desc": "Washed, citrus & jasmine, bright acidity, lingering sweetness",
     "products.p2_name": "Colombia Huila", "products.p2_desc": "Washed, caramel sweetness & nutty notes, balanced body",
