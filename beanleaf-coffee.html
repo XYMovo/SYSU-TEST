@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeanLeaf Coffee 豆叶咖啡 — 自然之味，从叶到杯</title>
+<meta name="description" content="BeanLeaf Coffee 豆叶咖啡 — 清新自然的精品咖啡品牌。精选全球50+产地咖啡豆，小批量手工烘焙，从产地到杯中，每一杯都与自然对话。">
+<meta name="keywords" content="BeanLeaf,豆叶咖啡,精品咖啡,单品咖啡,耶加雪菲,瑰夏,手冲咖啡,咖啡豆">
+<meta name="author" content="BeanLeaf Coffee">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://xymovo.github.io/SYSU-TEST/beanleaf-coffee.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
+<meta property="og:title" content="BeanLeaf Coffee 豆叶咖啡 — 自然之味，从叶到杯">
+<meta property="og:description" content="清新自然的精品咖啡品牌，精选全球50+产地咖啡豆，小批量手工烘焙。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xymovo.github.io/SYSU-TEST/beanleaf-coffee.html">
+<meta property="og:site_name" content="BeanLeaf Coffee">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BeanLeaf Coffee 豆叶咖啡">
+<meta name="twitter:description" content="从叶到杯，每一杯都与自然对话。精品咖啡品牌。">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"BeanLeaf Coffee",
+  "alternateName":"豆叶咖啡",
+  "url":"https://xymovo.github.io/SYSU-TEST/beanleaf-coffee.html",
+  "description":"清新自然的精品咖啡品牌，精选全球优质咖啡豆，坚持小批量手工烘焙。",
+  "foundingDate":"2018",
+  "contactPoint":{"@type":"ContactPoint","telephone":"400-888-BEAN","contactType":"customer service"},
+  "address":[
+    {"@type":"PostalAddress","addressLocality":"上海","addressRegion":"静安区","streetAddress":"南京西路1688号"},
+    {"@type":"PostalAddress","addressLocality":"北京","addressRegion":"朝阳区","streetAddress":"三里屯太古里南区"},
+    {"@type":"PostalAddress","addressLocality":"深圳","addressRegion":"南山区","streetAddress":"科技园南路18号"}
+  ]
+}
+</script>
+<style>
+  /* ===== CSS Variables ===== */
+  :root {
+    --clr-primary: #2D6A4F;
+    --clr-primary-dark: #1B4332;
+    --clr-primary-light: #40916C;
+    --clr-accent: #D4A574;
+    --clr-accent-light: #E8D0B3;
+    --clr-cream: #FEFAE0;
+    --clr-cream-light: #FFFAED;
+    --clr-bg: #FAF9F6;
+    --clr-white: #FFFFFF;
+    --clr-text: #1A1A2E;
+    --clr-text-light: #5C6370;
+    --clr-text-muted: #8B8E96;
+    --clr-border: #E5E0D5;
+    --clr-success: #52B788;
+    --clr-error: #E76F51;
+    --font-heading: 'Georgia', 'Noto Serif SC', serif;
+    --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'SF Mono', 'Cascadia Code', monospace;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,.12);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 999px;
+    --max-width: 1200px;
+    --nav-height: 72px;
+  }
+
+  /* ===== Reset ===== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7;overflow-x:hidden}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+
+  /* ===== Typography ===== */
+  h1,h2,h3,h4{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+  h1{font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:-.02em}
+  h2{font-size:clamp(2rem,4vw,2.8rem);letter-spacing:-.01em}
+  h3{font-size:clamp(1.2rem,2vw,1.5rem)}
+  p{color:var(--clr-text-light)}
+
+  /* ===== Utility Classes ===== */
+  .container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+  .section{padding:5rem 0}
+  .section-header{text-align:center;margin-bottom:3.5rem}
+  .section-header .tag{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(45,106,79,.08);padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:1rem}
+  .section-header h2{margin-bottom:.6rem}
+  .section-header p{max-width:520px;margin:0 auto;font-size:1.05rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.75em 1.8em;border-radius:var(--radius-full);transition:all .25s ease;cursor:pointer}
+  .btn-primary{background:var(--clr-primary);color:var(--clr-white)}
+  .btn-primary:hover{background:var(--clr-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .btn-outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
+  .btn-outline:hover{background:var(--clr-primary);color:var(--clr-white);transform:translateY(-2px)}
+  .btn-light{background:var(--clr-white);color:var(--clr-primary);box-shadow:var(--shadow-sm)}
+  .btn-light:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+
+  /* ===== Navbar ===== */
+  .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:1000;transition:all .3s ease}
+  .navbar.scrolled{box-shadow:var(--shadow-sm)}
+  .navbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo{display:flex;align-items:center;gap:.6rem;font-family:var(--font-heading);font-size:1.35rem;font-weight:700;color:var(--clr-primary-dark)}
+  .nav-logo .leaf-icon{width:32px;height:32px;flex-shrink:0}
+  .nav-links{display:flex;align-items:center;gap:2rem}
+  .nav-links a{font-weight:500;font-size:.9rem;color:var(--clr-text-light);position:relative;transition:color .2s}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--clr-primary);transition:width .25s ease}
+  .nav-links a:hover,.nav-links a.active{color:var(--clr-primary-dark)}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+  .nav-lang{display:flex;gap:.25rem;background:var(--clr-border);border-radius:var(--radius-full);padding:3px}
+  .nav-lang button{padding:.35em .9em;border-radius:var(--radius-full);font-size:.8rem;font-weight:600;color:var(--clr-text-light);transition:all .2s}
+  .nav-lang button.active{background:var(--clr-white);color:var(--clr-primary-dark);box-shadow:var(--shadow-sm)}
+  .menu-toggle{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+  .menu-toggle span{width:24px;height:2px;background:var(--clr-text);border-radius:2px;transition:all .3s}
+
+  /* ===== Hero ===== */
+  .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(170deg, var(--clr-cream) 0%, var(--clr-cream-light) 30%, var(--clr-bg) 70%, rgba(45,106,79,.04) 100%);position:relative;overflow:hidden;padding-top:var(--nav-height)}
+  .hero::before{content:'';position:absolute;top:-25%;right:-10%;width:60%;height:120%;background:radial-gradient(ellipse, rgba(45,106,79,.06) 0%, transparent 70%);pointer-events:none}
+  .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+  .hero-content .tag{margin-bottom:.8rem}
+  .hero-content h1{color:var(--clr-primary-dark);margin-bottom:1rem}
+  .hero-content h1 span{color:var(--clr-primary)}
+  .hero-content p{font-size:1.15rem;margin-bottom:2rem;max-width:460px}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-visual{display:flex;justify-content:center;align-items:center}
+  .hero-visual svg{width:100%;max-width:480px;filter:drop-shadow(0 8px 24px rgba(45,106,79,.12))}
+
+  /* Decorative floating leaves */
+  .hero .leaf-float{position:absolute;opacity:.15;pointer-events:none}
+  .hero .leaf-float:nth-child(1){top:20%;left:5%;width:80px;animation:floatLeaf 8s ease-in-out infinite}
+  .hero .leaf-float:nth-child(2){top:60%;right:3%;width:60px;animation:floatLeaf 10s ease-in-out .5s infinite}
+  .hero .leaf-float:nth-child(3){bottom:15%;left:40%;width:50px;animation:floatLeaf 7s ease-in-out 1.2s infinite}
+
+  @keyframes floatLeaf {
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    25%{transform:translateY(-15px) rotate(3deg)}
+    50%{transform:translateY(-25px) rotate(-2deg)}
+    75%{transform:translateY(-10px) rotate(1deg)}
+  }
+
+  /* ===== Stats Bar ===== */
+  .stats-bar{background:var(--clr-white);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border)}
+  .stats-bar .container{display:flex;justify-content:center;gap:4rem;padding:.8rem 0}
+  .stat-item{text-align:center}
+  .stat-number{font-family:var(--font-heading);font-size:1.8rem;font-weight:700;color:var(--clr-primary)}
+  .stat-label{font-size:.8rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.1em}
+
+  /* ===== Products Section ===== */
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+  .product-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .35s ease;border:1px solid var(--clr-border);cursor:pointer}
+  .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+  .product-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .product-card:nth-child(1) .product-img{background:linear-gradient(135deg,#F5E6D3,#E8D5B7)}
+  .product-card:nth-child(2) .product-img{background:linear-gradient(135deg,#E8D5B7,#D4A574)}
+  .product-card:nth-child(3) .product-img{background:linear-gradient(135deg,#D4C4A8,#C4A882)}
+  .product-card:nth-child(4) .product-img{background:linear-gradient(135deg,#EAD7C3,#D4B896)}
+  .product-card:nth-child(5) .product-img{background:linear-gradient(135deg,#F0E0CF,#E0C8A8)}
+  .product-card:nth-child(6) .product-img{background:linear-gradient(135deg,#ECD5C0,#D4B088)}
+  .product-badge{position:absolute;top:12px;right:12px;background:var(--clr-primary);color:var(--clr-white);font-size:.7rem;font-weight:700;padding:.25em .85em;border-radius:var(--radius-full);letter-spacing:.05em}
+  .product-info{padding:1.2rem 1.3rem 1.3rem}
+  .product-info .category{font-size:.72rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+  .product-info h3{margin-bottom:.2rem;font-size:1.15rem}
+  .product-info .desc{font-size:.85rem;color:var(--clr-text-muted);margin-bottom:.8rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .product-info .meta{display:flex;align-items:center;justify-content:space-between}
+  .product-info .price{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--clr-primary-dark)}
+  .product-info .price .unit{font-size:.7rem;color:var(--clr-text-muted);font-weight:400}
+  .product-info .rating{display:flex;align-items:center;gap:.25rem;font-size:.8rem;color:var(--clr-accent)}
+
+  /* ===== About Section ===== */
+  .about{background:var(--clr-white)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .about-visual{display:flex;justify-content:center}
+  .about-visual svg{width:100%;max-width:420px}
+  .about-content h2{margin-bottom:1rem;color:var(--clr-primary-dark)}
+  .about-content .lead{font-size:1.1rem;color:var(--clr-primary);font-family:var(--font-heading);margin-bottom:1.2rem;line-height:1.6}
+  .about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+  .about-feature{display:flex;gap:.7rem;align-items:flex-start}
+  .about-feature .icon-circle{width:40px;height:40px;border-radius:50%;background:rgba(45,106,79,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .about-feature .icon-circle svg{width:18px;height:18px;color:var(--clr-primary)}
+  .about-feature h4{font-size:.9rem;margin-bottom:.15rem;font-family:var(--font-body)}
+  .about-feature p{font-size:.8rem;color:var(--clr-text-muted)}
+
+  /* ===== Store Section ===== */
+  .stores-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+  .store-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);transition:all .35s ease;display:flex;flex-direction:column}
+  .store-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+  .store-card-img{height:160px;display:flex;align-items:center;justify-content:center}
+  .store-card:nth-child(1) .store-card-img{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+  .store-card:nth-child(2) .store-card-img{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+  .store-card:nth-child(3) .store-card-img{background:linear-gradient(135deg,#E3F2FD,#BBDEFB)}
+  .store-card-body{padding:1.2rem 1.3rem;flex:1}
+  .store-card-body h3{margin-bottom:.3rem}
+  .store-card-body .address{font-size:.85rem;color:var(--clr-text-muted);margin-bottom:.6rem;display:flex;align-items:center;gap:.35rem}
+  .store-card-body .hours{font-size:.8rem;color:var(--clr-text-light);display:flex;align-items:center;gap:.35rem}
+  .store-card-footer{padding:.8rem 1.3rem;border-top:1px solid var(--clr-border);display:flex;gap:.5rem}
+
+  /* ===== Contact Section ===== */
+  .contact{background:linear-gradient(170deg, var(--clr-bg) 0%, rgba(45,106,79,.04) 100%)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+  .contact-info h2{margin-bottom:1rem;color:var(--clr-primary-dark)}
+  .contact-info p{margin-bottom:2rem}
+  .contact-detail{display:flex;gap:.8rem;margin-bottom:1.2rem;align-items:flex-start}
+  .contact-detail .icon{width:36px;height:36px;border-radius:50%;background:rgba(45,106,79,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .contact-detail .icon svg{width:16px;height:16px;color:var(--clr-primary)}
+  .contact-detail .label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted);margin-bottom:.15rem}
+  .contact-detail .value{font-size:.95rem;color:var(--clr-text)}
+  .contact-form{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-md);border:1px solid var(--clr-border)}
+  .form-group{margin-bottom:1.2rem}
+  .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--clr-text)}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:.7em 1em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.9rem;color:var(--clr-text);transition:all .2s;background:var(--clr-bg)}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px rgba(45,106,79,.1);background:var(--clr-white)}
+  .form-group textarea{resize:vertical;min-height:100px}
+  .form-success{display:none;text-align:center;padding:2rem;color:var(--clr-success)}
+  .form-success.show{display:block}
+  .form-success h3{margin:1rem 0 .5rem}
+
+  /* ===== Newsletter ===== */
+  .newsletter{background:var(--clr-primary-dark);color:var(--clr-white);padding:3rem 0;text-align:center}
+  .newsletter h2{color:var(--clr-white);margin-bottom:.4rem}
+  .newsletter p{color:rgba(255,255,255,.7);margin-bottom:1.5rem}
+  .newsletter-form{display:flex;gap:.6rem;max-width:480px;margin:0 auto}
+  .newsletter-form input{flex:1;padding:.75em 1.2em;border:none;border-radius:var(--radius-full);font-family:var(--font-body);font-size:.9rem;color:var(--clr-text);background:var(--clr-white)}
+  .newsletter-form input:focus{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
+  .newsletter-form button{background:var(--clr-accent);color:var(--clr-white);padding:.75em 2em;border-radius:var(--radius-full);font-weight:600;font-size:.9rem;transition:all .2s}
+  .newsletter-form button:hover{background:#C4955A}
+
+  /* ===== Footer ===== */
+  .footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:4rem 0 2rem}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+  .footer-brand .logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-white);margin-bottom:.8rem}
+  .footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6}
+  .footer-col h4{color:var(--clr-white);font-family:var(--font-body);font-size:.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
+  .footer-col a{display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+  .footer-col a:hover{color:var(--clr-accent)}
+  .social-links{display:flex;gap:.8rem;margin-top:1rem}
+  .social-links a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:all .2s}
+  .social-links a:hover{background:var(--clr-accent)}
+  .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.35)}
+
+  /* ===== Back to top ===== */
+  .back-to-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--clr-primary);color:var(--clr-white);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:all .3s;z-index:900}
+  .back-to-top.visible{opacity:1;pointer-events:auto}
+  .back-to-top:hover{background:var(--clr-primary-dark);transform:translateY(-3px)}
+
+  /* ===== Cart Icon ===== */
+  .cart-icon{position:relative;cursor:pointer;padding:4px;display:flex;align-items:center}
+  .cart-icon svg{width:22px;height:22px;color:var(--clr-text)}
+  .cart-count{position:absolute;top:-2px;right:-6px;background:var(--clr-primary);color:var(--clr-white);font-size:.65rem;font-weight:700;min-width:18px;height:18px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+  /* ===== Cart Drawer ===== */
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
+  .cart-overlay.open{opacity:1;pointer-events:auto}
+  .cart-drawer{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:400px;background:var(--clr-white);z-index:2001;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-xl)}
+  .cart-drawer.open{transform:translateX(0)}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid var(--clr-border)}
+  .cart-header h3{font-family:var(--font-heading);font-size:1.2rem}
+  .cart-close{width:32px;height:32px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+  .cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+  .cart-empty{text-align:center;padding:3rem 1rem;color:var(--clr-text-muted)}
+  .cart-item{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--clr-border)}
+  .cart-item-img{width:48px;height:48px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cart-item-info{flex:1;min-width:0}
+  .cart-item-info .name{font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cart-item-info .size{font-size:.75rem;color:var(--clr-text-muted)}
+  .cart-item-qty{display:flex;align-items:center;gap:.3rem}
+  .cart-item-qty button{width:26px;height:26px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:var(--clr-text);cursor:pointer;transition:all .15s}
+  .cart-item-qty button:hover{background:var(--clr-border)}
+  .cart-item-qty span{width:24px;text-align:center;font-size:.85rem;font-weight:600}
+  .cart-item-price{font-family:var(--font-heading);font-size:.95rem;font-weight:700;color:var(--clr-primary-dark);min-width:60px;text-align:right}
+  .cart-item-remove{color:var(--clr-text-muted);cursor:pointer;font-size:.8rem;padding:2px 6px}
+  .cart-item-remove:hover{color:var(--clr-error)}
+  .cart-footer{padding:1.2rem 1.5rem;border-top:1px solid var(--clr-border)}
+  .cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;font-size:1rem}
+  .cart-total .label{color:var(--clr-text-light);font-size:.9rem}
+  .cart-total .amount{font-family:var(--font-heading);font-size:1.4rem;font-weight:700;color:var(--clr-primary-dark)}
+  .cart-checkout{width:100%;padding:.85rem;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);font-weight:600;font-size:.95rem;text-align:center;cursor:pointer;transition:all .2s}
+  .cart-checkout:hover{background:var(--clr-primary-dark)}
+
+  /* ===== Product Card Add-to-cart ===== */
+  .product-card .meta .atc{display:flex;align-items:center;gap:.3rem}
+  .add-to-cart-btn{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);font-size:.75rem;font-weight:600;padding:.35em 1em;cursor:pointer;transition:all .2s;white-space:nowrap}
+  .add-to-cart-btn:hover{background:var(--clr-primary-dark);transform:scale(1.05)}
+
+  /* ===== Toast ===== */
+  .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--clr-primary-dark);color:var(--clr-white);padding:.85rem 1.8rem;border-radius:var(--radius-full);font-size:.9rem;font-weight:600;z-index:3000;opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:var(--shadow-lg)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== Scroll Reveal ===== */
+  .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ===== Dark Mode ===== */
+  [data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E8E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540;--clr-cream-light:#252032}
+  [data-theme="dark"] .navbar{background:rgba(26,26,46,.9)}
+  [data-theme="dark"] .hero{background:linear-gradient(170deg,#1E1A2E,#252040,#1A1A2E,rgba(45,106,79,.08))}
+  [data-theme="dark"] .about{background:var(--clr-white)}
+  [data-theme="dark"] .stats-bar{background:var(--clr-white)}
+  [data-theme="dark"] .newsletter{background:#13132A}
+  [data-theme="dark"] .footer{background:#0F0F22}
+  .dark-toggle{cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:var(--radius-full);transition:all .2s;display:flex;align-items:center}
+  .dark-toggle:hover{background:var(--clr-border)}
+
+  /* ===== Mobile Responsive ===== */
+  @media (max-width: 900px) {
+    .hero .container{grid-template-columns:1fr;text-align:center}
+    .hero-content p{margin-left:auto;margin-right:auto}
+    .hero-btns{justify-content:center}
+    .hero-visual{order:-1}
+    .hero-visual svg{max-width:300px}
+    .about-grid{grid-template-columns:1fr;gap:2rem}
+    .about-visual{order:-1}
+    .contact-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+    .products-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    .stores-grid{grid-template-columns:1fr}
+    .stats-bar .container{gap:1.5rem;flex-wrap:wrap}
+  }
+
+  @media (max-width: 640px) {
+    .section{padding:3.5rem 0}
+    .nav-links{display:none;position:absolute;top:var(--nav-height);left:0;right:0;background:var(--clr-white);flex-direction:column;padding:1.5rem;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:1px solid var(--clr-border)}
+    .nav-links.open{display:flex}
+    .menu-toggle{display:flex}
+    .about-features{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr}
+    .newsletter-form{flex-direction:column;padding:0 1rem}
+    .hero-btns{flex-direction:column;align-items:center}
+    .hero-btns .btn{width:100%;max-width:280px;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#home" class="nav-logo">
+      <svg class="leaf-icon" viewBox="0 0 32 32" fill="none">
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
+        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+      </svg>
+      BeanLeaf Coffee
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active" data-i18n="nav.home">首页</a>
+      <a href="#products" data-i18n="nav.products">产品</a>
+      <a href="#about" data-i18n="nav.about">关于我们</a>
+      <a href="#stores" data-i18n="nav.stores">门店</a>
+      <a href="#contact" data-i18n="nav.contact">联系</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <button class="dark-toggle" id="darkToggle" title="深色模式" aria-label="Toggle dark mode">🌙</button>
+      <div class="cart-icon" id="cartIcon" title="购物车">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-count" id="cartCount" style="display:none">0</span>
+      </div>
+      <div class="nav-lang" id="langSwitcher">
+        <button class="active" data-lang="zh">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <svg class="leaf-float" viewBox="0 0 80 80"><path d="M10 70C10 70 16 30 40 15C64 30 70 70 40 75C16 70 10 70 10 70Z" fill="#2D6A4F"/></svg>
+  <svg class="leaf-float" viewBox="0 0 60 60"><path d="M8 52C8 52 12 22 30 10C48 22 52 52 30 56C12 52 8 52 8 52Z" fill="#40916C"/></svg>
+  <svg class="leaf-float" viewBox="0 0 50 50"><path d="M5 42C5 42 10 18 25 9C40 18 45 42 25 46C10 42 5 42 5 42Z" fill="#52B788"/></svg>
+
+  <div class="container">
+    <div class="hero-content reveal">
+      <span class="tag" data-i18n="hero.tag">自然之选</span>
+      <h1 data-i18n="hero.title">
+        从叶到杯，<br><span>每一杯都与自然对话</span>
+      </h1>
+      <p data-i18n="hero.desc">BeanLeaf Coffee 精选全球优质咖啡豆，坚持小批量手工烘焙，让每一杯咖啡都承载着产地的风土与匠心。</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary" data-i18n="hero.shop">探索产品</a>
+        <a href="#about" class="btn btn-outline" data-i18n="hero.story">品牌故事</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <svg viewBox="0 0 480 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background circle -->
+        <circle cx="240" cy="200" r="190" fill="#D4A574" opacity="0.1"/>
+        <circle cx="240" cy="200" r="140" fill="#2D6A4F" opacity="0.06"/>
+        <!-- Coffee cup body -->
+        <rect x="155" y="100" width="170" height="190" rx="20" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <!-- Cup rim -->
+        <ellipse cx="240" cy="100" rx="95" ry="18" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <!-- Coffee surface -->
+        <ellipse cx="240" cy="105" rx="88" ry="15" fill="#6F4E37"/>
+        <ellipse cx="240" cy="103" rx="75" ry="12" fill="#8B6914" opacity="0.5"/>
+        <!-- Steam -->
+        <path d="M200 80C200 80 195 55 210 45C225 35 220 15 230 5" stroke="#D4A574" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <path d="M240 75C240 75 238 50 250 40C262 30 258 12 265 3" stroke="#D4A574" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        <path d="M280 80C280 80 285 58 272 48C259 38 263 18 256 8" stroke="#D4A574" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <!-- Handle -->
+        <path d="M325 140C355 140 365 190 340 230" fill="none" stroke="#2D6A4F" stroke-width="10" stroke-linecap="round"/>
+        <path d="M325 140C350 140 360 190 340 230" fill="none" stroke="#FAF9F6" stroke-width="6" stroke-linecap="round"/>
+        <!-- Saucer -->
+        <ellipse cx="240" cy="305" rx="130" ry="22" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <ellipse cx="240" cy="303" rx="120" ry="18" fill="#FEFAE0"/>
+        <!-- Leaves decoration -->
+        <path d="M180 330C160 340 140 355 135 345C130 335 155 325 170 320" fill="#2D6A4F" opacity="0.6"/>
+        <path d="M300 325C320 335 340 350 345 340C350 330 325 320 310 315" fill="#40916C" opacity="0.6"/>
+        <!-- Coffee beans scatter -->
+        <ellipse cx="100" cy="250" rx="8" ry="5" fill="#6F4E37" opacity="0.3" transform="rotate(-15 100 250)"/>
+        <ellipse cx="370" cy="180" rx="8" ry="5" fill="#6F4E37" opacity="0.25" transform="rotate(20 370 180)"/>
+        <ellipse cx="130" cy="120" rx="7" ry="4.5" fill="#6F4E37" opacity="0.2" transform="rotate(-30 130 120)"/>
+        <ellipse cx="360" cy="280" rx="7" ry="4.5" fill="#6F4E37" opacity="0.2" transform="rotate(10 360 280)"/>
+
+        <!-- Brand name on cup -->
+        <text x="240" y="220" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#2D6A4F" font-weight="bold">BEANLEAF</text>
+        <text x="240" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#8B8E96">COFFEE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats Bar ===== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item reveal">
+      <div class="stat-number">50+</div>
+      <div class="stat-label" data-i18n="stats.origins">咖啡产地</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">12</div>
+      <div class="stat-label" data-i18n="stats.stores">线下门店</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">10k+</div>
+      <div class="stat-label" data-i18n="stats.customers">满意顾客</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">8</div>
+      <div class="stat-label" data-i18n="stats.years">年烘焙经验</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Products ===== -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="products.tag">精选产品</span>
+      <h2 data-i18n="products.title">来自世界各地的精品咖啡</h2>
+      <p data-i18n="products.desc">从埃塞俄比亚高原到哥伦比亚山谷，我们亲赴产地，只为找到最好的那一颗豆子。</p>
+    </div>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/yirgacheffe.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="30" y="20" width="60" height="75" rx="8" fill="#6F4E37"/>
+            <rect x="25" y="15" width="70" height="12" rx="6" fill="#8B6914"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#FEFAE0" font-weight="bold">ETHIOPIA</text>
+          </svg>
+          <span class="product-badge" data-i18n="products.bestseller">热卖</span>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.single_origin">单品咖啡</p>
+          <h3 data-i18n="products.p1_name">埃塞俄比亚 耶加雪菲</h3>
+          <p class="desc" data-i18n="products.p1_desc">水洗处理，柑橘与茉莉花香，明亮酸质，回甘悠长</p>
+          <div class="meta">
+            <span class="price">¥128 <span class="unit">/ 250g</span></span>
+            <span class="rating">★ 4.9</span>
+          </div>
+        </div>
+        </a>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/huila.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="30" y="20" width="60" height="75" rx="8" fill="#8B4513"/>
+            <rect x="25" y="15" width="70" height="12" rx="6" fill="#A0522D"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#FEFAE0" font-weight="bold">COLOMBIA</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.single_origin">单品咖啡</p>
+          <h3 data-i18n="products.p2_name">哥伦比亚 慧兰</h3>
+          <p class="desc" data-i18n="products.p2_desc">水洗处理，焦糖甜感与坚果风味，口感醇厚均衡</p>
+          <div class="meta">
+            <span class="price">¥98 <span class="unit">/ 250g</span></span>
+            <span class="rating">★ 4.8</span>
+          </div>
+        </div>
+        </a>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/kenya-aa.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="30" y="20" width="60" height="75" rx="8" fill="#5C4033"/>
+            <rect x="25" y="15" width="70" height="12" rx="6" fill="#8B7355"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#FEFAE0" font-weight="bold">KENYA</text>
+          </svg>
+          <span class="product-badge" style="background:#D4A574" data-i18n="products.new">新品</span>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.single_origin">单品咖啡</p>
+          <h3 data-i18n="products.p3_name">肯尼亚 AA</h3>
+          <p class="desc" data-i18n="products.p3_desc">水洗处理，黑加仑与番茄酸甜感，层次丰富</p>
+          <div class="meta">
+            <span class="price">¥118 <span class="unit">/ 250g</span></span>
+            <span class="rating">★ 4.7</span>
+          </div>
+        </div>
+        </a>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/good-morning.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="20" y="25" width="80" height="70" rx="6" fill="#D2B48C"/>
+            <rect x="15" y="20" width="90" height="14" rx="7" fill="#C4A882"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#1A1A2E" font-weight="bold">GOOD MORNING</text>
+            <text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#5C6370">BLEND</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.blend">拼配咖啡</p>
+          <h3 data-i18n="products.p4_name">早安拼配</h3>
+          <p class="desc" data-i18n="products.p4_desc">巴西+埃塞俄比亚，坚果巧克力调，适合每日唤醒</p>
+          <div class="meta">
+            <span class="price">¥78 <span class="unit">/ 250g</span></span>
+            <span class="rating">★ 4.9</span>
+          </div>
+        </div>
+        </a>
+      </div>
+      <!-- Product 5 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/good-night.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="20" y="25" width="80" height="70" rx="6" fill="#8B8378"/>
+            <rect x="15" y="20" width="90" height="14" rx="7" fill="#6E6352"/>
+            <text x="60" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#FEFAE0" font-weight="bold">GOOD NIGHT</text>
+            <text x="60" y="75" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#C4C4C4">BLEND</text>
+            <text x="60" y="90" text-anchor="middle" font-size="18">☕</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.blend">拼配咖啡</p>
+          <h3 data-i18n="products.p5_name">晚安拼配</h3>
+          <p class="desc" data-i18n="products.p5_desc">低因处理，柔和顺滑，可可与烤杏仁风味</p>
+          <div class="meta">
+            <span class="price">¥88 <span class="unit">/ 250g</span></span>
+            <span class="rating">★ 4.6</span>
+          </div>
+        </div>
+        </a>
+      </div>
+      <!-- Product 6 -->
+      <div class="product-card reveal">
+        <a href="beanleaf-coffee/products/geisha.html" style="display:block;text-decoration:none;color:inherit">
+        <div class="product-img">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="20" y="15" width="80" height="80" rx="6" fill="#C9A96E"/>
+            <rect x="15" y="10" width="90" height="14" rx="7" fill="#B8944E" />
+            <circle cx="60" cy="55" r="22" fill="#FEFAE0" opacity="0.3"/>
+            <text x="60" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1B4332" font-weight="bold">G</text>
+            <text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#5C6370">GEISHA·LIMITED</text>
+          </svg>
+          <span class="product-badge" style="background:#E76F51" data-i18n="products.limited">限量</span>
+        </div>
+        <div class="product-info">
+          <p class="category" data-i18n="products.limited_edition">限量系列</p>
+          <h3 data-i18n="products.p6_name">巴拿马 瑰夏</h3>
+          <p class="desc" data-i18n="products.p6_desc">日晒处理，茉莉花与蜜桃香气，茶感回甘，限量200份</p>
+          <div class="meta">
+            <span class="price">¥298 <span class="unit">/ 100g</span></span>
+            <span class="rating">★ 5.0</span>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <a href="beanleaf-coffee/products/" class="btn btn-outline" data-i18n="products.view_all">查看全部产品</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <svg viewBox="0 0 420 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Farm landscape -->
+          <rect x="0" y="180" width="420" height="220" fill="#2D6A4F" opacity="0.08" rx="0"/>
+          <!-- Terrain layers -->
+          <path d="M0 200 Q100 160 200 190 Q300 220 420 180 L420 400 L0 400Z" fill="#2D6A4F" opacity="0.12"/>
+          <path d="M0 240 Q120 210 220 240 Q320 270 420 230 L420 400 L0 400Z" fill="#40916C" opacity="0.1"/>
+          <!-- Mountains -->
+          <path d="M0 280 L80 160 L150 280" fill="#2D6A4F" opacity="0.15"/>
+          <path d="M100 280 L200 130 L280 280" fill="#1B4332" opacity="0.12"/>
+          <path d="M220 280 L320 150 L420 280" fill="#2D6A4F" opacity="0.1"/>
+          <!-- Coffee plants -->
+          <g transform="translate(60,200)">
+            <rect x="8" y="30" width="4" height="40" rx="2" fill="#8B6914"/>
+            <ellipse cx="10" cy="25" rx="18" ry="22" fill="#2D6A4F"/>
+            <ellipse cx="10" cy="20" rx="12" ry="14" fill="#40916C"/>
+          </g>
+          <g transform="translate(160,210)">
+            <rect x="8" y="25" width="4" height="35" rx="2" fill="#8B6914"/>
+            <ellipse cx="10" cy="20" rx="16" ry="20" fill="#40916C"/>
+            <ellipse cx="10" cy="16" rx="11" ry="12" fill="#52B788"/>
+          </g>
+          <g transform="translate(280,195)">
+            <rect x="8" y="35" width="4" height="45" rx="2" fill="#8B6914"/>
+            <ellipse cx="10" cy="28" rx="20" ry="24" fill="#2D6A4F"/>
+            <ellipse cx="10" cy="22" rx="14" ry="16" fill="#40916C"/>
+          </g>
+          <g transform="translate(340,225)">
+            <rect x="6" y="20" width="3" height="28" rx="1.5" fill="#8B6914"/>
+            <ellipse cx="8" cy="16" rx="13" ry="16" fill="#40916C"/>
+            <ellipse cx="8" cy="13" rx="9" ry="10" fill="#52B788"/>
+          </g>
+          <!-- Sun -->
+          <circle cx="360" cy="80" r="35" fill="#D4A574" opacity="0.15"/>
+          <circle cx="360" cy="80" r="25" fill="#D4A574" opacity="0.2"/>
+          <!-- Coffee cherry details -->
+          <circle cx="85" cy="195" r="5" fill="#E76F51" opacity="0.6"/>
+          <circle cx="100" cy="198" r="4" fill="#E76F51" opacity="0.5"/>
+          <circle cx="175" cy="208" r="4.5" fill="#E76F51" opacity="0.6"/>
+          <circle cx="295" cy="192" r="5" fill="#E76F51" opacity="0.5"/>
+          <circle cx="310" cy="196" r="4" fill="#E76F51" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="about-content reveal">
+        <span class="tag" data-i18n="about.tag">品牌故事</span>
+        <h2 data-i18n="about.title">从一颗种子到一杯好咖啡</h2>
+        <p class="lead" data-i18n="about.lead">我们相信，每一杯咖啡都是一次与大自然的对话。</p>
+        <p style="margin-bottom:1rem" data-i18n="about.p1">BeanLeaf 创立于2018年，名字源自咖啡叶片的自然形态。我们从全球50多个精品咖啡产地直采生豆，在上海自建烘焙工厂，坚持小批量手工烘焙，最大程度保留每款豆子的独特风味。</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.f1_title">品质承诺</h4>
+              <p data-i18n="about.f1_desc">每批豆子均经过SCA标准杯测评分</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.f2_title">产地直采</h4>
+              <p data-i18n="about.f2_desc">与50+产地庄园建立长期合作关系</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.f3_title">手工烘焙</h4>
+              <p data-i18n="about.f3_desc">小批量烘焙，精准控制风味曲线</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.f4_title">新鲜直达</h4>
+              <p data-i18n="about.f4_desc">烘焙后48小时内发货，保证新鲜</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stores ===== -->
+<section class="section" id="stores">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="stores.tag">门店查询</span>
+      <h2 data-i18n="stores.title">找到你身边的 BeanLeaf</h2>
+      <p data-i18n="stores.desc">目前在全国5个城市拥有12家门店，每一家都是你品尝精品咖啡的温暖角落。</p>
+    </div>
+    <div class="stores-grid">
+      <div class="store-card reveal">
+        <div class="store-card-img">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#2D6A4F"/>
+            <rect x="25" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
+            <rect x="55" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
+            <rect x="25" y="55" width="50" height="15" rx="2" fill="#FEFAE0" opacity="0.5"/>
+            <text x="50" y="95" text-anchor="middle" font-size="10" fill="#5C6370">SHANGHAI</text>
+          </svg>
+        </div>
+        <div class="store-card-body">
+          <h3 data-i18n="stores.s1_name">上海静安寺店</h3>
+          <p class="address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="stores.s1_addr">上海市静安区南京西路1688号</span>
+          </p>
+          <p class="hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span data-i18n="stores.s1_hours">每日 8:00 - 22:00</span>
+          </p>
+        </div>
+        <div class="store-card-footer">
+          <a href="beanleaf-coffee/stores/sh-jingan.html" class="btn btn-outline" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.detail">查看详情</a>
+          <a href="https://maps.apple.com/?q=上海市静安区南京西路1688号" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.navigate">导航前往</a>
+        </div>
+      </div>
+      <div class="store-card reveal">
+        <div class="store-card-img">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#D4A574"/>
+            <rect x="25" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
+            <rect x="55" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
+            <circle cx="42" cy="62" r="8" fill="#FEFAE0" opacity="0.4"/>
+            <text x="50" y="95" text-anchor="middle" font-size="10" fill="#5C6370">BEIJING</text>
+          </svg>
+        </div>
+        <div class="store-card-body">
+          <h3 data-i18n="stores.s2_name">北京三里屯店</h3>
+          <p class="address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="stores.s2_addr">北京市朝阳区三里屯太古里南区</span>
+          </p>
+          <p class="hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span data-i18n="stores.s2_hours">每日 9:00 - 23:00</span>
+          </p>
+        </div>
+        <div class="store-card-footer">
+          <a href="beanleaf-coffee/stores/bj-sanlitun.html" class="btn btn-outline" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.detail">查看详情</a>
+          <a href="https://maps.apple.com/?q=北京市朝阳区三里屯太古里南区" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.navigate">导航前往</a>
+        </div>
+      </div>
+      <div class="store-card reveal">
+        <div class="store-card-img">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#40916C"/>
+            <rect x="25" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <rect x="55" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <rect x="25" y="55" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.5"/>
+            <rect x="55" y="55" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.5"/>
+            <text x="50" y="95" text-anchor="middle" font-size="10" fill="#5C6370">SHENZHEN</text>
+          </svg>
+        </div>
+        <div class="store-card-body">
+          <h3 data-i18n="stores.s3_name">深圳南山店</h3>
+          <p class="address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="stores.s3_addr">深圳市南山区科技园南路18号</span>
+          </p>
+          <p class="hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span data-i18n="stores.s3_hours">工作日 8:00-21:00 | 周末 9:00-22:00</span>
+          </p>
+        </div>
+        <div class="store-card-footer">
+          <a href="beanleaf-coffee/stores/sz-nanshan.html" class="btn btn-outline" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.detail">查看详情</a>
+          <a href="https://maps.apple.com/?q=深圳市南山区科技园南路18号" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.navigate">导航前往</a>
+        </div>
+      </div>
+      <div class="store-card reveal">
+        <div class="store-card-img" style="background:linear-gradient(135deg,#F3E5C8,#E8D5B7)">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#8B6914"/>
+            <rect x="25" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <rect x="55" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <text x="50" y="95" text-anchor="middle" font-size="10" fill="#5C6370">CHENGDU</text>
+          </svg>
+        </div>
+        <div class="store-card-body">
+          <h3 data-i18n="stores.s4_name">成都宽窄巷子店</h3>
+          <p class="address"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="stores.s4_addr">成都市青羊区宽窄巷子32号</span></p>
+          <p class="hours"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="stores.s4_hours">每日 9:00 - 22:00</span></p>
+        </div>
+        <div class="store-card-footer">
+          <a href="beanleaf-coffee/stores/cd-kuanzhai.html" class="btn btn-outline" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.detail">查看详情</a>
+          <a href="https://maps.apple.com/?q=成都市青羊区宽窄巷子32号" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.navigate">导航前往</a>
+        </div>
+      </div>
+      <div class="store-card reveal">
+        <div class="store-card-img" style="background:linear-gradient(135deg,#ECEFF1,#CFD8DC)">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#37474F"/>
+            <rect x="25" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <rect x="55" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
+            <text x="50" y="95" text-anchor="middle" font-size="9" fill="#5C6370">GUANGZHOU</text>
+          </svg>
+        </div>
+        <div class="store-card-body">
+          <h3 data-i18n="stores.s5_name">广州珠江新城店</h3>
+          <p class="address"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="stores.s5_addr">广州市天河区珠江新城华夏路8号</span></p>
+          <p class="hours"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="stores.s5_hours">工作日 7:30-21:00 | 周末 9:00-20:00</span></p>
+        </div>
+        <div class="store-card-footer">
+          <a href="beanleaf-coffee/stores/gz-zhujiang.html" class="btn btn-outline" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.detail">查看详情</a>
+          <a href="https://maps.apple.com/?q=广州市天河区珠江新城华夏路8号" target="_blank" class="btn btn-primary" style="font-size:.8rem;padding:.4em 1.2em" data-i18n="stores.navigate">导航前往</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="tag" data-i18n="contact.tag">联系我们</span>
+        <h2 data-i18n="contact.title">期待你的声音</h2>
+        <p data-i18n="contact.desc">无论是对产品的反馈、合作邀约还是只是想聊聊咖啡，我们都很乐意倾听。</p>
+        <div class="contact-detail">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="label" data-i18n="contact.email_label">邮箱</div>
+            <div class="value">hello@beanleafcoffee.com</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="label" data-i18n="contact.phone_label">电话</div>
+            <div class="value">400-888-BEAN (2326)</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="label" data-i18n="contact.wechat_label">微信公众号</div>
+            <div class="value">BeanLeafCoffee</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="contact-form" id="contactForm">
+          <h3 style="margin-bottom:1.5rem" data-i18n="contact.form_title">发送消息</h3>
+          <div class="form-group">
+            <label for="name" data-i18n="contact.form_name">姓名</label>
+            <input type="text" id="name" required placeholder="你的名字">
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contact.form_email">邮箱</label>
+            <input type="email" id="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="topic" data-i18n="contact.form_topic">主题</label>
+            <select id="topic">
+              <option value="general" data-i18n="contact.topic_general">一般咨询</option>
+              <option value="product" data-i18n="contact.topic_product">产品反馈</option>
+              <option value="partner" data-i18n="contact.topic_partner">商务合作</option>
+              <option value="other" data-i18n="contact.topic_other">其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contact.form_message">留言</label>
+            <textarea id="message" required placeholder="请输入你想说的内容..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="contact.form_submit">发送消息</button>
+          <div class="form-success" id="formSuccess">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--clr-success)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3 data-i18n="contact.success_title">消息已发送！</h3>
+            <p data-i18n="contact.success_desc">感谢你的留言，我们会在24小时内回复。</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Newsletter ===== -->
+<section class="newsletter reveal">
+  <div class="container">
+    <h2 data-i18n="newsletter.title">订阅 BeanLeaf 咖啡通讯</h2>
+    <p data-i18n="newsletter.desc">获取最新产品发布、冲煮技巧和独家优惠信息。</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" required placeholder="your@email.com" data-i18n-attrs="placeholder" data-i18n-placeholder="newsletter.placeholder">
+      <button type="submit" data-i18n="newsletter.submit">订阅</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
+            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+          </svg>
+          BeanLeaf Coffee
+        </div>
+        <p data-i18n="footer.brand_desc">豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
+        <div class="social-links">
+          <a href="#" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
+          <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
+          <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col1">产品</h4>
+        <a href="#" data-i18n="footer.single_origin">单品咖啡</a>
+        <a href="#" data-i18n="footer.blend">拼配咖啡</a>
+        <a href="#" data-i18n="footer.limited">限量系列</a>
+        <a href="#" data-i18n="footer.equipment">咖啡器具</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col2">关于</h4>
+        <a href="#" data-i18n="footer.about">品牌故事</a>
+        <a href="#" data-i18n="footer.stores">门店查询</a>
+        <a href="#" data-i18n="footer.blog">咖啡博客</a>
+        <a href="#" data-i18n="footer.careers">加入我们</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col3">支持</h4>
+        <a href="#" data-i18n="footer.faq">常见问题</a>
+        <a href="#" data-i18n="footer.shipping">配送说明</a>
+        <a href="#" data-i18n="footer.returns">退换政策</a>
+        <a href="#" data-i18n="footer.contact">联系我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 BeanLeaf Coffee. All rights reserved. | <span data-i18n="footer.icp">沪ICP备2024XXXXXX号</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Back to Top ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ===== Cart Drawer ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3 data-i18n="cart.title">购物车</h3>
+    <button class="cart-close" id="cartClose">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" data-i18n="cart.empty">购物车是空的</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="label" data-i18n="cart.total">合计</span>
+      <span class="amount" id="cartTotal">¥0</span>
+    </div>
+    <button class="cart-checkout" id="cartCheckout" data-i18n="cart.checkout">去结算</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== Scripts ===== -->
+<script>
+// ===== i18n =====
+const i18nData = {
+  zh: {
+    "nav.home": "首页", "nav.products": "产品", "nav.about": "关于我们", "nav.stores": "门店", "nav.contact": "联系",
+    "hero.tag": "自然之选",
+    "hero.title": "从叶到杯，<br><span>每一杯都与自然对话</span>",
+    "hero.desc": "BeanLeaf Coffee 精选全球优质咖啡豆，坚持小批量手工烘焙，让每一杯咖啡都承载着产地的风土与匠心。",
+    "hero.shop": "探索产品", "hero.story": "品牌故事",
+    "stats.origins": "咖啡产地", "stats.stores": "线下门店", "stats.customers": "满意顾客", "stats.years": "年烘焙经验",
+    "products.tag": "精选产品", "products.title": "来自世界各地的精品咖啡",
+    "products.desc": "从埃塞俄比亚高原到哥伦比亚山谷，我们亲赴产地，只为找到最好的那一颗豆子。",
+    "products.bestseller": "热卖", "products.new": "新品", "products.limited": "限量",
+    "products.single_origin": "单品咖啡", "products.blend": "拼配咖啡", "products.limited_edition": "限量系列",
+    "products.p1_name": "埃塞俄比亚 耶加雪菲", "products.p1_desc": "水洗处理，柑橘与茉莉花香，明亮酸质，回甘悠长",
+    "products.p2_name": "哥伦比亚 慧兰", "products.p2_desc": "水洗处理，焦糖甜感与坚果风味，口感醇厚均衡",
+    "products.p3_name": "肯尼亚 AA", "products.p3_desc": "水洗处理，黑加仑与番茄酸甜感，层次丰富",
+    "products.p4_name": "早安拼配", "products.p4_desc": "巴西+埃塞俄比亚，坚果巧克力调，适合每日唤醒",
+    "products.p5_name": "晚安拼配", "products.p5_desc": "低因处理，柔和顺滑，可可与烤杏仁风味",
+    "products.p6_name": "巴拿马 瑰夏", "products.p6_desc": "日晒处理，茉莉花与蜜桃香气，茶感回甘，限量200份",
+    "products.view_all": "查看全部产品",
+    "about.tag": "品牌故事", "about.title": "从一颗种子到一杯好咖啡",
+    "about.lead": "我们相信，每一杯咖啡都是一次与大自然的对话。",
+    "about.p1": "BeanLeaf 创立于2018年，名字源自咖啡叶片的自然形态。我们从全球50多个精品咖啡产地直采生豆，在上海自建烘焙工厂，坚持小批量手工烘焙，最大程度保留每款豆子的独特风味。",
+    "about.f1_title": "品质承诺", "about.f1_desc": "每批豆子均经过SCA标准杯测评分",
+    "about.f2_title": "产地直采", "about.f2_desc": "与50+产地庄园建立长期合作关系",
+    "about.f3_title": "手工烘焙", "about.f3_desc": "小批量烘焙，精准控制风味曲线",
+    "about.f4_title": "新鲜直达", "about.f4_desc": "烘焙后48小时内发货，保证新鲜",
+    "stores.tag": "门店查询", "stores.title": "找到你身边的 BeanLeaf",
+    "stores.desc": "目前在全国5个城市拥有12家门店，每一家都是你品尝精品咖啡的温暖角落。",
+    "stores.s1_name": "上海静安寺店", "stores.s1_addr": "上海市静安区南京西路1688号", "stores.s1_hours": "每日 8:00 - 22:00",
+    "stores.s2_name": "北京三里屯店", "stores.s2_addr": "北京市朝阳区三里屯太古里南区", "stores.s2_hours": "每日 9:00 - 23:00",
+    "stores.s3_name": "深圳南山店", "stores.s3_addr": "深圳市南山区科技园南路18号", "stores.s3_hours": "工作日 8:00-21:00 | 周末 9:00-22:00",
+    "stores.s4_name": "成都宽窄巷子店", "stores.s4_addr": "成都市青羊区宽窄巷子32号", "stores.s4_hours": "每日 9:00 - 22:00",
+    "stores.s5_name": "广州珠江新城店", "stores.s5_addr": "广州市天河区珠江新城华夏路8号", "stores.s5_hours": "工作日 7:30-21:00 | 周末 9:00-20:00",
+    "stores.detail": "查看详情", "stores.navigate": "导航前往",
+    "contact.tag": "联系我们", "contact.title": "期待你的声音",
+    "contact.desc": "无论是对产品的反馈、合作邀约还是只是想聊聊咖啡，我们都很乐意倾听。",
+    "contact.email_label": "邮箱", "contact.phone_label": "电话", "contact.wechat_label": "微信公众号",
+    "contact.form_title": "发送消息", "contact.form_name": "姓名", "contact.form_email": "邮箱",
+    "contact.form_topic": "主题", "contact.form_message": "留言", "contact.form_submit": "发送消息",
+    "contact.topic_general": "一般咨询", "contact.topic_product": "产品反馈",
+    "contact.topic_partner": "商务合作", "contact.topic_other": "其他",
+    "contact.success_title": "消息已发送！", "contact.success_desc": "感谢你的留言，我们会在24小时内回复。",
+    "newsletter.title": "订阅 BeanLeaf 咖啡通讯",
+    "newsletter.desc": "获取最新产品发布、冲煮技巧和独家优惠信息。",
+    "newsletter.placeholder": "输入邮箱地址",
+    "newsletter.submit": "订阅",
+    "footer.brand_desc": "豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。",
+    "footer.col1": "产品", "footer.col2": "关于", "footer.col3": "支持",
+    "footer.single_origin": "单品咖啡", "footer.blend": "拼配咖啡", "footer.limited": "限量系列", "footer.equipment": "咖啡器具",
+    "footer.about": "品牌故事", "footer.stores": "门店查询", "footer.blog": "咖啡博客", "footer.careers": "加入我们",
+    "footer.faq": "常见问题", "footer.shipping": "配送说明", "footer.returns": "退换政策", "footer.contact": "联系我们",
+    "footer.icp": "沪ICP备2024XXXXXX号",
+    "products.add_cart": "加入购物车",
+    "cart.title": "购物车", "cart.empty": "购物车是空的", "cart.total": "合计", "cart.checkout": "去结算",
+    "cart.added": "已加入购物车"
+  },
+  en: {
+    "nav.home": "Home", "nav.products": "Products", "nav.about": "About", "nav.stores": "Stores", "nav.contact": "Contact",
+    "hero.tag": "Nature's Choice",
+    "hero.title": "From leaf to cup,<br><span>every sip speaks with nature</span>",
+    "hero.desc": "BeanLeaf Coffee sources the finest beans from around the world, roasted in small batches by hand — every cup carries the terroir and craftsmanship of its origin.",
+    "hero.shop": "Explore Products", "hero.story": "Our Story",
+    "stats.origins": "Origins", "stats.stores": "Stores", "stats.customers": "Happy Customers", "stats.years": "Years Roasting",
+    "products.tag": "Featured Products", "products.title": "Specialty Coffee from Around the World",
+    "products.desc": "From the Ethiopian highlands to Colombian valleys, we travel to origin to find the very best beans.",
+    "products.bestseller": "Best Seller", "products.new": "New", "products.limited": "Limited",
+    "products.single_origin": "Single Origin", "products.blend": "Blend", "products.limited_edition": "Limited Edition",
+    "products.p1_name": "Ethiopia Yirgacheffe", "products.p1_desc": "Washed, citrus & jasmine, bright acidity, lingering sweetness",
+    "products.p2_name": "Colombia Huila", "products.p2_desc": "Washed, caramel sweetness & nutty notes, balanced body",
+    "products.p3_name": "Kenya AA", "products.p3_desc": "Washed, blackcurrant & tomato acidity, complex layers",
+    "products.p4_name": "Good Morning Blend", "products.p4_desc": "Brazil + Ethiopia, chocolate & nut, perfect daily wake-up",
+    "products.p5_name": "Good Night Blend", "products.p5_desc": "Decaf, smooth & mellow, cocoa & toasted almond",
+    "products.p6_name": "Panama Geisha", "products.p6_desc": "Natural, jasmine & peach aroma, tea-like finish, limited 200 units",
+    "products.view_all": "View All Products",
+    "about.tag": "Our Story", "about.title": "From Seed to Cup",
+    "about.lead": "We believe every cup of coffee is a conversation with nature.",
+    "about.p1": "Founded in 2018, BeanLeaf takes its name from the natural form of coffee leaves. We source green beans directly from 50+ specialty origins worldwide, roast in small batches at our Shanghai facility, and preserve each bean's unique character.",
+    "about.f1_title": "Quality Promise", "about.f1_desc": "Every batch SCA cupping scored",
+    "about.f2_title": "Direct Trade", "about.f2_desc": "Long-term partnerships with 50+ estates",
+    "about.f3_title": "Artisan Roasting", "about.f3_desc": "Small batch, precise flavor profiling",
+    "about.f4_title": "Fresh Delivery", "about.f4_desc": "Shipped within 48 hours of roasting",
+    "stores.tag": "Find Us", "stores.title": "Find a BeanLeaf Near You",
+    "stores.desc": "12 stores across 5 cities — each one a warm corner for your specialty coffee moment.",
+    "stores.s1_name": "Shanghai Jing'an", "stores.s1_addr": "1688 West Nanjing Rd, Jing'an, Shanghai", "stores.s1_hours": "Daily 8:00 - 22:00",
+    "stores.s2_name": "Beijing Sanlitun", "stores.s2_addr": "Taikoo Li South, Chaoyang, Beijing", "stores.s2_hours": "Daily 9:00 - 23:00",
+    "stores.s3_name": "Shenzhen Nanshan", "stores.s3_addr": "18 Kejiyuan South Rd, Nanshan, Shenzhen", "stores.s3_hours": "Weekdays 8:00-21:00 | Weekends 9:00-22:00",
+    "stores.s4_name": "Chengdu Kuanzhai", "stores.s4_addr": "32 Kuanzhai Alley, Qingyang, Chengdu", "stores.s4_hours": "Daily 9:00 - 22:00",
+    "stores.s5_name": "Guangzhou Zhujiang", "stores.s5_addr": "8 Huaxia Rd, Tianhe, Guangzhou", "stores.s5_hours": "Weekdays 7:30-21:00 | Weekends 9:00-20:00",
+    "stores.detail": "Details", "stores.navigate": "Navigate",
+    "contact.tag": "Get in Touch", "contact.title": "We'd Love to Hear from You",
+    "contact.desc": "Whether it's product feedback, collaboration, or just talking coffee — we're all ears.",
+    "contact.email_label": "Email", "contact.phone_label": "Phone", "contact.wechat_label": "WeChat",
+    "contact.form_title": "Send a Message", "contact.form_name": "Name", "contact.form_email": "Email",
+    "contact.form_topic": "Topic", "contact.form_message": "Message", "contact.form_submit": "Send Message",
+    "contact.topic_general": "General Inquiry", "contact.topic_product": "Product Feedback",
+    "contact.topic_partner": "Partnership", "contact.topic_other": "Other",
+    "contact.success_title": "Message Sent!", "contact.success_desc": "Thank you! We'll get back to you within 24 hours.",
+    "newsletter.title": "Subscribe to BeanLeaf Newsletter",
+    "newsletter.desc": "Get the latest product releases, brewing tips, and exclusive offers.",
+    "newsletter.placeholder": "Enter your email",
+    "newsletter.submit": "Subscribe",
+    "footer.brand_desc": "BeanLeaf Coffee — from leaf to cup, every sip speaks with nature. Small-batch artisan roasting, bringing coffee back to its roots.",
+    "footer.col1": "Products", "footer.col2": "About", "footer.col3": "Support",
+    "footer.single_origin": "Single Origin", "footer.blend": "Blends", "footer.limited": "Limited Edition", "footer.equipment": "Equipment",
+    "footer.about": "Our Story", "footer.stores": "Store Locator", "footer.blog": "Coffee Blog", "footer.careers": "Careers",
+    "footer.faq": "FAQ", "footer.shipping": "Shipping", "footer.returns": "Returns", "footer.contact": "Contact Us",
+    "footer.icp": "Shanghai ICP 2024XXXXXX",
+    "products.add_cart": "Add to Cart",
+    "cart.title": "Cart", "cart.empty": "Your cart is empty", "cart.total": "Total", "cart.checkout": "Checkout",
+    "cart.added": "Added to Cart"
+  }
+};
+
+let currentLang = 'zh';
+
+function setLang(lang) {
+  currentLang = lang;
+  // Update language switcher UI
+  document.querySelectorAll('#langSwitcher button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // Update all i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18nData[lang] && i18nData[lang][key]) {
+      const val = i18nData[lang][key];
+      if (val.includes('<br>') || val.includes('<span>')) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-attrs]').forEach(el => {
+    const placeholderKey = el.getAttribute('data-i18n-placeholder');
+    if (placeholderKey && i18nData[lang][placeholderKey]) {
+      el.placeholder = i18nData[lang][placeholderKey];
+    }
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+}
+
+document.querySelectorAll('#langSwitcher button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// ===== Mobile Menu =====
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// ===== Navbar Scroll =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// ===== Active Nav Link =====
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.id;
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// ===== Back to Top =====
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 500);
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== Scroll Reveal =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== Contact Form =====
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const success = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  // Show loading
+  submitBtn.textContent = currentLang === 'zh' ? '发送中...' : 'Sending...';
+  submitBtn.disabled = true;
+
+  // Simulate API call
+  setTimeout(() => {
+    form.querySelectorAll('.form-group').forEach(g => g.style.display = 'none');
+    submitBtn.style.display = 'none';
+    success.classList.add('show');
+  }, 800);
+});
+
+// ===== Newsletter Form =====
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button');
+  const input = this.querySelector('input');
+  const originalText = btn.textContent;
+  btn.textContent = currentLang === 'zh' ? '已订阅!' : 'Subscribed!';
+  btn.style.background = '#52B788';
+  input.value = '';
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+  }, 2000);
+});
+
+// ===== Product Card Click =====
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('a, button')) return;
+    const name = this.querySelector('h3').textContent;
+    alert((currentLang === 'zh' ? '查看产品详情: ' : 'View product: ') + name + '\n\n' +
+          (currentLang === 'zh' ? '(详情页将在后续版本中实现)' : '(Detail page coming soon)'));
+  });
+});
+
+// ===== Smooth scroll for anchor links =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+  // ===== Cart System =====
+  const CART_KEY = 'beanleaf_cart';
+  function getCart(){ try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return[]} }
+  function saveCart(cart){ localStorage.setItem(CART_KEY,JSON.stringify(cart));updateCartUI() }
+
+  function updateCartUI(){
+    const cart=getCart(),total=cart.reduce((s,i)=>s+i.price*i.qty,0),count=cart.reduce((s,i)=>s+i.qty,0);
+    const countEl=document.getElementById('cartCount');
+    countEl.style.display=count>0?'flex':'none';
+    countEl.textContent=count;
+    const itemsEl=document.getElementById('cartItems');
+    if(cart.length===0){
+      itemsEl.innerHTML='<div class="cart-empty" data-i18n="cart.empty">'+ (i18nData[currentLang]?.cart?.empty||'购物车是空的') +'</div>';
+      document.getElementById('cartFooter').style.display='none';
+    }else{
+      itemsEl.innerHTML=cart.map((item,i)=>'<div class="cart-item">'+
+        '<div class="cart-item-img" style="background:'+getItemColor(item.id)+'"></div>'+
+        '<div class="cart-item-info"><div class="name">'+item.name+'</div><div class="size">'+item.size+'</div></div>'+
+        '<div class="cart-item-qty"><button onclick="changeQty('+i+',-1)">-</button><span>'+item.qty+'</span><button onclick="changeQty('+i+',1)">+</button></div>'+
+        '<div class="cart-item-price">¥'+(item.price*item.qty)+'</div>'+
+        '<button class="cart-item-remove" onclick="removeItem('+i+')">✕</button></div>'
+      ).join('');
+      document.getElementById('cartFooter').style.display='block';
+    }
+    document.getElementById('cartTotal').textContent='¥'+total;
+  }
+
+  function getItemColor(id){
+    const m={'yirgacheffe':'#F5E6D3','huila':'#E8D5B7','kenya-aa':'#D4C4A8',
+             'good-morning':'#EAD7C3','good-night':'#4A4458','geisha':'#C9A96E'};
+    return m[id]||'#FEFAE0';
+  }
+
+  window.addToCart=function(id,name,size,price){
+    const cart=getCart(),exist=cart.find(i=>i.id===id&&i.size===size);
+    if(exist){exist.qty++}else{cart.push({id,name,size,price,qty:1})}
+    saveCart(cart);
+    showToast(i18nData[currentLang]?.cart?.added||'已加入购物车');
+  };
+
+  function changeQty(idx,delta){
+    const cart=getCart();cart[idx].qty+=delta;
+    if(cart[idx].qty<=0){cart.splice(idx,1)};saveCart(cart);
+  }
+
+  function removeItem(idx){const cart=getCart();cart.splice(idx,1);saveCart(cart)}
+
+  function showToast(msg){
+    const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
+  }
+
+  // Cart drawer toggle
+  const cartOverlay=document.getElementById('cartOverlay'),cartDrawer=document.getElementById('cartDrawer');
+  document.getElementById('cartIcon').addEventListener('click',()=>{
+    updateCartUI();cartOverlay.classList.add('open');cartDrawer.classList.add('open');
+  });
+  document.getElementById('cartClose').addEventListener('click',()=>{
+    cartOverlay.classList.remove('open');cartDrawer.classList.remove('open');
+  });
+  cartOverlay.addEventListener('click',()=>{
+    cartOverlay.classList.remove('open');cartDrawer.classList.remove('open');
+  });
+  document.getElementById('cartCheckout').addEventListener('click',()=>{
+    window.location.href='beanleaf-coffee/checkout.html';
+  });
+
+  updateCartUI();
+
+  // ===== Dark Mode =====
+  const dmBtn=document.getElementById('darkToggle');
+  const savedTheme=localStorage.getItem('beanleaf_theme');
+  if(savedTheme==='dark'){document.documentElement.setAttribute('data-theme','dark');dmBtn.textContent='☀️'}
+  dmBtn.addEventListener('click',()=>{
+    const isDark=document.documentElement.hasAttribute('data-theme');
+    if(isDark){document.documentElement.removeAttribute('data-theme');dmBtn.textContent='🌙';localStorage.setItem('beanleaf_theme','light')}
+    else{document.documentElement.setAttribute('data-theme','dark');dmBtn.textContent='☀️';localStorage.setItem('beanleaf_theme','dark')}
+    });
+</script>
+</body>
+</html>
