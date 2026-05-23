@@ -60,9 +60,12 @@ footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2re
     min-width: 100%;
     position: relative;
 }
+.carousel-slide img,
 .carousel-slide svg {
     width: 100%;
-    height: clamp(280px, 50vh, 500px);
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     display: block;
 }
 .carousel-btn {
@@ -129,40 +132,19 @@ footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2re
 <section class="product-carousel" id="productCarousel">
   <div class="carousel-track" id="carouselTrack">
     <div class="carousel-slide">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#78350F"/>
-            <stop offset="50%" style="stop-color:#92400E"/>
-            <stop offset="100%" style="stop-color:#D4A574"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="500" fill="url(#cg1)"/>
-        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">节日礼盒</text>
-        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Holiday Gift Box</text>
-        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">产品详情</text>
-      </svg>
+      <img src="images/gift-box-1.png" alt="Holiday Gift Box" style="width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block" onerror="this.style.display='none'">
+      <noscript><svg viewBox="0 0 800 500"><rect width="800" height="500" fill="#78350F"/><text x="400" y="250" text-anchor="middle" fill="white" font-size="28" font-family="Lora,serif">Holiday Gift Box</text></svg></noscript>
     </div>
     <div class="carousel-slide">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#92400E"/>
-            <stop offset="50%" style="stop-color:#D4A574"/>
-            <stop offset="100%" style="stop-color:#E8D0B3"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="500" fill="url(#cg2)"/>
-        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">节日礼盒</text>
-        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Brewing Guide</text>
-        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">冲泡指南</text>
-      </svg>
+      <img src="images/gift-box-2.png" alt="Gift Box Scene" style="width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block" onerror="this.style.display='none'">
+      <noscript><svg viewBox="0 0 800 500"><rect width="800" height="500" fill="#92400E"/><text x="400" y="250" text-anchor="middle" fill="white" font-size="28" font-family="Lora,serif">Gift Box Scene</text></svg></noscript>
     </div>
   </div>
-  <button class="carousel-btn carousel-prev" onclick="carouselPrev()" aria-label="上一张">‹</button>
-  <button class="carousel-btn carousel-next" onclick="carouselNext()" aria-label="下一张">›</button>
+  <button class="carousel-btn carousel-prev" onclick="carouselPrev()">&#8249;</button>
+  <button class="carousel-btn carousel-next" onclick="carouselNext()">&#8250;</button>
   <div class="carousel-dots" id="carouselDots"></div>
 </section>
+
 
 
 <section class="hero"><div class="container">
