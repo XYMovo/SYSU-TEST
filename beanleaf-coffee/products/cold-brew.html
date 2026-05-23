@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>冷萃袋泡咖啡 — BeanLeaf Coffee</title>
+<meta name="description" content="BeanLeaf冷萃袋泡咖啡。埃塞俄比亚拼配，冷水浸泡即饮，清爽柑橘调，夏日冰咖首选。¥68/10包。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%2378350F'/></svg>">
+<meta property="og:title" content="冷萃袋泡咖啡 — BeanLeaf Coffee">
+<meta property="og:description" content="埃塞俄比亚拼配，冷水浸泡即饮，清爽柑橘调。¥68/10包。">
+<style>
+:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-primary-light:#92400E;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--radius-sm:8px;--radius-md:16px;--max-width:900px;--nav-height:64px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.8}
+a{color:inherit;text-decoration:none}h1,h2,h3{font-family:var(--font-heading);font-weight:700}.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}.section{padding:2rem 0}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4em 1.2em;border-radius:999px;background:rgba(120,53,15,.08);color:var(--clr-primary);margin-bottom:.6rem}
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--clr-border);z-index:100;display:flex;align-items:center}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-logo svg{width:28px;height:28px}.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light);transition:color .2s}.nav-back:hover{color:var(--clr-primary)}
+.hero{min-height:50vh;display:flex;align-items:center;background:linear-gradient(170deg,#E0F2F1,#B2DFDB,#80CBC4);padding-top:var(--nav-height)}
+.hero .tag{background:rgba(0,105,92,.15);color:#00695C}.hero h1{color:#004D40}.hero .mood{display:inline-block;padding:.25em 1em;border-radius:999px;font-size:.8rem;font-weight:600;background:rgba(0,105,92,.1);color:#00695C;margin:.5rem 0}.mood-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+.mood-tags span{font-size:.72rem;padding:.25em .8em;border-radius:999px;background:rgba(0,105,92,.08);color:#00695C;font-weight:500}
+.story{background:var(--clr-white);border-radius:var(--radius-md);padding:2rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);line-height:2;font-size:.93rem}
+.story .quote{font-family:var(--font-heading);font-size:1.05rem;color:var(--clr-primary);margin-bottom:1rem;font-style:italic}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.info-card{background:var(--clr-white);border-radius:var(--radius-sm);padding:1rem;border:1px solid var(--clr-border)}
+.info-card .il{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted)}.info-card .iv{font-size:.9rem;font-weight:600;margin-top:.2rem}
+.feature-list{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+.feature{background:var(--clr-white);border-radius:var(--radius-sm);padding:1rem;text-align:center;border:1px solid var(--clr-border)}
+.feature .emoji{font-size:1.5rem}.feature .ft{font-size:.82rem;font-weight:600;margin:.3rem 0}.feature .fd{font-size:.7rem;color:var(--clr-text-muted)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.9rem;padding:.75em 1.8em;border-radius:999px;transition:all .25s;cursor:pointer}
+.btn-pr{background:var(--clr-primary);color:#fff;border:none}.btn-pr:hover{background:var(--clr-primary-dark)}
+footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2rem 0;text-align:center;margin-top:4rem;font-size:.85rem}
+footer a{color:rgba(255,255,255,.5)}footer a:hover{color:var(--clr-accent)}
+@media(max-width:768px){.feature-list{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+</style></head><body>
+<nav class="navbar"><div class="container">
+  <a href="../../beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
+  <a href="index.html" class="nav-back">← 返回商城</a>
+</div></nav>
+
+<section class="hero"><div class="container">
+  <span class="tag">夏日限定</span>
+  <h1>冷萃袋泡咖啡</h1>
+  <div class="mood">冷水一泡，就是夏天</div>
+  <div class="mood-tags"><span>清爽柑橘</span><span>即泡即饮</span><span>零器具</span><span>办公室友好</span></div>
+  <p style="margin-top:.8rem;color:#00695C;font-size:.9rem">¥68 / 10包 · ★ 4.7</p>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="story">
+    <div class="quote">"不用磨豆机、不用滤杯、不用称——把茶包扔进冷水瓶，放进冰箱，明天早上就是一杯冷萃。"</div>
+    <p>我们花了三个月调试冷萃袋泡的配方。关键不在豆子多贵——耶加雪菲和西达摩的拼配，中烘，让柑橘调在低温萃取时依然明亮——而在于研磨度和包装材料。太细了会漏粉，太粗了萃取不足；包装袋的孔径、材质、封口温度，每一个变量都试了十几轮。</p>
+    <p>最终这个版本：每包12g粉，加250ml冷水，冰箱放8-12小时。不需要任何额外器具。办公室的马克杯、出差酒店的矿泉水瓶、露营时的保温杯——有冷水和时间就够了。</p>
+    <p>夏天用它能喝到一杯干净明亮的冷萃。冬天想喝热的——把水换成温水泡5分钟就行。我们不敢说这是最好的咖啡，但它可能是最不挑场景的咖啡。</p>
+  </div>
+
+  <h2 style="text-align:center;margin:2rem 0 1rem">为什么选冷萃袋泡</h2>
+  <div class="feature-list">
+    <div class="feature"><div class="emoji">🧊</div><div class="ft">零器具</div><div class="fd">冷水+杯子=冷萃，不需要任何咖啡装备</div></div>
+    <div class="feature"><div class="emoji">⏰</div><div class="ft">睡前泡 起床喝</div><div class="fd">8-12小时低温慢萃，比你更早醒</div></div>
+    <div class="feature"><div class="emoji">🍊</div><div class="ft">清爽不苦</div><div class="fd">冷萃天然低酸低苦，柑橘甜感突出</div></div>
+  </div>
+
+  <h2 style="text-align:center;margin:2rem 0 1rem">产品参数</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="il">产地</div><div class="iv">埃塞俄比亚 耶加雪菲 + 西达摩</div></div>
+    <div class="info-card"><div class="il">处理法</div><div class="iv">水洗</div></div>
+    <div class="info-card"><div class="il">烘焙度</div><div class="iv">中烘</div></div>
+    <div class="info-card"><div class="il">规格</div><div class="iv">12g × 10包/盒</div></div>
+    <div class="info-card"><div class="il">建议水温</div><div class="iv">冷水(4°C)或常温水</div></div>
+    <div class="info-card"><div class="il">萃取时间</div><div class="iv">8-12小时(冷藏)</div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:2.5rem">
+    <button onclick="alert('已加入购物车')" class="btn btn-pr">🧊 加入购物车 — ¥68</button>
+  </div>
+</div></section>
+<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="../../beanleaf-coffee.html">返回首页</a></p></footer>
+</body></html>
