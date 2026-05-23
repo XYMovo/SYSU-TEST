@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咖啡学院 — BeanLeaf Coffee | 从入门到精通</title>
+<meta name="description" content="BeanLeaf Coffee 咖啡学院 — 手冲指南、选豆攻略、风味轮互动、冲煮对比表。从零开始学精品咖啡。">
+<style>
+:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-accent:#FBBF24;--clr-cream:#FEF3C7;--clr-bg:#FFFBEB;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--radius-md:16px;--radius-sm:8px;--max-width:900px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.8}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--font-heading);font-weight:700}
+h1{font-size:clamp(1.8rem,4vw,2.4rem)}h2{font-size:clamp(1.3rem,3vw,1.6rem)}h3{font-size:1.1rem}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+.section{padding:3rem 0}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4em 1.2em;border-radius:999px;background:rgba(120,53,15,.08);color:var(--clr-primary);margin-bottom:.6rem}
+.navbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(255,251,235,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--clr-border);z-index:100;display:flex;align-items:center}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light)}
+.nav-back:hover{color:var(--clr-primary)}
+
+.hero{min-height:40vh;display:flex;align-items:center;padding-top:64px;background:linear-gradient(170deg,var(--clr-cream),var(--clr-bg));text-align:center}
+.hero h1 span{color:var(--clr-primary)}
+.hero p{color:var(--clr-text-light);max-width:600px;margin:.5rem auto 0;font-size:.95rem}
+
+.card{background:var(--clr-white);border-radius:var(--radius-md);padding:2rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);margin-bottom:1.5rem}
+.card h3{color:var(--clr-primary-dark);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.card h3 .emoji{font-size:1.3rem}
+.card p,.card li{font-size:.9rem;color:var(--clr-text-light);line-height:1.8}
+.card ul{padding-left:1.2rem;margin:.5rem 0}
+.card ul li{margin-bottom:.3rem}
+
+.compare-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:1rem}
+.compare-table th{background:rgba(120,53,15,.06);padding:.7em 1em;text-align:left;font-weight:600;color:var(--clr-primary-dark);font-size:.75rem;text-transform:uppercase}
+.compare-table td{padding:.7em 1em;border-bottom:1px solid var(--clr-border);color:var(--clr-text-light)}
+.compare-table tr:hover td{background:rgba(120,53,15,.02)}
+
+.roast-scale{display:flex;align-items:center;gap:0;margin:1rem 0}
+.roast-bar{flex:1;height:8px;background:linear-gradient(to right,#C9A96E,#8B6914,#4A3728,#1A1A1A);border-radius:4px}
+.roast-labels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--clr-text-muted);margin-top:.3rem}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.step-card{background:var(--clr-bg);border-radius:var(--radius-sm);padding:1.2rem;text-align:center}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--clr-primary);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem;font-weight:700;font-size:.8rem}
+.step-card h4{font-size:.85rem;margin-bottom:.3rem}
+.step-card p{font-size:.75rem;color:var(--clr-text-muted)}
+
+.flavor-wheel{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.flavor-cat{padding:.4em 1em;border-radius:999px;font-size:.75rem;font-weight:500;cursor:default}
+.flavor-cat.fruity{background:#FDE68A;color:#92400E}
+.flavor-cat.floral{background:#FCE7F3;color:#9D174D}
+.flavor-cat.nutty{background:#FEF3C7;color:#92400E}
+.flavor-cat.chocolate{background:#E5E0D5;color:#451A03}
+.flavor-cat.spicy{background:#FEE2E2;color:#991B1B}
+.flavor-cat.herbal{background:#D1FAE5;color:#064E3B}
+
+footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2rem 0;text-align:center;margin-top:4rem;font-size:.85rem}
+footer a{color:rgba(255,255,255,.5)}footer a:hover{color:var(--clr-accent)}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="container">
+  <a href="../beanleaf-coffee.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
+  <a href="../blog.html" class="nav-back">← 返回博客</a>
+</div></nav>
+
+<section class="hero"><div class="container">
+  <span class="tag">Coffee Academy</span>
+  <h1>BeanLeaf <span>咖啡学院</span></h1>
+  <p>从第一杯手冲到品鉴单品咖啡——我们陪你走完这段路</p>
+</div></section>
+
+<section class="section"><div class="container">
+
+  <h2 style="text-align:center;margin-bottom:2rem">☕ 冲煮方法对比</h2>
+  <div class="card">
+    <table class="compare-table">
+      <tr><th>方法</th><th>器具</th><th>研磨度</th><th>时间</th><th>口感特点</th><th>难度</th></tr>
+      <tr><td><strong>手冲 V60</strong></td><td>V60滤杯+滤纸</td><td>中细</td><td>2-3分钟</td><td>干净、层次分明、酸质明亮</td><td>⭐⭐⭐</td></tr>
+      <tr><td><strong>法压壶</strong></td><td>French Press</td><td>粗</td><td>4分钟</td><td>醇厚、油脂丰富、口感饱满</td><td>⭐</td></tr>
+      <tr><td><strong>意式浓缩</strong></td><td>意式咖啡机</td><td>极细</td><td>25-30秒</td><td>浓郁、crema丰富、集中</td><td>⭐⭐⭐⭐</td></tr>
+      <tr><td><strong>冷萃</strong></td><td>冷萃壶/法压壶</td><td>极粗</td><td>12-16小时</td><td>顺滑、低酸、甜感突出</td><td>⭐</td></tr>
+      <tr><td><strong>爱乐压</strong></td><td>AeroPress</td><td>中细</td><td>1-2分钟</td><td>干净但比V60更饱满</td><td>⭐⭐</td></tr>
+      <tr><td><strong>摩卡壶</strong></td><td>Moka Pot</td><td>细</td><td>5分钟</td><td>浓郁、接近浓缩、家用友好</td><td>⭐⭐</td></tr>
+    </table>
+  </div>
+
+  <h2 style="text-align:center;margin:3rem 0 2rem">🫘 咖啡豆选购指南</h2>
+  <div class="card">
+    <h3><span class="emoji">🌱</span> 单品 vs 拼配</h3>
+    <p><strong>单品咖啡</strong>来自单一产区，风味独特鲜明，适合手冲品鉴。你会喝到那片土地特有的风土味道——柑橘、花香、莓果……每支豆子都有自己的性格。</p>
+    <p style="margin-top:.5rem"><strong>拼配咖啡</strong>由多个产区豆子调和而成，风味均衡稳定，适合日常饮用和意式萃取。好的拼配像一支乐队，每支豆子各司其职。</p>
+    
+    <h3 style="margin-top:1.5rem"><span class="emoji">🔥</span> 烘焙度怎么选</h3>
+    <div class="roast-scale"><div class="roast-bar"></div></div>
+    <div class="roast-labels"><span>浅烘</span><span>中烘</span><span>中深烘</span><span>深烘</span></div>
+    <ul>
+      <li><strong>浅烘</strong>：保留原产地风味，酸质明亮。适合单品品鉴（如耶加雪菲、瑰夏）</li>
+      <li><strong>中烘</strong>：酸苦平衡，焦糖甜感。适合大多数人的入门选择（如慧兰）</li>
+      <li><strong>中深烘</strong>：醇厚饱满，巧克力坚果调。适合意式/拿铁（如早安拼配）</li>
+      <li><strong>深烘</strong>：苦味主导，烟熏焦糖。传统日式/意式风格</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem"><span class="emoji">🌍</span> 处理法对风味的影响</h3>
+    <ul>
+      <li><strong>水洗</strong>：干净明亮，突出豆子本身风味。柑橘、花香类风味更多</li>
+      <li><strong>日晒</strong>：果香浓郁，甜感更高，酒香调明显。口感更饱满</li>
+      <li><strong>蜜处理</strong>：介于两者之间，保留甜感同时保持干净度</li>
+    </ul>
+  </div>
+
+  <h2 style="text-align:center;margin:3rem 0 2rem">🌸 风味轮</h2>
+  <div class="card" style="text-align:center">
+    <p style="margin-bottom:1rem;font-size:.9rem;color:var(--clr-text-light)">咖啡中已识别出 <strong>800+ 种</strong> 风味化合物。以下为常见风味分类：</p>
+    <div class="flavor-wheel" style="justify-content:center">
+      <span class="flavor-cat fruity">🍊 柑橘</span>
+      <span class="flavor-cat fruity">🍓 莓果</span>
+      <span class="flavor-cat fruity">🍑 核果</span>
+      <span class="flavor-cat fruity">🍍 热带水果</span>
+      <span class="flavor-cat floral">🌸 花香</span>
+      <span class="flavor-cat floral">🌿 草本</span>
+      <span class="flavor-cat nutty">🥜 坚果</span>
+      <span class="flavor-cat nutty">🍞 谷物</span>
+      <span class="flavor-cat chocolate">🍫 巧克力</span>
+      <span class="flavor-cat chocolate">🍯 焦糖</span>
+      <span class="flavor-cat chocolate">🍷 酒香</span>
+      <span class="flavor-cat spicy">🌶️ 香料</span>
+      <span class="flavor-cat herbal">🌲 木质</span>
+      <span class="flavor-cat herbal">🌍 泥土</span>
+    </div>
+  </div>
+
+  <h2 style="text-align:center;margin:3rem 0 2rem">📝 手冲入门 6 步法</h2>
+  <div class="steps">
+    <div class="step-card"><div class="step-num">1</div><h4>烧水</h4><p>浅烘92°C / 中烘88°C</p></div>
+    <div class="step-card"><div class="step-num">2</div><h4>研磨</h4><p>中细（白砂糖粗细）</p></div>
+    <div class="step-card"><div class="step-num">3</div><h4>润纸</h4><p>热水湿润滤纸预热滤杯</p></div>
+    <div class="step-card"><div class="step-num">4</div><h4>闷蒸</h4><p>注入2倍水量，等30秒</p></div>
+    <div class="step-card"><div class="step-num">5</div><h4>注水</h4><p>分2-3段，画圈注水</p></div>
+    <div class="step-card"><div class="step-num">6</div><h4>品尝</h4><p>趁热喝，感受风味变化</p></div>
+  </div>
+
+  <h2 style="text-align:center;margin:3rem 0 2rem">❓ 常见误区</h2>
+  <div class="card">
+    <p><strong>误区 1：「苦 = 浓 = 好咖啡」</strong><br>好咖啡应该平衡。过度萃取才苦，好的烘焙师追求的是甜感和层次。</p>
+    <p style="margin-top:1rem"><strong>误区 2：「咖啡粉越细越好」</strong><br>太细会过萃发苦，太粗会萃取不足偏酸。不同冲煮方法需要不同研磨度。</p>
+    <p style="margin-top:1rem"><strong>误区 3：「贵的一定好喝」</strong><br>风味无高低之分，只有偏好之别。瑰夏不一定比早安拼配更合你的口味。</p>
+    <p style="margin-top:1rem"><strong>误区 4：「咖啡要趁热喝」</strong><br>温度降低后，咖啡风味会打开。60°C 左右是最佳品鉴温度。</p>
+  </div>
+
+</div></section>
+
+<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="../beanleaf-coffee.html">返回首页</a> | <a href="../blog.html">咖啡博客</a></p></footer>
+</body>
+</html>

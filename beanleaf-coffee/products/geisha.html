@@ -172,6 +172,18 @@ footer a:hover{color:var(--clr-accent)}
   <p class="subtitle" data-i18n="hero.subtitle">Panama Geisha · Finca Esmeralda</p>
   <p class="summary" data-i18n="hero.summary">茉莉花与蜜桃香气，茶感回甘，一杯改变咖啡世界的传奇品种</p>
 </div></section>
+<div class="product-carousel" id="pCarousel">
+  <div class="slides" id="pCarouselSlides">
+    <div class="slide"><img src="images/geisha-1.png" alt="geisha product photo" loading="eager"></div><div class="slide"><img src="images/geisha-2.png" alt="geisha product photo" loading="lazy"></div>
+  </div>
+  <button class="arrow prev" onclick="pPrev()" aria-label="上一张">‹</button>
+  <button class="arrow next" onclick="pNext()" aria-label="下一张">›</button>
+  <div class="dots" id="pCarouselDots">
+    <span class="dot active" onclick="pGo(0)"></span>
+    <span class="dot" onclick="pGo(1)"></span>
+  </div>
+</div>
+
 
 <section class="section" id="story"><div class="container">
   <div class="section-title"><span class="tag" data-i18n="story.tag">产地故事</span><h2 data-i18n="story.title">传奇品种的前世今生</h2></div>
@@ -290,6 +302,14 @@ updateCartUI();
 document.getElementById('collectionNum').textContent=(cl==='zh'?'您的专属编号：':'Your Collection #')+'#'+String(Math.floor(Math.random()*200)+1).padStart(3,'0')+' / 200';
 // Animate bars on scroll
 const barObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){['bar1','bar2','bar3','bar4'].forEach(id=>{const b=document.getElementById(id);if(b){const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,100)}})}})});document.getElementById('flavor')&&barObs.observe(document.getElementById('flavor'));
+</script>
+<script>
+let pSlide=0;const pTotal=2;const pSlides=document.getElementById('pCarouselSlides');const pDots=document.querySelectorAll('#pCarouselDots .dot');
+function pUpdate(){pSlides.style.transform='translateX(-'+pSlide+'00%)';pDots.forEach((d,i)=>d.classList.toggle('active',i===pSlide))}
+function pNext(){pSlide=(pSlide+1)%pTotal;pUpdate()}
+function pPrev(){pSlide=(pSlide-1+pTotal)%pTotal;pUpdate()}
+function pGo(n){pSlide=n;pUpdate()}
+setInterval(pNext,5000);
 </script>
 </body>
 </html>

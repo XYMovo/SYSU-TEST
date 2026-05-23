@@ -337,6 +337,18 @@ p{color:var(--clr-text-light)}
     </div>
   </div>
 </section>
+<div class="product-carousel" id="pCarousel">
+  <div class="slides" id="pCarouselSlides">
+    <div class="slide"><img src="images/good-morning-1.png" alt="good-morning product photo" loading="eager"></div><div class="slide"><img src="images/good-morning-2.png" alt="good-morning product photo" loading="lazy"></div>
+  </div>
+  <button class="arrow prev" onclick="pPrev()" aria-label="上一张">‹</button>
+  <button class="arrow next" onclick="pNext()" aria-label="下一张">›</button>
+  <div class="dots" id="pCarouselDots">
+    <span class="dot active" onclick="pGo(0)"></span>
+    <span class="dot" onclick="pGo(1)"></span>
+  </div>
+</div>
+
 
 <!-- ===== Origin Story ===== -->
 <section class="section origin" id="origin">
@@ -1078,6 +1090,14 @@ updateCartBadge();
   const cart = getCart();
   if (cart.length > 0) renderCartItems();
 })();
+</script>
+<script>
+let pSlide=0;const pTotal=2;const pSlides=document.getElementById('pCarouselSlides');const pDots=document.querySelectorAll('#pCarouselDots .dot');
+function pUpdate(){pSlides.style.transform='translateX(-'+pSlide+'00%)';pDots.forEach((d,i)=>d.classList.toggle('active',i===pSlide))}
+function pNext(){pSlide=(pSlide+1)%pTotal;pUpdate()}
+function pPrev(){pSlide=(pSlide-1+pTotal)%pTotal;pUpdate()}
+function pGo(n){pSlide=n;pUpdate()}
+setInterval(pNext,5000);
 </script>
 </body>
 </html>

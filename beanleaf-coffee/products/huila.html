@@ -314,6 +314,18 @@ body {
 .btn-checkout:hover { background: var(--clr-primary-dark); }
 
 /* Responsive */
+.product-carousel{position:relative;width:100%;max-width:800px;margin:0 auto 2rem;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.product-carousel .slides{display:flex;transition:transform .5s ease-in-out}
+.product-carousel .slide{min-width:100%;height:380px}
+.product-carousel .slide img{width:100%;height:100%;object-fit:cover;display:block}
+.product-carousel .dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:2}
+.product-carousel .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;border:none}
+.product-carousel .dot.active{background:#fff;transform:scale(1.3)}
+.product-carousel .arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:all .3s;font-size:1.2rem;border:none;color:#451A03}
+.product-carousel .arrow:hover{background:#fff}
+.product-carousel .arrow.prev{left:1rem}.product-carousel .arrow.next{right:1rem}
+@media(max-width:768px){.product-carousel .slide{height:250px}}
+
 @media (max-width: 768px) {
     .hero h1 { font-size: 1.8rem; }
     .section { padding: 32px 16px; }
@@ -395,6 +407,18 @@ body {
         <p class="hero-summary" data-i18n="heroSummary">焦糖甜感与坚果风味，口感醇厚均衡</p>
     </div>
 </section>
+<div class="product-carousel" id="pCarousel">
+  <div class="slides" id="pCarouselSlides">
+    <div class="slide"><img src="images/huila-1.png" alt="huila product photo" loading="eager"></div><div class="slide"><img src="images/huila-2.png" alt="huila product photo" loading="lazy"></div>
+  </div>
+  <button class="arrow prev" onclick="pPrev()" aria-label="上一张">‹</button>
+  <button class="arrow next" onclick="pNext()" aria-label="下一张">›</button>
+  <div class="dots" id="pCarouselDots">
+    <span class="dot active" onclick="pGo(0)"></span>
+    <span class="dot" onclick="pGo(1)"></span>
+  </div>
+</div>
+
 
 <!-- Origin Story -->
 <section class="section">
@@ -741,5 +765,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+let pSlide=0;const pTotal=2;const pSlides=document.getElementById('pCarouselSlides');const pDots=document.querySelectorAll('#pCarouselDots .dot');
+function pUpdate(){pSlides.style.transform='translateX(-'+pSlide+'00%)';pDots.forEach((d,i)=>d.classList.toggle('active',i===pSlide))}
+function pNext(){pSlide=(pSlide+1)%pTotal;pUpdate()}
+function pPrev(){pSlide=(pSlide-1+pTotal)%pTotal;pUpdate()}
+function pGo(n){pSlide=n;pUpdate()}
+setInterval(pNext,5000);
+</script>
 </body>
 </html>
