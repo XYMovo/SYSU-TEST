@@ -39,9 +39,9 @@
 <style>
   /* ===== CSS Variables ===== */
   :root {
-    --clr-primary: #2D6A4F;
-    --clr-primary-dark: #1B4332;
-    --clr-primary-light: #40916C;
+    --clr-primary: #78350F;
+    --clr-primary-dark: #451A03;
+    --clr-primary-light: #92400E;
     --clr-accent: #D4A574;
     --clr-accent-light: #E8D0B3;
     --clr-cream: #FEFAE0;
@@ -89,7 +89,7 @@
   .container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
   .section{padding:5rem 0}
   .section-header{text-align:center;margin-bottom:3.5rem}
-  .section-header .tag{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(45,106,79,.08);padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:1rem}
+  .section-header .tag{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(120,53,15,.08);padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:1rem}
   .section-header h2{margin-bottom:.6rem}
   .section-header p{max-width:520px;margin:0 auto;font-size:1.05rem}
   .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.75em 1.8em;border-radius:var(--radius-full);transition:all .25s ease;cursor:pointer}
@@ -118,8 +118,8 @@
   .menu-toggle span{width:24px;height:2px;background:var(--clr-text);border-radius:2px;transition:all .3s}
 
   /* ===== Hero ===== */
-  .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(170deg, var(--clr-cream) 0%, var(--clr-cream-light) 30%, var(--clr-bg) 70%, rgba(45,106,79,.04) 100%);position:relative;overflow:hidden;padding-top:var(--nav-height)}
-  .hero::before{content:'';position:absolute;top:-25%;right:-10%;width:60%;height:120%;background:radial-gradient(ellipse, rgba(45,106,79,.06) 0%, transparent 70%);pointer-events:none}
+  .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(170deg, var(--clr-cream) 0%, var(--clr-cream-light) 30%, var(--clr-bg) 70%, rgba(120,53,15,.04) 100%);position:relative;overflow:hidden;padding-top:var(--nav-height)}
+  .hero::before{content:'';position:absolute;top:-25%;right:-10%;width:60%;height:120%;background:radial-gradient(ellipse, rgba(120,53,15,.06) 0%, transparent 70%);pointer-events:none}
   .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
   .hero-content .tag{margin-bottom:.8rem}
   .hero-content h1{color:var(--clr-primary-dark);margin-bottom:1rem}
@@ -127,7 +127,7 @@
   .hero-content p{font-size:1.15rem;margin-bottom:2rem;max-width:460px}
   .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
   .hero-visual{display:flex;justify-content:center;align-items:center}
-  .hero-visual svg{width:100%;max-width:480px;filter:drop-shadow(0 8px 24px rgba(45,106,79,.12))}
+  .hero-visual svg{width:100%;max-width:480px;filter:drop-shadow(0 8px 24px rgba(120,53,15,.12))}
 
   /* Decorative floating leaves */
   .hero .leaf-float{position:absolute;opacity:.15;pointer-events:none}
@@ -179,7 +179,7 @@
   .about-content .lead{font-size:1.1rem;color:var(--clr-primary);font-family:var(--font-heading);margin-bottom:1.2rem;line-height:1.6}
   .about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
   .about-feature{display:flex;gap:.7rem;align-items:flex-start}
-  .about-feature .icon-circle{width:40px;height:40px;border-radius:50%;background:rgba(45,106,79,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .about-feature .icon-circle{width:40px;height:40px;border-radius:50%;background:rgba(120,53,15,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .about-feature .icon-circle svg{width:18px;height:18px;color:var(--clr-primary)}
   .about-feature h4{font-size:.9rem;margin-bottom:.15rem;font-family:var(--font-body)}
   .about-feature p{font-size:.8rem;color:var(--clr-text-muted)}
@@ -199,12 +199,12 @@
   .store-card-footer{padding:.8rem 1.3rem;border-top:1px solid var(--clr-border);display:flex;gap:.5rem}
 
   /* ===== Contact Section ===== */
-  .contact{background:linear-gradient(170deg, var(--clr-bg) 0%, rgba(45,106,79,.04) 100%)}
+  .contact{background:linear-gradient(170deg, var(--clr-bg) 0%, rgba(120,53,15,.04) 100%)}
   .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
   .contact-info h2{margin-bottom:1rem;color:var(--clr-primary-dark)}
   .contact-info p{margin-bottom:2rem}
   .contact-detail{display:flex;gap:.8rem;margin-bottom:1.2rem;align-items:flex-start}
-  .contact-detail .icon{width:36px;height:36px;border-radius:50%;background:rgba(45,106,79,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .contact-detail .icon{width:36px;height:36px;border-radius:50%;background:rgba(120,53,15,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .contact-detail .icon svg{width:16px;height:16px;color:var(--clr-primary)}
   .contact-detail .label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted);margin-bottom:.15rem}
   .contact-detail .value{font-size:.95rem;color:var(--clr-text)}
@@ -212,7 +212,7 @@
   .form-group{margin-bottom:1.2rem}
   .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--clr-text)}
   .form-group input,.form-group textarea,.form-group select{width:100%;padding:.7em 1em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.9rem;color:var(--clr-text);transition:all .2s;background:var(--clr-bg)}
-  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px rgba(45,106,79,.1);background:var(--clr-white)}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px rgba(120,53,15,.1);background:var(--clr-white)}
   .form-group textarea{resize:vertical;min-height:100px}
   .form-success{display:none;text-align:center;padding:2rem;color:var(--clr-success)}
   .form-success.show{display:block}
@@ -296,7 +296,7 @@
   /* ===== Dark Mode ===== */
   [data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E8E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540;--clr-cream-light:#252032}
   [data-theme="dark"] .navbar{background:rgba(26,26,46,.9)}
-  [data-theme="dark"] .hero{background:linear-gradient(170deg,#1E1A2E,#252040,#1A1A2E,rgba(45,106,79,.08))}
+  [data-theme="dark"] .hero{background:linear-gradient(170deg,#1E1A2E,#252040,#1A1A2E,rgba(120,53,15,.08))}
   [data-theme="dark"] .about{background:var(--clr-white)}
   [data-theme="dark"] .stats-bar{background:var(--clr-white)}
   [data-theme="dark"] .newsletter{background:#13132A}
@@ -340,9 +340,9 @@
   <div class="container">
     <a href="#home" class="nav-logo">
       <svg class="leaf-icon" viewBox="0 0 32 32" fill="none">
-        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
-        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
-        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/>
+        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#451A03" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
       </svg>
       BeanLeaf Coffee
     </a>
@@ -375,8 +375,8 @@
 
 <!-- ===== Hero ===== -->
 <section class="hero" id="home">
-  <svg class="leaf-float" viewBox="0 0 80 80"><path d="M10 70C10 70 16 30 40 15C64 30 70 70 40 75C16 70 10 70 10 70Z" fill="#2D6A4F"/></svg>
-  <svg class="leaf-float" viewBox="0 0 60 60"><path d="M8 52C8 52 12 22 30 10C48 22 52 52 30 56C12 52 8 52 8 52Z" fill="#40916C"/></svg>
+  <svg class="leaf-float" viewBox="0 0 80 80"><path d="M10 70C10 70 16 30 40 15C64 30 70 70 40 75C16 70 10 70 10 70Z" fill="#78350F"/></svg>
+  <svg class="leaf-float" viewBox="0 0 60 60"><path d="M8 52C8 52 12 22 30 10C48 22 52 52 30 56C12 52 8 52 8 52Z" fill="#92400E"/></svg>
   <svg class="leaf-float" viewBox="0 0 50 50"><path d="M5 42C5 42 10 18 25 9C40 18 45 42 25 46C10 42 5 42 5 42Z" fill="#52B788"/></svg>
 
   <div class="container">
@@ -395,11 +395,11 @@
       <svg viewBox="0 0 480 420" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Background circle -->
         <circle cx="240" cy="200" r="190" fill="#D4A574" opacity="0.1"/>
-        <circle cx="240" cy="200" r="140" fill="#2D6A4F" opacity="0.06"/>
+        <circle cx="240" cy="200" r="140" fill="#78350F" opacity="0.06"/>
         <!-- Coffee cup body -->
-        <rect x="155" y="100" width="170" height="190" rx="20" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <rect x="155" y="100" width="170" height="190" rx="20" fill="#FAF9F6" stroke="#78350F" stroke-width="2.5"/>
         <!-- Cup rim -->
-        <ellipse cx="240" cy="100" rx="95" ry="18" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <ellipse cx="240" cy="100" rx="95" ry="18" fill="#FAF9F6" stroke="#78350F" stroke-width="2.5"/>
         <!-- Coffee surface -->
         <ellipse cx="240" cy="105" rx="88" ry="15" fill="#6F4E37"/>
         <ellipse cx="240" cy="103" rx="75" ry="12" fill="#8B6914" opacity="0.5"/>
@@ -408,14 +408,14 @@
         <path d="M240 75C240 75 238 50 250 40C262 30 258 12 265 3" stroke="#D4A574" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
         <path d="M280 80C280 80 285 58 272 48C259 38 263 18 256 8" stroke="#D4A574" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
         <!-- Handle -->
-        <path d="M325 140C355 140 365 190 340 230" fill="none" stroke="#2D6A4F" stroke-width="10" stroke-linecap="round"/>
+        <path d="M325 140C355 140 365 190 340 230" fill="none" stroke="#78350F" stroke-width="10" stroke-linecap="round"/>
         <path d="M325 140C350 140 360 190 340 230" fill="none" stroke="#FAF9F6" stroke-width="6" stroke-linecap="round"/>
         <!-- Saucer -->
-        <ellipse cx="240" cy="305" rx="130" ry="22" fill="#FAF9F6" stroke="#2D6A4F" stroke-width="2.5"/>
+        <ellipse cx="240" cy="305" rx="130" ry="22" fill="#FAF9F6" stroke="#78350F" stroke-width="2.5"/>
         <ellipse cx="240" cy="303" rx="120" ry="18" fill="#FEFAE0"/>
         <!-- Leaves decoration -->
-        <path d="M180 330C160 340 140 355 135 345C130 335 155 325 170 320" fill="#2D6A4F" opacity="0.6"/>
-        <path d="M300 325C320 335 340 350 345 340C350 330 325 320 310 315" fill="#40916C" opacity="0.6"/>
+        <path d="M180 330C160 340 140 355 135 345C130 335 155 325 170 320" fill="#78350F" opacity="0.6"/>
+        <path d="M300 325C320 335 340 350 345 340C350 330 325 320 310 315" fill="#92400E" opacity="0.6"/>
         <!-- Coffee beans scatter -->
         <ellipse cx="100" cy="250" rx="8" ry="5" fill="#6F4E37" opacity="0.3" transform="rotate(-15 100 250)"/>
         <ellipse cx="370" cy="180" rx="8" ry="5" fill="#6F4E37" opacity="0.25" transform="rotate(20 370 180)"/>
@@ -423,7 +423,7 @@
         <ellipse cx="360" cy="280" rx="7" ry="4.5" fill="#6F4E37" opacity="0.2" transform="rotate(10 360 280)"/>
 
         <!-- Brand name on cup -->
-        <text x="240" y="220" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#2D6A4F" font-weight="bold">BEANLEAF</text>
+        <text x="240" y="220" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#78350F" font-weight="bold">BEANLEAF</text>
         <text x="240" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#8B8E96">COFFEE</text>
       </svg>
     </div>
@@ -579,7 +579,7 @@
             <rect x="20" y="15" width="80" height="80" rx="6" fill="#C9A96E"/>
             <rect x="15" y="10" width="90" height="14" rx="7" fill="#B8944E" />
             <circle cx="60" cy="55" r="22" fill="#FEFAE0" opacity="0.3"/>
-            <text x="60" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1B4332" font-weight="bold">G</text>
+            <text x="60" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#451A03" font-weight="bold">G</text>
             <text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#5C6370">GEISHA·LIMITED</text>
           </svg>
           <span class="product-badge" style="background:#E76F51" data-i18n="products.limited">限量</span>
@@ -609,33 +609,33 @@
       <div class="about-visual reveal">
         <svg viewBox="0 0 420 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Farm landscape -->
-          <rect x="0" y="180" width="420" height="220" fill="#2D6A4F" opacity="0.08" rx="0"/>
+          <rect x="0" y="180" width="420" height="220" fill="#78350F" opacity="0.08" rx="0"/>
           <!-- Terrain layers -->
-          <path d="M0 200 Q100 160 200 190 Q300 220 420 180 L420 400 L0 400Z" fill="#2D6A4F" opacity="0.12"/>
-          <path d="M0 240 Q120 210 220 240 Q320 270 420 230 L420 400 L0 400Z" fill="#40916C" opacity="0.1"/>
+          <path d="M0 200 Q100 160 200 190 Q300 220 420 180 L420 400 L0 400Z" fill="#78350F" opacity="0.12"/>
+          <path d="M0 240 Q120 210 220 240 Q320 270 420 230 L420 400 L0 400Z" fill="#92400E" opacity="0.1"/>
           <!-- Mountains -->
-          <path d="M0 280 L80 160 L150 280" fill="#2D6A4F" opacity="0.15"/>
-          <path d="M100 280 L200 130 L280 280" fill="#1B4332" opacity="0.12"/>
-          <path d="M220 280 L320 150 L420 280" fill="#2D6A4F" opacity="0.1"/>
+          <path d="M0 280 L80 160 L150 280" fill="#78350F" opacity="0.15"/>
+          <path d="M100 280 L200 130 L280 280" fill="#451A03" opacity="0.12"/>
+          <path d="M220 280 L320 150 L420 280" fill="#78350F" opacity="0.1"/>
           <!-- Coffee plants -->
           <g transform="translate(60,200)">
             <rect x="8" y="30" width="4" height="40" rx="2" fill="#8B6914"/>
-            <ellipse cx="10" cy="25" rx="18" ry="22" fill="#2D6A4F"/>
-            <ellipse cx="10" cy="20" rx="12" ry="14" fill="#40916C"/>
+            <ellipse cx="10" cy="25" rx="18" ry="22" fill="#78350F"/>
+            <ellipse cx="10" cy="20" rx="12" ry="14" fill="#92400E"/>
           </g>
           <g transform="translate(160,210)">
             <rect x="8" y="25" width="4" height="35" rx="2" fill="#8B6914"/>
-            <ellipse cx="10" cy="20" rx="16" ry="20" fill="#40916C"/>
+            <ellipse cx="10" cy="20" rx="16" ry="20" fill="#92400E"/>
             <ellipse cx="10" cy="16" rx="11" ry="12" fill="#52B788"/>
           </g>
           <g transform="translate(280,195)">
             <rect x="8" y="35" width="4" height="45" rx="2" fill="#8B6914"/>
-            <ellipse cx="10" cy="28" rx="20" ry="24" fill="#2D6A4F"/>
-            <ellipse cx="10" cy="22" rx="14" ry="16" fill="#40916C"/>
+            <ellipse cx="10" cy="28" rx="20" ry="24" fill="#78350F"/>
+            <ellipse cx="10" cy="22" rx="14" ry="16" fill="#92400E"/>
           </g>
           <g transform="translate(340,225)">
             <rect x="6" y="20" width="3" height="28" rx="1.5" fill="#8B6914"/>
-            <ellipse cx="8" cy="16" rx="13" ry="16" fill="#40916C"/>
+            <ellipse cx="8" cy="16" rx="13" ry="16" fill="#92400E"/>
             <ellipse cx="8" cy="13" rx="9" ry="10" fill="#52B788"/>
           </g>
           <!-- Sun -->
@@ -709,7 +709,7 @@
       <div class="store-card reveal">
         <div class="store-card-img">
           <svg width="100" height="100" viewBox="0 0 100 100">
-            <rect x="15" y="20" width="70" height="60" rx="6" fill="#2D6A4F"/>
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#78350F"/>
             <rect x="25" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
             <rect x="55" y="30" width="20" height="20" rx="2" fill="#FEFAE0" opacity="0.8"/>
             <rect x="25" y="55" width="50" height="15" rx="2" fill="#FEFAE0" opacity="0.5"/>
@@ -761,7 +761,7 @@
       <div class="store-card reveal">
         <div class="store-card-img">
           <svg width="100" height="100" viewBox="0 0 100 100">
-            <rect x="15" y="20" width="70" height="60" rx="6" fill="#40916C"/>
+            <rect x="15" y="20" width="70" height="60" rx="6" fill="#92400E"/>
             <rect x="25" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
             <rect x="55" y="30" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.7"/>
             <rect x="25" y="55" width="20" height="15" rx="2" fill="#FEFAE0" opacity="0.5"/>
@@ -919,7 +919,7 @@
         <div class="logo">
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
             <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
-            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
           </svg>
           BeanLeaf Coffee
         </div>

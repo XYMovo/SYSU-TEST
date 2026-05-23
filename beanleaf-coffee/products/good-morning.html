@@ -16,9 +16,9 @@
 <style>
 /* ===== CSS Variables ===== */
 :root {
-  --clr-primary: #2D6A4F;
-  --clr-primary-dark: #1B4332;
-  --clr-primary-light: #40916C;
+  --clr-primary: #78350F;
+  --clr-primary-dark: #451A03;
+  --clr-primary-light: #92400E;
   --clr-accent: #D4A574;
   --clr-accent-light: #E8D0B3;
   --clr-cream: #FEFAE0;
@@ -69,7 +69,7 @@ p{color:var(--clr-text-light)}
 .section-header{text-align:center;margin-bottom:2.5rem}
 .section-header h2{margin-bottom:.4rem}
 .section-header p{max-width:520px;margin:0 auto;font-size:.95rem}
-.tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(45,106,79,.08);padding:.35em 1em;border-radius:var(--radius-full)}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(120,53,15,.08);padding:.35em 1em;border-radius:var(--radius-full)}
 .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.7em 1.6em;border-radius:var(--radius-full);transition:all .25s ease;cursor:pointer}
 .btn-primary{background:var(--clr-primary);color:var(--clr-white)}
 .btn-primary:hover{background:var(--clr-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -127,9 +127,9 @@ p{color:var(--clr-text-light)}
 
 /* ===== Hero ===== */
 .hero{min-height:75vh;display:flex;align-items:center;background:linear-gradient(170deg, #EAD7C3, #D4B896);position:relative;overflow:hidden;padding-top:var(--nav-height)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(45,106,79,.06) 0%, transparent 60%);pointer-events:none}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(120,53,15,.06) 0%, transparent 60%);pointer-events:none}
 .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;position:relative;z-index:1}
-.hero-content .tag{margin-bottom:.8rem;background:rgba(45,106,79,.12)}
+.hero-content .tag{margin-bottom:.8rem;background:rgba(120,53,15,.12)}
 .hero-content h1{color:var(--clr-primary-dark);margin-bottom:.3rem}
 .hero-content .subtitle{font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-primary);margin-bottom:1rem;font-style:italic;letter-spacing:.03em}
 .hero-content .summary{font-size:1.1rem;color:var(--clr-text-light);max-width:460px;margin-bottom:1.5rem;line-height:1.7}
@@ -210,7 +210,7 @@ p{color:var(--clr-text-light)}
 .option-cards{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
 .option-card{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.3rem;background:var(--clr-white);border:2px solid var(--clr-border);border-radius:var(--radius-md);cursor:pointer;transition:all .25s}
 .option-card:hover{border-color:var(--clr-accent);box-shadow:var(--shadow-sm)}
-.option-card.selected{border-color:var(--clr-primary);background:rgba(45,106,79,.04)}
+.option-card.selected{border-color:var(--clr-primary);background:rgba(120,53,15,.04)}
 .option-card .size{font-weight:600;font-size:1.1rem;color:var(--clr-text)}
 .option-card .price{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--clr-primary-dark)}
 .option-card .per-g{font-size:.75rem;color:var(--clr-text-muted)}
@@ -290,9 +290,9 @@ p{color:var(--clr-text-light)}
   <div class="container">
     <a href="../../beanleaf-coffee.html" class="nav-logo">
       <svg class="leaf-icon" viewBox="0 0 32 32" fill="none">
-        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
-        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
-        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/>
+        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#451A03" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
       </svg>
       BeanLeaf Coffee
     </a>
@@ -349,15 +349,15 @@ p{color:var(--clr-text-light)}
       <div class="origin-visual reveal">
         <svg viewBox="0 0 400 340" fill="none">
           <!-- Brazil map shape -->
-          <ellipse cx="180" cy="140" rx="70" ry="55" fill="#2D6A4F" opacity=".15"/>
-          <text x="180" y="140" text-anchor="middle" font-size="11" fill="#1B4332" font-weight="bold" opacity=".6">BRAZIL</text>
-          <text x="180" y="155" text-anchor="middle" font-size="9" fill="#40916C" opacity=".5">Cerrado 60%</text>
+          <ellipse cx="180" cy="140" rx="70" ry="55" fill="#78350F" opacity=".15"/>
+          <text x="180" y="140" text-anchor="middle" font-size="11" fill="#451A03" font-weight="bold" opacity=".6">BRAZIL</text>
+          <text x="180" y="155" text-anchor="middle" font-size="9" fill="#92400E" opacity=".5">Cerrado 60%</text>
           <!-- Ethiopia map shape -->
           <ellipse cx="260" cy="200" rx="60" ry="50" fill="#D4A574" opacity=".2"/>
           <text x="260" y="200" text-anchor="middle" font-size="11" fill="#8B5E3C" font-weight="bold" opacity=".6">ETHIOPIA</text>
           <text x="260" y="215" text-anchor="middle" font-size="9" fill="#A0522D" opacity=".5">Sidamo 40%</text>
           <!-- Connecting line -->
-          <path d="M210 160C220 170 225 185 220 195" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".4"/>
+          <path d="M210 160C220 170 225 185 220 195" stroke="#78350F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".4"/>
           <!-- Cup at center -->
           <rect x="175" y="260" width="50" height="55" rx="8" fill="#D4A574" opacity=".8"/>
           <rect x="184" y="255" width="32" height="8" rx="4" fill="#E8D0B3"/>
@@ -617,7 +617,7 @@ p{color:var(--clr-text-light)}
     <div class="logo">
       <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
         <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
-        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
       </svg>
       BeanLeaf Coffee
     </div>

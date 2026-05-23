@@ -173,12 +173,13 @@
   .product-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .35s ease;border:1px solid var(--clr-border);cursor:pointer}
   .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
   .product-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-  .product-card:nth-child(1) .product-img{background:linear-gradient(135deg,#F5E6D3,#E8D5B7)}
-  .product-card:nth-child(2) .product-img{background:linear-gradient(135deg,#E8D5B7,#D4A574)}
-  .product-card:nth-child(3) .product-img{background:linear-gradient(135deg,#D4C4A8,#C4A882)}
-  .product-card:nth-child(4) .product-img{background:linear-gradient(135deg,#EAD7C3,#D4B896)}
-  .product-card:nth-child(5) .product-img{background:linear-gradient(135deg,#F0E0CF,#E0C8A8)}
-  .product-card:nth-child(6) .product-img{background:linear-gradient(135deg,#ECD5C0,#D4B088)}
+  .product-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.1) 0%,transparent 70%);pointer-events:none}
+  .product-card:nth-child(1) .product-img{background:linear-gradient(135deg,#F5E6D3 0%,#E8D5B7 40%,#C9A96E 100%)}
+  .product-card:nth-child(2) .product-img{background:linear-gradient(135deg,#E8D5B7 0%,#D4A574 40%,#B8945A 100%)}
+  .product-card:nth-child(3) .product-img{background:linear-gradient(135deg,#D4C4A8 0%,#C4A882 40%,#A88B62 100%)}
+  .product-card:nth-child(4) .product-img{background:linear-gradient(135deg,#EAD7C3 0%,#D4B896 40%,#B8956E 100%)}
+  .product-card:nth-child(5) .product-img{background:linear-gradient(135deg,#F0E0CF 0%,#E0C8A8 40%,#C8A878 100%)}
+  .product-card:nth-child(6) .product-img{background:linear-gradient(135deg,#ECD5C0 0%,#D4B088 40%,#C49A6C 100%)}
   .product-badge{position:absolute;top:12px;right:12px;background:var(--clr-primary);color:var(--clr-white);font-size:.7rem;font-weight:700;padding:.25em .85em;border-radius:var(--radius-full);letter-spacing:.05em}
   .product-info{padding:1.2rem 1.3rem 1.3rem}
   .product-info .category{font-size:.72rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
@@ -749,17 +750,17 @@
       </div>
       <div class="about-content reveal">
         <span class="tag" data-i18n="about.tag">品牌故事</span>
-        <h2 data-i18n="about.title">从一颗种子到一杯好咖啡</h2>
-        <p class="lead" data-i18n="about.lead">我们相信，每一杯咖啡都是一次与大自然的对话。</p>
-        <p style="margin-bottom:1rem" data-i18n="about.p1">BeanLeaf 创立于2018年，名字源自咖啡叶片的自然形态。我们从全球50多个精品咖啡产地直采生豆，在上海自建烘焙工厂，坚持小批量手工烘焙，最大程度保留每款豆子的独特风味。</p>
+        <h2 data-i18n="about.title">咖啡叶子的形状，是我们出发的地方</h2>
+        <p class="lead" data-i18n="about.lead">每一颗豆子都藏着一片土地的风、雨和阳光。我们把它们带回来，用火和时间翻译成你杯中的味道。</p>
+        <p style="margin-bottom:1rem" data-i18n="about.p1">2018年，几个试过上百支咖啡豆的人，决定做一件不那么"聪明"的事——自己烘。选豆、打样、调曲线、杯测、再调、再测。8年过去，我们在上海那间不到40平的烘焙间里，已经烤过超过两万锅豆子。每一锅都不同，就像每一个清晨都不一样。</p>
         <div class="about-features">
           <div class="about-feature">
             <div class="icon-circle">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <h4 data-i18n="about.f1_title">品质承诺</h4>
-              <p data-i18n="about.f1_desc">每批豆子均经过SCA标准杯测评分</p>
+              <h4 data-i18n="about.f1_title">每锅都打分</h4>
+              <p data-i18n="about.f1_desc">SCA杯测标准是底线，不是天花板</p>
             </div>
           </div>
           <div class="about-feature">
@@ -767,8 +768,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg>
             </div>
             <div>
-              <h4 data-i18n="about.f2_title">产地直采</h4>
-              <p data-i18n="about.f2_desc">与50+产地庄园建立长期合作关系</p>
+              <h4 data-i18n="about.f2_title">去产地，不是去采购</h4>
+              <p data-i18n="about.f2_desc">和50多家庄园一起等花开、等果熟</p>
             </div>
           </div>
           <div class="about-feature">
@@ -776,8 +777,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
             </div>
             <div>
-              <h4 data-i18n="about.f3_title">手工烘焙</h4>
-              <p data-i18n="about.f3_desc">小批量烘焙，精准控制风味曲线</p>
+              <h4 data-i18n="about.f3_title">小锅慢烘</h4>
+              <p data-i18n="about.f3_desc">每锅不超过15公斤，烤的不是量，是曲线</p>
             </div>
           </div>
           <div class="about-feature">
@@ -785,8 +786,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
             <div>
-              <h4 data-i18n="about.f4_title">新鲜直达</h4>
-              <p data-i18n="about.f4_desc">烘焙后48小时内发货，保证新鲜</p>
+              <h4 data-i18n="about.f4_title">48小时内发出</h4>
+              <p data-i18n="about.f4_desc">咖啡的赏味期，从烘好那一刻开始倒数</p>
             </div>
           </div>
         </div>
@@ -1232,13 +1233,13 @@ const i18nData = {
     "products.p5_name": "晚安拼配", "products.p5_desc": "低因处理，柔和顺滑，可可与烤杏仁风味",
     "products.p6_name": "巴拿马 瑰夏", "products.p6_desc": "日晒处理，茉莉花与蜜桃香气，茶感回甘，限量200份",
     "products.view_all": "查看全部产品",
-    "about.tag": "品牌故事", "about.title": "从一颗种子到一杯好咖啡",
-    "about.lead": "我们相信，每一杯咖啡都是一次与大自然的对话。",
-    "about.p1": "BeanLeaf 创立于2018年，名字源自咖啡叶片的自然形态。我们从全球50多个精品咖啡产地直采生豆，在上海自建烘焙工厂，坚持小批量手工烘焙，最大程度保留每款豆子的独特风味。",
-    "about.f1_title": "品质承诺", "about.f1_desc": "每批豆子均经过SCA标准杯测评分",
-    "about.f2_title": "产地直采", "about.f2_desc": "与50+产地庄园建立长期合作关系",
-    "about.f3_title": "手工烘焙", "about.f3_desc": "小批量烘焙，精准控制风味曲线",
-    "about.f4_title": "新鲜直达", "about.f4_desc": "烘焙后48小时内发货，保证新鲜",
+    "about.tag": "品牌故事", "about.title": "咖啡叶子的形状，是我们出发的地方",
+    "about.lead": "每一颗豆子都藏着一片土地的风、雨和阳光。我们把它们带回来，用火和时间翻译成你杯中的味道。",
+    "about.p1": "2018年，几个试过上百支咖啡豆的人，决定做一件不那么"聪明"的事——自己烘。选豆、打样、调曲线、杯测、再调、再测。8年过去，我们在上海那间不到40平的烘焙间里，已经烤过超过两万锅豆子。每一锅都不同，就像每一个清晨都不一样。",
+    "about.f1_title": "每锅都打分", "about.f1_desc": "SCA杯测标准是底线，不是天花板",
+    "about.f2_title": "去产地，不是去采购", "about.f2_desc": "和50多家庄园一起等花开、等果熟",
+    "about.f3_title": "小锅慢烘", "about.f3_desc": "每锅不超过15公斤，烤的不是量，是曲线",
+    "about.f4_title": "48小时内发出", "about.f4_desc": "咖啡的赏味期，从烘好那一刻开始倒数",
     "stores.tag": "门店查询", "stores.title": "找到你身边的 BeanLeaf",
     "stores.desc": "目前在全国5个城市拥有12家门店，每一家都是你品尝精品咖啡的温暖角落。",
     "stores.s1_name": "上海静安寺店", "stores.s1_addr": "上海市静安区南京西路1688号", "stores.s1_hours": "每日 8:00 - 22:00",
@@ -1287,13 +1288,13 @@ const i18nData = {
     "products.p5_name": "Good Night Blend", "products.p5_desc": "Decaf, smooth & mellow, cocoa & toasted almond",
     "products.p6_name": "Panama Geisha", "products.p6_desc": "Natural, jasmine & peach aroma, tea-like finish, limited 200 units",
     "products.view_all": "View All Products",
-    "about.tag": "Our Story", "about.title": "From Seed to Cup",
-    "about.lead": "We believe every cup of coffee is a conversation with nature.",
-    "about.p1": "Founded in 2018, BeanLeaf takes its name from the natural form of coffee leaves. We source green beans directly from 50+ specialty origins worldwide, roast in small batches at our Shanghai facility, and preserve each bean's unique character.",
-    "about.f1_title": "Quality Promise", "about.f1_desc": "Every batch SCA cupping scored",
-    "about.f2_title": "Direct Trade", "about.f2_desc": "Long-term partnerships with 50+ estates",
-    "about.f3_title": "Artisan Roasting", "about.f3_desc": "Small batch, precise flavor profiling",
-    "about.f4_title": "Fresh Delivery", "about.f4_desc": "Shipped within 48 hours of roasting",
+    "about.tag": "Our Story", "about.title": "The shape of a coffee leaf is where we began",
+    "about.lead": "Every bean carries its land's wind, rain, and sunlight. We bring them home and translate them, with fire and time, into what's in your cup.",
+    "about.p1": "In 2018, a few people who'd tasted hundreds of coffees decided to do something stubborn — roast their own. Sourcing, sampling, tweaking curves, cupping, tweaking again. Eight years in, in a tiny roasting room in Shanghai under 40 square meters, we've fired over twenty thousand batches. Each one different, like every morning is.",
+    "about.f1_title": "Every batch scored", "about.f1_desc": "SCA cupping standards are the floor, not the ceiling",
+    "about.f2_title": "We go to origin, not to buy", "about.f2_desc": "Waiting for blossoms and cherries alongside 50+ farms",
+    "about.f3_title": "Small-batch roasting", "about.f3_desc": "No more than 15kg per batch. Roasting for the curve, not the volume",
+    "about.f4_title": "Shipped within 48 hours", "about.f4_desc": "Coffee's best-by clock starts ticking the moment it's roasted",
     "stores.tag": "Find Us", "stores.title": "Find a BeanLeaf Near You",
     "stores.desc": "12 stores across 5 cities — each one a warm corner for your specialty coffee moment.",
     "stores.s1_name": "Shanghai Jing'an", "stores.s1_addr": "1688 West Nanjing Rd, Jing'an, Shanghai", "stores.s1_hours": "Daily 8:00 - 22:00",
@@ -1395,6 +1396,17 @@ window.addEventListener('scroll', () => {
   backToTop.classList.toggle('visible', window.scrollY > 500);
 });
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== Hero Parallax =====
+const heroVisual=document.querySelector('.hero-visual');
+const heroContent=document.querySelector('.hero-content');
+const heroFloats=document.querySelectorAll('.hero .leaf-float');
+window.addEventListener('scroll',()=>{
+  const scrolled=window.scrollY;
+  if(heroVisual) heroVisual.style.transform=`translateY(${scrolled*0.15}px)`;
+  if(heroContent) heroContent.style.transform=`translateY(${scrolled*0.08}px)`;
+  heroFloats.forEach((f,i)=>f.style.transform=`translateY(${scrolled*(0.05+i*0.03)}px)`);
+},{passive:true});
 
 // ===== Scroll Reveal =====
 const observer = new IntersectionObserver(entries => {

@@ -7,7 +7,7 @@
 <meta property="og:title" content="全部产品 — BeanLeaf Coffee"><meta property="og:description" content="探索BeanLeaf Coffee全部咖啡产品">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
 <style>
-:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-accent-light:#E8D0B3;--clr-cream:#FEFAE0;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-limited:#E76F51;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1200px;--nav-height:64px}
+:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-accent:#D4A574;--clr-accent-light:#E8D0B3;--clr-cream:#FEFAE0;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-limited:#E76F51;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1200px;--nav-height:64px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-font-smoothing:antialiased}
 body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}
@@ -37,7 +37,7 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;backgroun
 .filter-tab:hover:not(.active){background:var(--clr-border)}
 .filter-right{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
 .filter-right select,.filter-right input{padding:.45em .8em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-size:.82rem;font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);outline:none}
-.filter-right input:focus,.filter-right select:focus{border-color:var(--clr-primary);box-shadow:0 0 0 2px rgba(45,106,79,.1)}
+.filter-right input:focus,.filter-right select:focus{border-color:var(--clr-primary);box-shadow:0 0 0 2px rgba(120,53,15,.1)}
 .result-count{font-size:.8rem;color:var(--clr-text-muted)}
 
 /* Products Grid */
@@ -111,7 +111,7 @@ footer a:hover{color:var(--clr-accent)}
 
 <nav class="navbar"><div class="container">
   <a href="../../beanleaf-coffee.html" class="nav-logo">
-    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/></svg>
+    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/></svg>
     BeanLeaf Coffee
   </a>
   <div class="nav-right">
@@ -171,7 +171,7 @@ const products=[
   {id:'good-night',name:'晚安拼配',cat:'blend',page:'good-night.html',price:88,unit:'250g',rating:4.6,badge:'低因',badgeClass:'badge-bs',desc:'低因处理，柔和顺滑，可可与烤杏仁风味',
    bgImg:'linear-gradient(135deg,#4A4458,#3A3448)',emoji:'GOOD NIGHT',emojiClr:'#FEFAE0',emojiSize:12},
   {id:'geisha',name:'巴拿马 瑰夏',cat:'limited',page:'geisha.html',price:298,unit:'100g',rating:5.0,badge:'限量',badgeClass:'badge-ltd',desc:'日晒处理，茉莉花与蜜桃香气，茶感回甘',
-   bgImg:'linear-gradient(135deg,#C9A96E,#B8944E)',emoji:'GEISHA',emojiClr:'#1B4332',emojiSize:14}
+   bgImg:'linear-gradient(135deg,#C9A96E,#B8944E)',emoji:'GEISHA',emojiClr:'#451A03',emojiSize:14}
 ];
 
 // State
