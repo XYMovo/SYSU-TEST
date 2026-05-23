@@ -470,40 +470,19 @@ body {
 <section class="product-carousel" id="productCarousel">
   <div class="carousel-track" id="carouselTrack">
     <div class="carousel-slide">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#78350F"/>
-            <stop offset="50%" style="stop-color:#92400E"/>
-            <stop offset="100%" style="stop-color:#D4A574"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="500" fill="url(#cg1)"/>
-        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">耶加雪菲</text>
-        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Yirgacheffe</text>
-        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">产品详情</text>
-      </svg>
+      <img src="images/yirgacheffe-1.png" alt="Yirgacheffe" style="width:100%;height:clamp(280px,50vh,500px);object-fit:cover;display:block" onerror="this.style.display='none'">
+      <noscript><svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#78350F"/><stop offset="50%" style="stop-color:#92400E"/><stop offset="100%" style="stop-color:#D4A574"/></linearGradient></defs><rect width="800" height="500" fill="url(#cg1)"/><text x="400" y="250" text-anchor="middle" fill="white" font-size="28" font-family="Lora,serif">Yirgacheffe</text></svg></noscript>
     </div>
     <div class="carousel-slide">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#92400E"/>
-            <stop offset="50%" style="stop-color:#D4A574"/>
-            <stop offset="100%" style="stop-color:#E8D0B3"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="500" fill="url(#cg2)"/>
-        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">耶加雪菲</text>
-        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Brewing Guide</text>
-        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">冲泡指南</text>
-      </svg>
+      <img src="images/yirgacheffe-2.png" alt="Yirgacheffe Brew" style="width:100%;height:clamp(280px,50vh,500px);object-fit:cover;display:block" onerror="this.style.display='none'">
+      <noscript><svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#92400E"/><stop offset="50%" style="stop-color:#D4A574"/><stop offset="100%" style="stop-color:#E8D0B3"/></linearGradient></defs><rect width="800" height="500" fill="url(#cg2)"/><text x="400" y="250" text-anchor="middle" fill="white" font-size="28" font-family="Lora,serif">Yirgacheffe Brew</text></svg></noscript>
     </div>
   </div>
-  <button class="carousel-btn carousel-prev" onclick="carouselPrev()" aria-label="上一张">‹</button>
-  <button class="carousel-btn carousel-next" onclick="carouselNext()" aria-label="下一张">›</button>
+  <button class="carousel-btn carousel-prev" onclick="carouselPrev()" aria-label="上一张">&#8249;</button>
+  <button class="carousel-btn carousel-next" onclick="carouselNext()" aria-label="下一张">&#8250;</button>
   <div class="carousel-dots" id="carouselDots"></div>
 </section>
+
 
 
 <main class="main">
