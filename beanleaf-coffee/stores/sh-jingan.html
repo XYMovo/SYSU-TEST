@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>上海静安寺店 — BeanLeaf Coffee 门店</title>
-<meta name="description" content="BeanLeaf Coffee 上海静安寺店，位于静安区南京西路1688号，每日8:00-22:00营业。品尝精品手冲咖啡的温暖角落。">
+<meta name="description" content="BeanLeaf Coffee 上海静安寺店，藏在南京西路弄堂深处的庭院咖啡。整面绿植墙，阳光天井，手冲吧台。每日8:00-22:00。">
 <style>
 :root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1000px;--nav-height:64px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -11,55 +9,65 @@ html{font-size:16px;-webkit-font-smoothing:antialiased}
 body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}
 a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;background:none;font:inherit}
 h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.3}
-h1{font-size:clamp(1.8rem,4vw,2.6rem)}h2{font-size:clamp(1.3rem,3vw,1.8rem)}
+h1{font-size:clamp(1.8rem,4vw,2.6rem)}h2{font-size:clamp(1.3rem,3vw,1.8rem)}h3{font-size:1.05rem}
 .container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
 .section{padding:3rem 0}
-
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:.6rem}
 .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center}
 .navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
 .nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
-.nav-logo svg{width:28px;height:28px}
-.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light);display:flex;align-items:center;gap:.3rem;transition:color .2s}
-.nav-back:hover{color:var(--clr-primary)}
+.nav-logo svg{width:28px;height:28px}.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light);transition:color .2s}.nav-back:hover{color:var(--clr-primary)}
 
-.hero{min-height:50vh;display:flex;align-items:center;background:linear-gradient(170deg,#E8F5E9,#C8E6C9);padding-top:var(--nav-height);position:relative;overflow:hidden}
-.hero::after{content:'SHANGHAI';position:absolute;right:-2rem;bottom:-2rem;font-family:var(--font-heading);font-size:8rem;font-weight:700;color:rgba(45,106,79,.06);pointer-events:none}
+.hero{min-height:55vh;display:flex;align-items:center;background:linear-gradient(170deg,#E8F5E9,#C8E6C9);padding-top:var(--nav-height);position:relative;overflow:hidden}
+.hero::after{content:'SHANGHAI';position:absolute;right:-2rem;bottom:-2rem;font-family:var(--font-heading);font-size:7rem;font-weight:700;color:rgba(45,106,79,.04);pointer-events:none}
 .hero-content{position:relative;z-index:1}
-.hero-content .tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--clr-primary);background:rgba(45,106,79,.08);padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:.8rem}
-.hero-content h1{margin-bottom:.3rem;color:var(--clr-primary-dark)}
-.hero-content .addr{font-size:1rem;color:var(--clr-text-light);display:flex;align-items:center;gap:.35rem}
+.hero-content .tag{color:var(--clr-primary);background:rgba(45,106,79,.1)}
+.hero-content h1{color:var(--clr-primary-dark);margin-bottom:.4rem}
+.hero-content .mood{padding:.25em 1em;border-radius:var(--radius-full);font-size:.8rem;font-weight:600;margin-bottom:.8rem;display:inline-block}
+.mood-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.mood-tags span{font-size:.72rem;padding:.25em .8em;border-radius:var(--radius-full);background:rgba(45,106,79,.06);color:var(--clr-primary);font-weight:500}
+.hero-content .addr{font-size:.95rem;color:var(--clr-text-light);display:flex;align-items:center;gap:.35rem;margin-top:.5rem}
 
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
-.info-card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.5rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm)}
-.info-card .ic-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted);margin-bottom:.4rem}
-.info-card .ic-value{font-size:.95rem;color:var(--clr-text);font-weight:600}
+.story{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);line-height:2;font-size:.95rem}
+.story .quote{font-family:var(--font-heading);font-size:1.1rem;color:var(--clr-primary);margin-bottom:1rem;font-style:italic}
 
-.facilities{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-.facility{font-size:.8rem;background:rgba(45,106,79,.06);color:var(--clr-primary);padding:.3em .9em;border-radius:var(--radius-full);font-weight:500}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.highlight-card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.3rem;text-align:center;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);transition:all .3s}
+.highlight-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.highlight-card .emoji{font-size:2rem;margin-bottom:.5rem}
+.highlight-card .ht{font-size:.9rem;font-weight:600;margin-bottom:.3rem}
+.highlight-card .hd{font-size:.75rem;color:var(--clr-text-muted);line-height:1.5}
 
-.product-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-top:1rem}
-.pm-card{background:var(--clr-white);border-radius:var(--radius-sm);padding:1rem;text-align:center;border:1px solid var(--clr-border);transition:all .3s}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+.info-card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.3rem;border:1px solid var(--clr-border)}
+.info-card .il{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted);margin-bottom:.35rem}
+.info-card .iv{font-size:.9rem;color:var(--clr-text);font-weight:600}
+
+.scene-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.scene-tag{padding:.45em 1em;border-radius:var(--radius-full);font-size:.8rem;font-weight:500;border:1.5px solid var(--clr-border);color:var(--clr-text-light);background:var(--clr-white);transition:all .2s}
+.scene-tag:hover{border-color:var(--clr-primary);color:var(--clr-primary);background:rgba(45,106,79,.04)}
+
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.review-card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.2rem;border:1px solid var(--clr-border)}
+.review-card .stars{color:#D4A574;font-size:.85rem;margin-bottom:.5rem}
+.review-card .rt{font-size:.82rem;color:var(--clr-text);line-height:1.5;margin-bottom:.5rem}
+.review-card .ra{font-size:.7rem;color:var(--clr-text-muted);display:flex;align-items:center;gap:.3rem}
+.review-card .ra .avatar{width:20px;height:20px;border-radius:50%;background:var(--clr-border);display:flex;align-items:center;justify-content:center;font-size:.6rem}
+
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-top:1rem}
+.pm-card{display:block;background:var(--clr-white);border-radius:var(--radius-sm);padding:1rem;text-align:center;border:1px solid var(--clr-border);transition:all .3s}
 .pm-card:hover{box-shadow:var(--shadow-md);border-color:var(--clr-primary)}
-.pm-card .emoji{font-size:1.5rem;margin-bottom:.3rem}
-.pm-card .pname{font-size:.85rem;font-weight:600}
+.pm-card .em{font-size:1.5rem;margin-bottom:.3rem}.pm-card .pn{font-size:.82rem;font-weight:600}.pm-card .pp{font-size:.68rem;color:var(--clr-text-muted);margin-top:.2rem}
 
 .btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.9rem;padding:.75em 1.8em;border-radius:var(--radius-full);transition:all .25s;cursor:pointer}
-.btn-primary{background:var(--clr-primary);color:var(--clr-white)}
-.btn-primary:hover{background:var(--clr-primary-dark);transform:translateY(-2px)}
-.btn-outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
-.btn-outline:hover{background:var(--clr-primary);color:var(--clr-white)}
-
-.other-stores{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.os-card{display:block;background:var(--clr-white);border-radius:var(--radius-md);padding:1.2rem;border:1px solid var(--clr-border);transition:all .3s;text-align:center}
-.os-card:hover{box-shadow:var(--shadow-md);border-color:var(--clr-primary)}
-.os-card h4{font-size:1rem}
-
-footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2rem 0;text-align:center;margin-top:3rem}
-
-@media(max-width:768px){.info-grid{grid-template-columns:1fr}.other-stores{grid-template-columns:1fr}.hero::after{font-size:4rem;right:0;bottom:0}}
-</style>
-</head>
-<body>
+.btn-pr{background:var(--clr-primary);color:var(--clr-white)}.btn-pr:hover{background:var(--clr-primary-dark)}
+.os-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.os-card{display:block;background:var(--clr-white);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--clr-border);text-align:center;transition:all .3s}
+.os-card:hover{box-shadow:var(--shadow-md);border-color:var(--clr-primary)}.os-card h4{font-size:.9rem}.os-card p{font-size:.72rem;color:var(--clr-text-muted);margin-top:.2rem}
+footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2rem 0;text-align:center;margin-top:4rem;font-size:.85rem}
+footer a{color:rgba(255,255,255,.5);transition:color .2s}footer a:hover{color:var(--clr-accent)}
+@media(max-width:768px){.highlights,.reviews{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}.hero::after{font-size:3.5rem}}
+</style></head><body>
 <nav class="navbar"><div class="container">
   <a href="../beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/></svg>BeanLeaf Coffee</a>
   <a href="../beanleaf-coffee.html#stores" class="nav-back">← 返回门店列表</a>
@@ -67,46 +75,65 @@ footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:2re
 
 <section class="hero"><div class="container"><div class="hero-content">
   <span class="tag">上海 · 静安寺</span>
+  <div class="mood" style="background:rgba(45,106,79,.08);color:var(--clr-primary)">闹市里的绿洲</div>
   <h1>BeanLeaf 静安寺店</h1>
+  <div class="mood-tags"><span>治愈角落</span><span>安静独处</span><span>阳光庭院</span></div>
   <p class="addr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>上海市静安区南京西路1688号</p>
 </div></div></section>
 
 <section class="section"><div class="container">
+  <div class="story">
+    <div class="quote">"在南京西路的繁华喧嚣中，推开一扇绿植掩映的木门，时间忽然慢了。"</div>
+    <p>静安寺——上海的心脏地带。写字楼林立，人流如织，每个人都在赶路。BeanLeaf静安寺店就藏在这片快节奏的街区里，却与周围的喧嚣保持着恰到好处的距离。推开门的瞬间，满墙的绿植、洒进天井的阳光、空气中漂浮的咖啡香气，构成了一幅与门外世界截然不同的画面。</p>
+    <p>这里不是那种让人匆忙买完就走的咖啡店。店内的座位被精心安排在绿植之间，每一处都有自己的小气候——靠窗的位置能晒到下午三点的暖阳，吧台边可以看咖啡师专注地手冲，角落的沙发则适合整个人陷进去翻一本杂志。很多常客说，来这里的理由不完全是咖啡——更重要的，是那个可以让自己慢下来的片刻。</p>
+    <p>当季推荐的耶加雪菲来自埃塞俄比亚Gedeo产区，水洗处理赋予它明亮的柑橘与茉莉花调——正好配这个被绿意包裹的空间。</p>
+  </div>
+
+  <h2 style="margin:2rem 0 1rem;text-align:center">让人心动的理由</h2>
+  <div class="highlights">
+    <div class="highlight-card"><div class="emoji">🌿</div><div class="ht">整面绿植墙</div><div class="hd">仿佛走进了城市里的小森林，空气都清新了几分</div></div>
+    <div class="highlight-card"><div class="emoji">☀️</div><div class="ht">阳光天井</div><div class="hd">下午三点，阳光会从玻璃天井斜洒进来，整个空间都是暖的</div></div>
+    <div class="highlight-card"><div class="emoji">☕</div><div class="ht">开放式手冲吧台</div><div class="hd">坐在吧台边，看咖啡师从研磨到注水的全过程，是一场微型表演</div></div>
+  </div>
+
+  <h2 style="margin:2rem 0 1rem;text-align:center">实用信息</h2>
   <div class="info-grid">
-    <div class="info-card"><div class="ic-label">🕐 营业时间</div><div class="ic-value">每日 8:00 - 22:00</div></div>
-    <div class="info-card"><div class="ic-label">📞 联系电话</div><div class="ic-value">021-5288-6666</div></div>
-    <div class="info-card"><div class="ic-label">🚇 交通方式</div><div class="ic-value">地铁2号线 / 7号线 静安寺站 3号口步行3分钟</div></div>
-    <div class="info-card"><div class="ic-label">🅿️ 停车信息</div><div class="ic-value">周边商场停车场，大堂消费满¥88免费2小时</div></div>
+    <div class="info-card"><div class="il">🕐 营业时间</div><div class="iv">每日 8:00 – 22:00</div></div>
+    <div class="info-card"><div class="il">📞 联系电话</div><div class="iv">021-5288-6666</div></div>
+    <div class="info-card"><div class="il">🚇 交通方式</div><div class="iv">地铁2/7号线静安寺站3号口步行3分钟</div></div>
+    <div class="info-card"><div class="il">🅿️ 停车信息</div><div class="iv">周边商场停车场，消费满¥88免费2小时</div></div>
   </div>
 
-  <h2 style="margin:2rem 0 1rem">门店设施</h2>
-  <div class="facilities">
-    <span class="facility">🛋️ 舒适沙发区</span><span class="facility">📶 免费WiFi</span>
-    <span class="facility">🔌 电源插座</span><span class="facility">📚 阅读角落</span>
-    <span class="facility">🌿 绿植庭院</span><span class="facility">🖼️ 画廊展示</span>
-    <span class="facility">👥 可容纳40人</span><span class="facility">☀️ 阳光露台</span>
+  <h2 style="margin:2rem 0 1rem;text-align:center">适合这样的你</h2>
+  <div class="scene-tags" style="justify-content:center">
+    <span class="scene-tag">📖 安静阅读</span><span class="scene-tag">💻 独自办公</span><span class="scene-tag">☀️ 周末Brunch</span><span class="scene-tag">🍃 治愈发呆</span><span class="scene-tag">👫 闺蜜小聚</span>
   </div>
 
-  <h2 style="margin:2rem 0 1rem">门店咖啡精选</h2>
-  <p style="color:var(--clr-text-muted);font-size:.9rem">以下产品均可堂食/外带，新鲜手冲现做</p>
-  <div class="product-mini-grid">
-    <a href="../products/yirgacheffe.html" class="pm-card"><div class="emoji">☕</div><div class="pname">耶加雪菲</div><div style="font-size:.7rem;color:var(--clr-text-muted)">手冲 ¥38</div></a>
-    <a href="../products/huila.html" class="pm-card"><div class="emoji">☕</div><div class="pname">哥伦比亚 慧兰</div><div style="font-size:.7rem;color:var(--clr-text-muted)">手冲 ¥32</div></a>
-    <a href="../products/good-morning.html" class="pm-card"><div class="emoji">🥐</div><div class="pname">早安拼配</div><div style="font-size:.7rem;color:var(--clr-text-muted)">意式 ¥28</div></a>
-    <a href="../products/geisha.html" class="pm-card"><div class="emoji">🌟</div><div class="pname">瑰夏</div><div style="font-size:.7rem;color:var(--clr-text-muted)">手冲 ¥88</div></a>
+  <h2 style="margin:2rem 0 1rem;text-align:center">他们这样说</h2>
+  <div class="reviews">
+    <div class="review-card"><div class="stars">★★★★★</div><div class="rt">打工人周一续命就靠这里了。一杯耶加雪菲+靠窗座位，整个人才活过来。</div><div class="ra"><span class="avatar">林</span> 林小姐 · 广告人</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><div class="rt">社恐友好！店员不会一直盯着你看，座位间距也够大，可以安安静静待一下午。</div><div class="ra"><span class="avatar">默</span> 沉默的咖啡 · 自由职业</div></div>
+    <div class="review-card"><div class="stars">★★★★☆</div><div class="rt">带娃路过发现的宝藏。庭院有个小角落放了绘本，我喝完了整杯咖啡——女儿没闹。</div><div class="ra"><span class="avatar">悠</span> 悠妈 · 宝妈</div></div>
   </div>
 
+  <h2 style="margin:2rem 0 1rem;text-align:center">门店咖啡推荐</h2>
+  <div class="pm-grid">
+    <a href="../products/yirgacheffe.html" class="pm-card"><div class="em">☕</div><div class="pn">耶加雪菲</div><div class="pp">手冲 ¥38</div></a>
+    <a href="../products/huila.html" class="pm-card"><div class="em">☕</div><div class="pn">哥伦比亚 慧兰</div><div class="pp">手冲 ¥32</div></a>
+    <a href="../products/good-morning.html" class="pm-card"><div class="em">🥐</div><div class="pn">早安拼配</div><div class="pp">意式 ¥28</div></a>
+    <a href="../products/geisha.html" class="pm-card"><div class="em">🌟</div><div class="pn">瑰夏</div><div class="pp">手冲 ¥88</div></a>
+  </div>
   <div style="text-align:center;margin-top:2rem">
-    <a href="https://maps.apple.com/?q=上海市静安区南京西路1688号" target="_blank" class="btn btn-primary">🗺️ 导航前往</a>
+    <a href="https://maps.apple.com/?q=上海市静安区南京西路1688号" target="_blank" class="btn btn-pr">🗺️ 导航前往</a>
   </div>
 
-  <h2 style="margin:3rem 0 1rem;text-align:center">其他门店</h2>
-  <div class="other-stores">
-    <a href="bj-sanlitun.html" class="os-card"><h4>北京三里屯店</h4><p style="font-size:.8rem;color:var(--clr-text-muted)">朝阳区三里屯太古里南区</p></a>
-    <a href="sz-nanshan.html" class="os-card"><h4>深圳南山店</h4><p style="font-size:.8rem;color:var(--clr-text-muted)">南山区科技园南路18号</p></a>
+  <h2 style="margin:3rem 0 1rem;text-align:center">探索其他门店</h2>
+  <div class="os-grid">
+    <a href="bj-sanlitun.html" class="os-card"><h4>北京三里屯店</h4><p>朝阳区三里屯太古里南区</p></a>
+    <a href="sz-nanshan.html" class="os-card"><h4>深圳南山店</h4><p>南山区科技园南路18号</p></a>
+    <a href="cd-kuanzhai.html" class="os-card"><h4>成都宽窄巷子店</h4><p>青羊区宽窄巷子</p></a>
+    <a href="gz-zhujiang.html" class="os-card"><h4>广州珠江新城店</h4><p>天河区珠江新城</p></a>
   </div>
 </div></section>
-
-<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="../beanleaf-coffee.html" style="color:rgba(255,255,255,.5)">返回首页</a></p></footer>
-</body>
-</html>
+<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="../beanleaf-coffee.html">返回首页</a></p></footer>
+</body></html>
