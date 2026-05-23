@@ -1055,6 +1055,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+// ===== Checkout =====
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  if (getCart().length === 0) return;
+  window.location.href = '../checkout.html';
+});
+
 // ===== Init =====
 updateCartBadge();
 

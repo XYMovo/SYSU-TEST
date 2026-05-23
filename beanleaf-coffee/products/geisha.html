@@ -260,7 +260,7 @@ function showToast(msg){const el=document.getElementById('toast');el.textContent
 document.getElementById('cartIcon').addEventListener('click',()=>{updateCartUI();document.getElementById('cartOverlay').classList.add('open');document.getElementById('cartDrawer').classList.add('open')});
 document.getElementById('cartClose').addEventListener('click',()=>{document.getElementById('cartOverlay').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open')});
 document.getElementById('cartOverlay').addEventListener('click',()=>{document.getElementById('cartOverlay').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open')});
-document.getElementById('cartCheckout').addEventListener('click',()=>alert(cl==='zh'?'结算功能开发中，敬请期待！':'Checkout coming soon!'));
+document.getElementById('cartCheckout').addEventListener('click',()=>window.location.href='../checkout.html');
 updateCartUI();
 // Collection number
 document.getElementById('collectionNum').textContent=(cl==='zh'?'您的专属编号：':'Your Collection #')+'#'+String(Math.floor(Math.random()*200)+1).padStart(3,'0')+' / 200';

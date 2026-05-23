@@ -837,7 +837,7 @@ document.getElementById('btnAddCart').addEventListener('click', () => {
 document.getElementById('cartCheckout').addEventListener('click', () => {
   const cart = getCart();
   if (cart.length === 0) return;
-  alert(currentLang === 'zh' ? '即将跳转到结算页面...' : 'Proceeding to checkout...');
+  window.location.href = '../checkout.html';
 });
 
 // ===== Init =====

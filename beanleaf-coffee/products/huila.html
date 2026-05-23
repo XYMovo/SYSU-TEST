@@ -367,7 +367,7 @@ body {
             <span class="cart-total-label" data-i18n="cartTotal">合计</span>
             <span class="cart-total-price" id="cartTotalPrice">¥0</span>
         </div>
-        <button class="btn-checkout" data-i18n="cartCheckout">去结算</button>
+        <button class="btn-checkout" id="checkoutBtn" data-i18n="cartCheckout">去结算</button>
     </div>
 </div>
 
@@ -724,6 +724,10 @@ function closeCart() {
 // ========== Init ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+        if (getCart().length === 0) return;
+        window.location.href = '../checkout.html';
+    });
 });
 </script>
 
