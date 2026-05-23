@@ -1,102 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- BeanLeaf Coffee 主页 -->
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <!-- BeanLeaf Coffee 产品页 -->
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/yirgacheffe.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/huila.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/kenya-aa.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/good-morning.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/good-night.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/geisha.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- BeanLeaf Coffee 门店页 -->
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/sh-jingan.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/bj-sanlitun.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/sz-nanshan.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/cd-kuanzhai.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/gz-zhujiang.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- BeanLeaf Coffee 其他页 -->
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/blog.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/careers.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/faq.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/shipping.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/returns.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <!-- RAW BEAN (保留) -->
-  <url>
-    <loc>https://xymovo.github.io/SYSU-TEST/index.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/yirgacheffe.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/huila.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/kenya-aa.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/good-morning.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/good-night.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/geisha.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/cold-brew.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/products/gift-box.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/sh-jingan.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/bj-sanlitun.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/sz-nanshan.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/cd-kuanzhai.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/beanleaf-coffee/stores/gz-zhujiang.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/blog.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/coffee-academy.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/careers.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/shipping.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xymovo.github.io/SYSU-TEST/returns.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
