@@ -331,6 +331,14 @@
     .hero-btns{flex-direction:column;align-items:center}
     .hero-btns .btn{width:100%;max-width:280px;justify-content:center}
   }
+/* WeChat QR Modal */
+.wechat-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:10000;justify-content:center;align-items:center}
+.wechat-modal.show{display:flex}
+.wechat-modal-content{background:white;padding:2rem;border-radius:16px;max-width:400px;width:90%;position:relative;text-align:center}
+.wechat-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999}
+.wechat-qr-box{margin:1.5rem 0}
+.qr-placeholder{width:160px;height:160px;margin:0 auto;background:#f5f5f5;border:2px dashed #ccc;display:flex;align-items:center;justify-content:center;font-size:14px;color:#999;border-radius:8px}
+.wechat-hint{color:#666;font-size:14px;margin-top:1rem}
 </style>
 </head>
 <body>
@@ -338,7 +346,7 @@
 <!-- ===== Navbar ===== -->
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="#home" class="nav-logo">
+    <a href="beanleaf-coffee.html" class="nav-logo">
       <svg class="leaf-icon" viewBox="0 0 32 32" fill="none">
         <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
         <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
@@ -347,11 +355,11 @@
       BeanLeaf Coffee
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#home" class="active" data-i18n="nav.home">首页</a>
-      <a href="#products" data-i18n="nav.products">产品</a>
-      <a href="#about" data-i18n="nav.about">关于我们</a>
-      <a href="#stores" data-i18n="nav.stores">门店</a>
-      <a href="#contact" data-i18n="nav.contact">联系</a>
+      <a href="beanleaf-coffee.html" class="active" data-i18n="nav.home">首页</a>
+      <a href="beanleaf-coffee/products/index.html" data-i18n="nav.products">产品</a>
+      <a href="beanleaf-coffee.html#about" data-i18n="nav.about">关于我们</a>
+      <a href="beanleaf-coffee/stores/sh-jingan.html" data-i18n="nav.stores">门店</a>
+      <a href="beanleaf-coffee.html#contact" data-i18n="nav.contact">联系</a>
     </div>
     <div style="display:flex;align-items:center;gap:.8rem">
       <button class="dark-toggle" id="darkToggle" title="深色模式" aria-label="Toggle dark mode">🌙</button>
@@ -387,8 +395,8 @@
       </h1>
       <p data-i18n="hero.desc">BeanLeaf Coffee 精选全球优质咖啡豆，坚持小批量手工烘焙，让每一杯咖啡都承载着产地的风土与匠心。</p>
       <div class="hero-btns">
-        <a href="#products" class="btn btn-primary" data-i18n="hero.shop">探索产品</a>
-        <a href="#about" class="btn btn-outline" data-i18n="hero.story">品牌故事</a>
+        <a href="beanleaf-coffee/products/index.html" class="btn btn-primary" data-i18n="hero.shop">探索产品</a>
+        <a href="beanleaf-coffee.html#about" class="btn btn-outline" data-i18n="hero.story">品牌故事</a>
       </div>
     </div>
     <div class="hero-visual reveal">
@@ -597,7 +605,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <a href="beanleaf-coffee/products/" class="btn btn-outline" data-i18n="products.view_all">查看全部产品</a>
+      <a href="beanleaf-coffee/products/index.html" class="btn btn-outline" data-i18n="products.view_all">查看全部产品</a>
     </div>
   </div>
 </section>
@@ -925,31 +933,31 @@
         </div>
         <p data-i18n="footer.brand_desc">豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
         <div class="social-links">
-          <a href="#" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
+          <a href="javascript:void(0)" onclick="toggleWechatModal()" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
           <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
           <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
         </div>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer.col1">产品</h4>
-        <a href="#" data-i18n="footer.single_origin">单品咖啡</a>
-        <a href="#" data-i18n="footer.blend">拼配咖啡</a>
-        <a href="#" data-i18n="footer.limited">限量系列</a>
-        <a href="#" data-i18n="footer.equipment">咖啡器具</a>
+        <a href="beanleaf-coffee/products/yirgacheffe.html" data-i18n="footer.single_origin">单品咖啡</a>
+        <a href="beanleaf-coffee/products/good-morning.html" data-i18n="footer.blend">拼配咖啡</a>
+        <a href="beanleaf-coffee/products/geisha.html" data-i18n="footer.limited">限量系列</a>
+        <a href="beanleaf-coffee/products/equipment.html" data-i18n="footer.equipment">咖啡器具</a>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer.col2">关于</h4>
-        <a href="#" data-i18n="footer.about">品牌故事</a>
-        <a href="#" data-i18n="footer.stores">门店查询</a>
-        <a href="#" data-i18n="footer.blog">咖啡博客</a>
-        <a href="#" data-i18n="footer.careers">加入我们</a>
+        <a href="beanleaf-coffee.html" data-i18n="footer.about">品牌故事</a>
+        <a href="beanleaf-coffee.html#stores" data-i18n="footer.stores">门店查询</a>
+        <a href="blog.html" data-i18n="footer.blog">咖啡博客</a>
+        <a href="careers.html" data-i18n="footer.careers">加入我们</a>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer.col3">支持</h4>
-        <a href="#" data-i18n="footer.faq">常见问题</a>
-        <a href="#" data-i18n="footer.shipping">配送说明</a>
-        <a href="#" data-i18n="footer.returns">退换政策</a>
-        <a href="#" data-i18n="footer.contact">联系我们</a>
+        <a href="faq.html" data-i18n="footer.faq">常见问题</a>
+        <a href="shipping.html" data-i18n="footer.shipping">配送说明</a>
+        <a href="returns.html" data-i18n="footer.returns">退换政策</a>
+        <a href="mailto:hello@beanleaf.coffee" data-i18n="footer.contact">联系我们</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -984,6 +992,18 @@
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
+
+<!-- WeChat QR Modal -->
+<div class="wechat-modal" id="wechatModal">
+  <div class="wechat-modal-content">
+    <button class="wechat-modal-close" onclick="toggleWechatModal()">×</button>
+    <h3>微信扫码关注 BeanLeaf Coffee</h3>
+    <div class="wechat-qr-box">
+      <div class="qr-placeholder">微信二维码<br>占位图</div>
+    </div>
+    <p class="wechat-hint">扫码关注公众号，获取最新咖啡资讯</p>
+  </div>
+</div>
 
 <!-- ===== Scripts ===== -->
 <script>
@@ -1216,15 +1236,6 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
   }, 2000);
 });
 
-// ===== Product Card Click =====
-document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('click', function(e) {
-    if (e.target.closest('a, button')) return;
-    const name = this.querySelector('h3').textContent;
-    alert((currentLang === 'zh' ? '查看产品详情: ' : 'View product: ') + name + '\n\n' +
-          (currentLang === 'zh' ? '(详情页将在后续版本中实现)' : '(Detail page coming soon)'));
-  });
-});
 
 // ===== Smooth scroll for anchor links =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1315,6 +1326,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(isDark){document.documentElement.removeAttribute('data-theme');dmBtn.textContent='🌙';localStorage.setItem('beanleaf_theme','light')}
     else{document.documentElement.setAttribute('data-theme','dark');dmBtn.textContent='☀️';localStorage.setItem('beanleaf_theme','dark')}
     });
+// ===== WeChat QR Modal =====
+window.toggleWechatModal=function(){
+  const modal=document.getElementById('wechatModal');
+  modal.classList.toggle('show');
+};
 </script>
 </body>
 </html>
