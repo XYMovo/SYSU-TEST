@@ -415,6 +415,20 @@
   .gauge-label{font-size:.58rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.1rem}
   .brew-tips{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--clr-border)}
   .brew-tips p{font-size:.85rem;color:var(--clr-text-light);line-height:1.7}
+
+  /* ===== Blog Index ===== */
+  .blog-index{background:var(--clr-bg)}
+  .blog-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .blog-card{display:block;background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--clr-border);transition:all .3s;text-decoration:none;color:inherit}
+  .blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .blog-card-img{height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .blog-card-img svg{max-width:100%;max-height:100%}
+  .blog-card-body{padding:1rem 1.2rem}
+  .blog-card-cat{font-size:.65rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em}
+  .blog-card h4{font-family:var(--font-heading);font-size:.9rem;margin:.3rem 0;color:var(--clr-primary-dark);line-height:1.4}
+  .blog-card p{font-size:.78rem;color:var(--clr-text-muted);line-height:1.5;margin-bottom:.4rem}
+  .blog-card-date{font-size:.68rem;color:var(--clr-text-muted)}
+  @media(max-width:768px){.blog-cards{grid-template-columns:1fr}}
   @media(max-width:768px){.brew-container{grid-template-columns:1fr}.brew-method-cards{grid-template-columns:repeat(2,1fr)}.brew-dashboard{grid-template-columns:repeat(2,1fr);gap:.6rem}}
 
   /* ===== Mobile Bottom Nav ===== */
@@ -1095,6 +1109,56 @@
         </div>
         <div class="brew-tips"><p id="brewTip">先用92°C热水湿润滤纸预热滤杯，倒掉润纸水。放入20g咖啡粉，注入40g水闷蒸30秒，再分2-3段注水至320g。</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Blog Index ===== -->
+<section class="section blog-index" id="blog-index">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">咖啡知识</span>
+      <h2>从 BeanLeaf 博客了解更多</h2>
+      <p>冲煮技巧、产地故事、咖啡知识——每周更新</p>
+    </div>
+    <div class="blog-cards reveal">
+      <a href="blog.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#F5E6D3,#E8D5B7,#C9A96E)">
+          <svg viewBox="0 0 200 120" width="100%"><rect width="200" height="120" rx="8" fill="none"/><circle cx="100" cy="50" r="25" fill="#78350F" opacity="0.15"/><path d="M85 85 L100 70 L115 85" stroke="#78350F" stroke-width="2" fill="none" opacity="0.4"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">冲煮指南</span>
+          <h4>手冲入门：从选豆到出杯的完整指南</h4>
+          <p>一台V60、一张滤纸、一把壶——精品咖啡的门槛比你想象的低。</p>
+          <span class="blog-card-date">2026年5月20日</span>
+        </div>
+      </a>
+      <a href="blog.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#E8D5B7,#D4A574,#B8945A)">
+          <svg viewBox="0 0 200 120" width="100%"><rect width="200" height="120" rx="8" fill="none"/><circle cx="100" cy="50" r="25" fill="#78350F" opacity="0.15"/><text x="100" y="55" text-anchor="middle" font-size="20">🌍</text></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">产地故事</span>
+          <h4>走进哥伦比亚慧兰产区：云雾里的咖啡森林</h4>
+          <p>海拔1500米，安第斯山脉中，咖啡树在云雾里生长。</p>
+          <span class="blog-card-date">2026年5月12日</span>
+        </div>
+      </a>
+      <a href="blog.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#D4C4A8,#C4A882,#A88B62)">
+          <svg viewBox="0 0 200 120" width="100%"><rect width="200" height="120" rx="8" fill="none"/><circle cx="100" cy="50" r="25" fill="#78350F" opacity="0.15"/><text x="100" y="55" text-anchor="middle" font-size="20">☕</text></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">咖啡知识</span>
+          <h4>读懂咖啡包装标签：产地、处理法、杯测分数</h4>
+          <p>耶加雪菲 G1 水洗 SCA 88.5——到底在说什么？一文讲透。</p>
+          <span class="blog-card-date">2026年5月8日</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem" class="reveal">
+      <a href="blog.html" class="btn btn-outline">进入咖啡博客 →</a>
+      <a href="coffee-academy.html" class="btn btn-primary" style="margin-left:.8rem">咖啡学院 →</a>
     </div>
   </div>
 </section>
