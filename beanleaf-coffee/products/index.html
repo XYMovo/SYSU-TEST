@@ -100,6 +100,11 @@ footer a{color:rgba(255,255,255,.5);transition:color .2s}
 footer a:hover{color:var(--clr-accent)}
 
 @media(max-width:640px){.filter-bar{flex-direction:column;align-items:stretch}.filter-right{justify-content:space-between}.products-grid{grid-template-columns:1fr}}
+/* Skeleton loader */
+.skeleton{background:linear-gradient(90deg,var(--clr-border) 25%,#f0ece4 50%,var(--clr-border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skeleton-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--clr-border)}
+.skeleton-card .s-img{height:200px}.skeleton-card .s-text{padding:1rem}.skeleton-card .s-line{height:14px;margin-bottom:8px}.skeleton-card .s-line.short{width:60%}.skeleton-card .s-price{height:22px;width:45%;margin-top:12px}
 </style>
 </head>
 <body>
@@ -256,7 +261,12 @@ document.getElementById('cartClose').addEventListener('click',()=>{co.classList.
 co.addEventListener('click',()=>{co.classList.remove('open');cd.classList.remove('open')});
 
 // Init
-render();updateCartUI();
+// Init - show skeleton first, then render
+(function initLoad(){
+  const grid=document.getElementById('productsGrid');
+  grid.innerHTML=Array(6).fill(0).map(()=>'<div class="skeleton-card"><div class="skeleton s-img"></div><div class="s-text"><div class="skeleton s-line"></div><div class="skeleton s-line short"></div><div class="skeleton s-line"></div><div class="skeleton s-price"></div></div></div>').join('');
+  setTimeout(()=>{render();updateCartUI()},400);
+})();
 </script>
 </body>
 </html>

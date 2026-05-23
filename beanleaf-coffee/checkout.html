@@ -59,8 +59,10 @@ h1{font-size:2rem}h2{font-size:1.4rem}h3{font-size:1.1rem}
 .empty-state .icon{font-size:3rem;margin-bottom:1rem}
 .empty-state p{color:var(--clr-text-muted);margin-bottom:1.5rem}
 
-.err-msg{color:var(--clr-error);font-size:.8rem;margin-top:.25rem;display:none}
+.err-msg{color:var(--clr-error);font-size:.78rem;margin-top:.25rem;display:none}
 .err-msg.show{display:block}
+.form-group input.valid{border-color:var(--clr-success);background:#f6fdf8}
+.form-group input.invalid{border-color:var(--clr-error)}
 
 .lang-btn{font-size:.8rem;font-weight:600;padding:.35em .9em;border-radius:var(--radius-full);transition:all .2s;background:var(--clr-border);color:var(--clr-text-light);margin-left:4px}
 .lang-btn.active{background:var(--clr-primary);color:var(--clr-white)}
@@ -164,12 +166,19 @@ function itemBg(id){return {yirgacheffe:'#F5E6D3',huila:'#E8D5B7','kenya-aa':'#D
 
 function showErr(id){const el=document.getElementById(id);if(el)el.classList.add('show');setTimeout(()=>el&&el.classList.remove('show'),3000)}
 
+// Real-time validation
+document.getElementById('phone').addEventListener('input',function(){
+  const v=this.value.trim(),valid=/^1[3-9]\d{9}$/.test(v);
+  this.classList.toggle('valid',valid&&v.length>=11);this.classList.toggle('invalid',!valid&&v.length>=11)});
+document.getElementById('name').addEventListener('input',function(){
+  const v=this.value.trim();this.classList.toggle('valid',v.length>=2)});
+
 function submitOrder(){
   const name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim(),addr=document.getElementById('address').value.trim();
   let valid=true;
-  if(!name){showErr('errName');valid=false}
-  if(!phone||!/^[\d\-+() ]{7,}$/.test(phone)){showErr('errPhone');valid=false}
-  if(!addr){showErr('errAddr');valid=false}
+  if(!name||name.length<2){showErr('errName');valid=false}
+  if(!phone||!/^1[3-9]\d{9}$/.test(phone)){showErr('errPhone');valid=false}
+  if(!addr||addr.length<5){showErr('errAddr');valid=false}
   if(!valid)return;
 
   const cart=getCart();if(cart.length===0)return;
