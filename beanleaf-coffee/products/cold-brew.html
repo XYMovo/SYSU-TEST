@@ -7,6 +7,8 @@
 <meta property="og:description" content="埃塞俄比亚拼配，冷水浸泡即饮，清爽柑橘调。¥68/10包。">
 <style>
 :root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-primary-light:#92400E;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--radius-sm:8px;--radius-md:16px;--max-width:900px;--nav-height:64px}
+  [data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540;--clr-cream-light:#252032}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.8}
 a{color:inherit;text-decoration:none}h1,h2,h3{font-family:var(--font-heading);font-weight:700}.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}.section{padding:2rem 0}
@@ -45,11 +47,126 @@ footer a{color:rgba(255,255,255,.5)}footer a:hover{color:var(--clr-accent)}
 .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.35)}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
-</style></head><body>
+
+/* ===== Product/Store Carousel ===== */
+.product-carousel {
+    position: relative;
+    overflow: hidden;
+    background: var(--clr-cream-light, #FFFAED);
+    margin-top: var(--nav-height, 64px);
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+.carousel-slide svg {
+    width: 100%;
+    height: clamp(280px, 50vh, 500px);
+    display: block;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-primary-dark, #451A03);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s;
+}
+.carousel-btn:hover {
+    background: rgba(255,255,255,0.95);
+}
+.carousel-prev { left: 16px; }
+.carousel-next { right: 16px; }
+.carousel-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+}
+.carousel-dot.active {
+    background: white;
+}
+
+  [data-theme="dark"] body{background:var(--clr-bg);color:var(--clr-text)}
+  [data-theme="dark"] .footer{background:var(--clr-primary-dark)!important}
+  [data-theme="dark"] .section{background:transparent}
+  [data-theme="dark"] .hero{background:var(--clr-bg)!important}
+@media (max-width: 640px) {
+    .carousel-btn { width: 32px; height: 32px; font-size: 16px; }
+    .carousel-prev { left: 8px; }
+    .carousel-next { right: 8px; }
+}
+  </style></head><body>
 <nav class="navbar"><div class="container">
   <a href="../../beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
   <a href="index.html" class="nav-back">← 返回商城</a>
 </div></nav>
+<section class="product-carousel" id="productCarousel">
+  <div class="carousel-track" id="carouselTrack">
+    <div class="carousel-slide">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#78350F"/>
+            <stop offset="50%" style="stop-color:#92400E"/>
+            <stop offset="100%" style="stop-color:#D4A574"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="500" fill="url(#cg1)"/>
+        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">冷萃滴滤包</text>
+        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Cold Brew Drip Bags</text>
+        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">产品详情</text>
+      </svg>
+    </div>
+    <div class="carousel-slide">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#92400E"/>
+            <stop offset="50%" style="stop-color:#D4A574"/>
+            <stop offset="100%" style="stop-color:#E8D0B3"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="500" fill="url(#cg2)"/>
+        <text x="400" y="220" text-anchor="middle" fill="white" font-size="32" font-family="Lora,serif">冷萃滴滤包</text>
+        <text x="400" y="270" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Lora,serif">Brewing Guide</text>
+        <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14" font-family="sans-serif">冲泡指南</text>
+      </svg>
+    </div>
+  </div>
+  <button class="carousel-btn carousel-prev" onclick="carouselPrev()" aria-label="上一张">‹</button>
+  <button class="carousel-btn carousel-next" onclick="carouselNext()" aria-label="下一张">›</button>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
 
 <section class="hero"><div class="container">
   <span class="tag">夏日限定</span>
