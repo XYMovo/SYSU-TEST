@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="3;url=beanleaf-coffee.html">
 <title>RAW BEAN — 生豆咖啡 | Brutalist Coffee</title>
 <meta name="description" content="RAW BEAN Coffee - 粗野主义咖啡体验，全球源头直采，SCA 80+精品生豆，48小时鲜烘直达">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -390,6 +391,19 @@ footer .cr{color:#555;font-size:11px}
 </style>
 </head>
 <body>
+
+<!-- REDIRECT NOTICE -->
+<div id="redirectNotice" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(120,53,15,.95);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;font-family:sans-serif;font-size:14px;">
+  <span>正在跳转到 <strong>BeanLeaf Coffee</strong>...</span>
+  <div style="display:flex;gap:8px;">
+    <button onclick="cancelRedirect()" style="padding:6px 16px;background:transparent;color:#fff;border:1px solid #fff;border-radius:4px;cursor:pointer;font-size:13px;">取消</button>
+    <a href="index.html" style="padding:6px 16px;background:#fff;color:#78350F;border:none;border-radius:4px;cursor:pointer;font-size:13px;text-decoration:none;">访问 RAW BEAN</a>
+  </div>
+</div>
+<script>
+var redirectTimer = setTimeout(function(){ window.location.href = 'beanleaf-coffee.html'; }, 3000);
+function cancelRedirect() { clearTimeout(redirectTimer); document.getElementById('redirectNotice').style.display = 'none'; }
+</script>
 
 <!-- LOADER -->
 <div id="loader"><h1>RAW</h1><div class="bar"><div class="bar-fill" id="loaderBar"></div></div></div>
