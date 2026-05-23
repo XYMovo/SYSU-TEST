@@ -1,95 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>咖啡器具 | BeanLeaf Coffee</title>
-<meta name="description" content="BeanLeaf Coffee精选咖啡器具：手冲壶、滤杯、磨豆机、电子秤、分享壶，一站式配齐家庭咖啡装备。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%2378350F'/></svg>">
-<style>
-:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-primary-light:#92400E;--clr-accent:#FBBF24;--clr-accent-light:#FDE68A;--clr-cream:#FEF3C7;--clr-bg:#FFFBEB;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1000px;--nav-height:64px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}
-a{color:inherit;text-decoration:none}
-h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.4}
-h1{font-size:2.2rem;color:var(--clr-primary-dark)}
-h3{font-size:1.15rem}
-.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
-.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(255,251,235,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center;box-shadow:var(--shadow-sm)}
-.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
-.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark);transition:color .2s}
-.nav-logo:hover{color:var(--clr-primary)}
-.nav-logo svg{width:28px;height:28px}
-.nav-back{font-size:.9rem;color:var(--clr-primary);font-weight:500;transition:color .2s;display:flex;align-items:center;gap:.3rem}
-.nav-back:hover{color:var(--clr-primary-dark)}
-.page{padding-top:calc(var(--nav-height) + 3rem);padding-bottom:5rem}
-.page-header{text-align:center;margin-bottom:3rem}
-.page-header p{color:var(--clr-text-light);margin-top:.5rem;font-size:1.05rem}
-.equip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
-.equip-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);transition:all .35s ease}
-.equip-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--clr-primary-light)}
-.equip-img{height:200px;display:flex;align-items:center;justify-content:center}
-.equip-card:nth-child(1) .equip-img{background:linear-gradient(135deg,#FEF3C7,#FDE68A)}
-.equip-card:nth-child(2) .equip-img{background:linear-gradient(135deg,#EDE9D5,#D4C8A0)}
-.equip-card:nth-child(3) .equip-img{background:linear-gradient(135deg,#E8D5B7,#C9A96E)}
-.equip-card:nth-child(4) .equip-img{background:linear-gradient(135deg,#D4E8D0,#A8C8A0)}
-.equip-card:nth-child(5) .equip-img{background:linear-gradient(135deg,#F5E6CC,#E8D5B7)}
-.equip-body{padding:1.3rem 1.3rem .5rem}
-.equip-body .category{font-size:.72rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
-.equip-body h3{margin-bottom:.3rem}
-.equip-body .desc{font-size:.85rem;color:var(--clr-text-light);line-height:1.6;margin-bottom:1rem}
-.equip-footer{padding:0 1.3rem 1.3rem;display:flex;align-items:center;justify-content:space-between}
-.equip-footer .price{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--clr-primary-dark)}
-.equip-footer .btn{display:inline-flex;align-items:center;gap:.3rem;background:var(--clr-primary);color:var(--clr-white);padding:.5em 1.2em;border-radius:var(--radius-full);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s}
-.equip-footer .btn:hover{background:var(--clr-primary-dark);transform:scale(1.05)}
-footer{text-align:center;padding:2.5rem;color:var(--clr-text-light);font-size:.85rem;border-top:1px solid var(--clr-border)}
-footer a{color:var(--clr-primary);font-weight:600;transition:color .2s}
-footer a:hover{color:var(--clr-primary-dark)}
-@media(max-width:640px){.equip-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咖啡器具 — BeanLeaf Coffee</title>
+<meta name="description" content="BeanLeaf Coffee咖啡器具：手冲壶、滤杯、电子秤、磨豆机，专业咖啡冲煮工具。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
+<style>:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--radius-md:16px;--radius-full:999px;--max-width:800px;--nav-height:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;-webkit-font-smoothing:antialiased}body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}a{color:inherit;text-decoration:none}h1,h2{font-family:var(--font-heading);font-weight:700}h1{font-size:2rem}h2{font-size:1.2rem}.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center}.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}.nav-logo svg{width:28px;height:28px}.page{padding-top:calc(var(--nav-height) + 3rem);padding-bottom:4rem;text-align:center}.coming-soon{background:var(--clr-white);border-radius:var(--radius-md);padding:3rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);margin-top:2rem}.coming-soon .icon{font-size:4rem;margin-bottom:1rem}.coming-soon h2{margin-bottom:1rem;color:var(--clr-primary-dark)}.coming-soon p{color:var(--clr-text-light);line-height:1.8}footer{text-align:center;padding:2rem;color:var(--clr-text-light);font-size:.9rem}footer a{color:var(--clr-primary);text-decoration:underline}
+/* Footer */
+.footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-brand .logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-white);margin-bottom:.8rem}
+.footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6}
+.footer-col h4{color:var(--clr-white);font-family:var(--font-body);font-size:.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
+.footer-col a{display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--clr-accent)}
+.social-links{display:flex;gap:.8rem;margin-top:1rem}
+.social-links a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.social-links a:hover{background:var(--clr-accent)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.35)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="container">
-<a href="../../beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
-<a href="../../beanleaf-coffee.html" class="nav-back">&larr; 返回首页</a>
-</div></nav>
-
+<nav class="navbar"><div class="container"><a href="../beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a></div></nav>
 <div class="page"><div class="container">
-<div class="page-header"><h1>咖啡器具</h1><p>精选专业器具，让每一杯咖啡都恰到好处</p></div>
-
-<div class="equip-grid">
-<div class="equip-card">
-  <div class="equip-img"><svg width="100" height="100" viewBox="0 0 100 100"><path d="M20 70V30q0-10 8-10h44q8 0 8 10v40" stroke="#78350F" stroke-width="4" fill="none"/><path d="M60 20Q80 5 85 20" stroke="#78350F" stroke-width="4" fill="none"/><ellipse cx="50" cy="70" rx="35" ry="8" fill="#78350F" opacity="0.2"/></svg></div>
-  <div class="equip-body"><span class="category">手冲壶</span><h3>BeanLeaf 细嘴手冲壶</h3><p class="desc">600ml容量，细长鹅颈注水嘴，精准控制水流速度与方向。不锈钢材质，内置温度计显示，人体工学手柄。</p></div>
-  <div class="equip-footer"><span class="price">¥168</span><button class="btn">加入购物车</button></div>
-</div>
-<div class="equip-card">
-  <div class="equip-img"><svg width="100" height="100" viewBox="0 0 100 100"><ellipse cx="50" cy="40" rx="30" ry="12" fill="none" stroke="#78350F" stroke-width="3"/><path d="M20 40L20 70Q20 80 50 80Q80 80 80 70L80 40" fill="none" stroke="#78350F" stroke-width="3"/><line x1="35" y1="55" x2="65" y2="55" stroke="#FBBF24" stroke-width="2"/></svg></div>
-  <div class="equip-body"><span class="category">滤杯</span><h3>V60 陶瓷滤杯</h3><p class="desc">经典锥形设计，螺旋肋骨导流槽确保均匀萃取。日本进口陶瓷材质，保温性极佳，适配V60滤纸。</p></div>
-  <div class="equip-footer"><span class="price">¥98</span><button class="btn">加入购物车</button></div>
-</div>
-<div class="equip-card">
-  <div class="equip-img"><svg width="100" height="100" viewBox="0 0 100 100"><rect x="15" y="25" width="70" height="50" rx="6" fill="#78350F" opacity="0.15"/><circle cx="50" cy="50" r="18" fill="#92400E" opacity="0.3"/><circle cx="50" cy="50" r="6" fill="#451A03" opacity="0.5"/></svg></div>
-  <div class="equip-body"><span class="category">磨豆机</span><h3>BeanLeaf 手摇磨豆机</h3><p class="desc">双轴承中轴设计，研磨均匀度高。陶瓷磨芯不发烫，42档粗细调节，覆盖法压到意式全范围。可拆卸清洁。</p></div>
-  <div class="equip-footer"><span class="price">¥298</span><button class="btn">加入购物车</button></div>
-</div>
-<div class="equip-card">
-  <div class="equip-img"><svg width="100" height="100" viewBox="0 0 100 100"><rect x="30" y="15" width="40" height="55" rx="4" stroke="#78350F" stroke-width="3" fill="none"/><rect x="38" y="22" width="24" height="20" rx="2" fill="#451A03" opacity="0.15"/><text x="50" y="38" text-anchor="middle" font-size="18" fill="#78350F">15.3</text><circle cx="50" cy="60" r="3" fill="#FBBF24"/></svg></div>
-  <div class="equip-body"><span class="category">电子秤</span><h3>BeanLeaf 咖啡电子秤</h3><p class="desc">0.1g高精度称重，内置计时器功能，防水面板。USB-C充电，续航可达30小时。去皮/计时一键切换。</p></div>
-  <div class="equip-footer"><span class="price">¥128</span><button class="btn">加入购物车</button></div>
-</div>
-<div class="equip-card">
-  <div class="equip-img"><svg width="100" height="100" viewBox="0 0 100 100"><rect x="25" y="15" width="50" height="60" rx="8" fill="none" stroke="#78350F" stroke-width="3"/><rect x="35" y="30" width="30" height="30" rx="4" fill="#78350F" opacity="0.12"/><line x1="50" y1="75" x2="50" y2="90" stroke="#78350F" stroke-width="3"/></svg></div>
-  <div class="equip-body"><span class="category">分享壶</span><h3>玻璃分享壶 450ml</h3><p class="desc">高硼硅玻璃材质，耐温差冲击。容量刻度清晰可见，壶嘴设计顺畅不滴漏。适合2-3人品饮。</p></div>
-  <div class="equip-footer"><span class="price">¥68</span><button class="btn">加入购物车</button></div>
-</div>
-</div></div></div>
-
-<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="../../beanleaf-coffee.html">返回首页</a> | <a href="../../shipping.html">配送说明</a></p></footer>
-</body>
-</html>
+  <h1>咖啡器具</h1>
+  <div class="coming-soon">
+    <div class="icon">☕</div>
+    <h2>即将上线</h2>
+    <p>我们正在精选全球优质咖啡器具，包括手冲壶、滤杯、电子秤、磨豆机等专业冲煮工具。<br>敬请期待，或先浏览我们的<a href="index.html">咖啡豆产品</a>。</p>
+  </div>
+</div></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
+            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
+          </svg>
+          BeanLeaf Coffee
+        </div>
+        <p>豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
+        <div class="social-links">
+          <a href="javascript:void(0)" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
+          <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
+          <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="yirgacheffe.html">单品咖啡</a>
+        <a href="good-morning.html">拼配咖啡</a>
+        <a href="geisha.html">限量系列</a>
+        <a href="equipment.html">咖啡器具</a>
+      </div>
+      <div class="footer-col">
+        <h4>关于</h4>
+        <a href="../../beanleaf-coffee.html">品牌故事</a>
+        <a href="../../beanleaf-coffee.html#stores">门店查询</a>
+        <a href="../../blog.html">咖啡博客</a>
+        <a href="../../careers.html">加入我们</a>
+      </div>
+      <div class="footer-col">
+        <h4>支持</h4>
+        <a href="../../faq.html">常见问题</a>
+        <a href="../../shipping.html">配送说明</a>
+        <a href="../../returns.html">退换政策</a>
+        <a href="mailto:hello@beanleaf.coffee">联系我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 BeanLeaf Coffee. All rights reserved. | 沪ICP备2024XXXXXX号</p>
+    </div>
+  </div>
+</footer>
+</body></html>

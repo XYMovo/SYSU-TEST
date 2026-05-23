@@ -29,7 +29,7 @@
 }
 </script>
 <style>
-:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-primary-light:#92400E;--clr-accent:#D4A574;--clr-accent-light:#E8D0B3;--clr-cream:#FEFAE0;--clr-cream-light:#FFFAED;--clr-bg:#FAF9F6;--clr-white:#FFFFFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-gold:#C9A96E;--clr-limited:#E76F51;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--shadow-xl:0 20px 60px rgba(0,0,0,.12);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1100px;--nav-height:64px}
+:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-primary-light:#40916C;--clr-accent:#D4A574;--clr-accent-light:#E8D0B3;--clr-cream:#FEFAE0;--clr-cream-light:#FFFAED;--clr-bg:#FAF9F6;--clr-white:#FFFFFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-gold:#C9A96E;--clr-limited:#E76F51;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--shadow-xl:0 20px 60px rgba(0,0,0,.12);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1100px;--nav-height:64px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
 body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7;overflow-x:hidden}
@@ -148,28 +148,13 @@ footer a{color:rgba(255,255,255,.5);font-size:.85rem;transition:color .2s}
 footer a:hover{color:var(--clr-accent)}
 
 @media(max-width:768px){.origin-grid,.flavor-grid{grid-template-columns:1fr;gap:1.5rem}.related-grid{grid-template-columns:1fr}.hero{min-height:60vh}}
-
-/* Footer */
-.footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:4rem 0 2rem}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
-.footer-brand .logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-white);margin-bottom:.8rem}
-.footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6}
-.footer-col h4{color:var(--clr-white);font-family:var(--font-body);font-size:.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
-.footer-col a{display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
-.footer-col a:hover{color:var(--clr-accent)}
-.social-links{display:flex;gap:.8rem;margin-top:1rem}
-.social-links a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:all .2s}
-.social-links a:hover{background:var(--clr-accent)}
-.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.35)}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <nav class="navbar"><div class="container">
   <a href="../../beanleaf-coffee.html" class="nav-logo">
-    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/></svg>
+    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/></svg>
     BeanLeaf Coffee
   </a>
   <div class="nav-right">
@@ -278,50 +263,8 @@ footer a:hover{color:var(--clr-accent)}
 </div>
 <div class="toast" id="toast"></div>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
-            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
-          </svg>
-          BeanLeaf Coffee
-        </div>
-        <p>豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
-        <div class="social-links">
-          <a href="javascript:void(0)" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
-          <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
-          <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>产品</h4>
-        <a href="yirgacheffe.html">单品咖啡</a>
-        <a href="good-morning.html">拼配咖啡</a>
-        <a href="geisha.html">限量系列</a>
-        <a href="equipment.html">咖啡器具</a>
-      </div>
-      <div class="footer-col">
-        <h4>关于</h4>
-        <a href="../../beanleaf-coffee.html">品牌故事</a>
-        <a href="../../beanleaf-coffee.html#stores">门店查询</a>
-        <a href="../../blog.html">咖啡博客</a>
-        <a href="../../careers.html">加入我们</a>
-      </div>
-      <div class="footer-col">
-        <h4>支持</h4>
-        <a href="../../faq.html">常见问题</a>
-        <a href="../../shipping.html">配送说明</a>
-        <a href="../../returns.html">退换政策</a>
-        <a href="mailto:hello@beanleaf.coffee">联系我们</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 BeanLeaf Coffee. All rights reserved. | 沪ICP备2024XXXXXX号</p>
-    </div>
-  </div>
+<footer>
+  <p>&copy; 2024 BeanLeaf Coffee &nbsp;|&nbsp; <a href="../../beanleaf-coffee.html" data-i18n="footer.home">返回首页</a></p>
 </footer>
 
 <script>
