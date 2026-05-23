@@ -56,7 +56,9 @@
     {"@type":"ListItem","position":3,"item":{"@type":"Product","name":"肯尼亚 AA","description":"水洗处理，黑加仑与番茄酸甜感","offers":{"@type":"Offer","price":"118.00","priceCurrency":"CNY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"98"}}},
     {"@type":"ListItem","position":4,"item":{"@type":"Product","name":"早安拼配","description":"巴西+埃塞俄比亚，坚果巧克力调","offers":{"@type":"Offer","price":"78.00","priceCurrency":"CNY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"312"}}},
     {"@type":"ListItem","position":5,"item":{"@type":"Product","name":"晚安拼配","description":"低因处理，柔和顺滑，可可与烤杏仁","offers":{"@type":"Offer","price":"88.00","priceCurrency":"CNY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"87"}}},
-    {"@type":"ListItem","position":6,"item":{"@type":"Product","name":"巴拿马 瑰夏","description":"日晒处理，茉莉花与蜜桃香气，限量200份","offers":{"@type":"Offer","price":"298.00","priceCurrency":"CNY","availability":"https://schema.org/LimitedAvailability"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"64"}}}
+    {"@type":"ListItem","position":6,"item":{"@type":"Product","name":"巴拿马 瑰夏","description":"日晒处理，茉莉花与蜜桃香气，限量200份","offers":{"@type":"Offer","price":"298.00","priceCurrency":"CNY","availability":"https://schema.org/LimitedAvailability"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"64"}}},
+    {"@type":"ListItem","position":7,"item":{"@type":"Product","name":"冷萃袋泡咖啡","description":"埃塞俄比亚拼配，冷水浸泡即饮，清爽柑橘调","offers":{"@type":"Offer","price":"68.00","priceCurrency":"CNY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"45"}}},
+    {"@type":"ListItem","position":8,"item":{"@type":"Product","name":"节日限定礼盒","description":"精选3支单品+2支拼配+手冲器具套装，限量编号","offers":{"@type":"Offer","price":"498.00","priceCurrency":"CNY","availability":"https://schema.org/LimitedAvailability"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"28"}}}
   ]
 }
 </script>
@@ -1558,6 +1560,29 @@ function updateBrewGuide(){
   document.getElementById('paramGrind').textContent=d.grind;
   document.getElementById('paramTime').textContent=d.time;
   document.getElementById('brewTip').textContent=d.tip;
+  
+  // Update gauge SVGs
+  const tempVal=parseInt(d.temp)||92;
+  const tempPct=(tempVal-85)/(96-85);
+  const gaugeTemp=document.querySelector('#brewGaugeTemp .gauge-ring svg circle:last-child');
+  if(gaugeTemp) gaugeTemp.setAttribute('stroke-dasharray',(264*tempPct)+' 264');
+  
+  const gaugeRatio=document.querySelector('#brewGaugeRatio .gauge-ring svg circle:last-child');
+  const ratioNum=parseFloat(d.ratio?.split(':')[1])||16;
+  const ratioPct=(ratioNum-9)/(17-9);
+  if(gaugeRatio) gaugeRatio.setAttribute('stroke-dasharray',(264*ratioPct)+' 264');
+  
+  const grindMap={'极粗':0.08,'粗':0.2,'中粗':0.35,'中':0.5,'中细':0.65,'细':0.82,'极细':0.95};
+  const grindPct=grindMap[d.grind]||0.5;
+  const gaugeGrind=document.querySelector('#brewGaugeGrind .gauge-ring svg circle:last-child');
+  if(gaugeGrind) gaugeGrind.setAttribute('stroke-dasharray',(264*grindPct)+' 264');
+  
+  const timeStr=d.time||'2分30秒';
+  let timeMin=parseFloat(timeStr)||2.5;
+  if(timeStr.includes('小时')) timeMin=parseFloat(timeStr)*60;
+  const timePct=Math.min(timeMin/(16*60),1);
+  const gaugeTime=document.querySelector('#brewGaugeTime .gauge-ring svg circle:last-child');
+  if(gaugeTime) gaugeTime.setAttribute('stroke-dasharray',(264*timePct)+' 264');
 }
 
 // ===== Mobile Nav Active State =====
