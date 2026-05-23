@@ -310,8 +310,9 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   /* ===== Scroll Reveal ===== */
-  .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}
-  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1);animation:revealFallback 2s forwards}
+  .reveal.visible{opacity:1;transform:translateY(0);animation:none}
+  @keyframes revealFallback{0%,85%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
 
   /* ===== Dark Mode ===== */
   [data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E8E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540;--clr-cream-light:#252032}
