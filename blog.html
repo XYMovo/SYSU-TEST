@@ -1,80 +1,435 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>咖啡博客 — BeanLeaf Coffee</title>
-<meta name="description" content="BeanLeaf Coffee咖啡博客：咖啡知识、冲煮技巧、产地故事、行业资讯。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
-<style>:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--radius-md:16px;--max-width:800px;--nav-height:64px}
-  [data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540;--clr-cream-light:#252032}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;-webkit-font-smoothing:antialiased}body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}a{color:inherit;text-decoration:none}h1,h2{font-family:var(--font-heading);font-weight:700}h1{font-size:2rem}h2{font-size:1.2rem}.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center}.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}.nav-logo svg{width:28px;height:28px}.page{padding-top:calc(var(--nav-height) + 3rem);padding-bottom:4rem;text-align:center}.coming-soon{background:var(--clr-white);border-radius:var(--radius-md);padding:3rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);margin-top:2rem}.coming-soon .icon{font-size:4rem;margin-bottom:1rem}.coming-soon h2{margin-bottom:1rem;color:var(--clr-primary-dark)}.coming-soon p{color:var(--clr-text-light);line-height:1.8}footer{text-align:center;padding:2rem;color:var(--clr-text-light);font-size:.9rem}footer a{color:var(--clr-primary);text-decoration:underline}
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咖啡博客 — BeanLeaf Coffee | 产地故事·冲煮技巧·咖啡知识</title>
+<meta name="description" content="BeanLeaf Coffee 咖啡博客：产地溯源、手冲指南、风味品鉴、咖啡知识科普。每周更新，陪你从入门到精通。">
+<meta name="keywords" content="咖啡博客,精品咖啡,手冲咖啡,咖啡知识,产地故事,BeanLeaf">
+<link rel="canonical" href="https://xymovo.github.io/SYSU-TEST/blog.html">
+<meta name="robots" content="index,follow">
+<style>
+:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-accent:#D4A574;--clr-cream:#FEF3C7;--clr-bg:#FFFBEB;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 8px 40px rgba(0,0,0,.12);--radius-md:16px;--radius-sm:8px;--max-width:780px}
+[data-theme="dark"]{--clr-bg:#1A1A2E;--clr-white:#252536;--clr-text:#E8E0D5;--clr-text-light:#B0A89A;--clr-text-muted:#787060;--clr-border:#3A3540;--clr-cream:#2A2540}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.8}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+h1{font-size:clamp(1.8rem,4vw,2.4rem)}h2{font-size:clamp(1.2rem,2.5vw,1.6rem)}h3{font-size:1.1rem}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+img{max-width:100%;height:auto}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(255,251,235,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--clr-border);z-index:100;display:flex;align-items:center}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.15rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-logo svg{width:28px;height:28px}
+.nav-right{display:flex;align-items:center;gap:1rem}
+/* Hero */
+.blog-hero{padding-top:calc(64px + 4rem);padding-bottom:3rem;text-align:center;background:linear-gradient(170deg,var(--clr-cream),var(--clr-bg))}
+.blog-hero .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4em 1.2em;border-radius:999px;background:rgba(120,53,15,.08);color:var(--clr-primary);margin-bottom:.8rem}
+.blog-hero h1{font-family:var(--font-heading);margin-bottom:.5rem}
+.blog-hero h1 span{color:var(--clr-primary)}
+.blog-hero p{color:var(--clr-text-light);max-width:500px;margin:0 auto;font-size:.95rem}
+/* Article Card */
+.blog-grid{padding:2rem 0 4rem}
+.blog-card{display:grid;grid-template-columns:240px 1fr;gap:1.5rem;background:var(--clr-white);border-radius:var(--radius-md);padding:1.5rem;margin-bottom:1.5rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);transition:all .3s;text-decoration:none;color:inherit;cursor:pointer}
+.blog-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--clr-primary)}
+.blog-card:hover h2{color:var(--clr-primary)}
+.blog-card-img{width:240px;height:160px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.blog-card-img img{width:100%;height:100%;object-fit:cover}
+.blog-card-img svg{max-width:100%;max-height:100%}
+.blog-card-body{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.blog-card-cat{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3em .8em;border-radius:999px;background:rgba(120,53,15,.08);color:var(--clr-primary);margin-bottom:.5rem;align-self:flex-start}
+.blog-card h2{font-size:1.15rem;margin-bottom:.4rem;transition:color .2s;line-height:1.4}
+.blog-card-excerpt{font-size:.85rem;color:var(--clr-text-light);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog-card-meta{display:flex;gap:1rem;font-size:.72rem;color:var(--clr-text-muted);margin-top:.5rem}
+/* Article Detail Modal */
+.article-overlay{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:1000;display:none;overflow-y:auto}
+.article-overlay.open{display:block}
+.article-modal{max-width:700px;margin:2rem auto;background:var(--clr-white);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);overflow:hidden;position:relative}
+.article-close{position:absolute;top:1rem;right:1.5rem;width:36px;height:36px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;border:none;color:var(--clr-text-light);z-index:10;transition:all .2s}
+.article-close:hover{background:var(--clr-primary);color:#fff}
+.article-cover{width:100%;height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.article-cover img{width:100%;height:100%;object-fit:cover}
+.article-content{padding:2rem}
+.article-content .article-cat{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3em .9em;border-radius:999px;background:rgba(120,53,15,.08);color:var(--clr-primary);margin-bottom:.8rem}
+.article-content h2{font-size:1.6rem;margin-bottom:.5rem}
+.article-content .article-byline{font-size:.8rem;color:var(--clr-text-muted);margin-bottom:1.5rem;display:flex;gap:1rem}
+.article-body{font-size:.95rem;line-height:2;color:var(--clr-text)}
+.article-body p{margin-bottom:1.2rem}
+.article-body h3{font-size:1.15rem;color:var(--clr-primary-dark);margin:2rem 0 .8rem}
+.article-body ul{padding-left:1.5rem;margin-bottom:1.2rem}
+.article-body ul li{margin-bottom:.5rem}
+.article-body strong{color:var(--clr-primary-dark)}
+.article-body .highlight{background:linear-gradient(180deg,transparent 60%,var(--clr-cream) 60%);padding:0 .2em}
+/* Share buttons */
+.share-btns{display:flex;gap:.6rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--clr-border)}
+.share-btn{width:36px;height:36px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:all .2s;font-size:.85rem;color:var(--clr-text-light)}
+.share-btn:hover{background:var(--clr-primary);color:var(--clr-white)}
 /* Footer */
 .footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:4rem 0 2rem}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
 .footer-brand .logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-white);margin-bottom:.8rem}
 .footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6}
-.footer-col h4{color:var(--clr-white);font-family:var(--font-body);font-size:.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
+.footer-col h4{color:var(--clr-white);font-size:.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
 .footer-col a{display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
 .footer-col a:hover{color:var(--clr-accent)}
 .social-links{display:flex;gap:.8rem;margin-top:1rem}
 .social-links a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:all .2s}
 .social-links a:hover{background:var(--clr-accent)}
 .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.35)}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:768px){.blog-card{grid-template-columns:1fr}.blog-card-img{width:100%;height:180px}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}.article-cover{height:180px}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="container"><a href="beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a></div></nav>
-<div class="page"><div class="container">
-  <h1>咖啡博客</h1>
-  <div class="coming-soon">
-    <div class="icon">📝</div>
-    <h2>即将上线</h2>
-    <p>我们正在准备丰富的咖啡内容，包括产地故事、冲煮技巧、行业资讯和专业知识分享。<br>敬请期待，或先浏览我们的<a href="beanleaf-coffee/products/index.html">咖啡豆产品</a>。</p>
-  </div>
-</div></div>
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
-            <ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity="0.3"/>
-          </svg>
-          BeanLeaf Coffee
-        </div>
-        <p>豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
-        <div class="social-links">
-          <a href="javascript:void(0)" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
-          <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
-          <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>产品</h4>
-        <a href="beanleaf-coffee/products/yirgacheffe.html">单品咖啡</a>
-        <a href="beanleaf-coffee/products/good-morning.html">拼配咖啡</a>
-        <a href="beanleaf-coffee/products/geisha.html">限量系列</a>
-        <a href="beanleaf-coffee/products/equipment.html">咖啡器具</a>
-      </div>
-      <div class="footer-col">
-        <h4>关于</h4>
-        <a href="beanleaf-coffee.html">品牌故事</a>
-        <a href="beanleaf-coffee.html#stores">门店查询</a>
-        <a href="blog.html">咖啡博客</a>
-        <a href="careers.html">加入我们</a>
-      </div>
-      <div class="footer-col">
-        <h4>支持</h4>
-        <a href="faq.html">常见问题</a>
-        <a href="shipping.html">配送说明</a>
-        <a href="returns.html">退换政策</a>
-        <a href="mailto:hello@beanleaf.coffee">联系我们</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 BeanLeaf Coffee. All rights reserved. | 沪ICP备2024XXXXXX号</p>
+<nav class="navbar"><div class="container">
+  <a href="beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
+  <div class="nav-right"><a href="coffee-academy.html" style="font-size:.85rem;font-weight:600;color:var(--clr-primary)">咖啡学院 →</a></div>
+</div></nav>
+
+<section class="blog-hero"><div class="container">
+  <span class="tag">Journal</span>
+  <h1>BeanLeaf <span>咖啡博客</span></h1>
+  <p>从埃塞俄比亚高原到你的杯子——产地故事、冲煮技巧、风味密码，每周更新。</p>
+</div></section>
+
+<section class="blog-grid"><div class="container">
+
+  <!-- Article 1 -->
+  <div class="blog-card" onclick="openArticle(1)">
+    <div class="blog-card-img"><img src="blog-images/blog-pour-over.webp" alt="手冲咖啡" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">冲煮指南</span>
+      <h2>手冲入门：从选豆到出杯，一套V60就够了</h2>
+      <p class="blog-card-excerpt">一台V60、一张滤纸、一把壶——精品咖啡的门槛，比你想象的低得多。这篇写给每一个想在家喝到好咖啡的人。</p>
+      <div class="blog-card-meta"><span>2026年5月20日</span><span>·</span><span>阅读 6 分钟</span></div>
     </div>
   </div>
-</footer>
-</body></html>
+
+  <!-- Article 2 -->
+  <div class="blog-card" onclick="openArticle(2)">
+    <div class="blog-card-img"><img src="blog-images/blog-colombia.webp" alt="哥伦比亚慧兰咖啡产区" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">产地故事</span>
+      <h2>走进哥伦比亚慧兰：海拔1500米的咖啡森林</h2>
+      <p class="blog-card-excerpt">安第斯山脉深处，咖啡树和香蕉树混种在一起。这里种出来的豆子，带着云雾的甜和火山土的厚。</p>
+      <div class="blog-card-meta"><span>2026年5月12日</span><span>·</span><span>阅读 8 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 3 -->
+  <div class="blog-card" onclick="openArticle(3)">
+    <div class="blog-card-img" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2,#FFCC80)"><svg viewBox="0 0 240 160" width="100%"><rect width="240" height="160" rx="8" fill="none"/><rect x="80" y="40" width="80" height="100" rx="4" fill="#78350F" opacity=".12"/><text x="120" y="85" text-anchor="middle" font-size="28">🏷️</text></svg></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">咖啡知识</span>
+      <h2>读懂咖啡包装标签：G1、水洗、SCA 88.5到底是什么</h2>
+      <p class="blog-card-excerpt">耶加雪菲 G1 水洗 SCA 88.5——这串字符里藏着一支豆子的全部身世。花5分钟，告别咖啡文盲。</p>
+      <div class="blog-card-meta"><span>2026年5月8日</span><span>·</span><span>阅读 5 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 4 -->
+  <div class="blog-card" onclick="openArticle(4)">
+    <div class="blog-card-img"><img src="blog-images/blog-cold-brew.webp" alt="冷萃咖啡" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">冲煮指南</span>
+      <h2>冷萃咖啡完全指南：比冰美式好喝一百倍的夏日秘密</h2>
+      <p class="blog-card-excerpt">不是把热咖啡倒进冰块里就叫冷萃。真正的冷萃是一场12小时的耐心等待——而结果值得。</p>
+      <div class="blog-card-meta"><span>2026年5月1日</span><span>·</span><span>阅读 7 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 5 -->
+  <div class="blog-card" onclick="openArticle(5)">
+    <div class="blog-card-img"><img src="blog-images/blog-ethiopia.webp" alt="埃塞俄比亚咖啡产区" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">产地故事</span>
+      <h2>埃塞俄比亚：咖啡从这里走向世界，耶加雪菲有什么不一样</h2>
+      <p class="blog-card-excerpt">咖啡的故乡，海拔两千米的Gedeo区。这里的咖啡树和香蕉、牛油果混种，每一颗樱桃都要在枝头红透。</p>
+      <div class="blog-card-meta"><span>2026年4月22日</span><span>·</span><span>阅读 9 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 6 -->
+  <div class="blog-card" onclick="openArticle(6)">
+    <div class="blog-card-img" style="background:linear-gradient(135deg,#FFECB3,#FFE082,#FFD54F)"><svg viewBox="0 0 240 160" width="100%"><rect width="240" height="160" rx="8" fill="none"/><circle cx="60" cy="70" r="20" fill="#78350F" opacity=".12"/><circle cx="120" cy="50" r="25" fill="#78350F" opacity=".08"/><circle cx="180" cy="70" r="18" fill="#78350F" opacity=".15"/><text x="120" y="110" text-anchor="middle" font-size="24" fill="#78350F" opacity=".3">水洗 · 日晒 · 蜜处理</text></svg></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">咖啡知识</span>
+      <h2>咖啡豆处理法全解析：水洗、日晒、蜜处理，哪种才是你的菜</h2>
+      <p class="blog-card-excerpt">同样的豆子，不同的处理法，喝起来可能完全不一样。这是咖啡风味最底层的秘密。</p>
+      <div class="blog-card-meta"><span>2026年4月15日</span><span>·</span><span>阅读 6 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 7 -->
+  <div class="blog-card" onclick="openArticle(7)">
+    <div class="blog-card-img" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9,#9FA8DA)"><svg viewBox="0 0 240 160" width="100%"><rect width="240" height="160" rx="8" fill="none"/><circle cx="80" cy="80" r="22" fill="#5C6BC0" opacity=".1"/><circle cx="120" cy="60" r="18" fill="#5C6BC0" opacity=".08"/><circle cx="160" cy="80" r="25" fill="#5C6BC0" opacity=".12"/><text x="120" y="110" text-anchor="middle" font-size="22" fill="#5C6BC0" opacity=".4">Cupping</text></svg></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">咖啡知识</span>
+      <h2>在家做杯测：像Q-Grader一样喝咖啡，只需要一个碗和一把勺子</h2>
+      <p class="blog-card-excerpt">杯测不是玄学。它是一套科学方法，帮你客观地判断一支咖啡的好坏。而且——很好玩。</p>
+      <div class="blog-card-meta"><span>2026年4月8日</span><span>·</span><span>阅读 7 分钟</span></div>
+    </div>
+  </div>
+
+  <!-- Article 8 -->
+  <div class="blog-card" onclick="openArticle(8)">
+    <div class="blog-card-img" style="background:linear-gradient(135deg,#EFEBE9,#D7CCC8,#BCAAA4)"><svg viewBox="0 0 240 160" width="100%"><rect width="240" height="160" rx="8" fill="none"/><rect x="60" y="35" width="50" height="60" rx="8" fill="#5D4037" opacity=".12"/><rect x="130" y="45" width="40" height="50" rx="6" fill="#5D4037" opacity=".08"/><circle cx="50" cy="105" r="15" fill="none" stroke="#5D4037" stroke-width="2" opacity=".15"/><text x="190" y="100" font-size="22">⚙️</text></svg></div>
+    <div class="blog-card-body">
+      <span class="blog-card-cat">咖啡知识</span>
+      <h2>咖啡器具选购指南：从200块到2000块，每一分钱花在哪</h2>
+      <p class="blog-card-excerpt">买咖啡器具最容易踩的坑：花冤枉钱买不需要的东西，或者在关键设备上将就。</p>
+      <div class="blog-card-meta"><span>2026年3月28日</span><span>·</span><span>阅读 8 分钟</span></div>
+    </div>
+  </div>
+
+</div></section>
+
+<!-- Article Modal -->
+<div class="article-overlay" id="articleOverlay" onclick="if(event.target===this)closeArticle()">
+  <div class="article-modal" id="articleModal"></div>
+</div>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#92400E" opacity=".3"/></svg>BeanLeaf Coffee</div>
+      <p>豆叶咖啡 — 从叶到杯，每一杯都与自然对话。坚持小批量手工烘焙，让咖啡回归本真。</p>
+      <div class="social-links">
+        <a href="javascript:void(0)" aria-label="微信"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/><path d="M16.688 12.156c-3.697 0-6.688 2.74-6.688 6.125 0 3.386 2.991 6.125 6.688 6.125 1.27 0 2.467-.328 3.492-.902a.675.675 0 01.654.025l1.281.76a.339.339 0 00.488-.35l-.333-1.234a.558.558 0 01.19-.611C24.065 21.175 25 19.71 25 18.28c0-3.385-2.991-6.125-6.688-6.125zm-2.524 3.398c.549 0 .996.43.996.96 0 .532-.446.962-.996.962-.55 0-.996-.43-.996-.961s.445-.96.996-.96zm5.071 0c.55 0 .997.43.997.96 0 .532-.446.962-.997.962-.55 0-.997-.43-.997-.961s.446-.96.997-.96z"/></svg></a>
+        <a href="#" aria-label="微博"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443zm-1.211-3.819c-.879-.64-1.05-1.57-.38-2.076.67-.506 1.901-.399 2.778.241.879.64 1.049 1.57.379 2.077-.67.505-1.9.398-2.777-.242zm.07-3.003c-.613-.428-.828-1.112-.478-1.529.35-.417 1.349-.408 1.961.02.612.429.828 1.113.478 1.53-.349.416-1.348.407-1.961-.02zm2.699 5.826c-.032.407-.338.712-.685.681-.879-.076-1.003-.475-1.083-.892-.082-.428.034-.782.382-.75.879.075 1.376.526 1.386.961zm6.1-6.605c.106-.243 0-.507-.305-.589-.763-.207-2.191.105-3.084.847-.03.028 0 .083.03.109.092.081.217.158.372.082.492-.233 1.676-.501 2.501-.11.187.09.396-.077.486-.339zm-.182-1.704c.07-.186-.02-.386-.229-.453-1.355-.426-3.5.239-4.594 1.236-.046.042-.011.1.038.129.138.093.294.183.401.079.844-.726 2.693-1.159 3.851-.669.203.078.426-.11.533-.322zm-.776-1.688c.113-.314-.012-.591-.281-.691-1.949-.586-4.854.242-6.544 1.734-.073.065-.025.162.063.19.217.08.426.194.573.061 1.278-1.059 3.612-1.657 5.486-1.049.264.082.558-.03.703-.245z"/></svg></a>
+        <a href="#" aria-label="小红书"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6h-9C6.672 8 6 8.672 6 9.5v5c0 .828.672 1.5 1.5 1.5h9c.828 0 1.5-.672 1.5-1.5v-5c0-.828-.672-1.5-1.5-1.5zm-7 2a.75.75 0 110-1.5.75.75 0 010 1.5zm4 4a3 3 0 11-6 0 3 3 0 016 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4><a href="beanleaf-coffee/products/yirgacheffe.html">单品咖啡</a><a href="beanleaf-coffee/products/good-morning.html">拼配咖啡</a><a href="beanleaf-coffee/products/geisha.html">限量系列</a><a href="beanleaf-coffee/products/equipment.html">咖啡器具</a>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4><a href="beanleaf-coffee.html">品牌故事</a><a href="beanleaf-coffee.html#stores">门店查询</a><a href="blog.html">咖啡博客</a><a href="coffee-academy.html">咖啡学院</a>
+    </div>
+    <div class="footer-col">
+      <h4>支持</h4><a href="faq.html">常见问题</a><a href="shipping.html">配送说明</a><a href="returns.html">退换政策</a><a href="mailto:hello@beanleaf.coffee">联系我们</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2024 BeanLeaf Coffee. All rights reserved.</p></div>
+</div></footer>
+
+<script>
+// Article content data
+const articles = {
+  1: {
+    cat: '冲煮指南', title: '手冲入门：从选豆到出杯，一套V60就够了',
+    date: '2026年5月20日', read: '6 分钟',
+    body: `<p>说来好笑。我第一次手冲的时候，心想：不就是往粉上倒热水嘛，能有多难？</p>
+<p>结果冲出来的那杯耶加雪菲，苦得像中药。我查了半小时攻略才发现——我磨得太细了，水温也太高了，而且闷蒸的时候我直接一大杯水全砸进去了。</p>
+<p><strong>手冲咖啡</strong>这件事就是这样：看起来简单，但每一个变量都影响结果。好消息是，一旦你掌握了那几个关键变量，它比你想的简单。</p>
+<h3>你需要什么</h3>
+<p>一整套入门装备不会超过200块钱：</p>
+<ul>
+<li><strong>V60滤杯+滤纸</strong>（25块）：最经典的入门滤杯，锥形设计让水流集中萃取</li>
+<li><strong>手冲壶</strong>（80块）：细嘴壶能控制水流，初学者必入</li>
+<li><strong>手摇磨豆机</strong>（80块起）：现磨是手冲的灵魂，比预磨好喝一个档次</li>
+<li><strong>电子秤</strong>（30块）：计时+称重，精度到0.1g的那种</li>
+</ul>
+<p>就这四样。咖啡店那些看起来像实验室的设备——EK43磨豆机、Fellow温控壶、百瑞斯塔咖啡机——你暂时不需要。</p>
+<h3>六步法：从烧水到第一口</h3>
+<p><strong>第一步：烧水。</strong>浅烘92°C、中烘88°C。没有温控壶？水烧开后开盖等30秒，差不多就是93°C。</p>
+<p><strong>第二步：研磨。</strong>白砂糖粗细。太细会过萃发苦，太粗会萃取不足偏酸。网购咖啡粉的朋友，告诉店家你要手冲，他们会帮你调。</p>
+<p><strong>第三步：润纸。</strong>把滤纸放进滤杯，用热水冲一遍。这不只是在洗纸味，也是在预热滤杯——冷滤杯会让水温骤降。</p>
+<p><strong>第四步：闷蒸。</strong>把咖啡粉倒进去，轻轻摇平。注入粉量2倍的水（15g粉约30g水），等30秒。你会看到粉层像呼吸一样膨胀——那是二氧化碳排出的标志。这30秒，是萃取的基础。</p>
+<p><strong>第五步：注水。</strong>分2-3段注水。从中心向外画圈，水流稳定，不要冲到滤纸上。粉水比推荐1:15（15g粉→225g水）。整个过程2-3分钟。</p>
+<p><strong>第六步：趁热喝。</strong>别等凉了再喝。好咖啡在60-70°C时风味层次最丰富。端起杯子，先闻一闻，再小口啜饮——你喝到的不只是咖啡因，是一座山的阳光和雨。</p>
+<h3>如果不好喝，调整这三点</h3>
+<ul><li><strong>太苦</strong>→ 水太热或粉太细或时间太长。降温、磨粗、缩短注水时间。</li>
+<li><strong>太酸</strong>→ 水太冷或粉太粗。加温、磨细。</li>
+<li><strong>没啥味道</strong>→ 你可能用的是超市买的三个月前的预磨粉。换新鲜豆子。</li></ul>
+<p>手冲最迷人的地方在于：你可以控制一切。不像自动咖啡机那样按下按钮就完事，你要烧水、要研磨、要注水、要计时——每一个动作都在影响最后那杯咖啡的味道。喝到一杯好喝的时候，你会觉得自己真的会冲咖啡了。那种成就感，速溶永远给不了。</p>`
+  },
+  2: {
+    cat: '产地故事', title: '走进哥伦比亚慧兰：海拔1500米的咖啡森林',
+    date: '2026年5月12日', read: '8 分钟',
+    body: `<p>飞到波哥大之后还要再坐6小时车，穿过云雾缭绕的安第斯山脉——才能到慧兰。</p>
+<p>这里的山比你想象的高。咖啡树和香蕉树、牛油果树混种在一起，阳光从树叶缝隙里漏下来。海拔1500米，昼夜温差大，咖啡樱桃成熟得慢，糖分积累得够。</p>
+<p><strong>慢，是这里最好的东西。</strong></p>
+<h3>为什么慧兰的豆子好喝</h3>
+<p>哥伦比亚是世界第三大咖啡生产国，而慧兰是它最出名的产区之一。原因简单：</p>
+<ul><li><strong>海拔够高</strong>：1500-1800米，低温让咖啡樱桃成熟更慢，风味物质积累更多</li>
+<li><strong>火山土</strong>：安第斯山脉的火山灰土富含矿物质，直接反映在杯中的甜感和厚度上</li>
+<li><strong>小农户模式</strong>：慧兰没有大型种植园，每家每户种几百棵咖啡树，手工采摘，只摘最红的</li></ul>
+<p>但也正因为是小农户，这里有一个尴尬的问题：<strong>年轻人不愿意留下来。</strong></p>
+<h3>Maria和她的杯测桌</h3>
+<p>我们在慧兰认识了Maria。三年前她是第一期"青年咖啡师"计划的学员，去波哥大学了半年烘焙和杯测，然后回村。</p>
+<p>现在她有一张杯测桌，摆在自己家的院子里。周边七个村子的人都来找她做品控——以前他们都是把豆子混在一起卖，价格被中间商压得很低。Maria帮他们分批次杯测、打分，<strong>高分的豆子可以单独卖精品价</strong>，收入翻了一倍还多。</p>
+<p>她跟我们说了一句很用力的话："以前村里人都觉得种咖啡没出息，现在有人排队等着跟我学品控。"</p>
+<p>这就是我们做"青年咖啡师"计划的理由。不是为了情怀，而是因为这件事管用。</p>
+<h3>一杯慧兰喝起来什么样</h3>
+<p>中烘的慧兰有一种特别的<span class="highlight">焦糖甜感</span>。不像浅烘耶加雪菲那样酸得明亮，慧兰更沉稳、更厚实——坚果、可可、烤杏仁的味道在尾韵里慢慢散开。适合一大早就喝，配面包，不需要加糖。</p>
+<p>水质对慧兰影响很大。如果你在家冲，建议用农夫山泉，别用自来水。水太硬会把甜感压住，喝起来扁平。</p>
+<p>下一次你端起一杯慧兰，不用刻意去想什么海拔、什么火山土。但如果你觉得今天的咖啡特别甜，可能正是因为那片云雾里的山坡，有人在天还没亮的时候就上山摘果了。</p>`
+  },
+  3: {
+    cat: '咖啡知识', title: '读懂咖啡包装标签：G1、水洗、SCA 88.5到底是什么',
+    date: '2026年5月8日', read: '5 分钟',
+    body: `<p>站在咖啡豆货架前面，看着包装上密密麻麻的标签——你可能是懵的。</p>
+<p>耶加雪菲 G1 水洗 SCA 88.5 烘焙日期2026-05-01</p>
+<p>这串字符里藏着一支豆子的<strong>全部身世</strong>。而大部分人只会看价格。今天花5分钟，教你看懂每一行。</p>
+<h3>G1 = 等级</h3>
+<p>不同国家有不同的分级体系。埃塞俄比亚用<strong>G1-G5</strong>（G1最好，瑕疵豆最少），肯尼亚用<strong>AA/AB/PB</strong>（AA是最大颗粒），哥伦比亚用<strong>Supremo/Excelso</strong>（按大小筛分）。</p>
+<p>注意：等级≠风味。G1只说明瑕疵少、颗粒大，但不代表它一定比一支G3的豆子好喝。杯测分数才是风味标准。</p>
+<h3>水洗 = 处理法</h3>
+<p><strong>水洗</strong>：去皮去果肉后在水里发酵，冲洗干净再晒。风味干净、明亮、酸质突出。耶加雪菲、肯尼亚基本都走这条路。</p>
+<p><strong>日晒</strong>：整颗樱桃直接晒。果肉糖分渗透进豆子，甜感更高，带酒香、果脯味。好的日晒豆有爆米花般的甜香。</p>
+<p><strong>蜜处理</strong>：介于水洗和日晒之间，保留部分果肉一起晒。兼具干净度和甜感。</p>
+<h3>SCA 88.5 = 杯测分数</h3>
+<p>SCA（精品咖啡协会）的杯测标准百分制：</p>
+<ul><li><strong>80-84分</strong>：精品入门</li><li><strong>85-89分</strong>：非常优秀的精品咖啡</li><li><strong>90分以上</strong>：卓越级别，通常只在顶级咖啡馆和拍卖会上出现</li></ul>
+<p>一支88分的豆子和一支82分的豆子，价格可能差两三倍。我们自己的产品都会在详情页标杯测分数——这是对顾客的尊重。</p>
+<h3>烘焙日期 ≠ 保质期</h3>
+<p>咖啡的最佳赏味期是<strong>烘焙后7-30天</strong>。刚烘好的豆子前3天在排气，风味还在发育；超过一个月，香气就开始衰减。我们坚持烘焙后48小时内发出，就是为了让你在最佳窗口期喝到它。</p>
+<p>下次买豆子，别再只看价格了。翻过来看一看标签——你手里的那袋，可能是一支来自海拔2000米的、手工挑选的、杯测88分的好咖啡。</p>`
+  },
+  4: {
+    cat: '冲煮指南', title: '冷萃咖啡完全指南：比冰美式好喝一百倍的夏日秘密',
+    date: '2026年5月1日', read: '7 分钟',
+    body: `<p>夏天最痛苦的事是什么？</p>
+<p>想喝冰咖啡，但不想出门。然后你在家做了一杯冰美式——热水冲完倒进冰块里，结果淡得像咖啡味的洗杯水。</p>
+<p><strong>冷萃不是热咖加冰。</strong>它是一种完全不同的东西。</p>
+<h3>冷萃为什么比冰美式好喝</h3>
+<p>高温萃取会带出咖啡中更多的酸和苦味物质。而冷水长时间浸泡（12-16小时），只萃取甜感和顺滑的油脂，几乎不萃取苦涩成分。</p>
+<p>结果就是：<strong>冷萃发甜、不酸、像丝一样顺滑</strong>。即使不加糖不加奶，也能当饮料喝。</p>
+<h3>在家怎么做冷萃</h3>
+<p>你需要的东西可能就在厨房：</p>
+<ul><li>咖啡豆（推荐中烘或中深烘，我们的慧兰或早安拼配都很合适）</li><li>研磨机（调到最粗档）</li><li>一个密封罐</li><li>滤纸或纱布</li></ul>
+<p><strong>步骤：</strong></p>
+<p>1. 研磨60g咖啡豆，最粗档（像粗海盐）</p>
+<p>2. 倒进密封罐，加720ml冷水（粉水比1:12）</p>
+<p>3. 搅匀，盖上盖子，放冰箱</p>
+<p>4. 等12小时</p>
+<p>5. 用滤纸过滤两遍，去细粉</p>
+<p>6. 喝。冷藏可存3-5天。</p>
+<h3>几个让冷萃更好喝的秘密</h3>
+<ul><li><strong>不要用自来水</strong>。市售纯净水或矿泉水都行。水质占冷萃风味的40%。</li>
+<li><strong>过滤两次</strong>。第一次过滤完液体是浑浊的，第二次用咖啡滤纸过一遍，清澈透亮，口感更干净。</li>
+<li><strong>浓度可以调</strong>。1:12的比例是"直接喝"的浓度。如果你喜欢加奶做成冷萃拿铁，就用1:8做浓缩版。</li>
+<li><strong>不同豆子冷萃风味走向完全不一样</strong>。耶加雪菲冷萃喝起来像柑橘茶，瑰夏冷萃是高级的花果茶，深烘豆冷萃则像液体巧克力。建议同一批做两三瓶对比喝。</li></ul>
+<p>夏天还很长。这个周末，试试冷萃吧。把罐子放进冰箱，12小时后打开——那是整个夏天最好的味道。</p>`
+  },
+  5: {
+    cat: '产地故事', title: '埃塞俄比亚：咖啡从这里走向世界，耶加雪菲有什么不一样',
+    date: '2026年4月22日', read: '9 分钟',
+    body: `<p>咖啡的故事，应该从埃塞俄比亚讲起。</p>
+<p>传说公元9世纪，一个叫Kaldi的牧羊人发现他的山羊吃了一种红色浆果后整夜不睡觉。他把果子带给修道院，修士们觉得这东西可以帮他们在漫长的祷告中保持清醒——咖啡就这样进入了人类文明。</p>
+<p><strong>一千多年后，埃塞俄比亚仍然是全世界最重要的咖啡产地之一。</strong></p>
+<h3>Yirgacheffe：咖啡界的勃艮第</h3>
+<p>耶加雪菲是埃塞俄比亚南部Gedeo区的一个小镇。它在海拔1750-2200米的高原上——这个高度对咖啡来说是完美区间。</p>
+<p>这里的咖啡树不是种植园式的整齐排列，而是和香蕉、牛油果、遮荫树混种在一起。当地人称这种种法叫"<span class="highlight">森林咖啡</span>"——咖啡树在林冠层的保护下慢慢生长，阳光是过滤过的，雨水是充足的。</p>
+<p>这种种植方式影响了耶加雪菲最标志性的风味：<strong>柑橘酸质+茉莉花香+茶感回甘</strong>。</p>
+<h3>一个叫Tesfaye的咖农</h3>
+<p>我们在Gedeo认识了Tesfaye。他一家五口种了两千棵咖啡树。每年采收季，天还没亮他就上山——咖啡樱桃要在枝头红透才能摘，青的、半红的都不行。一棵树他可能要来回摘三四遍。</p>
+<p>他跟我们说过一句话我们记到现在：<span class="highlight">"好的豆子不是种出来的，是等出来的。"</span></p>
+<p>我们付给他的价格，比公平贸易基准线高25%。而且采收前就签合同——不管当年国际期货价格怎么跌，对他的价格不变。去年，这笔溢价帮他村子修了一条通往水洗站的碎石路。原来下雨天要扛着樱桃走四十分钟泥路，现在能推三轮车了。</p>
+<h3>怎么喝一杯好耶加雪菲</h3>
+<p>浅烘的耶加雪菲最适合手冲。92°C水温，中细研磨，1:15粉水比。你会先闻到柑橘和茉莉的香气——那是水洗埃塞俄比亚的标志。喝到嘴里，酸质明亮但不刺，像咬了一口橘子。咽下去之后，舌根有淡淡的甜，像喝完一口茉莉花茶后留下的回甘。</p>
+<p>如果你喝到的耶加雪菲不香、不酸、像中药——大概率是烘焙出了问题。耶加雪菲必须浅烘，深烘会烧掉它最珍贵的花香和柑橘调。</p>
+<p>下次喝耶加雪菲，不妨想想Tesfaye的山坡。每一颗豆子都有它的来处。</p>`
+  },
+  6: {
+    cat: '咖啡知识', title: '咖啡豆处理法全解析：水洗、日晒、蜜处理，哪种才是你的菜',
+    date: '2026年4月15日', read: '6 分钟',
+    body: `<p>你喝到的咖啡风味，60%由<strong>处理法</strong>决定。</p>
+<p>同样的豆子、同样的产地、同一片山坡上摘下来的——水洗处理和日晒处理，喝起来可能完全是两支不同的咖啡。</p>
+<h3>水洗（Washed）：干净明亮派</h3>
+<p>樱桃摘下来后，先用机器去掉外皮和果肉，然后放在水箱里发酵12-48小时。微生物吃掉豆子外面那层滑滑的果胶，再用水冲洗干净，最后晒干。</p>
+<p><strong>风味特征：干净、明亮、酸质突出、花香明显。</strong></p>
+<p>水洗法对水质和发酵时间要求严格，成本较高。但它能最纯粹地呈现豆子本味——没有杂味，风味线条清晰，像一张高分辨率的照片。</p>
+<p>代表：耶加雪菲（柑橘+茉莉）、肯尼亚AA（黑加仑+番茄）</p>
+<h3>日晒（Natural）：野性甜美派</h3>
+<p>最古老的处理法。整颗樱桃直接铺在晒床上晒——短则两周，长则一个月。果肉里的糖分慢慢渗透进豆子，发酵过程也在同步进行。</p>
+<p><strong>风味特征：甜感高、果香浓郁、酒香调、口感饱满。</strong></p>
+<p>风险也大：如果晒的天气不好，或者翻动不均匀，容易发霉。好的日晒豆有爆米花般的甜香和水果干的浓郁，差的则是一股发酵过度的烂水果味。</p>
+<p>代表：日晒埃塞俄比亚（蓝莓+酒香）、日晒瑰夏（蜜桃+玫瑰）</p>
+<h3>蜜处理（Honey）：黄金中庸派</h3>
+<p>去掉果皮但保留果胶一起晒。根据保留果胶的多少分为白蜜、黄蜜、红蜜、黑蜜（从少到多）。</p>
+<p><strong>风味特征：兼具水洗的干净和日晒的甜感。</strong></p>
+<p>蜜处理是哥斯达黎加的招牌。处理得当的蜜处理豆喝起来像加了蜂蜜的水洗豆——有酸质但不尖锐，有甜感但不腻。</p>
+<h3>你适合哪种？</h3>
+<ul><li>喜欢清爽、层次分明 → <strong>水洗</strong></li>
+<li>喜欢甜、浓郁、有"爆香" → <strong>日晒</strong></li>
+<li>想两者兼得 → <strong>蜜处理</strong></li></ul>
+<p>最好的方式是三支都买回来，同一时间冲、同一时间喝——那种差别会让你彻底理解什么叫"处理法决定风味"。</p>`
+  },
+  7: {
+    cat: '咖啡知识', title: '在家做杯测：像Q-Grader一样喝咖啡，只需要一个碗和一把勺子',
+    date: '2026年4月8日', read: '7 分钟',
+    body: `<p>杯测听起来很玄——穿白大褂的人围着一张桌子，拿勺子吸溜吸溜地喝，然后在表格上打分。</p>
+<p>但其实杯测的底层逻辑非常简单：<strong>用统一的方法比较不同咖啡，找出差异。</strong></p>
+<p>你不需要是Q-Grader。你只需要一个碗、一把勺子和两只以上的咖啡豆。</p>
+<h3>杯测有什么用</h3>
+<p>烘焙师用它来做品控——这批豆子和上一批味道一样吗？咖啡买手用它来选豆子——该买哪支？而普通人用它来<strong>训练自己的味觉</strong>。</p>
+<p>同时冲三支不同产区的咖啡，用完全一样的方法。你喝出来的差别——埃塞俄比亚的柑橘调 vs 哥伦比亚的焦糖甜——就是你自己发现的。比看一百篇品鉴笔记都管用。</p>
+<h3>杯测的傻瓜式流程</h3>
+<p><strong>1. 准备</strong>：每种咖啡称12g，研磨到比手冲稍粗（像粗砂糖）。分别放进碗里。</p>
+<p><strong>2. 闻干香</strong>：凑近碗口，深呼吸。记住每种咖啡的干香特征——花香、果香、巧克力？</p>
+<p><strong>3. 注水</strong>：200ml热水（约93°C），从粉面边缘注入，让粉层自然膨胀。不要搅。</p>
+<p><strong>4. 破渣</strong>：等4分钟。用勺子背面轻轻推开浮在表面的咖啡渣。这时候把头凑过去——那股热蒸汽里的香气，是整次杯测最浓的体验。</p>
+<p><strong>5. 捞沫</strong>：用两把勺子把浮在表面的泡沫和细粉捞掉。</p>
+<p><strong>6. 开始喝</strong>：勺子舀一勺，快速吸进嘴里（吸溜声不是装逼，是为了让咖啡液雾化覆盖整个口腔）。感受酸、甜、苦、厚度、余韵。</p>
+<h3>杯测打分简版</h3>
+<p>不用100分制那么复杂。你只需要关注四个维度：</p>
+<ul><li><strong>香气</strong>（干香/湿香）：有没有层次感？</li><li><strong>酸质</strong>：明亮还是沉闷？让人愉悦还是不适？</li><li><strong>甜感</strong>：咽下去之后舌根是否发甜？</li><li><strong>余韵</strong>：味道在嘴里停留多久？是什么味道？</li></ul>
+<p>在咖啡世界里，每个杯测师都有自己独特的杯测方式。有些人喜欢在温度下降后重新品尝，有些人则坚持在60°C左右一次性完成。无论如何，杯测最核心的价值就是——让每个人都能用自己的舌头来判断咖啡的好坏。而不仅仅听别人说。</p>`
+  },
+  8: {
+    cat: '咖啡知识', title: '咖啡器具选购指南：从200块到2000块，每一分钱花在哪',
+    date: '2026年3月28日', read: '8 分钟',
+    body: `<p>入坑手冲之后，你会发现一个残酷的事实：</p>
+<p><strong>设备比你想象的重要。</strong></p>
+<p>不是说非要花大钱。但一把好的手冲壶和一把随便买的壶，控水能力差得远。一台好的磨豆机更是——研磨均匀度直接决定萃取一致性。</p>
+<h3>三档预算方案</h3>
+<p><strong>入门档（200-400元）：</strong>V60滤杯+滤纸(25)、基础手冲壶(80)、入门手摇磨Hario(120)、厨房秤(30)。够用了。这套设备冲出来的咖啡已经甩星巴克几条街。</p>
+<p><strong>进阶档（800-1500元）：</strong>V60或Origami(100)、温控手冲壶Brewista(400)、泰摩栗子C2手摇磨(250)、Acaia秤平替(100)。温控壶是这档最有价值的升级——再也不用猜水温。</p>
+<p><strong>发烧档（3000元+）：</strong>EK43/小富士磨豆机(2000+)、Fellow温控壶(700)、Acaia Pearl秤(700)、各式滤杯各一。到这个级别，你在家冲的咖啡已经比90%的咖啡馆好了。</p>
+<h3>花钱的优先级</h3>
+<p><strong>第一优先：磨豆机。</strong>这是整个系统里每花一块钱回报率最高的设备。咖啡粉的均匀度直接决定萃取一致性。几百块的手摇磨和两千块的电磨，差别是你能明显喝出来的。</p>
+<p><strong>第二优先：秤。</strong>你必须知道自己冲了多少水、花了多少时间。没有数据，你永远不知道自己为什么今天冲得好明天冲得差。</p>
+<p><strong>第三优先：壶。</strong>控水能力影响萃取均匀度。好的细嘴壶让你随心所欲控制水流大小和方向。</p>
+<p><strong>第四优先：滤杯。</strong>V60、Origami、Kalita Wave、Chemex——不同滤杯设计影响流速和萃取方式。但这属于锦上添花，先把前三项弄好再来玩滤杯。</p>
+<h3>别买这些东西（除非你真的需要）</h3>
+<ul><li><strong>家用意式机</strong>（5000元以下的家用意式机基本是玩具，做不出好浓缩）</li><li><strong>虹吸壶</strong>（好看但麻烦，入门阶段纯属给自己找罪受）</li><li><strong>各种辅助小工具</strong>（布粉器、压粉锤、接粉杯——手冲玩家根本不需要）</li></ul>
+<p>入门的门槛不高，一条路很长。但正是这条路，带你去见不同产区的风土、不同处理法的表情、不同烘焙度的性格。欢迎来到手冲的世界。</p>`
+  }
+};
+
+function openArticle(id) {
+  const a = articles[id];
+  document.getElementById('articleModal').innerHTML = `
+    <button class="article-close" onclick="closeArticle()">×</button>
+    <div class="article-cover" style="background:linear-gradient(135deg,var(--clr-cream),var(--clr-bg))">
+      <svg viewBox="0 0 600 240" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+        <rect width="600" height="240" fill="none"/>
+        <text x="300" y="120" text-anchor="middle" font-size="48" opacity=".15">☕</text>
+      </svg>
+    </div>
+    <div class="article-content">
+      <span class="article-cat">${a.cat}</span>
+      <h2>${a.title}</h2>
+      <div class="article-byline"><span>${a.date}</span><span>·</span><span>阅读 ${a.read}</span></div>
+      <div class="article-body">${a.body}</div>
+      <div class="share-btns">
+        <button class="share-btn" title="分享到微信" onclick="event.stopPropagation()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.482c-.09.333.29.593.568.408l1.548-.927a.712.712 0 01.706-.04c1.24.573 2.628.882 4.044.882.736 0 1.448-.107 2.12-.302a7.65 7.65 0 01-.193-2.009c0-3.703 2.965-6.75 6.694-7.053a6.14 6.14 0 00-.7-.36C15.639 2.655 12.106 2.19 8.691 2.19zM5.82 7.437c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.599 0-1.083-.475-1.083-1.062 0-.586.484-1.061 1.083-1.061zm5.745 0c.598 0 1.083.475 1.083 1.061 0 .587-.485 1.062-1.083 1.062-.598 0-1.083-.475-1.083-1.062 0-.586.485-1.061 1.083-1.061z"/></svg></button>
+        <button class="share-btn" title="分享到微博" onclick="event.stopPropagation()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443z"/></svg></button>
+        <button class="share-btn" title="复制链接" onclick="event.stopPropagation();navigator.clipboard.writeText(location.href)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></button>
+      </div>
+    </div>`;
+  document.getElementById('articleOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeArticle() {
+  document.getElementById('articleOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
