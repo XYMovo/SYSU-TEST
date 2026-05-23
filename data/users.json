@@ -1,0 +1,11 @@
+[
+  {
+    "id": "u_admin_001",
+    "email": "admin@rawbean.com",
+    "passwordHash": "5c56219db69578a92224d7d55d4b9cebf42df05437d61c479d6e1a77988f07e9",
+    "name": "RAW BEAN 管理员",
+    "phone": "13800138000",
+    "isAdmin": true,
+    "createdAt": "2026-05-22T17:15:54.898Z"
+  }
+]
