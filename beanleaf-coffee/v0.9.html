@@ -1235,6 +1235,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   });
+});
 
   // ===== Cart System =====
   const CART_KEY = 'beanleaf_cart';
@@ -1313,7 +1314,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const isDark=document.documentElement.hasAttribute('data-theme');
     if(isDark){document.documentElement.removeAttribute('data-theme');dmBtn.textContent='🌙';localStorage.setItem('beanleaf_theme','light')}
     else{document.documentElement.setAttribute('data-theme','dark');dmBtn.textContent='☀️';localStorage.setItem('beanleaf_theme','dark')}
-  });
+    });
 </script>
 </body>
 </html>
