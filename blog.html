@@ -1,19 +1,131 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>咖啡博客 — BeanLeaf Coffee</title>
-<meta name="description" content="BeanLeaf Coffee咖啡博客：咖啡知识、冲煮技巧、产地故事、行业资讯。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
-<style>:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-border:#E5E0D5;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--radius-md:16px;--max-width:800px;--nav-height:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;-webkit-font-smoothing:antialiased}body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}a{color:inherit;text-decoration:none}h1,h2{font-family:var(--font-heading);font-weight:700}h1{font-size:2rem}h2{font-size:1.2rem}.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center}.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}.nav-logo svg{width:28px;height:28px}.page{padding-top:calc(var(--nav-height) + 3rem);padding-bottom:4rem;text-align:center}.coming-soon{background:var(--clr-white);border-radius:var(--radius-md);padding:3rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm);margin-top:2rem}.coming-soon .icon{font-size:4rem;margin-bottom:1rem}.coming-soon h2{margin-bottom:1rem;color:var(--clr-primary-dark)}.coming-soon p{color:var(--clr-text-light);line-height:1.8}footer{text-align:center;padding:2rem;color:var(--clr-text-light);font-size:.9rem}footer a{color:var(--clr-primary);text-decoration:underline}</style>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咖啡博客 | BeanLeaf Coffee</title>
+<meta name="description" content="BeanLeaf Coffee咖啡博客：手冲教程、产地故事、咖啡知识、冲煮技巧、行业资讯。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%2378350F'/></svg>">
+<style>
+:root{--clr-primary:#78350F;--clr-primary-dark:#451A03;--clr-primary-light:#92400E;--clr-accent:#FBBF24;--clr-accent-light:#FDE68A;--clr-cream:#FEF3C7;--clr-bg:#FFFBEB;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--font-heading:'Lora','Georgia','Noto Serif SC',serif;--font-body:'Raleway','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:900px;--nav-height:64px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;font-family:var(--font-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{color:var(--clr-text);background:var(--clr-bg);line-height:1.8}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,.post-title{font-family:var(--font-heading);font-weight:700;line-height:1.4}
+h1{font-size:2.2rem;color:var(--clr-primary-dark)}
+h2{font-size:1.4rem;color:var(--clr-primary-dark)}
+h3{font-size:1.1rem}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(255,251,235,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center;box-shadow:var(--shadow-sm)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark);transition:color .2s}
+.nav-logo:hover{color:var(--clr-primary)}
+.nav-logo svg{width:28px;height:28px}
+.nav-back{font-size:.9rem;color:var(--clr-primary);font-weight:500;transition:color .2s;display:flex;align-items:center;gap:.3rem}
+.nav-back:hover{color:var(--clr-primary-dark)}
+/* Page */
+.page{padding-top:calc(var(--nav-height) + 3rem);padding-bottom:5rem}
+.page-header{text-align:center;margin-bottom:3rem}
+.page-header p{color:var(--clr-text-light);margin-top:.5rem;font-size:1.05rem}
+/* Blog Grid */
+.blog-grid{display:grid;gap:2rem}
+.blog-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);transition:all .35s ease;cursor:pointer}
+.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--clr-primary-light)}
+.blog-card-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative}
+.blog-card:nth-child(1) .blog-card-img{background:linear-gradient(135deg,#FEF3C7,#FDE68A)}
+.blog-card:nth-child(2) .blog-card-img{background:linear-gradient(135deg,#EDE9D5,#D4C8A0)}
+.blog-card:nth-child(3) .blog-card-img{background:linear-gradient(135deg,#E8D5B7,#C9A96E)}
+.blog-card:nth-child(4) .blog-card-img{background:linear-gradient(135deg,#D4E8D0,#A8C8A0)}
+.blog-category{position:absolute;top:12px;left:12px;background:var(--clr-primary);color:var(--clr-white);font-size:.7rem;font-weight:700;padding:.3em .9em;border-radius:var(--radius-full);letter-spacing:.05em}
+.blog-card-body{padding:1.5rem}
+.blog-card-body .date{font-size:.8rem;color:var(--clr-text-muted);margin-bottom:.5rem}
+.blog-card-body .title{font-family:var(--font-heading);font-size:1.15rem;margin-bottom:.6rem;color:var(--clr-primary-dark);line-height:1.5}
+.blog-card-body .excerpt{font-size:.9rem;color:var(--clr-text-light);line-height:1.7;margin-bottom:1rem}
+.blog-card-body .read-more{display:inline-flex;align-items:center;gap:.3rem;color:var(--clr-primary);font-weight:600;font-size:.85rem;transition:gap .2s}
+.blog-card:hover .read-more{gap:.6rem}
+footer{text-align:center;padding:2.5rem;color:var(--clr-text-light);font-size:.85rem;border-top:1px solid var(--clr-border)}
+footer a{color:var(--clr-primary);font-weight:600;transition:color .2s}
+footer a:hover{color:var(--clr-primary-dark)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
 </head>
 <body>
-<nav class="navbar"><div class="container"><a href="beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/></svg>BeanLeaf Coffee</a></div></nav>
+<nav class="navbar"><div class="container">
+<a href="beanleaf-coffee.html" class="nav-logo"><svg viewBox="0 0 32 32"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#78350F"/></svg>BeanLeaf Coffee</a>
+<a href="beanleaf-coffee.html" class="nav-back">&larr; 返回首页</a>
+</div></nav>
+
 <div class="page"><div class="container">
-  <h1>咖啡博客</h1>
-  <div class="coming-soon">
-    <div class="icon">📝</div>
-    <h2>即将上线</h2>
-    <p>我们正在准备丰富的咖啡内容，包括产地故事、冲煮技巧、行业资讯和专业知识分享。<br>敬请期待，或先浏览我们的<a href="beanleaf-coffee/products/index.html">咖啡豆产品</a>。</p>
+<div class="page-header">
+<h1>咖啡博客</h1>
+<p>从冲煮技巧到产地故事，探索咖啡的无限可能</p>
+</div>
+
+<div class="blog-grid">
+<!-- Post 1 -->
+<article class="blog-card">
+  <div class="blog-card-img">
+    <span class="blog-category">冲煮指南</span>
+    <svg width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" rx="8" fill="#78350F" opacity="0.15"/><rect x="30" y="30" width="40" height="40" rx="6" fill="#78350F" opacity="0.25"/><circle cx="50" cy="50" r="12" fill="#FBBF24" opacity="0.5"/><text x="50" y="55" text-anchor="middle" font-size="14">☕</text></svg>
   </div>
+  <div class="blog-card-body">
+    <div class="date">2026年5月20日</div>
+    <div class="title">手冲咖啡入门指南：从零开始冲出第一杯好咖啡</div>
+    <p class="excerpt">手冲咖啡没有想象中那么复杂。掌握粉水比、水温、研磨度这三个核心变量，你也能在家冲出精品咖啡馆级别的好咖啡。本文带你从零开始，一步步拆解手冲全流程。</p>
+    <span class="read-more">阅读全文 &rarr;</span>
+  </div>
+</article>
+
+<!-- Post 2 -->
+<article class="blog-card">
+  <div class="blog-card-img">
+    <span class="blog-category">产地故事</span>
+    <svg width="100" height="100" viewBox="0 0 100 100"><polygon points="30,80 50,20 70,80" fill="#78350F" opacity="0.15"/><polygon points="50,20 70,80 90,20" fill="#92400E" opacity="0.1"/><text x="50" y="65" text-anchor="middle" font-size="20">🏔️</text></svg>
+  </div>
+  <div class="blog-card-body">
+    <div class="date">2026年5月12日</div>
+    <div class="title">走进埃塞俄比亚：耶加雪菲的故乡</div>
+    <p class="excerpt">海拔2000米的高原上，咖啡树在火山土壤中生长。这里日照充足、温差大、雨量充沛，造就了耶加雪菲独特的柑橘花香调。跟我们一起探访这片咖啡圣地。</p>
+    <span class="read-more">阅读全文 &rarr;</span>
+  </div>
+</article>
+
+<!-- Post 3 -->
+<article class="blog-card">
+  <div class="blog-card-img">
+    <span class="blog-category">咖啡知识</span>
+    <svg width="100" height="100" viewBox="0 0 100 100"><rect x="15" y="25" width="70" height="50" rx="6" fill="#78350F" opacity="0.12"/><circle cx="30" cy="50" r="8" fill="#FBBF24" opacity="0.4"/><circle cx="50" cy="50" r="8" fill="#452A0A" opacity="0.4"/><circle cx="70" cy="50" r="8" fill="#92400E" opacity="0.4"/></svg>
+  </div>
+  <div class="blog-card-body">
+    <div class="date">2026年5月5日</div>
+    <div class="title">烘焙度知多少：浅烘、中烘、深烘的区别与选择</div>
+    <p class="excerpt">同一支豆子，不同烘焙度会呈现截然不同的风味。浅烘保留更多花果香和酸质，深烘则突出焦糖和巧克力调。了解烘焙度的秘密，找到最适合你的那一杯。</p>
+    <span class="read-more">阅读全文 &rarr;</span>
+  </div>
+</article>
+
+<!-- Post 4 -->
+<article class="blog-card">
+  <div class="blog-card-img">
+    <span class="blog-category">冲煮技巧</span>
+    <svg width="100" height="100" viewBox="0 0 100 100"><ellipse cx="50" cy="40" rx="30" ry="10" fill="#78350F" opacity="0.2"/><rect x="30" y="40" width="40" height="35" rx="4" fill="#78350F" opacity="0.15"/><path d="M55 50L65 60M45 50L35 60" stroke="#FBBF24" stroke-width="3" opacity="0.5"/><text x="50" y="85" text-anchor="middle" font-size="14">⏱️</text></svg>
+  </div>
+  <div class="blog-card-body">
+    <div class="date">2026年4月28日</div>
+    <div class="title">水温对咖啡风味的影响有多大？</div>
+    <p class="excerpt">85°C和95°C冲同一支豆子，味道可能天差地别。水温影响萃取速率、溶解物质种类，进而左右酸甜苦的平衡。一文讲清水温选择的科学依据。</p>
+    <span class="read-more">阅读全文 &rarr;</span>
+  </div>
+</article>
+</div>
 </div></div>
-<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="beanleaf-coffee.html">返回首页</a></p></footer>
-</body></html>
+
+<footer><p>&copy; 2024 BeanLeaf Coffee | <a href="beanleaf-coffee.html">返回首页</a> | <a href="shipping.html">配送说明</a></p></footer>
+</body>
+</html>
