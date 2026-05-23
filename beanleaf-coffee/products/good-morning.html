@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早安拼配 - Good Morning Blend | BeanLeaf Coffee</title>
+<style>
+/* ===== CSS Variables ===== */
+:root {
+  --clr-primary: #2D6A4F;
+  --clr-primary-dark: #1B4332;
+  --clr-primary-light: #40916C;
+  --clr-accent: #D4A574;
+  --clr-accent-light: #E8D0B3;
+  --clr-cream: #FEFAE0;
+  --clr-cream-light: #FFFAED;
+  --clr-bg: #FAF9F6;
+  --clr-white: #FFFFFF;
+  --clr-text: #1A1A2E;
+  --clr-text-light: #5C6370;
+  --clr-text-muted: #8B8E96;
+  --clr-border: #E5E0D5;
+  --clr-success: #52B788;
+  --clr-error: #E76F51;
+  --clr-warm: #D4B896;
+  --font-heading: 'Georgia', 'Noto Serif SC', serif;
+  --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,.12);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --max-width: 1100px;
+  --nav-height: 72px;
+}
+
+/* ===== Reset ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+
+/* ===== Typography ===== */
+h1,h2,h3,h4{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+h1{font-size:clamp(2.2rem,4.5vw,3.2rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.01em}
+h3{font-size:clamp(1.1rem,2vw,1.4rem)}
+p{color:var(--clr-text-light)}
+
+/* ===== Utility ===== */
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+.section{padding:4rem 0}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-header h2{margin-bottom:.4rem}
+.section-header p{max-width:520px;margin:0 auto;font-size:.95rem}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--clr-primary);background:rgba(45,106,79,.08);padding:.35em 1em;border-radius:var(--radius-full)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.7em 1.6em;border-radius:var(--radius-full);transition:all .25s ease;cursor:pointer}
+.btn-primary{background:var(--clr-primary);color:var(--clr-white)}
+.btn-primary:hover{background:var(--clr-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
+.btn-outline:hover{background:var(--clr-primary);color:var(--clr-white);transform:translateY(-2px)}
+.btn-warm{background:var(--clr-accent);color:var(--clr-white)}
+.btn-warm:hover{background:#C4955A;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+
+/* ===== Navbar ===== */
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:1000;transition:all .3s ease}
+.navbar.scrolled{box-shadow:var(--shadow-sm)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-logo .leaf-icon{width:30px;height:30px;flex-shrink:0}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-back-link{font-size:.88rem;font-weight:500;color:var(--clr-text-light);transition:color .2s;display:flex;align-items:center;gap:.35rem}
+.nav-back-link:hover{color:var(--clr-primary-dark)}
+.nav-lang{display:flex;gap:.25rem;background:var(--clr-border);border-radius:var(--radius-full);padding:3px}
+.nav-lang button{padding:.3em .8em;border-radius:var(--radius-full);font-size:.78rem;font-weight:600;color:var(--clr-text-light);transition:all .2s}
+.nav-lang button.active{background:var(--clr-white);color:var(--clr-primary-dark);box-shadow:var(--shadow-sm)}
+.cart-icon-btn{position:relative;padding:6px;color:var(--clr-text-light);transition:color .2s}
+.cart-icon-btn:hover{color:var(--clr-primary-dark)}
+.cart-badge{position:absolute;top:-2px;right:-6px;background:var(--clr-error);color:var(--clr-white);font-size:.65rem;font-weight:700;min-width:18px;height:18px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;line-height:1;padding:0 4px;transition:transform .3s cubic-bezier(.68,-.55,.27,1.55)}
+.cart-badge.pop{transform:scale(1.3)}
+.leaf-icon use{pointer-events:none}
+
+/* ===== Cart Drawer ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;width:400px;max-width:90vw;height:100vh;background:var(--clr-white);z-index:2001;box-shadow:var(--shadow-xl);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid var(--clr-border)}
+.cart-header h3{font-size:1.15rem;margin:0}
+.cart-close{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--clr-text-muted);transition:all .2s}
+.cart-close:hover{background:rgba(0,0,0,.05);color:var(--clr-text)}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--clr-text-muted)}
+.cart-empty svg{margin:0 auto;opacity:.3;margin-bottom:1rem}
+.cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--clr-border);align-items:center}
+.cart-item-img{width:56px;height:56px;border-radius:var(--radius-sm);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-info .name{font-weight:600;font-size:.9rem;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-info .size{font-size:.78rem;color:var(--clr-text-muted)}
+.cart-item-info .price{font-family:var(--font-heading);font-size:.9rem;color:var(--clr-primary-dark);margin-top:2px}
+.cart-item-qty{display:flex;align-items:center;gap:.4rem}
+.cart-item-qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--clr-border);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--clr-text-light);transition:all .15s}
+.cart-item-qty button:hover{border-color:var(--clr-primary);color:var(--clr-primary)}
+.cart-item-qty .qty-num{min-width:24px;text-align:center;font-weight:600;font-size:.9rem}
+.cart-item-remove{color:var(--clr-text-muted);padding:4px;transition:color .2s;margin-left:.5rem}
+.cart-item-remove:hover{color:var(--clr-error)}
+.cart-footer{padding:1.2rem 1.5rem;border-top:1px solid var(--clr-border);background:var(--clr-bg)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;font-size:1.05rem;font-weight:600}
+.cart-total .price{font-family:var(--font-heading);font-size:1.3rem;color:var(--clr-primary-dark)}
+.cart-footer .btn{width:100%;justify-content:center}
+
+/* ===== Hero ===== */
+.hero{min-height:75vh;display:flex;align-items:center;background:linear-gradient(170deg, #EAD7C3, #D4B896);position:relative;overflow:hidden;padding-top:var(--nav-height)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(45,106,79,.06) 0%, transparent 60%);pointer-events:none}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;position:relative;z-index:1}
+.hero-content .tag{margin-bottom:.8rem;background:rgba(45,106,79,.12)}
+.hero-content h1{color:var(--clr-primary-dark);margin-bottom:.3rem}
+.hero-content .subtitle{font-family:var(--font-heading);font-size:1.2rem;color:var(--clr-primary);margin-bottom:1rem;font-style:italic;letter-spacing:.03em}
+.hero-content .summary{font-size:1.1rem;color:var(--clr-text-light);max-width:460px;margin-bottom:1.5rem;line-height:1.7}
+.hero-visual{display:flex;justify-content:center;align-items:center}
+.hero-visual .blend-circle{width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,var(--clr-accent-light),var(--clr-accent));display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-xl);position:relative}
+.hero-visual .blend-circle .sun{position:absolute;top:-15px;right:-10px;font-size:3rem;opacity:.8}
+.hero-visual .blend-circle .cup-inner{font-size:5rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+
+/* ===== Origin Story ===== */
+.origin{background:var(--clr-white)}
+.origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.origin-text h2{color:var(--clr-primary-dark);margin-bottom:1rem}
+.origin-text p{font-size:1.02rem;line-height:1.9;color:var(--clr-text-light)}
+.origin-visual{display:flex;justify-content:center}
+.origin-visual svg{width:100%;max-width:400px}
+
+/* ===== Blend Recipe ===== */
+.blend-section .blend-card{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-md);border:1px solid var(--clr-border);max-width:700px;margin:0 auto}
+.blend-card h3{text-align:center;margin-bottom:1.8rem;color:var(--clr-primary-dark)}
+.blend-bars{display:flex;flex-direction:column;gap:1.2rem}
+.blend-bar-item{display:flex;align-items:center;gap:1rem}
+.blend-bar-label{min-width:130px;font-weight:600;font-size:.9rem;color:var(--clr-text)}
+.blend-bar-label .origin{font-size:.75rem;color:var(--clr-text-muted);display:block;font-weight:400}
+.blend-bar-track{flex:1;height:36px;background:var(--clr-bg);border-radius:var(--radius-full);overflow:hidden;position:relative}
+.blend-bar-fill{height:100%;border-radius:var(--radius-full);transition:width 1.2s cubic-bezier(.22,.61,.36,1);display:flex;align-items:center;justify-content:flex-end;padding-right:.8rem}
+.blend-bar-fill.brazil{background:linear-gradient(90deg, #5C3A1E, #8B5E3C)}
+.blend-bar-fill.ethiopia{background:linear-gradient(90deg, #C4955A, #D4A574)}
+.blend-bar-pct{font-weight:700;font-size:.9rem;color:var(--clr-white)}
+
+/* ===== Flavor Section ===== */
+.flavor-section .flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.flavor-bars-card{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+.flavor-bars-card h3{margin-bottom:1.5rem;color:var(--clr-primary-dark)}
+.flavor-bar{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.flavor-bar:last-child{margin-bottom:0}
+.flavor-bar .label{min-width:70px;font-size:.88rem;font-weight:500;color:var(--clr-text)}
+.flavor-bar .track{flex:1;height:10px;background:var(--clr-bg);border-radius:var(--radius-full);overflow:hidden}
+.flavor-bar .fill{height:100%;border-radius:var(--radius-full);transition:width 1s cubic-bezier(.22,.61,.36,1)}
+.flavor-bar .fill.acidity{background:linear-gradient(90deg,#F9A825,#FFB74D)}
+.flavor-bar .fill.sweetness{background:linear-gradient(90deg,#D4A574,#E8B88A)}
+.flavor-bar .fill.bitterness{background:linear-gradient(90deg,#795548,#A1887F)}
+.flavor-bar .fill.body{background:linear-gradient(90deg,#4E342E,#6D4C41)}
+.flavor-bar .score{min-width:24px;text-align:right;font-size:.78rem;color:var(--clr-text-muted);font-weight:600}
+.flavor-tags-card{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+.flavor-tags-card h3{margin-bottom:1.2rem;color:var(--clr-primary-dark)}
+.flavor-tags{display:flex;flex-wrap:wrap;gap:.6rem}
+.flavor-tag{display:inline-flex;align-items:center;gap:.4rem;padding:.45em 1em;border-radius:var(--radius-full);font-size:.88rem;font-weight:500;color:var(--clr-text)}
+.flavor-tag .emoji{font-size:1.1rem}
+
+/* ===== Specs ===== */
+.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:900px;margin:0 auto}
+.spec-item{background:var(--clr-white);border-radius:var(--radius-md);padding:1.5rem 1rem;text-align:center;border:1px solid var(--clr-border);transition:all .3s}
+.spec-item:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.spec-item .icon{font-size:1.8rem;margin-bottom:.5rem}
+.spec-item .spec-label{font-size:.75rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.spec-item .spec-value{font-size:.95rem;font-weight:600;color:var(--clr-primary-dark)}
+.spec-item .stars{color:var(--clr-accent);font-size:.85rem;letter-spacing:2px}
+
+/* ===== Brewing ===== */
+.brewing-card{background:linear-gradient(135deg,var(--clr-primary-dark),var(--clr-primary));border-radius:var(--radius-lg);padding:2.5rem;color:var(--clr-white);max-width:750px;margin:0 auto;text-align:center}
+.brewing-card h2{color:var(--clr-white);margin-bottom:.6rem}
+.brewing-card .sub{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.95rem}
+.brewing-steps{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.brewing-step{text-align:center;min-width:120px}
+.brewing-step .step-icon{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-size:1.8rem}
+.brewing-step .step-title{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:.3rem}
+.brewing-step .step-value{font-size:1.1rem;font-weight:700}
+
+/* ===== Purchase ===== */
+.purchase-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.purchase-visual{display:flex;justify-content:center}
+.purchase-visual .pack-visual{width:280px;height:350px;background:linear-gradient(145deg,var(--clr-accent-light),var(--clr-accent));border-radius:var(--radius-lg);position:relative;box-shadow:var(--shadow-xl);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.purchase-visual .pack-visual .brand-text{font-family:var(--font-heading);font-size:1rem;color:var(--clr-primary-dark);font-weight:700;margin-top:.5rem}
+.purchase-visual .pack-visual .blend-name{font-family:var(--font-heading);font-size:1.6rem;color:var(--clr-white);font-weight:700}
+.purchase-visual .pack-visual .pack-label{position:absolute;bottom:20px;font-size:.75rem;color:var(--clr-primary-dark);background:var(--clr-white);padding:.25em 1em;border-radius:var(--radius-full)}
+.purchase-options h2{color:var(--clr-primary-dark);margin-bottom:.6rem}
+.purchase-options .desc{font-size:.95rem;color:var(--clr-text-light);margin-bottom:1.8rem}
+.option-cards{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
+.option-card{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.3rem;background:var(--clr-white);border:2px solid var(--clr-border);border-radius:var(--radius-md);cursor:pointer;transition:all .25s}
+.option-card:hover{border-color:var(--clr-accent);box-shadow:var(--shadow-sm)}
+.option-card.selected{border-color:var(--clr-primary);background:rgba(45,106,79,.04)}
+.option-card .size{font-weight:600;font-size:1.1rem;color:var(--clr-text)}
+.option-card .price{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--clr-primary-dark)}
+.option-card .per-g{font-size:.75rem;color:var(--clr-text-muted)}
+.purchase-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+
+/* ===== Related Products ===== */
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.related-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);transition:all .35s ease;cursor:pointer;text-decoration:none;display:block}
+.related-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.related-img{height:140px;display:flex;align-items:center;justify-content:center}
+.related-card:nth-child(1) .related-img{background:linear-gradient(135deg,#8B8378,#6E6352)}
+.related-card:nth-child(2) .related-img{background:linear-gradient(135deg,#D4C4A8,#C4A882)}
+.related-card:nth-child(3) .related-img{background:linear-gradient(135deg,#F5E6D3,#E8D5B7)}
+.related-img .bean-icon{font-size:3rem;opacity:.8}
+.related-info{padding:1rem 1.2rem}
+.related-info .cat{font-size:.7rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em}
+.related-info h3{font-size:1rem;margin:.2rem 0}
+.related-info .desc{font-size:.8rem;color:var(--clr-text-muted)}
+.related-info .price{font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--clr-primary-dark);margin-top:.4rem}
+
+/* ===== Footer ===== */
+.footer{background:var(--clr-primary-dark);color:rgba(255,255,255,.7);padding:3rem 0 1.5rem;text-align:center}
+.footer .logo{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--font-heading);font-size:1.1rem;color:var(--clr-white);margin-bottom:.5rem}
+.footer p{color:rgba(255,255,255,.5);font-size:.8rem}
+
+/* ===== Scroll Reveal ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== Toast ===== */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--clr-primary-dark);color:var(--clr-white);padding:.7em 1.6em;border-radius:var(--radius-full);font-size:.9rem;font-weight:600;z-index:3000;box-shadow:var(--shadow-lg);transition:transform .4s cubic-bezier(.68,-.55,.27,1.55);pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero .container{grid-template-columns:1fr;text-align:center}
+  .hero-content .summary{margin-left:auto;margin-right:auto}
+  .hero-visual{order:-1}
+  .hero-visual .blend-circle{width:220px;height:220px}
+  .origin-grid{grid-template-columns:1fr;gap:2rem}
+  .origin-visual{order:-1}
+  .origin-visual svg{max-width:300px}
+  .flavor-section .flavor-grid{grid-template-columns:1fr;gap:1.5rem}
+  .specs-grid{grid-template-columns:repeat(2,1fr)}
+  .purchase-grid{grid-template-columns:1fr;text-align:center}
+  .purchase-visual{order:-1}
+  .purchase-options .desc{margin-left:auto;margin-right:auto}
+  .purchase-actions{justify-content:center}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 640px) {
+  .section{padding:2.5rem 0}
+  .nav-back-link span{display:none}
+  .nav-back-link{font-size:.82rem}
+  .hero{min-height:60vh}
+  .hero-visual .blend-circle{width:180px;height:180px}
+  .hero-visual .blend-circle .cup-inner{font-size:3.5rem}
+  .specs-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+  .spec-item{padding:1rem .6rem}
+  .brewing-steps{gap:1.5rem}
+  .brewing-step{min-width:90px}
+  .brewing-step .step-icon{width:56px;height:56px;font-size:1.4rem}
+  .related-grid{grid-template-columns:1fr}
+  .blend-card{padding:1.5rem}
+  .blend-bar-label{min-width:100px;font-size:.8rem}
+  .blend-bar-track{height:28px}
+  .option-card{padding:.8rem 1rem}
+  .option-card .price{font-size:1.2rem}
+  .cart-drawer{width:100vw;max-width:100vw}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../../beanleaf-coffee.html" class="nav-logo">
+      <svg class="leaf-icon" viewBox="0 0 32 32" fill="none">
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
+        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+      </svg>
+      BeanLeaf Coffee
+    </a>
+    <div class="nav-right">
+      <a href="../../beanleaf-coffee.html#products" class="nav-back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span data-i18n="nav.back">返回商城</span>
+      </a>
+      <div class="nav-lang" id="langSwitcher">
+        <button class="active" data-lang="zh">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="cart-icon-btn" id="cartToggle" aria-label="购物车">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content reveal">
+      <span class="tag" data-i18n="hero.tag">拼配咖啡</span>
+      <h1 data-i18n="hero.title">早安拼配</h1>
+      <p class="subtitle">Good Morning Blend</p>
+      <p class="summary" data-i18n="hero.summary">巴西+埃塞俄比亚配方，坚果巧克力调，每日唤醒的第一杯</p>
+      <div class="hero-btns">
+        <a href="#purchase" class="btn btn-primary" data-i18n="hero.buy">立即购买</a>
+        <a href="#origin" class="btn btn-outline" style="border-color:var(--clr-primary-dark);color:var(--clr-primary-dark)" data-i18n="hero.story">了解更多</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="blend-circle">
+        <span class="sun">☀️</span>
+        <span class="cup-inner">☕</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Origin Story ===== -->
+<section class="section origin" id="origin">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="origin.tag">起源故事</span>
+      <h2 data-i18n="origin.title">一杯献给清晨的礼赞</h2>
+    </div>
+    <div class="origin-grid">
+      <div class="origin-visual reveal">
+        <svg viewBox="0 0 400 340" fill="none">
+          <!-- Brazil map shape -->
+          <ellipse cx="180" cy="140" rx="70" ry="55" fill="#2D6A4F" opacity=".15"/>
+          <text x="180" y="140" text-anchor="middle" font-size="11" fill="#1B4332" font-weight="bold" opacity=".6">BRAZIL</text>
+          <text x="180" y="155" text-anchor="middle" font-size="9" fill="#40916C" opacity=".5">Cerrado 60%</text>
+          <!-- Ethiopia map shape -->
+          <ellipse cx="260" cy="200" rx="60" ry="50" fill="#D4A574" opacity=".2"/>
+          <text x="260" y="200" text-anchor="middle" font-size="11" fill="#8B5E3C" font-weight="bold" opacity=".6">ETHIOPIA</text>
+          <text x="260" y="215" text-anchor="middle" font-size="9" fill="#A0522D" opacity=".5">Sidamo 40%</text>
+          <!-- Connecting line -->
+          <path d="M210 160C220 170 225 185 220 195" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".4"/>
+          <!-- Cup at center -->
+          <rect x="175" y="260" width="50" height="55" rx="8" fill="#D4A574" opacity=".8"/>
+          <rect x="184" y="255" width="32" height="8" rx="4" fill="#E8D0B3"/>
+          <ellipse cx="200" cy="320" rx="35" ry="6" fill="#C4A882" opacity=".5"/>
+          <text x="200" y="295" text-anchor="middle" font-size="11" fill="#1A1A2E" font-weight="bold">☕</text>
+          <!-- Steam -->
+          <path d="M188 248C186 240 190 233 188 226" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <path d="M200 246C199 238 203 231 202 224" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+          <path d="M212 248C214 240 210 233 212 226" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="origin-text reveal">
+        <p data-i18n="origin.text">早安拼配是对清晨的礼赞。我们精选巴西喜拉多产区的醇厚底豆（60%），搭配埃塞俄比亚西达摩的明亮层（40%），经过数百次杯测调配，找到了完美的平衡点。中深烘焙赋予它浓郁的坚果巧克力调，而埃塞俄比亚的果酸则为它注入了一丝明亮的清晨活力。无论是用以意式浓缩开启忙碌的工作日，还是用法压壶慢慢享受周末的早晨，早安拼配都是你的理想选择。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Blend Recipe ===== -->
+<section class="section blend-section" id="blend">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="blend.tag">拼配配方</span>
+      <h2 data-i18n="blend.title">精心的比例，完美的平衡</h2>
+    </div>
+    <div class="blend-card reveal">
+      <h3 data-i18n="blend.ratio">混合配比</h3>
+      <div class="blend-bars">
+        <div class="blend-bar-item">
+          <div class="blend-bar-label">
+            巴西<span class="origin">Cerrado</span>
+          </div>
+          <div class="blend-bar-track">
+            <div class="blend-bar-fill brazil" style="width:60%">
+              <span class="blend-bar-pct">60%</span>
+            </div>
+          </div>
+        </div>
+        <div class="blend-bar-item">
+          <div class="blend-bar-label">
+            埃塞俄比亚<span class="origin">Sidamo</span>
+          </div>
+          <div class="blend-bar-track">
+            <div class="blend-bar-fill ethiopia" style="width:40%">
+              <span class="blend-bar-pct">40%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Flavor Section ===== -->
+<section class="section flavor-section" id="flavor">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="flavor.tag">风味品鉴</span>
+      <h2 data-i18n="flavor.title">风味平衡</h2>
+    </div>
+    <div class="flavor-grid">
+      <div class="flavor-bars-card reveal">
+        <h3 data-i18n="flavor.bars_title">风味强度</h3>
+        <div class="flavor-bar">
+          <span class="label" data-i18n="flavor.acidity">酸度</span>
+          <div class="track"><div class="fill acidity" style="width:40%"></div></div>
+          <span class="score">2/5</span>
+        </div>
+        <div class="flavor-bar">
+          <span class="label" data-i18n="flavor.sweetness">甜度</span>
+          <div class="track"><div class="fill sweetness" style="width:80%"></div></div>
+          <span class="score">4/5</span>
+        </div>
+        <div class="flavor-bar">
+          <span class="label" data-i18n="flavor.bitterness">苦度</span>
+          <div class="track"><div class="fill bitterness" style="width:60%"></div></div>
+          <span class="score">3/5</span>
+        </div>
+        <div class="flavor-bar">
+          <span class="label" data-i18n="flavor.body">醇厚度</span>
+          <div class="track"><div class="fill body" style="width:100%"></div></div>
+          <span class="score">5/5</span>
+        </div>
+      </div>
+      <div class="flavor-tags-card reveal">
+        <h3 data-i18n="flavor.tags_title">风味标签</h3>
+        <div class="flavor-tags">
+          <span class="flavor-tag" style="background:#D4B896;">
+            <span class="emoji">🍫</span> 巧克力
+          </span>
+          <span class="flavor-tag" style="background:#E0C8A8;">
+            <span class="emoji">🥜</span> 烤坚果
+          </span>
+          <span class="flavor-tag" style="background:#E8D0B3;">
+            <span class="emoji">🍯</span> 焦糖
+          </span>
+          <span class="flavor-tag" style="background:#F5F0E6;">
+            <span class="emoji">🥛</span> 奶油
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Specs ===== -->
+<section class="section" id="specs">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="specs.tag">产品规格</span>
+      <h2 data-i18n="specs.title">详细信息</h2>
+    </div>
+    <div class="specs-grid reveal">
+      <div class="spec-item">
+        <div class="icon">🌍</div>
+        <div class="spec-label" data-i18n="specs.type_label">类型</div>
+        <div class="spec-value" data-i18n="specs.type">拼配</div>
+      </div>
+      <div class="spec-item">
+        <div class="icon">📐</div>
+        <div class="spec-label" data-i18n="specs.recipe_label">配方</div>
+        <div class="spec-value">巴西60%+埃塞40%</div>
+      </div>
+      <div class="spec-item">
+        <div class="icon">🔥</div>
+        <div class="spec-label" data-i18n="specs.roast_label">烘焙度</div>
+        <div class="stars">★★★★☆</div>
+        <div class="spec-value" style="font-size:.85rem" data-i18n="specs.roast">中深烘</div>
+      </div>
+      <div class="spec-item">
+        <div class="icon">☕</div>
+        <div class="spec-label" data-i18n="specs.use_label">适用</div>
+        <div class="spec-value" data-i18n="specs.use">意式浓缩/法压壶</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Brewing ===== -->
+<section class="section" id="brewing">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="brewing.tag">冲煮指南</span>
+      <h2 data-i18n="brewing.title">最佳冲煮建议</h2>
+    </div>
+    <div class="brewing-card reveal">
+      <div class="brewing-steps">
+        <div class="brewing-step">
+          <div class="step-icon">🔧</div>
+          <div class="step-title" data-i18n="brewing.equip_label">推荐器具</div>
+          <div class="step-value" data-i18n="brewing.equip">意式咖啡机</div>
+        </div>
+        <div class="brewing-step">
+          <div class="step-icon">🌡️</div>
+          <div class="step-title" data-i18n="brewing.temp_label">水温</div>
+          <div class="step-value">92°C</div>
+        </div>
+        <div class="brewing-step">
+          <div class="step-icon">⚖️</div>
+          <div class="step-title" data-i18n="brewing.dose_label">粉量</div>
+          <div class="step-value" data-i18n="brewing.dose">18g 双份</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Purchase ===== -->
+<section class="section" id="purchase">
+  <div class="container">
+    <div class="purchase-grid">
+      <div class="purchase-visual reveal">
+        <div class="pack-visual">
+          <span style="font-size:5rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.12))">☀️</span>
+          <span class="brand-text">BeanLeaf</span>
+          <span class="blend-name">早安拼配</span>
+          <span class="pack-label" data-i18n="purchase.fresh">新鲜烘焙</span>
+        </div>
+      </div>
+      <div class="purchase-options reveal">
+        <span class="tag" data-i18n="purchase.tag">立即购买</span>
+        <h2 data-i18n="purchase.title">早安拼配</h2>
+        <p class="desc" data-i18n="purchase.desc">选择你喜欢的规格，开始每一个美好的早晨。</p>
+        <div class="option-cards" id="optionCards">
+          <div class="option-card selected" data-id="250g" data-price="78" data-size="250g">
+            <span class="size">250g</span>
+            <div style="text-align:right">
+              <span class="price">¥78</span>
+              <div class="per-g">¥0.31/g</div>
+            </div>
+          </div>
+          <div class="option-card" data-id="500g" data-price="138" data-size="500g">
+            <span class="size">500g</span>
+            <div style="text-align:right">
+              <span class="price">¥138</span>
+              <div class="per-g">¥0.28/g</div>
+            </div>
+          </div>
+        </div>
+        <div class="purchase-actions">
+          <button class="btn btn-warm" id="addToCartBtn" style="font-size:1.05rem;padding:.75em 2.5em" data-i18n="purchase.add_cart">加入购物车</button>
+          <button class="btn btn-outline" id="buyNowBtn" data-i18n="purchase.buy_now">立即购买</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Related Products ===== -->
+<section class="section" id="related">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag" data-i18n="related.tag">相关推荐</span>
+      <h2 data-i18n="related.title">你可能也会喜欢</h2>
+    </div>
+    <div class="related-grid">
+      <a href="good-night.html" class="related-card reveal">
+        <div class="related-img">
+          <span class="bean-icon">🌙</span>
+        </div>
+        <div class="related-info">
+          <p class="cat" data-i18n="related.cat_blend">拼配咖啡</p>
+          <h3 data-i18n="related.p1_name">晚安拼配</h3>
+          <p class="desc" data-i18n="related.p1_desc">低因处理，柔和顺滑</p>
+          <p class="price">¥88 <span style="font-size:.7rem;color:var(--clr-text-muted);font-weight:400">/ 250g</span></p>
+        </div>
+      </a>
+      <a href="huila.html" class="related-card reveal">
+        <div class="related-img">
+          <span class="bean-icon">🏔️</span>
+        </div>
+        <div class="related-info">
+          <p class="cat" data-i18n="related.cat_single">单品咖啡</p>
+          <h3 data-i18n="related.p2_name">哥伦比亚 慧兰</h3>
+          <p class="desc" data-i18n="related.p2_desc">焦糖甜感，坚果风味</p>
+          <p class="price">¥98 <span style="font-size:.7rem;color:var(--clr-text-muted);font-weight:400">/ 250g</span></p>
+        </div>
+      </a>
+      <a href="yirgacheffe.html" class="related-card reveal">
+        <div class="related-img">
+          <span class="bean-icon">🌸</span>
+        </div>
+        <div class="related-info">
+          <p class="cat" data-i18n="related.cat_single">单品咖啡</p>
+          <h3 data-i18n="related.p3_name">埃塞俄比亚 耶加雪菲</h3>
+          <p class="desc" data-i18n="related.p3_desc">柑橘花香，明亮酸质</p>
+          <p class="price">¥128 <span style="font-size:.7rem;color:var(--clr-text-muted);font-weight:400">/ 250g</span></p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#52B788"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+      </svg>
+      BeanLeaf Coffee
+    </div>
+    <p>&copy; 2024 BeanLeaf Coffee. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== Cart Drawer ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3 data-i18n="cart.title">购物车</h3>
+    <button class="cart-close" id="cartClose" aria-label="关闭购物车">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+      </svg>
+      <p data-i18n="cart.empty">购物车是空的</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span data-i18n="cart.total">合计</span>
+      <span class="price" id="cartTotalPrice">¥0</span>
+    </div>
+    <button class="btn btn-primary" id="checkoutBtn" data-i18n="cart.checkout">去结算</button>
+  </div>
+</div>
+
+<!-- ===== Toast ===== -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== Scripts ===== -->
+<script>
+// ===== i18n Data =====
+const i18nData = {
+  zh: {
+    "nav.back": "返回商城",
+    "hero.tag": "拼配咖啡",
+    "hero.title": "早安拼配",
+    "hero.summary": "巴西+埃塞俄比亚配方，坚果巧克力调，每日唤醒的第一杯",
+    "hero.buy": "立即购买",
+    "hero.story": "了解更多",
+    "origin.tag": "起源故事",
+    "origin.title": "一杯献给清晨的礼赞",
+    "origin.text": "早安拼配是对清晨的礼赞。我们精选巴西喜拉多产区的醇厚底豆（60%），搭配埃塞俄比亚西达摩的明亮层（40%），经过数百次杯测调配，找到了完美的平衡点。中深烘焙赋予它浓郁的坚果巧克力调，而埃塞俄比亚的果酸则为它注入了一丝明亮的清晨活力。无论是用以意式浓缩开启忙碌的工作日，还是用法压壶慢慢享受周末的早晨，早安拼配都是你的理想选择。",
+    "blend.tag": "拼配配方",
+    "blend.title": "精心的比例，完美的平衡",
+    "blend.ratio": "混合配比",
+    "flavor.tag": "风味品鉴",
+    "flavor.title": "风味平衡",
+    "flavor.bars_title": "风味强度",
+    "flavor.tags_title": "风味标签",
+    "flavor.acidity": "酸度",
+    "flavor.sweetness": "甜度",
+    "flavor.bitterness": "苦度",
+    "flavor.body": "醇厚度",
+    "specs.tag": "产品规格",
+    "specs.title": "详细信息",
+    "specs.type_label": "类型",
+    "specs.type": "拼配",
+    "specs.recipe_label": "配方",
+    "specs.roast_label": "烘焙度",
+    "specs.roast": "中深烘",
+    "specs.use_label": "适用",
+    "specs.use": "意式浓缩/法压壶",
+    "brewing.tag": "冲煮指南",
+    "brewing.title": "最佳冲煮建议",
+    "brewing.equip_label": "推荐器具",
+    "brewing.equip": "意式咖啡机",
+    "brewing.temp_label": "水温",
+    "brewing.dose_label": "粉量",
+    "brewing.dose": "18g 双份",
+    "purchase.tag": "立即购买",
+    "purchase.title": "早安拼配",
+    "purchase.desc": "选择你喜欢的规格，开始每一个美好的早晨。",
+    "purchase.fresh": "新鲜烘焙",
+    "purchase.add_cart": "加入购物车",
+    "purchase.buy_now": "立即购买",
+    "related.tag": "相关推荐",
+    "related.title": "你可能也会喜欢",
+    "related.cat_blend": "拼配咖啡",
+    "related.cat_single": "单品咖啡",
+    "related.p1_name": "晚安拼配",
+    "related.p1_desc": "低因处理，柔和顺滑",
+    "related.p2_name": "哥伦比亚 慧兰",
+    "related.p2_desc": "焦糖甜感，坚果风味",
+    "related.p3_name": "埃塞俄比亚 耶加雪菲",
+    "related.p3_desc": "柑橘花香，明亮酸质",
+    "cart.title": "购物车",
+    "cart.empty": "购物车是空的",
+    "cart.total": "合计",
+    "cart.checkout": "去结算",
+    "toast.added": "已加入购物车"
+  },
+  en: {
+    "nav.back": "Back to Shop",
+    "hero.tag": "Blend Coffee",
+    "hero.title": "Good Morning Blend",
+    "hero.summary": "Brazil + Ethiopia formula, chocolate & nut notes, your daily wake-up cup",
+    "hero.buy": "Buy Now",
+    "hero.story": "Learn More",
+    "origin.tag": "Origin Story",
+    "origin.title": "A Tribute to the Morning",
+    "origin.text": "Good Morning Blend is a tribute to the early hours. We carefully selected the rich, bold base beans from Brazil's Cerrado region (60%), paired with the bright layers of Ethiopian Sidamo (40%). After hundreds of cupping trials, we found the perfect balance. Medium-dark roasting brings out rich chocolate and nutty notes, while the Ethiopian fruit acidity injects a spark of morning vitality. Whether you're kickstarting a busy workday with espresso or savoring a weekend morning with a French press, Good Morning Blend is your ideal companion.",
+    "blend.tag": "Blend Recipe",
+    "blend.title": "Meticulous Ratio, Perfect Balance",
+    "blend.ratio": "Blend Ratio",
+    "flavor.tag": "Tasting Notes",
+    "flavor.title": "Flavor Balance",
+    "flavor.bars_title": "Flavor Intensity",
+    "flavor.tags_title": "Flavor Notes",
+    "flavor.acidity": "Acidity",
+    "flavor.sweetness": "Sweetness",
+    "flavor.bitterness": "Bitterness",
+    "flavor.body": "Body",
+    "specs.tag": "Specifications",
+    "specs.title": "Details",
+    "specs.type_label": "Type",
+    "specs.type": "Blend",
+    "specs.recipe_label": "Recipe",
+    "specs.roast_label": "Roast",
+    "specs.roast": "Medium-Dark",
+    "specs.use_label": "Best For",
+    "specs.use": "Espresso / French Press",
+    "brewing.tag": "Brewing Guide",
+    "brewing.title": "Brewing Recommendations",
+    "brewing.equip_label": "Equipment",
+    "brewing.equip": "Espresso Machine",
+    "brewing.temp_label": "Temperature",
+    "brewing.dose_label": "Dose",
+    "brewing.dose": "18g Double Shot",
+    "purchase.tag": "Buy Now",
+    "purchase.title": "Good Morning Blend",
+    "purchase.desc": "Choose your preferred size and start every beautiful morning.",
+    "purchase.fresh": "Fresh Roasted",
+    "purchase.add_cart": "Add to Cart",
+    "purchase.buy_now": "Buy Now",
+    "related.tag": "You May Also Like",
+    "related.title": "Related Products",
+    "related.cat_blend": "Blend",
+    "related.cat_single": "Single Origin",
+    "related.p1_name": "Good Night Blend",
+    "related.p1_desc": "Decaf, smooth & mellow",
+    "related.p2_name": "Colombia Huila",
+    "related.p2_desc": "Caramel sweetness, nutty",
+    "related.p3_name": "Ethiopia Yirgacheffe",
+    "related.p3_desc": "Citrus floral, bright acidity",
+    "cart.title": "Cart",
+    "cart.empty": "Your cart is empty",
+    "cart.total": "Total",
+    "cart.checkout": "Checkout",
+    "toast.added": "Added to cart"
+  }
+};
+
+let currentLang = 'zh';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('#langSwitcher button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18nData[lang] && i18nData[lang][key]) {
+      const val = i18nData[lang][key];
+      if (val.includes('<br>') || val.includes('<span>')) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+}
+
+document.querySelectorAll('#langSwitcher button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// ===== Cart Logic =====
+const CART_KEY = 'beanleaf_cart';
+
+function getCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch(e) { return []; }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function updateCartBadge() {
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  if (total > 0) {
+    badge.style.display = 'flex';
+    badge.textContent = total;
+    badge.classList.add('pop');
+    setTimeout(() => badge.classList.remove('pop'), 300);
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function addToCart(product) {
+  const cart = getCart();
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  saveCart(cart);
+  updateCartBadge();
+  renderCartItems();
+  showToast(i18nData[currentLang]['toast.added']);
+}
+
+function updateCartItemQty(id, delta) {
+  let cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.id !== id);
+  }
+  saveCart(cart);
+  updateCartBadge();
+  renderCartItems();
+}
+
+function removeCartItem(id) {
+  let cart = getCart().filter(i => i.id !== id);
+  saveCart(cart);
+  updateCartBadge();
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const cart = getCart();
+  const itemsContainer = document.getElementById('cartItems');
+  const emptyEl = document.getElementById('cartEmpty');
+  const footer = document.getElementById('cartFooter');
+  const totalPrice = document.getElementById('cartTotalPrice');
+
+  let total = 0;
+
+  if (cart.length === 0) {
+    emptyEl.style.display = 'block';
+    footer.style.display = 'none';
+    // Remove item elements
+    itemsContainer.querySelectorAll('.cart-item').forEach(el => el.remove());
+    return;
+  }
+
+  emptyEl.style.display = 'none';
+  footer.style.display = 'block';
+
+  // Build items HTML
+  let html = '';
+  cart.forEach(item => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-img" style="background:${item.color || '#EAD7C3'}">
+          <span style="font-size:1.4rem">${item.emoji || '☕'}</span>
+        </div>
+        <div class="cart-item-info">
+          <div class="name">${item.name}</div>
+          <div class="size">${item.size}</div>
+          <div class="price">¥${itemTotal}</div>
+        </div>
+        <div class="cart-item-qty">
+          <button onclick="updateCartItemQty('${item.id}', -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button onclick="updateCartItemQty('${item.id}', 1)">+</button>
+        </div>
+        <button class="cart-item-remove" onclick="removeCartItem('${item.id}')" title="移除">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    `;
+  });
+
+  // Remove old items, preserve empty
+  itemsContainer.querySelectorAll('.cart-item').forEach(el => el.remove());
+  itemsContainer.insertAdjacentHTML('beforeend', html);
+
+  totalPrice.textContent = '¥' + total;
+}
+
+// ===== Cart Drawer Toggle =====
+const cartOverlay = document.getElementById('cartOverlay');
+const cartDrawer = document.getElementById('cartDrawer');
+
+function openCart() {
+  cartOverlay.classList.add('open');
+  cartDrawer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderCartItems();
+}
+
+function closeCart() {
+  cartOverlay.classList.remove('open');
+  cartDrawer.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cartToggle').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+// Close cart on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && cartDrawer.classList.contains('open')) {
+    closeCart();
+  }
+});
+
+// ===== Purchase Options =====
+let selectedOption = { size: '250g', price: 78 };
+
+document.querySelectorAll('#optionCards .option-card').forEach(card => {
+  card.addEventListener('click', function() {
+    document.querySelectorAll('#optionCards .option-card').forEach(c => c.classList.remove('selected'));
+    this.classList.add('selected');
+    selectedOption = {
+      size: this.dataset.size,
+      price: parseInt(this.dataset.price)
+    };
+  });
+});
+
+// ===== Add to Cart Button =====
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+  addToCart({
+    id: 'good-morning-' + selectedOption.size,
+    name: currentLang === 'zh' ? '早安拼配' : 'Good Morning Blend',
+    size: selectedOption.size,
+    price: selectedOption.price,
+    color: 'linear-gradient(135deg, #EAD7C3, #D4A574)',
+    emoji: '☀️'
+  });
+  closeCart();
+  setTimeout(openCart, 400);
+});
+
+// ===== Buy Now Button =====
+document.getElementById('buyNowBtn').addEventListener('click', function() {
+  addToCart({
+    id: 'good-morning-' + selectedOption.size,
+    name: currentLang === 'zh' ? '早安拼配' : 'Good Morning Blend',
+    size: selectedOption.size,
+    price: selectedOption.price,
+    color: 'linear-gradient(135deg, #EAD7C3, #D4A574)',
+    emoji: '☀️'
+  });
+  openCart();
+});
+
+// ===== Toast =====
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ===== Scroll Reveal =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== Blend Bars Animation =====
+const blendObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.blend-bar-fill').forEach(bar => {
+        const targetWidth = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            bar.style.width = targetWidth;
+          });
+        });
+      });
+      blendObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const blendCard = document.querySelector('.blend-card');
+if (blendCard) blendObserver.observe(blendCard);
+
+// ===== Flavor Bars Animation =====
+const flavorObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.fill').forEach(fill => {
+        const targetWidth = fill.style.width;
+        fill.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            fill.style.width = targetWidth;
+          });
+        });
+      });
+      flavorObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const flavorCard = document.querySelector('.flavor-bars-card');
+if (flavorCard) flavorObserver.observe(flavorCard);
+
+// ===== Smooth Scroll =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// ===== Init =====
+updateCartBadge();
+
+// Pre-render cart items on load
+(function() {
+  const cart = getCart();
+  if (cart.length > 0) renderCartItems();
+})();
+</script>
+</body>
+</html>

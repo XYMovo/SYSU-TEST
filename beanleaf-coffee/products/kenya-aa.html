@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>肯尼亚 AA — BeanLeaf Coffee</title>
+<style>
+  :root {
+    --clr-primary: #2D6A4F;
+    --clr-primary-dark: #1B4332;
+    --clr-primary-light: #40916C;
+    --clr-accent: #D4A574;
+    --clr-accent-light: #E8D0B3;
+    --clr-cream: #FEFAE0;
+    --clr-cream-light: #FFFAED;
+    --clr-bg: #FAF9F6;
+    --clr-white: #FFFFFF;
+    --clr-text: #1A1A2E;
+    --clr-text-light: #5C6370;
+    --clr-text-muted: #8B8E96;
+    --clr-border: #E5E0D5;
+    --clr-success: #52B788;
+    --clr-error: #E76F51;
+    --clr-tag-blackcurrant: #E1BEE7;
+    --clr-tag-tomato: #FFCCBC;
+    --clr-tag-wine: #D7CCC8;
+    --clr-tag-chocolate: #D4B896;
+    --font-heading: 'Georgia', 'Noto Serif SC', serif;
+    --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 999px;
+    --max-width: 1100px;
+    --nav-height: 72px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7;overflow-x:hidden;padding-bottom:80px}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+
+  h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+  p{color:var(--clr-text-light)}
+
+  .container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+
+  /* ===== Navbar ===== */
+  .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:1000;transition:all .3s ease}
+  .navbar.scrolled{box-shadow:var(--shadow-sm)}
+  .navbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo{display:flex;align-items:center;gap:.6rem;font-family:var(--font-heading);font-size:1.35rem;font-weight:700;color:var(--clr-primary-dark)}
+  .nav-logo svg{width:32px;height:32px;flex-shrink:0}
+  .nav-right{display:flex;align-items:center;gap:1.2rem}
+  .nav-back{font-weight:500;font-size:.9rem;color:var(--clr-text-light);display:flex;align-items:center;gap:.35rem;transition:color .2s}
+  .nav-back:hover{color:var(--clr-primary-dark)}
+  .nav-back svg{width:16px;height:16px}
+  .nav-lang{display:flex;gap:.25rem;background:var(--clr-border);border-radius:var(--radius-full);padding:3px}
+  .nav-lang button{padding:.35em .9em;border-radius:var(--radius-full);font-size:.8rem;font-weight:600;color:var(--clr-text-light);transition:all .2s}
+  .nav-lang button.active{background:var(--clr-white);color:var(--clr-primary-dark);box-shadow:var(--shadow-sm)}
+  .cart-trigger{position:relative;padding:6px;color:var(--clr-text-light);transition:color .2s}
+  .cart-trigger:hover{color:var(--clr-primary-dark)}
+  .cart-trigger svg{width:22px;height:22px}
+  .cart-badge{position:absolute;top:0;right:0;min-width:18px;height:18px;padding:0 5px;background:var(--clr-error);color:var(--clr-white);font-size:.65rem;font-weight:700;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;line-height:1;transform:translate(30%,-30%)}
+  .cart-badge:empty{display:none}
+
+  /* ===== Hero ===== */
+  .hero{min-height:70vh;display:flex;align-items:center;background:linear-gradient(170deg, #D4C4A8, #C4A882);position:relative;overflow:hidden;padding:calc(var(--nav-height) + 3rem) 0 4rem}
+  .hero::before{content:'';position:absolute;top:-25%;right:-10%;width:60%;height:120%;background:radial-gradient(ellipse, rgba(45,106,79,.1) 0%, transparent 70%);pointer-events:none}
+  .hero::after{content:'';position:absolute;bottom:-15%;left:-10%;width:50%;height:80%;background:radial-gradient(ellipse, rgba(212,167,116,.15) 0%, transparent 70%);pointer-events:none}
+  .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+  .hero-content .tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--clr-primary-dark);background:rgba(255,255,255,.5);padding:.4em 1.2em;border-radius:var(--radius-full);margin-bottom:1.2rem;backdrop-filter:blur(8px)}
+  .hero-content h1{font-size:clamp(2rem,4vw,3rem);color:var(--clr-primary-dark);margin-bottom:.3rem}
+  .hero-content .subtitle{font-family:var(--font-heading);font-size:1.1rem;color:var(--clr-text-light);font-style:italic;margin-bottom:1rem}
+  .hero-content .summary{font-size:1.05rem;color:var(--clr-text);max-width:460px;line-height:1.7}
+  .hero-visual{display:flex;justify-content:center;align-items:center}
+  .hero-visual svg{width:100%;max-width:380px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.12))}
+
+  /* ===== Section ===== */
+  .section{padding:4rem 0}
+  .section-title{font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--clr-primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+  .section-title .icon{width:24px;height:24px;color:var(--clr-primary);flex-shrink:0}
+
+  /* ===== Origin Story ===== */
+  .origin{background:var(--clr-white);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+  .origin p{font-size:1.02rem;line-height:2;color:var(--clr-text-light)}
+
+  /* ===== Flavor Grid ===== */
+  .flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+
+  .flavor-bars{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+  .flavor-bar{margin-bottom:1.2rem}
+  .flavor-bar:last-child{margin-bottom:0}
+  .flavor-bar-label{display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.9rem;font-weight:600;color:var(--clr-text)}
+  .flavor-bar-track{height:8px;background:var(--clr-border);border-radius:var(--radius-full);overflow:hidden}
+  .flavor-bar-fill{height:100%;border-radius:var(--radius-full);transition:width .6s ease}
+  .flavor-bar-fill.acidity{background:var(--clr-primary)}
+  .flavor-bar-fill.sweetness{background:var(--clr-accent)}
+  .flavor-bar-fill.bitterness{background:#6F4E37}
+  .flavor-bar-fill.body{background:var(--clr-primary-light)}
+
+  .flavor-tags{background:var(--clr-white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);display:flex;flex-direction:column;justify-content:center;gap:1rem}
+  .flavor-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:600;padding:.6em 1.2em;border-radius:var(--radius-full);color:var(--clr-text)}
+  .flavor-tag .tag-dot{width:10px;height:10px;border-radius:50%}
+
+  /* ===== Specs Table ===== */
+  .specs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+  .spec-card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.2rem 1.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);display:flex;gap:.8rem;align-items:flex-start}
+  .spec-card .spec-icon{width:36px;height:36px;border-radius:50%;background:rgba(45,106,79,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .spec-card .spec-icon svg{width:16px;height:16px;color:var(--clr-primary)}
+  .spec-card .spec-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--clr-text-muted);margin-bottom:.15rem}
+  .spec-card .spec-value{font-size:.9rem;font-weight:600;color:var(--clr-text)}
+
+  /* ===== Brewing ===== */
+  .brewing{background:var(--clr-white);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+  .brewing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .brewing-item{text-align:center;padding:1.2rem;background:var(--clr-bg);border-radius:var(--radius-md)}
+  .brewing-item .brew-icon{width:40px;height:40px;margin:0 auto .8rem;color:var(--clr-primary)}
+  .brewing-item .brew-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--clr-text-muted);margin-bottom:.25rem}
+  .brewing-item .brew-value{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--clr-primary-dark)}
+
+  /* ===== Purchase ===== */
+  .purchase{background:var(--clr-white);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border)}
+  .purchase-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .purchase-option{background:var(--clr-bg);border-radius:var(--radius-md);padding:1.8rem;text-align:center;border:2px solid transparent;cursor:pointer;transition:all .25s}
+  .purchase-option:hover{border-color:var(--clr-accent);box-shadow:var(--shadow-md)}
+  .purchase-option.selected{border-color:var(--clr-primary);background:rgba(45,106,79,.04)}
+  .purchase-option .size{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--clr-text-muted);margin-bottom:.4rem}
+  .purchase-option .price{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--clr-primary-dark);margin-bottom:.3rem}
+  .purchase-option .price .unit{font-size:.7rem;color:var(--clr-text-muted);font-weight:400;margin-left:.25rem}
+  .purchase-option .per-gram{font-size:.75rem;color:var(--clr-text-muted)}
+  .btn-add-cart{width:100%;margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:1em 0;font-size:1.05rem;font-weight:700;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);transition:all .25s;cursor:pointer}
+  .btn-add-cart:hover{background:var(--clr-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .btn-add-cart svg{width:20px;height:20px}
+
+  /* ===== Related Products ===== */
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .related-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--clr-border);transition:all .3s;cursor:pointer}
+  .related-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .related-card-img{height:120px;display:flex;align-items:center;justify-content:center}
+  .related-card:nth-child(1) .related-card-img{background:linear-gradient(135deg,#F5E6D3,#E8D5B7)}
+  .related-card:nth-child(2) .related-card-img{background:linear-gradient(135deg,#E8D5B7,#D4A574)}
+  .related-card:nth-child(3) .related-card-img{background:linear-gradient(135deg,#8B8378,#6E6352)}
+  .related-card-body{padding:1rem 1.2rem}
+  .related-card-body h3{font-size:1rem;margin-bottom:.15rem}
+  .related-card-body .price{font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--clr-primary-dark)}
+  .related-card-body .price .unit{font-size:.65rem;color:var(--clr-text-muted);font-weight:400}
+
+  /* ===== Cart Drawer ===== */
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
+  .cart-overlay.open{opacity:1;pointer-events:auto}
+  .cart-drawer{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:90vw;background:var(--clr-white);z-index:2001;box-shadow:var(--shadow-xl);transform:translateX(100%);transition:transform .35s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column}
+  .cart-drawer.open{transform:translateX(0)}
+  .cart-header{padding:1.5rem;border-bottom:1px solid var(--clr-border);display:flex;align-items:center;justify-content:space-between}
+  .cart-header h2{font-size:1.25rem}
+  .cart-close{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--clr-bg);transition:background .2s}
+  .cart-close:hover{background:var(--clr-border)}
+  .cart-close svg{width:18px;height:18px}
+  .cart-items{flex:1;overflow-y:auto;padding:1rem}
+  .cart-empty{text-align:center;padding:3rem 1rem;color:var(--clr-text-muted)}
+  .cart-empty svg{width:48px;height:48px;margin:0 auto .8rem;opacity:.3}
+  .cart-item{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--clr-border)}
+  .cart-item-img{width:56px;height:56px;border-radius:var(--radius-sm);background:linear-gradient(135deg,#D4C4A8,#C4A882);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem}
+  .cart-item-info{flex:1;min-width:0}
+  .cart-item-info .name{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cart-item-info .variant{font-size:.75rem;color:var(--clr-text-muted);margin-top:.1rem}
+  .cart-item-qty{display:flex;align-items:center;gap:.4rem}
+  .cart-item-qty button{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--clr-bg);font-weight:700;font-size:.85rem;transition:background .2s}
+  .cart-item-qty button:hover{background:var(--clr-border)}
+  .cart-item-qty span{min-width:24px;text-align:center;font-weight:600;font-size:.9rem}
+  .cart-item-price{font-family:var(--font-heading);font-weight:700;font-size:.95rem;min-width:60px;text-align:right;color:var(--clr-primary-dark)}
+  .cart-item-remove{color:var(--clr-text-muted);padding:4px;transition:color .2s}
+  .cart-item-remove:hover{color:var(--clr-error)}
+  .cart-item-remove svg{width:16px;height:16px}
+  .cart-footer{padding:1.5rem;border-top:1px solid var(--clr-border)}
+  .cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+  .cart-total .label{font-size:.9rem;font-weight:600}
+  .cart-total .amount{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--clr-primary-dark)}
+  .cart-checkout{width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.85em 0;font-size:1rem;font-weight:700;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);transition:all .25s}
+  .cart-checkout:hover{background:var(--clr-primary-dark);transform:translateY(-2px)}
+  .cart-checkout svg{width:18px;height:18px}
+
+  /* ===== Toast ===== */
+  .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--clr-primary-dark);color:var(--clr-white);padding:.8em 2em;border-radius:var(--radius-full);font-weight:600;font-size:.9rem;z-index:3000;transition:transform .35s cubic-bezier(.22,.61,.36,1);box-shadow:var(--shadow-lg)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .hero .container{grid-template-columns:1fr;text-align:center}
+    .hero-content .summary{margin:0 auto}
+    .hero-visual{order:-1}
+    .hero-visual svg{max-width:280px}
+    .flavor-grid{grid-template-columns:1fr}
+    .purchase-grid{grid-template-columns:1fr}
+    .related-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    .brewing-grid{grid-template-columns:repeat(3,1fr);gap:.8rem}
+  }
+  @media (max-width: 640px) {
+    .section{padding:2.5rem 0}
+    .hero{min-height:60vh}
+    .origin,.flavor-bars,.flavor-tags,.brewing,.purchase{padding:1.5rem}
+    .brewing-grid{grid-template-columns:1fr}
+    .specs-grid{grid-template-columns:1fr}
+    .cart-drawer{width:100vw;max-width:100vw}
+    .related-grid{grid-template-columns:1fr}
+    .nav-back span{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="../../beanleaf-coffee.html" class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/>
+        <path d="M16 6C16 6 16 2 16 6ZM16 28V20" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/>
+      </svg>
+      BeanLeaf Coffee
+    </a>
+    <div class="nav-right">
+      <a href="../../beanleaf-coffee.html#products" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        <span data-i18n="nav.back">返回商城</span>
+      </a>
+      <div class="nav-lang" id="langSwitcher">
+        <button class="active" data-lang="zh">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="cart-trigger" id="cartTrigger" aria-label="购物车">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="tag" data-i18n="hero.tag">单品咖啡</span>
+      <h1 data-i18n="hero.title">肯尼亚 AA</h1>
+      <p class="subtitle" data-i18n="hero.subtitle">Kenya AA</p>
+      <p class="summary" data-i18n="hero.summary">黑加仑与番茄酸甜感，层次丰富，口感如红酒般复杂</p>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 380 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="100" y="40" width="180" height="240" rx="24" fill="#5C4033"/>
+        <rect x="90" y="30" width="200" height="28" rx="14" fill="#8B7355"/>
+        <ellipse cx="190" cy="160" rx="70" ry="80" fill="#FEFAE0" opacity="0.12"/>
+        <circle cx="190" cy="140" r="50" fill="#D4A574" opacity="0.15"/>
+        <text x="190" y="115" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#FEFAE0" opacity="0.9" font-weight="bold">AA</text>
+        <text x="190" y="145" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#E8D0B3" opacity="0.8" letter-spacing="3">KENYA</text>
+        <line x1="150" y1="160" x2="230" y2="160" stroke="#D4A574" stroke-width="0.5" opacity="0.4"/>
+        <text x="190" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#D4A574" opacity="0.5">NYERI · KARATINA</text>
+        <text x="190" y="205" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#8B7355" opacity="0.5">SL28 & SL34</text>
+        <!-- cup score badge -->
+        <circle cx="190" cy="255" r="28" fill="#D4A574" opacity="0.2"/>
+        <text x="190" y="250" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#D4A574" font-weight="bold">87</text>
+        <text x="190" y="265" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#D4A574" opacity="0.7">CUP SCORE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Origin Story ===== -->
+<section class="section" id="origin">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <span data-i18n="origin.title">产地故事</span>
+    </h2>
+    <div class="origin">
+      <p data-i18n="origin.text">肯尼亚咖啡以爆炸性的果酸闻名于世。在Nyeri地区的Karatina产区，由SL28和SL34两个经典品种在不同海拔的梯田上生长。肯尼亚独特的水洗处理法（双重水洗发酵），赋予了咖啡无与伦比的纯净度和层次感。当你品尝这一杯时，会感受到黑加仑、番茄般的明亮酸度，仿佛一杯充满活力的红酒。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Flavor Profile ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span data-i18n="flavor.title">风味轮廓</span>
+    </h2>
+    <div class="flavor-grid">
+      <div class="flavor-bars">
+        <div class="flavor-bar">
+          <div class="flavor-bar-label"><span data-i18n="flavor.acidity">酸度</span><span>5/5</span></div>
+          <div class="flavor-bar-track"><div class="flavor-bar-fill acidity" style="width:100%"></div></div>
+        </div>
+        <div class="flavor-bar">
+          <div class="flavor-bar-label"><span data-i18n="flavor.sweetness">甜度</span><span>3/5</span></div>
+          <div class="flavor-bar-track"><div class="flavor-bar-fill sweetness" style="width:60%"></div></div>
+        </div>
+        <div class="flavor-bar">
+          <div class="flavor-bar-label"><span data-i18n="flavor.bitterness">苦度</span><span>2/5</span></div>
+          <div class="flavor-bar-track"><div class="flavor-bar-fill bitterness" style="width:40%"></div></div>
+        </div>
+        <div class="flavor-bar">
+          <div class="flavor-bar-label"><span data-i18n="flavor.body">醇厚度</span><span>3/5</span></div>
+          <div class="flavor-bar-track"><div class="flavor-bar-fill body" style="width:60%"></div></div>
+        </div>
+      </div>
+      <div class="flavor-tags">
+        <div class="flavor-tag" style="background:#E1BEE7"><span class="tag-dot" style="background:#AB47BC"></span>🫐 <span data-i18n="flavor.tag1">黑加仑</span></div>
+        <div class="flavor-tag" style="background:#FFCCBC"><span class="tag-dot" style="background:#FF7043"></span>🍅 <span data-i18n="flavor.tag2">番茄</span></div>
+        <div class="flavor-tag" style="background:#D7CCC8"><span class="tag-dot" style="background:#8D6E63"></span>🍷 <span data-i18n="flavor.tag3">红酒</span></div>
+        <div class="flavor-tag" style="background:#D4B896"><span class="tag-dot" style="background:#8B6914"></span>🍫 <span data-i18n="flavor.tag4">黑巧</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Specs ===== -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <span data-i18n="specs.title">产品参数</span>
+    </h2>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.origin">产地</div>
+          <div class="spec-value" data-i18n="specs.origin_val">肯尼亚, Nyeri</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.altitude">海拔</div>
+          <div class="spec-value" data-i18n="specs.altitude_val">1,600–2,000m</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.variety">品种</div>
+          <div class="spec-value" data-i18n="specs.variety_val">SL28, SL34</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.process">处理法</div>
+          <div class="spec-value" data-i18n="specs.process_val">水洗</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M4.93 19.07l4.24-4.24"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.roast">烘焙度</div>
+          <div class="spec-value" data-i18n="specs.roast_val">★★☆☆☆ 浅烘</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <div class="spec-label" data-i18n="specs.cupping">杯测</div>
+          <div class="spec-value" data-i18n="specs.cupping_val">87.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Brewing Guide ===== -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      <span data-i18n="brewing.title">冲煮建议</span>
+    </h2>
+    <div class="brewing">
+      <div class="brewing-grid">
+        <div class="brewing-item">
+          <svg class="brew-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <div class="brew-label" data-i18n="brewing.tool">推荐器具</div>
+          <div class="brew-value" data-i18n="brewing.tool_val">爱乐压</div>
+        </div>
+        <div class="brewing-item">
+          <svg class="brew-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>
+          <div class="brew-label" data-i18n="brewing.temp">水温</div>
+          <div class="brew-value">90°C</div>
+        </div>
+        <div class="brewing-item">
+          <svg class="brew-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg>
+          <div class="brew-label" data-i18n="brewing.ratio">粉水比</div>
+          <div class="brew-value">1:13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Purchase ===== -->
+<section class="section" id="purchase" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      <span data-i18n="purchase.title">购买</span>
+    </h2>
+    <div class="purchase">
+      <div class="purchase-grid" id="purchaseOptions">
+        <div class="purchase-option selected" data-size="250g" data-price="118">
+          <div class="size">250g</div>
+          <div class="price">¥118<span class="unit" data-i18n="purchase.per_bag">/袋</span></div>
+          <div class="per-gram" data-i18n="purchase.per_gram">¥0.47/g</div>
+        </div>
+        <div class="purchase-option" data-size="500g" data-price="208">
+          <div class="size">500g</div>
+          <div class="price">¥208<span class="unit" data-i18n="purchase.per_bag">/袋</span></div>
+          <div class="per-gram" data-i18n="purchase.per_gram">¥0.42/g</div>
+        </div>
+      </div>
+      <button class="btn-add-cart" id="btnAddCart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+        <span data-i18n="purchase.add_cart">加入购物车</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Related Products ===== -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span data-i18n="related.title">相关推荐</span>
+    </h2>
+    <div class="related-grid">
+      <a href="yirgacheffe.html" class="related-card">
+        <div class="related-card-img">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <rect x="15" y="10" width="50" height="60" rx="6" fill="#6F4E37"/>
+            <rect x="10" y="8" width="60" height="10" rx="5" fill="#8B6914"/>
+            <text x="40" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#FEFAE0" font-weight="bold">ETHIOPIA</text>
+          </svg>
+        </div>
+        <div class="related-card-body">
+          <h3 data-i18n="related.p1">埃塞俄比亚 耶加雪菲</h3>
+          <span class="price">¥128 <span class="unit">/ 250g</span></span>
+        </div>
+      </a>
+      <a href="huila.html" class="related-card">
+        <div class="related-card-img">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <rect x="15" y="10" width="50" height="60" rx="6" fill="#8B4513"/>
+            <rect x="10" y="8" width="60" height="10" rx="5" fill="#A0522D"/>
+            <text x="40" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#FEFAE0" font-weight="bold">COLOMBIA</text>
+          </svg>
+        </div>
+        <div class="related-card-body">
+          <h3 data-i18n="related.p2">哥伦比亚 慧兰</h3>
+          <span class="price">¥98 <span class="unit">/ 250g</span></span>
+        </div>
+      </a>
+      <a href="good-night.html" class="related-card">
+        <div class="related-card-img">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <rect x="15" y="10" width="50" height="60" rx="6" fill="#8B8378"/>
+            <rect x="10" y="8" width="60" height="10" rx="5" fill="#6E6352"/>
+            <text x="40" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#FEFAE0" font-weight="bold">GOOD NIGHT</text>
+          </svg>
+        </div>
+        <div class="related-card-body">
+          <h3 data-i18n="related.p3">晚安拼配</h3>
+          <span class="price">¥88 <span class="unit">/ 250g</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Cart Overlay + Drawer ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2 data-i18n="cart.title">购物车</h2>
+    <button class="cart-close" id="cartClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+      </svg>
+      <p data-i18n="cart.empty">购物车是空的</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="label" data-i18n="cart.total">合计</span>
+      <span class="amount" id="cartTotal">¥0</span>
+    </div>
+    <button class="cart-checkout" id="cartCheckout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="22" height="18" rx="2"/><line x1="1" y1="9" x2="23" y2="9"/></svg>
+      <span data-i18n="cart.checkout">去结算</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== Toast ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== i18n =====
+const i18nData = {
+  zh: {
+    "nav.back": "返回商城",
+    "hero.tag": "单品咖啡",
+    "hero.title": "肯尼亚 AA",
+    "hero.subtitle": "Kenya AA",
+    "hero.summary": "黑加仑与番茄酸甜感，层次丰富，口感如红酒般复杂",
+    "origin.title": "产地故事",
+    "origin.text": "肯尼亚咖啡以爆炸性的果酸闻名于世。在Nyeri地区的Karatina产区，由SL28和SL34两个经典品种在不同海拔的梯田上生长。肯尼亚独特的水洗处理法（双重水洗发酵），赋予了咖啡无与伦比的纯净度和层次感。当你品尝这一杯时，会感受到黑加仑、番茄般的明亮酸度，仿佛一杯充满活力的红酒。",
+    "flavor.title": "风味轮廓",
+    "flavor.acidity": "酸度",
+    "flavor.sweetness": "甜度",
+    "flavor.bitterness": "苦度",
+    "flavor.body": "醇厚度",
+    "flavor.tag1": "黑加仑",
+    "flavor.tag2": "番茄",
+    "flavor.tag3": "红酒",
+    "flavor.tag4": "黑巧",
+    "specs.title": "产品参数",
+    "specs.origin": "产地",
+    "specs.origin_val": "肯尼亚, Nyeri",
+    "specs.altitude": "海拔",
+    "specs.altitude_val": "1,600–2,000m",
+    "specs.variety": "品种",
+    "specs.variety_val": "SL28, SL34",
+    "specs.process": "处理法",
+    "specs.process_val": "水洗",
+    "specs.roast": "烘焙度",
+    "specs.roast_val": "★★☆☆☆ 浅烘",
+    "specs.cupping": "杯测",
+    "specs.cupping_val": "87.0",
+    "brewing.title": "冲煮建议",
+    "brewing.tool": "推荐器具",
+    "brewing.tool_val": "爱乐压",
+    "brewing.temp": "水温",
+    "brewing.ratio": "粉水比",
+    "purchase.title": "购买",
+    "purchase.per_bag": "/袋",
+    "purchase.per_gram": "¥0.47/g",
+    "purchase.add_cart": "加入购物车",
+    "related.title": "相关推荐",
+    "related.p1": "埃塞俄比亚 耶加雪菲",
+    "related.p2": "哥伦比亚 慧兰",
+    "related.p3": "晚安拼配",
+    "cart.title": "购物车",
+    "cart.empty": "购物车是空的",
+    "cart.total": "合计",
+    "cart.checkout": "去结算",
+    "toast.added": "已添加到购物车"
+  },
+  en: {
+    "nav.back": "Back to Shop",
+    "hero.tag": "Single Origin",
+    "hero.title": "Kenya AA",
+    "hero.subtitle": "Kenya AA",
+    "hero.summary": "Blackcurrant & tomato-like acidity, complex layers, wine-like mouthfeel",
+    "origin.title": "Origin Story",
+    "origin.text": "Kenyan coffee is world-renowned for its explosive fruity acidity. In the Karatina region of Nyeri, the classic SL28 and SL34 varieties grow on terraced farms at varying altitudes. Kenya's unique washed processing method (double fermentation) imparts unparalleled clarity and complexity. As you taste this cup, you'll experience bright acidity reminiscent of blackcurrant and tomato—like a vibrant glass of red wine.",
+    "flavor.title": "Flavor Profile",
+    "flavor.acidity": "Acidity",
+    "flavor.sweetness": "Sweetness",
+    "flavor.bitterness": "Bitterness",
+    "flavor.body": "Body",
+    "flavor.tag1": "Blackcurrant",
+    "flavor.tag2": "Tomato",
+    "flavor.tag3": "Red Wine",
+    "flavor.tag4": "Dark Chocolate",
+    "specs.title": "Specifications",
+    "specs.origin": "Origin",
+    "specs.origin_val": "Kenya, Nyeri",
+    "specs.altitude": "Altitude",
+    "specs.altitude_val": "1,600–2,000m",
+    "specs.variety": "Variety",
+    "specs.variety_val": "SL28, SL34",
+    "specs.process": "Process",
+    "specs.process_val": "Washed",
+    "specs.roast": "Roast Level",
+    "specs.roast_val": "★★☆☆☆ Light Roast",
+    "specs.cupping": "Cupping Score",
+    "specs.cupping_val": "87.0",
+    "brewing.title": "Brewing Guide",
+    "brewing.tool": "Recommended",
+    "brewing.tool_val": "AeroPress",
+    "brewing.temp": "Water Temp",
+    "brewing.ratio": "Ratio",
+    "purchase.title": "Purchase",
+    "purchase.per_bag": "/bag",
+    "purchase.per_gram": "$0.47/g",
+    "purchase.add_cart": "Add to Cart",
+    "related.title": "You May Also Like",
+    "related.p1": "Ethiopia Yirgacheffe",
+    "related.p2": "Colombia Huila",
+    "related.p3": "Good Night Blend",
+    "cart.title": "Cart",
+    "cart.empty": "Your cart is empty",
+    "cart.total": "Total",
+    "cart.checkout": "Checkout",
+    "toast.added": "Added to cart"
+  }
+};
+
+let currentLang = 'zh';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('#langSwitcher button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18nData[lang] && i18nData[lang][key]) {
+      const val = i18nData[lang][key];
+      if (val.includes('<br>') || val.includes('<span>')) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  updatePerGram();
+  renderCart();
+}
+
+document.querySelectorAll('#langSwitcher button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// ===== Navbar scroll =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// ===== Purchase option select =====
+let selectedSize = '250g';
+let selectedPrice = 118;
+const purchaseOptions = document.querySelectorAll('.purchase-option');
+purchaseOptions.forEach(opt => {
+  opt.addEventListener('click', () => {
+    purchaseOptions.forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedSize = opt.dataset.size;
+    selectedPrice = parseInt(opt.dataset.price);
+    updatePerGram();
+  });
+});
+
+function updatePerGram() {
+  const perGramEl = document.querySelectorAll('.per-gram');
+  const price = selectedPrice;
+  const grams = selectedSize === '250g' ? 250 : 500;
+  const perGram = (price / grams).toFixed(2);
+  perGramEl.forEach(el => {
+    el.textContent = currentLang === 'zh' ? `¥${perGram}/g` : `$${perGram}/g`;
+  });
+}
+
+// ===== Cart =====
+const CART_KEY = 'beanleaf_cart';
+
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function addToCart() {
+  const cart = getCart();
+  const existing = cart.find(item => item.id === 'kenya-aa' && item.size === selectedSize);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      id: 'kenya-aa',
+      nameZh: '肯尼亚 AA',
+      nameEn: 'Kenya AA',
+      size: selectedSize,
+      price: selectedPrice,
+      qty: 1
+    });
+  }
+  saveCart(cart);
+  updateCartBadge();
+  showToast();
+}
+
+function removeFromCart(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  updateCartBadge();
+  renderCart();
+}
+
+function updateQty(index, delta) {
+  const cart = getCart();
+  cart[index].qty += delta;
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+  saveCart(cart);
+  updateCartBadge();
+  renderCart();
+}
+
+function updateCartBadge() {
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = total > 0 ? total : '';
+}
+
+function renderCart() {
+  const cart = getCart();
+  const itemsEl = document.getElementById('cartItems');
+  const emptyEl = document.getElementById('cartEmpty');
+  const totalEl = document.getElementById('cartTotal');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '';
+    itemsEl.appendChild(emptyEl);
+    emptyEl.style.display = '';
+    totalEl.textContent = '¥0';
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  totalEl.textContent = '¥' + total;
+
+  itemsEl.innerHTML = cart.map((item, i) => {
+    const name = currentLang === 'zh' ? item.nameZh : item.nameEn;
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img">☕</div>
+        <div class="cart-item-info">
+          <div class="name">${name}</div>
+          <div class="variant">${item.size}</div>
+        </div>
+        <div class="cart-item-qty">
+          <button onclick="updateQty(${i},-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty(${i},1)">+</button>
+        </div>
+        <div class="cart-item-price">¥${item.price * item.qty}</div>
+        <button class="cart-item-remove" onclick="removeFromCart(${i})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== Cart Drawer =====
+const cartOverlay = document.getElementById('cartOverlay');
+const cartDrawer = document.getElementById('cartDrawer');
+const cartTrigger = document.getElementById('cartTrigger');
+const cartClose = document.getElementById('cartClose');
+
+function openCart() {
+  renderCart();
+  cartDrawer.classList.add('open');
+  cartOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  cartOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+cartTrigger.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+// ===== Toast =====
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.textContent = currentLang === 'zh' ? '已添加到购物车' : 'Added to cart';
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ===== Add to Cart Button =====
+document.getElementById('btnAddCart').addEventListener('click', () => {
+  addToCart();
+  openCart();
+});
+
+// ===== Checkout =====
+document.getElementById('cartCheckout').addEventListener('click', () => {
+  const cart = getCart();
+  if (cart.length === 0) return;
+  alert(currentLang === 'zh' ? '即将跳转到结算页面...' : 'Proceeding to checkout...');
+});
+
+// ===== Init =====
+updateCartBadge();
+</script>
+</body>
+</html>

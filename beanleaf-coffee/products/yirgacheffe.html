@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeanLeaf Coffee - 埃塞俄比亚 耶加雪菲 | Ethiopia Yirgacheffe</title>
+<style>
+/* ===== CSS Variables (Design System) ===== */
+:root {
+    --clr-primary: #2D6A4F; --clr-primary-dark: #1B4332; --clr-primary-light: #40916C;
+    --clr-accent: #D4A574; --clr-accent-light: #E8D0B3;
+    --clr-cream: #FEFAE0; --clr-cream-light: #FFFAED;
+    --clr-bg: #FAF9F6; --clr-white: #FFFFFF;
+    --clr-text: #1A1A2E; --clr-text-light: #5C6370; --clr-text-muted: #8B8E96;
+    --clr-border: #E5E0D5; --clr-success: #52B788;
+    --font-heading: 'Georgia','Noto Serif SC',serif;
+    --font-body: 'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06); --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+    --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+    --max-width: 1100px; --nav-height: 64px;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-body);
+    color: var(--clr-text);
+    background: var(--clr-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-height);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--clr-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+}
+.nav-left { display: flex; align-items: center; gap: 12px; }
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 20px; font-weight: 700;
+    color: var(--clr-primary-dark); text-decoration: none;
+    white-space: nowrap;
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.btn-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: var(--radius-sm);
+    background: var(--clr-cream); color: var(--clr-text);
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: all .2s; border: 1px solid transparent;
+}
+.btn-back:hover { background: var(--clr-cream-light); border-color: var(--clr-border); }
+.cart-trigger {
+    position: relative;
+    background: none; border: none; cursor: pointer;
+    font-size: 24px; padding: 4px; line-height: 1;
+}
+.cart-badge {
+    position: absolute; top: -2px; right: -6px;
+    background: var(--clr-primary); color: var(--clr-white);
+    font-size: 11px; width: 20px; height: 20px;
+    border-radius: var(--radius-full);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+}
+.lang-toggle {
+    background: none; border: 1px solid var(--clr-border);
+    padding: 6px 10px; border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 13px; color: var(--clr-text-light);
+    transition: all .2s;
+}
+.lang-toggle:hover { border-color: var(--clr-primary); color: var(--clr-primary); }
+
+/* ===== Main Content ===== */
+.main { padding-top: var(--nav-height); }
+
+/* ===== Section Container ===== */
+.section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 64px 24px;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    background: linear-gradient(170deg, #F5E6D3, #E8D5B7);
+    padding: 80px 24px 64px;
+    text-align: center;
+}
+.hero-inner { max-width: 720px; margin: 0 auto; }
+.tag-pill {
+    display: inline-block;
+    padding: 6px 20px; border-radius: var(--radius-full);
+    background: rgba(45,106,79,.12); color: var(--clr-primary-dark);
+    font-size: 14px; font-weight: 600; letter-spacing: .5px;
+    margin-bottom: 24px;
+}
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 40px; font-weight: 700;
+    color: var(--clr-text); line-height: 1.3;
+    margin-bottom: 8px;
+}
+.hero-subtitle {
+    font-size: 18px; color: var(--clr-text-light);
+    font-style: italic; margin-bottom: 16px;
+}
+.hero-summary {
+    font-size: 16px; color: var(--clr-text-light);
+    max-width: 480px; margin: 0 auto;
+}
+
+/* ===== Origin Story ===== */
+.origin-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+}
+.origin-image {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #2D6A4F 0%, #40916C 30%, #D4A574 70%, #E8D0B3 100%);
+    position: relative; overflow: hidden;
+}
+.origin-image::after {
+    content: '🌿'; position: absolute; bottom: 16px; right: 16px;
+    font-size: 48px; opacity: .6;
+}
+.origin-image::before {
+    content: '☕'; position: absolute; top: 16px; left: 16px;
+    font-size: 40px; opacity: .5;
+}
+.origin-content h2, .section-title {
+    font-family: var(--font-heading);
+    font-size: 28px; font-weight: 700;
+    color: var(--clr-text); margin-bottom: 20px;
+}
+.origin-content p {
+    color: var(--clr-text-light); font-size: 15px; line-height: 1.85;
+}
+
+/* ===== Flavor Profile ===== */
+.flavor-bars { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.flavor-bar-row { display: flex; align-items: center; gap: 12px; }
+.flavor-bar-label { width: 70px; font-size: 14px; color: var(--clr-text-light); font-weight: 500; text-align: right; flex-shrink: 0; }
+.flavor-bar { flex: 1; height: 10px; background: var(--clr-border); border-radius: var(--radius-full); overflow: hidden; }
+.flavor-bar-fill { height: 100%; background: linear-gradient(90deg, var(--clr-primary), var(--clr-primary-light)); border-radius: var(--radius-full); transition: width .6s ease; }
+.flavor-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.flavor-tag {
+    padding: 8px 18px; border-radius: var(--radius-full);
+    font-size: 14px; font-weight: 500;
+}
+
+/* ===== Tech Specs Grid ===== */
+.specs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.spec-card {
+    background: var(--clr-white); border-radius: var(--radius-md);
+    padding: 28px 20px; text-align: center;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--clr-border);
+    transition: box-shadow .2s;
+}
+.spec-card:hover { box-shadow: var(--shadow-md); }
+.spec-icon { font-size: 32px; margin-bottom: 12px; }
+.spec-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--clr-text-muted); margin-bottom: 8px; font-weight: 600;
+}
+.spec-value { font-size: 16px; color: var(--clr-text); font-weight: 600; line-height: 1.4; }
+
+/* ===== Brewing Guide ===== */
+.brew-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.brew-card {
+    background: var(--clr-cream); border-radius: var(--radius-md);
+    padding: 32px 20px; text-align: center;
+    border: 1px solid var(--clr-border);
+    font-size: 16px; font-weight: 600; color: var(--clr-text);
+}
+
+/* ===== Purchase Section ===== */
+.purchase-card {
+    background: var(--clr-white); border-radius: var(--radius-lg);
+    padding: 48px 40px; box-shadow: var(--shadow-md);
+    max-width: 600px; margin: 0 auto; text-align: center;
+}
+.size-options { display: flex; gap: 12px; justify-content: center; margin: 28px 0; }
+.size-option {
+    flex: 1; max-width: 200px;
+    padding: 16px 20px; border-radius: var(--radius-md);
+    border: 2px solid var(--clr-border);
+    background: var(--clr-bg); cursor: pointer;
+    transition: all .2s; text-align: center;
+}
+.size-option:hover { border-color: var(--clr-accent); }
+.size-option.active {
+    border-color: var(--clr-primary); background: rgba(45,106,79,.06);
+}
+.size-name { font-size: 15px; font-weight: 600; color: var(--clr-text); }
+.size-price { font-size: 20px; font-weight: 700; color: var(--clr-primary-dark); margin-top: 4px; }
+.btn-add-cart {
+    display: inline-block; width: 100%;
+    padding: 16px 32px; border-radius: var(--radius-sm);
+    background: var(--clr-primary); color: var(--clr-white);
+    border: none; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: all .2s;
+    font-family: var(--font-body);
+}
+.btn-add-cart:hover { background: var(--clr-primary-dark); }
+
+/* ===== Related Products ===== */
+.related-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.related-card {
+    border-radius: var(--radius-md); overflow: hidden;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+    box-shadow: var(--shadow-sm);
+}
+.related-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.related-card-bg {
+    aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center;
+}
+.related-card-body { padding: 16px 20px; background: var(--clr-white); }
+.related-card-name { font-size: 16px; font-weight: 600; color: var(--clr-text); }
+.related-card-price { font-size: 14px; color: var(--clr-primary); font-weight: 700; margin-top: 4px; }
+
+/* ===== Footer ===== */
+.footer {
+    background: #1B4332; color: var(--clr-cream-light);
+    text-align: center; padding: 32px 24px;
+}
+.footer a { color: var(--clr-accent-light); text-decoration: none; }
+.footer a:hover { color: var(--clr-cream); }
+
+/* ===== Cart Drawer ===== */
+.cart-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,.4); opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 380px; max-width: 90vw; z-index: 2001;
+    background: var(--clr-white); box-shadow: var(--shadow-lg);
+    transform: translateX(100%); transition: transform .3s ease;
+    display: flex; flex-direction: column;
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; border-bottom: 1px solid var(--clr-border);
+}
+.cart-header h3 { font-family: var(--font-heading); font-size: 20px; }
+.btn-close-cart {
+    background: none; border: none; font-size: 24px; cursor: pointer;
+    color: var(--clr-text-muted); line-height: 1; padding: 4px;
+}
+.cart-items {
+    flex: 1; overflow-y: auto; padding: 16px 24px;
+}
+.cart-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--clr-border);
+}
+.cart-item-info { flex: 1; }
+.cart-item-name { font-size: 14px; font-weight: 600; }
+.cart-item-size { font-size: 12px; color: var(--clr-text-muted); }
+.cart-item-price { font-size: 14px; font-weight: 700; color: var(--clr-primary-dark); margin-top: 2px; }
+.cart-qty {
+    display: flex; align-items: center; gap: 6px;
+}
+.cart-qty button {
+    width: 28px; height: 28px; border-radius: var(--radius-sm);
+    border: 1px solid var(--clr-border); background: var(--clr-bg);
+    cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+}
+.cart-qty span { min-width: 24px; text-align: center; font-weight: 600; }
+.btn-remove {
+    background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 18px; padding: 2px;
+}
+.cart-empty {
+    text-align: center; color: var(--clr-text-muted);
+    padding: 48px 0; font-size: 15px;
+}
+.cart-footer {
+    padding: 16px 24px; border-top: 1px solid var(--clr-border);
+}
+.cart-total {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 18px; font-weight: 700; margin-bottom: 12px;
+}
+.cart-total-price { color: var(--clr-primary-dark); }
+.btn-checkout {
+    width: 100%; padding: 14px;
+    border-radius: var(--radius-sm); border: none;
+    background: var(--clr-primary-dark); color: var(--clr-white);
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    font-family: var(--font-body);
+}
+.btn-checkout:hover { background: #143727; }
+
+/* ===== Toast ===== */
+.toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    background: var(--clr-primary-dark); color: var(--clr-white);
+    padding: 14px 28px; border-radius: var(--radius-full);
+    font-size: 15px; font-weight: 600; z-index: 3000;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    box-shadow: var(--shadow-lg);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-title { font-size: 28px; }
+    .hero-subtitle { font-size: 16px; }
+    .section { padding: 40px 16px; }
+    .origin-grid { grid-template-columns: 1fr; gap: 24px; }
+    .origin-image { aspect-ratio: 3/2; }
+    .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    .brew-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+    .purchase-card { padding: 32px 24px; }
+    .size-options { flex-direction: column; align-items: center; }
+    .size-option { max-width: 100%; width: 100%; }
+    .nav-logo { font-size: 16px; }
+    .btn-back { padding: 6px 12px; font-size: 13px; }
+    .section-title { font-size: 22px; }
+}
+@media (max-width: 480px) {
+    .specs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="../../beanleaf-coffee.html" class="nav-logo">BeanLeaf Coffee</a>
+    </div>
+    <div class="nav-right">
+        <a href="../../beanleaf-coffee.html#products" class="btn-back" data-i18n="nav.back">← 返回商店</a>
+        <button class="lang-toggle" onclick="toggleLang()" data-i18n="nav.lang">EN</button>
+        <button class="cart-trigger" onclick="openCart()">
+            🛒<span class="cart-badge" id="cartBadge" style="display:none">0</span>
+        </button>
+    </div>
+</nav>
+
+<main class="main">
+
+<!-- ===== Hero Section ===== -->
+<section class="hero">
+    <div class="hero-inner">
+        <span class="tag-pill" data-i18n="hero.tag">单品咖啡</span>
+        <h1 class="hero-title" data-i18n="hero.title">埃塞俄比亚 耶加雪菲</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Ethiopia Yirgacheffe</p>
+        <p class="hero-summary" data-i18n="hero.summary">柑橘与茉莉花香，明亮酸质，回甘悠长</p>
+    </div>
+</section>
+
+<!-- ===== Origin Story Section ===== -->
+<section class="section">
+    <div class="origin-grid">
+        <div class="origin-image"></div>
+        <div class="origin-content">
+            <h2 data-i18n="origin.title">产地故事</h2>
+            <p data-i18n="origin.text">在埃塞俄比亚高原上，咖啡是一种生活方式。耶加雪菲产区位于海拔1750-2200米的Gedeo地区，这里是被誉为"咖啡诞生地"的埃塞俄比亚最负盛名的产区之一。咖啡樱桃生长在红棕色火山土壤中，由世代种植咖啡的咖农手工采摘。水洗处理赋予它纯净的风味，展现出耶加雪菲标志性的柑橘和花香调性——这正是我们钟情于它的理由。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Flavor Profile Section ===== -->
+<section class="section">
+    <h2 class="section-title" data-i18n="flavor.title">风味特征</h2>
+    <div class="flavor-bars">
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavor.acidity">酸度</span>
+            <div class="flavor-bar"><div class="flavor-bar-fill" style="width:80%"></div></div>
+            <span style="font-size:13px;color:var(--clr-text-muted);min-width:28px">4/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavor.sweetness">甜度</span>
+            <div class="flavor-bar"><div class="flavor-bar-fill" style="width:80%"></div></div>
+            <span style="font-size:13px;color:var(--clr-text-muted);min-width:28px">4/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavor.bitterness">苦度</span>
+            <div class="flavor-bar"><div class="flavor-bar-fill" style="width:20%"></div></div>
+            <span style="font-size:13px;color:var(--clr-text-muted);min-width:28px">1/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavor.body">醇厚度</span>
+            <div class="flavor-bar"><div class="flavor-bar-fill" style="width:40%"></div></div>
+            <span style="font-size:13px;color:var(--clr-text-muted);min-width:28px">2/5</span>
+        </div>
+    </div>
+    <div class="flavor-tags">
+        <span class="flavor-tag" style="background:#FFE0B2">🍊<span data-i18n="flavor.citrus">柑橘</span></span>
+        <span class="flavor-tag" style="background:#E8D0B3">🌸<span data-i18n="flavor.jasmine">茉莉花</span></span>
+        <span class="flavor-tag" style="background:#F5E6D3">🍯<span data-i18n="flavor.honey">蜂蜜</span></span>
+        <span class="flavor-tag" style="background:#FFF9C4">🍋<span data-i18n="flavor.lemon">柠檬</span></span>
+        <span class="flavor-tag" style="background:#FFCCBC">🍑<span data-i18n="flavor.apricot">杏桃</span></span>
+    </div>
+</section>
+
+<!-- ===== Technical Specs ===== -->
+<section class="section">
+    <h2 class="section-title" data-i18n="specs.title">产品信息</h2>
+    <div class="specs-grid">
+        <div class="spec-card">
+            <div class="spec-icon">🌍</div>
+            <div class="spec-label" data-i18n="specs.origin.label">产地</div>
+            <div class="spec-value" data-i18n="specs.origin.value">埃塞俄比亚, 耶加雪菲</div>
+        </div>
+        <div class="spec-card">
+            <div class="spec-icon">⛰️</div>
+            <div class="spec-label" data-i18n="specs.altitude.label">海拔</div>
+            <div class="spec-value" data-i18n="specs.altitude.value">1,750 – 2,200m</div>
+        </div>
+        <div class="spec-card">
+            <div class="spec-icon">🌱</div>
+            <div class="spec-label" data-i18n="specs.variety.label">品种</div>
+            <div class="spec-value" data-i18n="specs.variety.value">Heirloom 原生种</div>
+        </div>
+        <div class="spec-card">
+            <div class="spec-icon">💧</div>
+            <div class="spec-label" data-i18n="specs.process.label">处理法</div>
+            <div class="spec-value" data-i18n="specs.process.value">水洗 Washed</div>
+        </div>
+        <div class="spec-card">
+            <div class="spec-icon">🔥</div>
+            <div class="spec-label" data-i18n="specs.roast.label">烘焙度</div>
+            <div class="spec-value" data-i18n="specs.roast.value">★★☆☆☆ 浅烘</div>
+        </div>
+        <div class="spec-card">
+            <div class="spec-icon">☕</div>
+            <div class="spec-label" data-i18n="specs.score.label">杯测分数</div>
+            <div class="spec-value" data-i18n="specs.score.value">88.5 (SCA)</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Brewing Guide ===== -->
+<section class="section">
+    <h2 class="section-title" data-i18n="brew.title">冲泡建议</h2>
+    <div class="brew-grid">
+        <div class="brew-card" data-i18n="brew.equipment">推荐器具: V60 滤杯</div>
+        <div class="brew-card" data-i18n="brew.temp">水温: 92°C</div>
+        <div class="brew-card" data-i18n="brew.ratio">粉水比: 1:15</div>
+    </div>
+</section>
+
+<!-- ===== Purchase Section ===== -->
+<section class="section">
+    <div class="purchase-card">
+        <h2 class="section-title" data-i18n="purchase.title">立即购买</h2>
+        <div class="size-options" id="sizeOptions">
+            <div class="size-option active" data-size="250g" data-price="128">
+                <div class="size-name">250g</div>
+                <div class="size-price">¥128</div>
+            </div>
+            <div class="size-option" data-size="500g" data-price="228">
+                <div class="size-name">500g</div>
+                <div class="size-price">¥228</div>
+            </div>
+        </div>
+        <button class="btn-add-cart" onclick="addToCart()" data-i18n="purchase.button">加入购物车</button>
+    </div>
+</section>
+
+<!-- ===== Related Products ===== -->
+<section class="section">
+    <h2 class="section-title" data-i18n="related.title">更多推荐</h2>
+    <div class="related-grid">
+        <div class="related-card" onclick="navigateTo('huila.html')">
+            <div class="related-card-bg" style="background:linear-gradient(135deg,#D4A574,#E8D0B3)"></div>
+            <div class="related-card-body">
+                <div class="related-card-name" data-i18n="related.huila">哥伦比亚 慧兰</div>
+                <div class="related-card-price">¥108 起</div>
+            </div>
+        </div>
+        <div class="related-card" onclick="navigateTo('kenya-aa.html')">
+            <div class="related-card-bg" style="background:linear-gradient(135deg,#2D6A4F,#40916C)"></div>
+            <div class="related-card-body">
+                <div class="related-card-name" data-i18n="related.kenya">肯尼亚 AA</div>
+                <div class="related-card-price">¥138 起</div>
+            </div>
+        </div>
+        <div class="related-card" onclick="navigateTo('geisha.html')">
+            <div class="related-card-bg" style="background:linear-gradient(135deg,#F5E6D3,#D4A574)"></div>
+            <div class="related-card-body">
+                <div class="related-card-name" data-i18n="related.geisha">巴拿马 瑰夏</div>
+                <div class="related-card-price">¥298 起</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <p>© 2024 BeanLeaf Coffee</p>
+    <p style="margin-top:8px"><a href="../../beanleaf-coffee.html" data-i18n="footer.home">返回首页</a></p>
+</footer>
+
+<!-- ===== Cart Drawer ===== -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3 data-i18n="cart.title">购物车</h3>
+        <button class="btn-close-cart" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-total">
+            <span data-i18n="cart.total">合计</span>
+            <span class="cart-total-price" id="cartTotal">¥0</span>
+        </div>
+        <button class="btn-checkout" onclick="checkout()" data-i18n="cart.checkout">去结算</button>
+    </div>
+</div>
+
+<!-- ===== Toast ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== i18n Data ===== */
+const i18nData = {
+    zh: {
+        'nav.back': '← 返回商店',
+        'nav.lang': 'EN',
+        'hero.tag': '单品咖啡',
+        'hero.title': '埃塞俄比亚 耶加雪菲',
+        'hero.subtitle': 'Ethiopia Yirgacheffe',
+        'hero.summary': '柑橘与茉莉花香，明亮酸质，回甘悠长',
+        'origin.title': '产地故事',
+        'origin.text': '在埃塞俄比亚高原上，咖啡是一种生活方式。耶加雪菲产区位于海拔1750-2200米的Gedeo地区，这里是被誉为"咖啡诞生地"的埃塞俄比亚最负盛名的产区之一。咖啡樱桃生长在红棕色火山土壤中，由世代种植咖啡的咖农手工采摘。水洗处理赋予它纯净的风味，展现出耶加雪菲标志性的柑橘和花香调性——这正是我们钟情于它的理由。',
+        'flavor.title': '风味特征',
+        'flavor.acidity': '酸度',
+        'flavor.sweetness': '甜度',
+        'flavor.bitterness': '苦度',
+        'flavor.body': '醇厚度',
+        'flavor.citrus': '柑橘',
+        'flavor.jasmine': '茉莉花',
+        'flavor.honey': '蜂蜜',
+        'flavor.lemon': '柠檬',
+        'flavor.apricot': '杏桃',
+        'specs.title': '产品信息',
+        'specs.origin.label': '产地',
+        'specs.origin.value': '埃塞俄比亚, 耶加雪菲',
+        'specs.altitude.label': '海拔',
+        'specs.altitude.value': '1,750 – 2,200m',
+        'specs.variety.label': '品种',
+        'specs.variety.value': 'Heirloom 原生种',
+        'specs.process.label': '处理法',
+        'specs.process.value': '水洗 Washed',
+        'specs.roast.label': '烘焙度',
+        'specs.roast.value': '★★☆☆☆ 浅烘',
+        'specs.score.label': '杯测分数',
+        'specs.score.value': '88.5 (SCA)',
+        'brew.title': '冲泡建议',
+        'brew.equipment': '推荐器具: V60 滤杯',
+        'brew.temp': '水温: 92°C',
+        'brew.ratio': '粉水比: 1:15',
+        'purchase.title': '立即购买',
+        'purchase.button': '加入购物车',
+        'related.title': '更多推荐',
+        'related.huila': '哥伦比亚 慧兰',
+        'related.kenya': '肯尼亚 AA',
+        'related.geisha': '巴拿马 瑰夏',
+        'cart.title': '购物车',
+        'cart.empty': '购物车是空的',
+        'cart.total': '合计',
+        'cart.checkout': '去结算',
+        'footer.home': '返回首页',
+        'toast.added': '已添加到购物车'
+    },
+    en: {
+        'nav.back': '← Back to Shop',
+        'nav.lang': '中文',
+        'hero.tag': 'Single Origin',
+        'hero.title': 'Ethiopia Yirgacheffe',
+        'hero.subtitle': '埃塞俄比亚 耶加雪菲',
+        'hero.summary': 'Citrus and jasmine florals, bright acidity, lingering sweetness',
+        'origin.title': 'Origin Story',
+        'origin.text': 'On the Ethiopian highlands, coffee is a way of life. The Yirgacheffe region lies at 1,750–2,200m in the Gedeo zone — one of the most celebrated origins in Ethiopia, the birthplace of coffee. Coffee cherries grow in rich red-brown volcanic soil, hand-picked by generational coffee farmers. The washed process imparts a clean cup, showcasing Yirgacheffe\'s signature citrus and floral notes — and that\'s precisely why we love it.',
+        'flavor.title': 'Flavor Profile',
+        'flavor.acidity': 'Acidity',
+        'flavor.sweetness': 'Sweetness',
+        'flavor.bitterness': 'Bitterness',
+        'flavor.body': 'Body',
+        'flavor.citrus': 'Citrus',
+        'flavor.jasmine': 'Jasmine',
+        'flavor.honey': 'Honey',
+        'flavor.lemon': 'Lemon',
+        'flavor.apricot': 'Apricot',
+        'specs.title': 'Technical Specs',
+        'specs.origin.label': 'Origin',
+        'specs.origin.value': 'Ethiopia, Yirgacheffe',
+        'specs.altitude.label': 'Altitude',
+        'specs.altitude.value': '1,750 – 2,200m',
+        'specs.variety.label': 'Variety',
+        'specs.variety.value': 'Heirloom',
+        'specs.process.label': 'Process',
+        'specs.process.value': 'Washed',
+        'specs.roast.label': 'Roast Level',
+        'specs.roast.value': '★★☆☆☆ Light',
+        'specs.score.label': 'Cupping Score',
+        'specs.score.value': '88.5 (SCA)',
+        'brew.title': 'Brewing Guide',
+        'brew.equipment': 'Recommended: V60 Dripper',
+        'brew.temp': 'Water Temp: 92°C',
+        'brew.ratio': 'Ratio: 1:15',
+        'purchase.title': 'Purchase',
+        'purchase.button': 'Add to Cart',
+        'related.title': 'You May Also Like',
+        'related.huila': 'Colombia Huila',
+        'related.kenya': 'Kenya AA',
+        'related.geisha': 'Panama Geisha',
+        'cart.title': 'Cart',
+        'cart.empty': 'Your cart is empty',
+        'cart.total': 'Total',
+        'cart.checkout': 'Checkout',
+        'footer.home': 'Back to Home',
+        'toast.added': 'Added to cart'
+    }
+};
+
+let currentLang = 'zh';
+
+function applyI18n() {
+    const data = i18nData[currentLang];
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (data[key]) {
+            el.textContent = data[key];
+        }
+    });
+    document.title = currentLang === 'zh'
+        ? 'BeanLeaf Coffee - 埃塞俄比亚 耶加雪菲 | Ethiopia Yirgacheffe'
+        : 'BeanLeaf Coffee - Ethiopia Yirgacheffe | 埃塞俄比亚 耶加雪菲';
+}
+
+function toggleLang() {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    applyI18n();
+}
+
+/* ===== Cart System ===== */
+const CART_KEY = 'beanleaf_cart';
+
+function getCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+    catch(e) { return []; }
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartBadge();
+}
+
+function updateCartBadge() {
+    const cart = getCart();
+    const badge = document.getElementById('cartBadge');
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    if (count > 0) {
+        badge.style.display = 'flex';
+        badge.textContent = count;
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg || i18nData[currentLang]['toast.added'];
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function addToCart() {
+    const activeSize = document.querySelector('.size-option.active');
+    if (!activeSize) return;
+    const size = activeSize.getAttribute('data-size');
+    const price = parseInt(activeSize.getAttribute('data-price'));
+    const name = currentLang === 'zh' ? '埃塞俄比亚 耶加雪菲' : 'Ethiopia Yirgacheffe';
+
+    const cart = getCart();
+    const existing = cart.find(item => item.id === 'yirgacheffe' && item.size === size);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ id: 'yirgacheffe', name, size, price, qty: 1 });
+    }
+    saveCart(cart);
+    showToast();
+}
+
+function renderCart() {
+    const cart = getCart();
+    const container = document.getElementById('cartItems');
+    const footer = document.getElementById('cartFooter');
+
+    if (cart.length === 0) {
+        container.innerHTML = '<div class="cart-empty" data-i18n="cart.empty">' + i18nData[currentLang]['cart.empty'] + '</div>';
+        footer.style.display = 'none';
+    } else {
+        container.innerHTML = cart.map((item, idx) => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-size">${item.size}</div>
+                    <div class="cart-item-price">¥${item.price * item.qty}</div>
+                </div>
+                <div class="cart-qty">
+                    <button onclick="changeQty(${idx}, -1)">−</button>
+                    <span>${item.qty}</span>
+                    <button onclick="changeQty(${idx}, 1)">+</button>
+                </div>
+                <button class="btn-remove" onclick="removeItem(${idx})">🗑</button>
+            </div>
+        `).join('');
+        footer.style.display = 'block';
+        const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        document.getElementById('cartTotal').textContent = '¥' + total;
+    }
+}
+
+function changeQty(idx, delta) {
+    const cart = getCart();
+    if (idx < 0 || idx >= cart.length) return;
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+    }
+    saveCart(cart);
+    renderCart();
+}
+
+function removeItem(idx) {
+    const cart = getCart();
+    if (idx < 0 || idx >= cart.length) return;
+    cart.splice(idx, 1);
+    saveCart(cart);
+    renderCart();
+}
+
+function openCart() {
+    document.getElementById('cartOverlay').classList.add('open');
+    document.getElementById('cartDrawer').classList.add('open');
+    renderCart();
+}
+
+function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.getElementById('cartDrawer').classList.remove('open');
+}
+
+function checkout() {
+    alert('结算功能开发中');
+}
+
+function navigateTo(url) {
+    window.location.href = url;
+}
+
+/* ===== Size Selection ===== */
+document.getElementById('sizeOptions').addEventListener('click', function(e) {
+    const option = e.target.closest('.size-option');
+    if (!option) return;
+    this.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
+    option.classList.add('active');
+});
+
+/* ===== Init ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    applyI18n();
+    updateCartBadge();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哥伦比亚 慧兰 - BeanLeaf Coffee</title>
+<style>
+:root {
+    --clr-primary: #2D6A4F; --clr-primary-dark: #1B4332; --clr-primary-light: #40916C;
+    --clr-accent: #D4A574; --clr-accent-light: #E8D0B3;
+    --clr-cream: #FEFAE0; --clr-cream-light: #FFFAED;
+    --clr-bg: #FAF9F6; --clr-white: #FFFFFF;
+    --clr-text: #1A1A2E; --clr-text-light: #5C6370; --clr-text-muted: #8B8E96;
+    --clr-border: #E5E0D5; --clr-success: #52B788;
+    --font-heading: 'Georgia','Noto Serif SC',serif;
+    --font-body: 'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06); --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+    --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+    --max-width: 1100px; --nav-height: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+    background: rgba(250,249,246,.85); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--clr-border);
+    z-index: 100; display: flex; align-items: center; padding: 0 24px;
+}
+.nav-inner {
+    max-width: var(--max-width); width: 100%; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+    font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;
+    color: var(--clr-primary-dark);
+}
+.nav-logo-icon { width: 32px; height: 32px; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.nav-back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: var(--radius-full);
+    border: 1.5px solid var(--clr-primary);
+    background: transparent; color: var(--clr-primary);
+    font-size: .875rem; font-family: var(--font-body); cursor: pointer;
+    text-decoration: none; transition: all .2s; white-space: nowrap;
+}
+.nav-back-btn:hover { background: var(--clr-primary); color: var(--clr-white); }
+.lang-toggle {
+    background: none; border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-full); padding: 6px 12px;
+    font-size: .8rem; font-family: var(--font-body); cursor: pointer;
+    color: var(--clr-text-light); transition: all .2s; white-space: nowrap;
+}
+.lang-toggle:hover { border-color: var(--clr-primary); color: var(--clr-primary); }
+.cart-trigger {
+    position: relative; background: none; border: none; cursor: pointer;
+    padding: 8px; color: var(--clr-text);
+}
+.cart-trigger svg { width: 22px; height: 22px; }
+.cart-badge {
+    position: absolute; top: -2px; right: -4px;
+    background: var(--clr-primary); color: var(--clr-white);
+    font-size: .65rem; font-weight: 700; min-width: 18px; height: 18px;
+    border-radius: var(--radius-full); display: flex; align-items: center;
+    justify-content: center; padding: 0 5px;
+}
+.cart-badge:empty { display: none; }
+
+/* Page content padding for fixed nav */
+.page-content { padding-top: var(--nav-height); }
+
+/* Hero */
+.hero {
+    background: linear-gradient(170deg, #E8D5B7, #D4A574);
+    padding: 60px 24px 48px; text-align: center;
+}
+.hero-inner { max-width: var(--max-width); margin: 0 auto; }
+.hero-tag {
+    display: inline-block; background: rgba(255,255,255,.5);
+    padding: 6px 16px; border-radius: var(--radius-full);
+    font-size: .8rem; color: var(--clr-primary-dark);
+    font-family: var(--font-body); margin-bottom: 16px;
+}
+.hero h1 {
+    font-family: var(--font-heading); font-size: 2.5rem;
+    color: var(--clr-primary-dark); margin-bottom: 4px;
+}
+.hero-subtitle {
+    font-family: var(--font-heading); font-size: 1.1rem;
+    color: var(--clr-text-light); font-style: italic; margin-bottom: 12px;
+}
+.hero-summary {
+    font-size: 1rem; color: var(--clr-text-light);
+    max-width: 500px; margin: 0 auto;
+}
+
+/* Section */
+.section {
+    max-width: var(--max-width); margin: 0 auto; padding: 48px 24px;
+}
+.section + .section { padding-top: 0; }
+.section-title {
+    font-family: var(--font-heading); font-size: 1.5rem;
+    color: var(--clr-primary-dark); margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--clr-accent-light);
+}
+
+/* Origin Story */
+.origin-text {
+    font-size: .95rem; color: var(--clr-text-light);
+    line-height: 1.85; text-align: justify;
+}
+
+/* Flavor Bars */
+.flavor-bars { display: flex; flex-direction: column; gap: 12px; max-width: 500px; }
+.flavor-bar-row { display: flex; align-items: center; gap: 12px; }
+.flavor-bar-label {
+    min-width: 60px; font-size: .875rem; color: var(--clr-text-light);
+    font-family: var(--font-body);
+}
+.flavor-bar-track {
+    flex: 1; height: 8px; background: var(--clr-border);
+    border-radius: var(--radius-full); overflow: hidden;
+}
+.flavor-bar-fill {
+    height: 100%; border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--clr-accent), var(--clr-primary-light));
+    transition: width .6s ease;
+}
+.flavor-bar-value {
+    font-size: .8rem; color: var(--clr-text-muted); min-width: 28px; text-align: right;
+}
+
+/* Flavor Tags */
+.flavor-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.flavor-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: var(--radius-full);
+    font-size: .875rem; color: var(--clr-text);
+}
+
+/* Specs Table */
+.specs-table {
+    width: 100%; border-collapse: collapse;
+    border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+.specs-table td {
+    padding: 14px 20px; font-size: .9rem;
+    border-bottom: 1px solid var(--clr-border);
+}
+.specs-table tr:last-child td { border-bottom: none; }
+.specs-table td:first-child {
+    background: var(--clr-cream-light); font-weight: 600;
+    color: var(--clr-primary-dark); width: 120px; white-space: nowrap;
+}
+.specs-table td:last-child {
+    background: var(--clr-white); color: var(--clr-text-light);
+}
+
+/* Brewing */
+.brewing-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+.brewing-card {
+    flex: 1; min-width: 160px; background: var(--clr-white);
+    border: 1px solid var(--clr-border); border-radius: var(--radius-md);
+    padding: 20px; text-align: center; box-shadow: var(--shadow-sm);
+}
+.brewing-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+.brewing-card-label {
+    font-size: .8rem; color: var(--clr-text-muted); margin-bottom: 4px;
+}
+.brewing-card-value {
+    font-family: var(--font-heading); font-size: 1.15rem;
+    color: var(--clr-primary-dark); font-weight: 700;
+}
+
+/* Purchase */
+.purchase-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+.purchase-card {
+    flex: 1; min-width: 200px; background: var(--clr-white);
+    border: 2px solid var(--clr-border); border-radius: var(--radius-md);
+    padding: 24px; text-align: center; transition: all .2s;
+    box-shadow: var(--shadow-sm);
+}
+.purchase-card:hover { border-color: var(--clr-accent); box-shadow: var(--shadow-md); }
+.purchase-weight { font-family: var(--font-heading); font-size: 1.3rem; color: var(--clr-primary-dark); }
+.purchase-price { font-size: 2rem; font-weight: 700; color: var(--clr-primary); margin: 8px 0 16px; }
+.purchase-price small { font-size: .9rem; color: var(--clr-text-muted); font-weight: 400; }
+.btn-add-cart {
+    display: inline-block; width: 100%; padding: 12px;
+    background: var(--clr-primary); color: var(--clr-white);
+    border: none; border-radius: var(--radius-full);
+    font-size: .95rem; font-family: var(--font-body); cursor: pointer;
+    transition: all .2s; font-weight: 600;
+}
+.btn-add-cart:hover { background: var(--clr-primary-dark); }
+
+/* Related */
+.related-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.related-card {
+    flex: 1; min-width: 180px; background: var(--clr-white);
+    border: 1px solid var(--clr-border); border-radius: var(--radius-md);
+    padding: 20px; text-align: center; text-decoration: none;
+    transition: all .2s; box-shadow: var(--shadow-sm);
+}
+.related-card:hover { border-color: var(--clr-accent); box-shadow: var(--shadow-md); }
+.related-card-name {
+    font-family: var(--font-heading); font-size: 1rem; color: var(--clr-primary-dark); margin-bottom: 4px;
+}
+.related-card-desc { font-size: .8rem; color: var(--clr-text-muted); }
+
+/* Toast */
+.toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--clr-primary-dark); color: var(--clr-white);
+    padding: 12px 24px; border-radius: var(--radius-full);
+    font-size: .875rem; z-index: 200; opacity: 0; pointer-events: none;
+    transition: opacity .3s; box-shadow: var(--shadow-lg);
+}
+.toast.show { opacity: 1; }
+
+/* Cart Drawer */
+.cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 150; opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 380px; max-width: 100vw;
+    background: var(--clr-white); z-index: 151; display: flex; flex-direction: column;
+    transform: translateX(100%); transition: transform .3s ease;
+    box-shadow: var(--shadow-lg);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-drawer-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid var(--clr-border);
+}
+.cart-drawer-title {
+    font-family: var(--font-heading); font-size: 1.15rem; color: var(--clr-primary-dark);
+}
+.cart-close {
+    background: none; border: none; font-size: 1.4rem; cursor: pointer;
+    color: var(--clr-text-muted); padding: 4px 8px;
+}
+.cart-drawer-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+.cart-empty {
+    text-align: center; color: var(--clr-text-muted);
+    padding: 40px 0; font-size: .9rem;
+}
+.cart-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--clr-border);
+}
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: .9rem; color: var(--clr-text); }
+.cart-item-spec { font-size: .78rem; color: var(--clr-text-muted); }
+.cart-item-qty {
+    display: flex; align-items: center; gap: 8px;
+}
+.cart-item-qty button {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid var(--clr-border); background: var(--clr-white);
+    cursor: pointer; font-size: 1rem; display: flex; align-items: center;
+    justify-content: center; color: var(--clr-text); transition: all .2s;
+}
+.cart-item-qty button:hover { border-color: var(--clr-primary); color: var(--clr-primary); }
+.cart-item-qty span { min-width: 20px; text-align: center; font-size: .9rem; }
+.cart-item-price { font-weight: 700; color: var(--clr-primary); min-width: 60px; text-align: right; font-size: .9rem; }
+.cart-item-remove {
+    background: none; border: none; color: var(--clr-text-muted);
+    cursor: pointer; font-size: 1.1rem; padding: 2px 6px; transition: color .2s;
+}
+.cart-item-remove:hover { color: #e74c3c; }
+.cart-drawer-footer {
+    padding: 16px 20px; border-top: 1px solid var(--clr-border);
+}
+.cart-total {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; font-size: 1.05rem; font-weight: 700;
+}
+.cart-total-label { color: var(--clr-text); }
+.cart-total-price { color: var(--clr-primary); font-size: 1.3rem; }
+.btn-checkout {
+    display: block; width: 100%; padding: 12px;
+    background: var(--clr-primary); color: var(--clr-white);
+    border: none; border-radius: var(--radius-full);
+    font-size: .95rem; font-family: var(--font-body); cursor: pointer;
+    font-weight: 600; transition: background .2s;
+}
+.btn-checkout:hover { background: var(--clr-primary-dark); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 1.8rem; }
+    .section { padding: 32px 16px; }
+    .brewing-cards { flex-direction: column; }
+    .purchase-cards { flex-direction: column; }
+    .related-grid { flex-direction: column; }
+    .nav-back-btn span.nav-back-text { display: none; }
+    .cart-drawer { width: 100vw; }
+}
+@media (max-width: 480px) {
+    .hero { padding: 40px 16px 32px; }
+    .hero h1 { font-size: 1.5rem; }
+    .section-title { font-size: 1.25rem; }
+    .specs-table td:first-child { width: 90px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a class="nav-logo" href="../../beanleaf-coffee.html">
+            <svg class="nav-logo-icon" viewBox="0 0 32 32" fill="none">
+                <ellipse cx="16" cy="14" rx="12" ry="10" fill="#2D6A4F"/>
+                <path d="M4 14 Q16 4 28 14" stroke="#1B4332" stroke-width="2" fill="none"/>
+                <ellipse cx="16" cy="18" rx="8" ry="5" fill="#D4A574"/>
+                <line x1="16" y1="8" x2="16" y2="6" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="9" x2="8" y2="7" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="22" y1="9" x2="24" y2="7" stroke="#1B4332" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span data-i18n="brand">BeanLeaf Coffee</span>
+        </a>
+        <div class="nav-actions">
+            <a class="nav-back-btn" href="../../beanleaf-coffee.html#products">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10.5 3L6 8l4.5 5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="nav-back-text" data-i18n="backToShop">返回商城</span>
+            </a>
+            <button class="lang-toggle" onclick="toggleLang()" data-i18n="langLabel">EN</button>
+            <button class="cart-trigger" onclick="openCart()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <span class="cart-badge" id="cartBadge"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Cart Overlay & Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+        <span class="cart-drawer-title" data-i18n="cartTitle">购物车</span>
+        <button class="cart-close" onclick="closeCart()">&times;</button>
+    </div>
+    <div class="cart-drawer-body" id="cartBody"></div>
+    <div class="cart-drawer-footer">
+        <div class="cart-total">
+            <span class="cart-total-label" data-i18n="cartTotal">合计</span>
+            <span class="cart-total-price" id="cartTotalPrice">¥0</span>
+        </div>
+        <button class="btn-checkout" data-i18n="cartCheckout">去结算</button>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<main class="page-content">
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-inner">
+        <span class="hero-tag" data-i18n="heroTag">单品咖啡</span>
+        <h1 data-i18n="heroTitle">哥伦比亚 慧兰</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">Colombia Huila</p>
+        <p class="hero-summary" data-i18n="heroSummary">焦糖甜感与坚果风味，口感醇厚均衡</p>
+    </div>
+</section>
+
+<!-- Origin Story -->
+<section class="section">
+    <h2 class="section-title" data-i18n="originTitle">产地故事</h2>
+    <p class="origin-text" data-i18n="originText">慧兰产区位于哥伦比亚南部的安第斯山脉腹地。这里肥沃的火山土壤与高海拔气候，为咖啡生长提供了近乎完美的条件。在San Agustín地区，咖农们通过精准的水洗处理法，让每一粒咖啡豆都展现出慧兰标志性的焦糖甜感和明亮酸度。我们选择了海拔1500-1800米的Caturra和Castillo品种，带来一杯醇厚而优雅的南美风味。</p>
+</section>
+
+<!-- Flavor -->
+<section class="section">
+    <h2 class="section-title" data-i18n="flavorTitle">风味轮</h2>
+    <div class="flavor-bars">
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavorAcidity">酸度</span>
+            <div class="flavor-bar-track"><div class="flavor-bar-fill" style="width:60%"></div></div>
+            <span class="flavor-bar-value">3/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavorSweetness">甜度</span>
+            <div class="flavor-bar-track"><div class="flavor-bar-fill" style="width:80%"></div></div>
+            <span class="flavor-bar-value">4/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavorBitterness">苦度</span>
+            <div class="flavor-bar-track"><div class="flavor-bar-fill" style="width:40%"></div></div>
+            <span class="flavor-bar-value">2/5</span>
+        </div>
+        <div class="flavor-bar-row">
+            <span class="flavor-bar-label" data-i18n="flavorBody">醇厚度</span>
+            <div class="flavor-bar-track"><div class="flavor-bar-fill" style="width:80%"></div></div>
+            <span class="flavor-bar-value">4/5</span>
+        </div>
+    </div>
+    <div class="flavor-tags" style="margin-top:20px">
+        <span class="flavor-tag" style="background:#E8D0B3" data-i18n="flavorTag1">🍫焦糖</span>
+        <span class="flavor-tag" style="background:#E0C8A8" data-i18n="flavorTag2">🥜坚果</span>
+        <span class="flavor-tag" style="background:#F5E6D3" data-i18n="flavorTag3">🍎红苹果</span>
+        <span class="flavor-tag" style="background:#D4B896" data-i18n="flavorTag4">🍞烤面包</span>
+    </div>
+</section>
+
+<!-- Specs -->
+<section class="section">
+    <h2 class="section-title" data-i18n="specsTitle">产品信息</h2>
+    <table class="specs-table">
+        <tr><td data-i18n="specOrigin">产地</td><td data-i18n="specOriginVal">哥伦比亚,慧兰</td></tr>
+        <tr><td data-i18n="specAltitude">海拔</td><td data-i18n="specAltitudeVal">1,500–1,800m</td></tr>
+        <tr><td data-i18n="specVariety">品种</td><td data-i18n="specVarietyVal">Caturra, Castillo</td></tr>
+        <tr><td data-i18n="specProcess">处理法</td><td data-i18n="specProcessVal">水洗</td></tr>
+        <tr><td data-i18n="specRoast">烘焙度</td><td data-i18n="specRoastVal">★★★☆☆ 中烘</td></tr>
+        <tr><td data-i18n="specCupping">杯测</td><td data-i18n="specCuppingVal">85.5</td></tr>
+    </table>
+</section>
+
+<!-- Brewing -->
+<section class="section">
+    <h2 class="section-title" data-i18n="brewTitle">冲煮建议</h2>
+    <div class="brewing-cards">
+        <div class="brewing-card">
+            <div class="brewing-card-icon">☕</div>
+            <div class="brewing-card-label" data-i18n="brewGear">推荐器具</div>
+            <div class="brewing-card-value" data-i18n="brewGearVal">法压壶</div>
+        </div>
+        <div class="brewing-card">
+            <div class="brewing-card-icon">🌡️</div>
+            <div class="brewing-card-label" data-i18n="brewTemp">水温</div>
+            <div class="brewing-card-value" data-i18n="brewTempVal">94°C</div>
+        </div>
+        <div class="brewing-card">
+            <div class="brewing-card-icon">⚖️</div>
+            <div class="brewing-card-label" data-i18n="brewRatio">粉水比</div>
+            <div class="brewing-card-value" data-i18n="brewRatioVal">1:14</div>
+        </div>
+    </div>
+</section>
+
+<!-- Purchase -->
+<section class="section">
+    <h2 class="section-title" data-i18n="buyTitle">购买</h2>
+    <div class="purchase-cards">
+        <div class="purchase-card">
+            <div class="purchase-weight">250g</div>
+            <div class="purchase-price">¥98 <small data-i18n="priceBag">/袋</small></div>
+            <button class="btn-add-cart" onclick="addToCart('哥伦比亚 慧兰','250g',98)" data-i18n="btnAddCart">加入购物车</button>
+        </div>
+        <div class="purchase-card">
+            <div class="purchase-weight">500g</div>
+            <div class="purchase-price">¥178 <small data-i18n="priceBag">/袋</small></div>
+            <button class="btn-add-cart" onclick="addToCart('哥伦比亚 慧兰','500g',178)" data-i18n="btnAddCart">加入购物车</button>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section class="section" style="padding-bottom:64px">
+    <h2 class="section-title" data-i18n="relatedTitle">相关推荐</h2>
+    <div class="related-grid">
+        <a class="related-card" href="yirgacheffe.html">
+            <div class="related-card-name" data-i18n="relYirg">耶加雪菲</div>
+            <div class="related-card-desc" data-i18n="relYirgDesc">花果香气，明亮酸质</div>
+        </a>
+        <a class="related-card" href="good-morning.html">
+            <div class="related-card-name" data-i18n="relMorning">早安拼配</div>
+            <div class="related-card-desc" data-i18n="relMorningDesc">柔和顺滑，每日之选</div>
+        </a>
+        <a class="related-card" href="geisha.html">
+            <div class="related-card-name" data-i18n="relGeisha">瑰夏</div>
+            <div class="related-card-desc" data-i18n="relGeishaDesc">茉莉花香，柑橘尾韵</div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<script>
+// ========== i18n ==========
+const i18n = {
+    zh: {
+        brand: 'BeanLeaf Coffee',
+        backToShop: '返回商城',
+        langLabel: 'EN',
+        cartTitle: '购物车',
+        cartTotal: '合计',
+        cartCheckout: '去结算',
+        cartEmpty: '购物车是空的',
+        heroTag: '单品咖啡',
+        heroTitle: '哥伦比亚 慧兰',
+        heroSubtitle: 'Colombia Huila',
+        heroSummary: '焦糖甜感与坚果风味，口感醇厚均衡',
+        originTitle: '产地故事',
+        originText: '慧兰产区位于哥伦比亚南部的安第斯山脉腹地。这里肥沃的火山土壤与高海拔气候，为咖啡生长提供了近乎完美的条件。在San Agustín地区，咖农们通过精准的水洗处理法，让每一粒咖啡豆都展现出慧兰标志性的焦糖甜感和明亮酸度。我们选择了海拔1500-1800米的Caturra和Castillo品种，带来一杯醇厚而优雅的南美风味。',
+        flavorTitle: '风味轮',
+        flavorAcidity: '酸度',
+        flavorSweetness: '甜度',
+        flavorBitterness: '苦度',
+        flavorBody: '醇厚度',
+        flavorTag1: '🍫焦糖',
+        flavorTag2: '🥜坚果',
+        flavorTag3: '🍎红苹果',
+        flavorTag4: '🍞烤面包',
+        specsTitle: '产品信息',
+        specOrigin: '产地',
+        specOriginVal: '哥伦比亚,慧兰',
+        specAltitude: '海拔',
+        specAltitudeVal: '1,500–1,800m',
+        specVariety: '品种',
+        specVarietyVal: 'Caturra, Castillo',
+        specProcess: '处理法',
+        specProcessVal: '水洗',
+        specRoast: '烘焙度',
+        specRoastVal: '★★★☆☆ 中烘',
+        specCupping: '杯测',
+        specCuppingVal: '85.5',
+        brewTitle: '冲煮建议',
+        brewGear: '推荐器具',
+        brewGearVal: '法压壶',
+        brewTemp: '水温',
+        brewTempVal: '94°C',
+        brewRatio: '粉水比',
+        brewRatioVal: '1:14',
+        buyTitle: '购买',
+        priceBag: '/袋',
+        btnAddCart: '加入购物车',
+        relatedTitle: '相关推荐',
+        relYirg: '耶加雪菲',
+        relYirgDesc: '花果香气，明亮酸质',
+        relMorning: '早安拼配',
+        relMorningDesc: '柔和顺滑，每日之选',
+        relGeisha: '瑰夏',
+        relGeishaDesc: '茉莉花香，柑橘尾韵',
+        toastAdded: '已加入购物车'
+    },
+    en: {
+        brand: 'BeanLeaf Coffee',
+        backToShop: 'Back to Shop',
+        langLabel: '中文',
+        cartTitle: 'Cart',
+        cartTotal: 'Total',
+        cartCheckout: 'Checkout',
+        cartEmpty: 'Your cart is empty',
+        heroTag: 'Single Origin',
+        heroTitle: 'Colombia Huila',
+        heroSubtitle: 'Colombia Huila',
+        heroSummary: 'Caramel sweetness with nutty notes, full-bodied and balanced',
+        originTitle: 'Origin Story',
+        originText: 'The Huila region sits deep in the Andes mountains of southern Colombia. Fertile volcanic soil and high-altitude climate provide near-perfect conditions for coffee cultivation. In the San Agustín area, farmers use precise washed processing to bring out Huila\'s signature caramel sweetness and bright acidity. We selected Caturra and Castillo varieties grown at 1,500-1,800m, delivering a cup that is full-bodied, elegant, and distinctively South American.',
+        flavorTitle: 'Flavor Profile',
+        flavorAcidity: 'Acidity',
+        flavorSweetness: 'Sweetness',
+        flavorBitterness: 'Bitterness',
+        flavorBody: 'Body',
+        flavorTag1: '🍫Caramel',
+        flavorTag2: '🥜Nutty',
+        flavorTag3: '🍎Red Apple',
+        flavorTag4: '🍞Toasted Bread',
+        specsTitle: 'Specifications',
+        specOrigin: 'Origin',
+        specOriginVal: 'Colombia, Huila',
+        specAltitude: 'Altitude',
+        specAltitudeVal: '1,500–1,800m',
+        specVariety: 'Variety',
+        specVarietyVal: 'Caturra, Castillo',
+        specProcess: 'Process',
+        specProcessVal: 'Washed',
+        specRoast: 'Roast Level',
+        specRoastVal: '★★★☆☆ Medium',
+        specCupping: 'Cupping Score',
+        specCuppingVal: '85.5',
+        brewTitle: 'Brewing Guide',
+        brewGear: 'Recommended',
+        brewGearVal: 'French Press',
+        brewTemp: 'Water Temp',
+        brewTempVal: '94°C',
+        brewRatio: 'Ratio',
+        brewRatioVal: '1:14',
+        buyTitle: 'Purchase',
+        priceBag: '/bag',
+        btnAddCart: 'Add to Cart',
+        relatedTitle: 'Related',
+        relYirg: 'Yirgacheffe',
+        relYirgDesc: 'Floral & fruity, bright acidity',
+        relMorning: 'Good Morning Blend',
+        relMorningDesc: 'Smooth & mellow, daily choice',
+        relGeisha: 'Geisha',
+        relGeishaDesc: 'Jasmine aroma, citrus finish',
+        toastAdded: 'Added to cart'
+    }
+};
+
+let currentLang = 'zh';
+
+function toggleLang() {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[currentLang][key]) {
+            el.textContent = i18n[currentLang][key];
+        }
+    });
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+}
+
+// ========== Cart System ==========
+const CART_KEY = 'beanleaf_cart';
+
+function getCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch(e) { return []; }
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartBadge();
+}
+
+function addToCart(name, spec, price) {
+    const cart = getCart();
+    const existing = cart.find(item => item.name === name && item.spec === spec);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ name, spec, price, qty: 1 });
+    }
+    saveCart(cart);
+    renderCart();
+    showToast(i18n[currentLang].toastAdded);
+}
+
+function removeFromCart(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    renderCart();
+}
+
+function changeQty(index, delta) {
+    const cart = getCart();
+    cart[index].qty += delta;
+    if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+    }
+    saveCart(cart);
+    renderCart();
+}
+
+function updateCartBadge() {
+    const cart = getCart();
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    badge.textContent = total || '';
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function renderCart() {
+    const cart = getCart();
+    const body = document.getElementById('cartBody');
+    const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    document.getElementById('cartTotalPrice').textContent = '¥' + totalPrice;
+
+    if (cart.length === 0) {
+        body.innerHTML = '<div class="cart-empty">' + i18n[currentLang].cartEmpty + '</div>';
+    } else {
+        body.innerHTML = cart.map((item, i) => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-spec">${item.spec}</div>
+                </div>
+                <div class="cart-item-qty">
+                    <button onclick="changeQty(${i},-1)">−</button>
+                    <span>${item.qty}</span>
+                    <button onclick="changeQty(${i},1)">+</button>
+                </div>
+                <div class="cart-item-price">¥${item.price * item.qty}</div>
+                <button class="cart-item-remove" onclick="removeFromCart(${i})" title="Remove">&times;</button>
+            </div>
+        `).join('');
+    }
+}
+
+function openCart() {
+    renderCart();
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+}
+
+function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+}
+
+// ========== Init ==========
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
+</script>
+
+</body>
+</html>
