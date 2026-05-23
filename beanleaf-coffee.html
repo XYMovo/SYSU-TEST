@@ -399,6 +399,9 @@
   [data-theme="dark"] .newsletter-form input{background:var(--clr-bg);border-color:var(--clr-border)}
   [data-theme="dark"] .stats-bar .stat-item{color:var(--clr-text)}
   [data-theme="dark"] .lang-dropdown{background:var(--clr-white);border-color:var(--clr-border)}
+  [data-theme="dark"] .story-module{background:var(--clr-white);border-color:var(--clr-border)}
+  [data-theme="dark"] .story-toggle{background:var(--clr-bg)}
+  [data-theme="dark"] .story-module.open .story-toggle{background:var(--clr-primary)}
   [data-theme="dark"] .lang-dropdown a{color:var(--clr-text)}
   [data-theme="dark"] .lang-dropdown a:hover{background:var(--clr-cream)}
   [data-theme="dark"] .filter-bar{background:var(--clr-white);border-color:var(--clr-border)}
@@ -530,6 +533,25 @@
   .product-meta-row{display:flex;gap:1rem;margin:.3rem 0;font-size:.72rem;color:var(--clr-text-muted)}
   .product-meta-row span{display:flex;align-items:center;gap:.2rem}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}.hero-cta .btn{animation:none!important;box-shadow:0 4px 20px rgba(120,53,15,.25)!important}}
+
+
+/* Story modules */
+.story-module{margin-bottom:1.5rem;background:var(--clr-white);border-radius:var(--radius-md);border:1px solid var(--clr-border);overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .3s}
+.story-module:hover{box-shadow:var(--shadow-md)}
+.story-module-grid{display:grid;grid-template-columns:280px 1fr;gap:0;align-items:stretch}
+.story-module-visual{overflow:hidden}
+.story-module-visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.story-module:hover .story-module-visual img{transform:scale(1.03)}
+.story-module-body{padding:1.5rem;display:flex;flex-direction:column}
+.story-module-header{display:flex;align-items:center;gap:.8rem;cursor:pointer;user-select:none;padding:.3rem 0}
+.story-num{font-family:var(--font-heading);font-size:2.5rem;font-weight:900;color:var(--clr-primary);opacity:.15;line-height:1}
+.story-module-header h3{flex:1;font-size:1.15rem;color:var(--clr-primary-dark);margin:0}
+.story-toggle{width:32px;height:32px;border-radius:50%;background:var(--clr-bg);border:none;font-size:1.2rem;color:var(--clr-primary);cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.story-module.open .story-toggle{transform:rotate(45deg);background:var(--clr-primary);color:#fff}
+.story-module-content{overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.story-module.open .story-module-content{max-height:2000px!important}
+.story-module-content p{font-size:.9rem;color:var(--clr-text-light);line-height:1.9;padding-top:.8rem;margin:0}
+@media(max-width:768px){.story-module-grid{grid-template-columns:1fr}.story-module-visual{max-height:200px}.story-num{font-size:2rem}}
 
 </style>
 <!-- Analytics -->
@@ -871,94 +893,129 @@ var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)
 <!-- ===== About ===== -->
 <section class="section about" id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-visual reveal">
-        <img src="about-farmer.png" alt="埃塞俄比亚咖农Tesfaye在晨光中采摘咖啡樱桃" style="width:100%;max-width:420px;border-radius:var(--radius-md);box-shadow:var(--shadow-md)" loading="lazy">
-      </div>
-      <div class="about-content reveal">
-        <span class="tag" data-i18n="about.tag">品牌故事</span>
-        <h2 data-i18n="about.title">咖啡叶子的形状，是我们出发的地方</h2>
-        <span class="about-big-num reveal" style="transition-delay:.1s">八年</span>
-        <p class="lead" data-i18n="about.lead">每一颗豆子都藏着一片土地的风、雨和阳光。我们把它们带回来，用火和时间翻译成你杯中的味道。</p>
-        <p style="margin-bottom:1rem" data-i18n="about.p1" class="reveal">2018年，几个试过上百支咖啡豆的人，决定做一件不那么聪明的事——自己烘。选豆、打样、调曲线、杯测、再调、再测。8年过去，在上海那间不到40平的烘焙间里，我们烤过超过两万锅豆子。每一锅都不同，就像每一个清晨都不一样。</p>
-        <p style="margin-bottom:1rem;transition-delay:.15s" class="reveal" data-i18n="about.p2">但我们知道，一杯好咖啡的答案不只在烘焙间里。它早在埃塞俄比亚Gedeo区的山坡上就开始生长了——那里海拔两千米，咖啡树和香蕉、牛油果树混种在一起，阳光从树叶缝隙里漏下来，每颗咖啡樱桃要在枝头红透才能摘。我们认识的咖农Tesfaye，一家五口种了两千棵咖啡树。他跟我们说过一句话：好的豆子不是种出来的，是等出来的。</p>
-        <p style="margin-bottom:1rem;transition-delay:.25s" class="reveal" data-i18n="about.p3">所以我们不叫这"采购"。每年采收季，我们的寻豆师会住在产区——不是住酒店，是住咖农家的铁皮屋。白天跟他们一起上山摘果，晚上在水洗站盯着发酵池里的pH值。我们付给他们的价格比Fair Trade基准线高25%，而且是采收前就签合同，不论当年国际期货价格怎么波动。去年我们用这笔溢价帮Tesfaye的村子修了一条通往水洗站的碎石路——原来下雨天他们得扛着咖啡樱桃走四十分钟泥路。现在能推三轮车了。</p>
-        <p style="margin-bottom:1rem;transition-delay:.35s" class="reveal" data-i18n="about.p4">哥伦比亚慧兰产区的情况不太一样。那边的问题是年轻人往城里跑，咖啡园没人打理。我们和当地合作社搞了一个“青年咖啡师”计划：每年资助五个当地年轻人去波哥大培训烘焙和杯测，学完必须回村服务两年。第三年了，第一期的学员Maria已经能独立给周边七个村子做杯测培训。她说以前村里人都觉得种咖啡没出息，现在有人排队等着跟她学品控。</p>
-        <p style="margin-bottom:1rem;transition-delay:.45s" class="reveal" data-i18n="about.p5">这些事跟卖咖啡有什么关系？可能确实没有直接关系。你可以说这些投入不会让咖啡更好喝。但当你喝到一杯耶加雪菲，喝到的不光是柑橘和茉莉花——那里面还有Tesfaye在天还没亮的时候摘下的樱桃，有Maria在杯测桌上反复校准的曲线，有一条碎石路让咖啡樱桃不用再颠四十分钟泥路。我们不觉得这是什么值得歌颂的壮举。只是觉得，既然要从那片土地上带走最好的豆子，总得留下点什么。</p>
-        <div class="about-features">
-          <div class="about-feature">
-            <div class="icon-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <h4 data-i18n="about.f1_title">每锅都打分</h4>
-              <p data-i18n="about.f1_desc">SCA 杯测标准是底线，不是天花板</p>
-            </div>
+    <div class="section-header reveal" style="text-align:center;margin-bottom:2.5rem">
+      <span class="tag" data-i18n="about.tag">品牌故事</span>
+      <h2 data-i18n="about.title" style="font-size:clamp(1.6rem,4vw,2.2rem)">咖啡叶子的形状，是我们出发的地方</h2>
+    </div>
+
+    <!-- Module 1: Our Origin -->
+    <div class="story-module reveal">
+      <div class="story-module-grid">
+        <div class="story-module-visual">
+          <img src="about-roastery.webp" alt="上海烘焙间" loading="lazy" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);aspect-ratio:4/3;object-fit:cover">
+        </div>
+        <div class="story-module-body">
+          <div class="story-module-header" onclick="toggleStory(this.parentElement.parentElement)">
+            <span class="story-num">01</span>
+            <h3 data-i18n="about.m1_title">我们开始的地方</h3>
+            <button class="story-toggle" aria-label="展开">+</button>
           </div>
-          <div class="about-feature">
-            <div class="icon-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg>
-            </div>
-            <div>
-              <h4 data-i18n="about.f2_title">高于公平贸易25%</h4>
-              <p data-i18n="about.f2_desc">采收前签约，不论期货价格波动。溢价用来修路、建水洗站、资助教育</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <div class="icon-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <h4 data-i18n="about.f3_title">留得住年轻人的产地</h4>
-              <p data-i18n="about.f3_desc">“青年咖啡师”计划第三年，培训当地青年烘焙与杯测，回村服务</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <div class="icon-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-            </div>
-            <div>
-              <h4 data-i18n="about.f5_title">小批量手工烘焙</h4>
-              <p data-i18n="about.f5_desc">每锅不超过15公斤，烤的不是量，是曲线</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <div class="icon-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <h4 data-i18n="about.f4_title">48小时内发出</h4>
-              <p data-i18n="about.f4_desc">咖啡的赏味期，从烘好那一刻开始倒数</p>
-            </div>
+          <div class="story-module-content" style="max-height:0">
+            <p data-i18n="about.m1_text">2018年，几个试过上百支咖啡豆的人，决定做一件不那么聪明的事——自己烘。选豆、打样、调曲线、杯测、再调、再测。在上海那间不到40平的烘焙间里，一台二手Probat占据了半壁江山。没有咖啡店里那些好看的拉花缸和复古磨豆机——墙角堆着咖啡生豆麻袋，墙上贴着密密麻麻的烘焙曲线图，空气里永远飘着一股焦糖化反应后的甜香。<br><br>八年。超过两万锅豆子。每一锅都不一样——就像每一个清晨的阳光角度都不一样。烘焙师老周说过一句话我们记到现在："好的烘焙不是把豆子烤熟，是找到那条刚好能让它开口说话的曲线。烤得太少它沉默，烤得太多它说谎。中间那条线，只有零点几毫米宽。"<br><br>这八年我们在那间小屋里学到的，不光是技术。是耐心。是每一锅都重新来过的谦卑。</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  <div class="trust-badges reveal" style="margin-top:2.5rem;text-align:center">
-    <div class="trust-grid" style="display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:center">
-      <div class="trust-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)">
-        <svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="4" width="22" height="16" rx="2" fill="#E8B13D"/><text x="12" y="16" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">SCA</text></svg>
-        <span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">SCA 精品咖啡协会认证</span>
-      </div>
-      <div class="trust-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)">
-        <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="10" fill="#2D6A4F"/><text x="12" y="16" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">FT</text></svg>
-        <span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">Fair Trade 公平贸易认证</span>
-      </div>
-      <div class="trust-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)">
-        <svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="5" width="22" height="14" rx="3" fill="#1A1A2E"/><text x="12" y="14" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">CQI</text></svg>
-        <span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">CQI Q-Grader 国际品质鉴定</span>
-      </div>
-      <div class="trust-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)">
-        <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="10" fill="#E76F51"/><text x="12" y="16" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">2025</text></svg>
-        <span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">2025 中国精品咖啡金豆奖</span>
-      </div>
-      <div class="trust-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)">
-        <svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="4" width="22" height="16" rx="2" fill="#4A4458"/><text x="12" y="16" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">COE</text></svg>
-        <span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">Cup of Excellence 卓越杯评审</span>
+
+    <!-- Module 2: Tesfaye's Story -->
+    <div class="story-module reveal" style="transition-delay:.1s">
+      <div class="story-module-grid">
+        <div class="story-module-visual">
+          <img src="about-cherries.webp" alt="咖啡樱桃在枝头" loading="lazy" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);aspect-ratio:4/3;object-fit:cover">
+        </div>
+        <div class="story-module-body">
+          <div class="story-module-header" onclick="toggleStory(this.parentElement.parentElement)">
+            <span class="story-num">02</span>
+            <h3 data-i18n="about.m2_title">好的豆子不是种出来的，是等出来的</h3>
+            <button class="story-toggle" aria-label="展开">+</button>
+          </div>
+          <div class="story-module-content" style="max-height:0">
+            <p data-i18n="about.m2_text">埃塞俄比亚Gedeo区，海拔两千米。这里咖啡树不是整齐排列的种植园——它们和香蕉树、牛油果树、遮荫树混种在一起。当地人叫"森林咖啡"。阳光从树叶缝隙里漏下来，每颗咖啡樱桃要在枝头红透才能摘。青的不行、半红的也不行。<br><br>我们认识的咖农Tesfaye，一家五口种了两千棵咖啡树。采收季他天还没亮就上山，一棵树可能要来回摘三四遍。他说过一句话：<em>"好的豆子不是种出来的，是等出来的。"</em> 这句话后来被我们印在了第一代包装袋的背面。<br><br>这大概就是精品咖啡最本初的东西——不是机器、不是参数，是一个人决定什么时候伸出手。</p>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Module 3: Direct Trade -->
+    <div class="story-module reveal" style="transition-delay:.2s">
+      <div class="story-module-grid">
+        <div class="story-module-visual">
+          <img src="about-farmer.webp" alt="咖农的手与咖啡樱桃" loading="lazy" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);aspect-ratio:4/3;object-fit:cover">
+        </div>
+        <div class="story-module-body">
+          <div class="story-module-header" onclick="toggleStory(this.parentElement.parentElement)">
+            <span class="story-num">03</span>
+            <h3 data-i18n="about.m3_title">我们不叫这"采购"</h3>
+            <button class="story-toggle" aria-label="展开">+</button>
+          </div>
+          <div class="story-module-content" style="max-height:0">
+            <p data-i18n="about.m3_text">每年采收季，我们的寻豆师会住在产区——不是住酒店，是住咖农家的铁皮屋。白天跟他们一起上山摘果，晚上在水洗站盯着发酵池里的pH值，凌晨三点还在杯测桌上反复校准。<br><br>我们付给咖农的价格，比Fair Trade基准线高25%。而且采收前就签合同——不管当年国际期货价格怎么波动。去年，这份溢价帮Tesfaye的村子修了一条碎石路——原来下雨天他们得扛着咖啡樱桃在泥路上走四十分钟，现在能推三轮车了。<br><br>我们从不把这种事当成什么公益故事来包装。只是觉得：你要从别人家门口拿走他们最骄傲的东西，那你总得在他们家门口留点什么吧。路也好，合作社也好，一个能杯测的年轻人也好——都行。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 4: Maria's Story -->
+    <div class="story-module reveal" style="transition-delay:.3s">
+      <div class="story-module-grid">
+        <div class="story-module-visual">
+          <img src="about-maria.webp" alt="Maria在杯测" loading="lazy" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);aspect-ratio:4/3;object-fit:cover">
+        </div>
+        <div class="story-module-body">
+          <div class="story-module-header" onclick="toggleStory(this.parentElement.parentElement)">
+            <span class="story-num">04</span>
+            <h3 data-i18n="about.m4_title">留得住年轻人的产地</h3>
+            <button class="story-toggle" aria-label="展开">+</button>
+          </div>
+          <div class="story-module-content" style="max-height:0">
+            <p data-i18n="about.m4_text">哥伦比亚慧兰产区的问题和埃塞俄比亚不一样。那边不缺路，不缺水洗站，缺人。年轻人往波哥大跑，咖啡园没人打理。站在山坡上往下看，有些地里的咖啡树已经半荒了。<br><br>我们和当地合作社搞了一个"青年咖啡师"计划：每年资助五个当地年轻人去波哥大培训烘焙和杯测，半年学完必须回村服务两年。今年第三年了。<br><br>第一期的学员Maria，现在能独立给周边七个村子做杯测培训。她说了一句让我们很震动的话——<em>"以前村里人都觉得种咖啡没出息。现在有人排队等着跟我学品控。"</em> 排队。等着学品控。这是一个三年前还在犹豫要不要去波哥大打工的姑娘说出来的话。<br><br>这个计划的预算不大——一年也就够我们少卖几百袋豆子。但我们觉得值。留住年轻人，比修任何一条路都重要。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 5: Why We Do This -->
+    <div class="story-module reveal" style="transition-delay:.4s">
+      <div class="story-module-grid">
+        <div class="story-module-visual">
+          <img src="about-farmer.png" alt="Tesfaye在晨光中采摘" loading="lazy" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);aspect-ratio:4/3;object-fit:cover">
+        </div>
+        <div class="story-module-body">
+          <div class="story-module-header" onclick="toggleStory(this.parentElement.parentElement)">
+            <span class="story-num">05</span>
+            <h3 data-i18n="about.m5_title">这些和卖咖啡有什么关系</h3>
+            <button class="story-toggle" aria-label="展开">+</button>
+          </div>
+          <div class="story-module-content" style="max-height:0">
+            <p data-i18n="about.m5_text">有人问过我们：你们花这么多钱修路、搞培训、溢价采购，跟咖啡好喝不好喝有什么关系？可能确实没直接关系。<br><br>但当你喝到一杯耶加雪菲，喝到的不光是柑橘和茉莉花——那里面还有Tesfaye在天还没亮的时候摘下的樱桃，有Maria在杯测桌上反复校准的曲线，有一条碎石路让咖啡樱桃不用再颠四十分钟泥路。有老周在那间40平的小屋里对着烘焙曲线盯了八年的眼睛。<br><br>我们不觉得这是什么值得歌颂的壮举。只是觉得——既然你要从别人家门口带走他们最骄傲的东西，那你总得在他们家门口留点什么。<br><br>路。桥。水洗站。一棵新的咖啡树。一个能杯测的年轻人。什么都行。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="about-features reveal" style="margin-top:2.5rem;max-width:560px;margin-left:auto;margin-right:auto">
+      <div class="about-feature" style="grid-column:1/-1;padding:1rem 1.2rem;background:rgba(120,53,15,.04);border-radius:var(--radius-sm);border-left:3px solid var(--clr-primary)">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><h4>每锅都打分</h4><p>SCA 杯测标准是底线，不是天花板</p></div>
+      </div>
+      <div class="about-feature"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/></svg></div><div><h4>高于公平贸易25%</h4><p>采收前签约，不论期货价格波动</p></div></div>
+      <div class="about-feature"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>青年咖啡师计划</h4><p>培训产地青年烘焙与杯测，回村服务</p></div></div>
+      <div class="about-feature"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div><h4>小批量手工烘焙</h4><p>每锅不超过15公斤</p></div></div>
+      <div class="about-feature"><div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><h4>48小时内发出</h4><p>赏味期从烘好那一刻开始倒数</p></div></div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="trust-badges reveal" style="margin-top:2rem;text-align:center">
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center">
+        <div style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="4" width="22" height="16" rx="2" fill="#E8B13D"/><text x="12" y="16" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">SCA</text></svg><span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">SCA 认证</span></div>
+        <div style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)"><svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="10" fill="#2D6A4F"/><text x="12" y="16" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">FT</text></svg><span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">公平贸易</span></div>
+        <div style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="5" width="22" height="14" rx="3" fill="#1A1A2E"/><text x="12" y="14" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">CQI</text></svg><span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">CQI Q-Grader</span></div>
+        <div style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)"><svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="10" fill="#E76F51"/><text x="12" y="16" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">2025</text></svg><span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">金豆奖</span></div>
+        <div style="display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--clr-white);border-radius:var(--radius-sm);border:1px solid var(--clr-border)"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="1" y="4" width="22" height="16" rx="2" fill="#4A4458"/><text x="12" y="16" text-anchor="middle" font-size="5" fill="#fff" font-weight="bold">COE</text></svg><span style="font-size:.78rem;color:var(--clr-primary-dark);font-weight:600">卓越杯</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1506,6 +1563,11 @@ const i18nData = {
     "about.f3_title": "留得住年轻人的产地", "about.f3_desc": "'青年咖啡师'计划第三年，培训当地青年烘焙与杯测，回村服务",
     "about.f4_title": "48小时内发出", "about.f4_desc": "咖啡的赏味期，从烘好那一刻开始倒数",
     "about.f5_title": "小批量手工烘焙", "about.f5_desc": "每锅不超过15公斤，烤的不是量，是曲线",
+    "about.m1_title": "我们开始的地方", "about.m1_text": "2018年，几个试过上百支咖啡豆的人，决定做一件不那么聪明的事——自己烘。选豆、打样、调曲线、杯测、再调、再测。在上海那间不到40平的烘焙间里，一台二手Probat占据了半壁江山。没有咖啡店里那些好看的拉花缸和复古磨豆机——墙角堆着咖啡生豆麻袋，墙上贴着密密麻麻的烘焙曲线图，空气里永远飘着一股焦糖化反应后的甜香。<br><br>八年。超过两万锅豆子。每一锅都不一样——就像每一个清晨的阳光角度都不一样。烘焙师老周说过一句话我们记到现在：好的烘焙不是把豆子烤熟，是找到那条刚好能让它开口说话的曲线。烤得太少它沉默，烤得太多它说谎。中间那条线，只有零点几毫米宽。<br><br>这八年我们在那间小屋里学到的，不光是技术。是耐心。是每一锅都重新来过的谦卑。",
+    "about.m2_title": "好的豆子不是种出来的，是等出来的", "about.m2_text": "埃塞俄比亚Gedeo区，海拔两千米。这里咖啡树不是整齐排列的种植园——它们和香蕉树、牛油果树、遮荫树混种在一起。当地人叫森林咖啡。阳光从树叶缝隙里漏下来，每颗咖啡樱桃要在枝头红透才能摘。青的不行、半红的也不行。<br><br>我们认识的咖农Tesfaye，一家五口种了两千棵咖啡树。采收季他天还没亮就上山，一棵树可能要来回摘三四遍。他说过一句话：好的豆子不是种出来的，是等出来的。这句话后来被我们印在了第一代包装袋的背面。<br><br>这大概就是精品咖啡最本初的东西——不是机器、不是参数，是一个人决定什么时候伸出手。",
+    "about.m3_title": "我们不叫这采购", "about.m3_text": "每年采收季，我们的寻豆师会住在产区——不是住酒店，是住咖农家的铁皮屋。白天跟他们一起上山摘果，晚上在水洗站盯着发酵池里的pH值，凌晨三点还在杯测桌上反复校准。<br><br>我们付给咖农的价格，比Fair Trade基准线高25%。而且采收前就签合同——不管当年国际期货价格怎么波动。去年，这份溢价帮Tesfaye的村子修了一条碎石路——原来下雨天他们得扛着咖啡樱桃在泥路上走四十分钟，现在能推三轮车了。<br><br>我们从不把这种事当成什么公益故事来包装。只是觉得：你要从别人家门口拿走他们最骄傲的东西，那你总得在他们家门口留点什么吧。路也好，合作社也好，一个能杯测的年轻人也好——都行。",
+    "about.m4_title": "留得住年轻人的产地", "about.m4_text": "哥伦比亚慧兰产区的问题和埃塞俄比亚不一样。那边不缺路，不缺水洗站，缺人。年轻人往波哥大跑，咖啡园没人打理。站在山坡上往下看，有些地里的咖啡树已经半荒了。<br><br>我们和当地合作社搞了一个青年咖啡师计划：每年资助五个当地年轻人去波哥大培训烘焙和杯测，半年学完必须回村服务两年。今年第三年了。<br><br>第一期的学员Maria，现在能独立给周边七个村子做杯测培训。她说了一句让我们很震动的话——以前村里人都觉得种咖啡没出息。现在有人排队等着跟我学品控。排队。等着学品控。这是一个三年前还在犹豫要不要去波哥大打工的姑娘说出来的话。<br><br>这个计划的预算不大——一年也就够我们少卖几百袋豆子。但我们觉得值。留住年轻人，比修任何一条路都重要。",
+    "about.m5_title": "这些和卖咖啡有什么关系", "about.m5_text": "有人问过我们：你们花这么多钱修路、搞培训、溢价采购，跟咖啡好喝不好喝有什么关系？可能确实没直接关系。<br><br>但当你喝到一杯耶加雪菲，喝到的不光是柑橘和茉莉花——那里面还有Tesfaye在天还没亮的时候摘下的樱桃，有Maria在杯测桌上反复校准的曲线，有一条碎石路让咖啡樱桃不用再颠四十分钟泥路。有老周在那间40平的小屋里对着烘焙曲线盯了八年的眼睛。<br><br>我们不觉得这是什么值得歌颂的壮举。只是觉得——既然你要从别人家门口带走他们最骄傲的东西，那你总得在他们家门口留点什么。<br><br>路。桥。水洗站。一棵新的咖啡树。一个能杯测的年轻人。什么都行。",
     "stores.tag": "门店查询", "stores.title": "找到你身边的 BeanLeaf",
     "stores.desc": "目前在全国5个城市拥有12家门店，每一家都是你品尝精品咖啡的温暖角落。",
     "stores.s1_name": "上海静安寺店", "stores.s1_addr": "上海市静安区南京西路1688号", "stores.s1_hours": "每日 8:00 - 22:00",
@@ -1568,6 +1630,11 @@ const i18nData = {
     "about.f3_title": "Origins that keep their youth", "about.f3_desc": "'Young Barista' program year three — training local youth, returning to serve",
     "about.f4_title": "Shipped within 48 hours", "about.f4_desc": "Coffee's best-by clock starts ticking the moment it's roasted",
     "about.f5_title": "Small-Batch Artisan Roast", "about.f5_desc": "Never more than 15kg per batch — we roast curves, not volume",
+    "about.m1_title": "Where We Began", "about.m1_text": "In 2018, a few people who'd tasted hundreds of coffees decided to do something stubborn — roast their own. Sourcing, sampling, tweaking curves, cupping, tweaking again. In a tiny roasting room in Shanghai under 40 square meters, an old Probat roaster took center stage. No fancy latte art pitchers, no vintage grinders — just burlap sacks of green coffee piled in the corner, roasting curve charts taped to the wall, and the sweet smell of caramelization hanging in the air.<br><br>Eight years. Over twenty thousand batches. Every one different — like how the morning light hits at a slightly different angle each day. Our head roaster Old Zhou put it this way: Good roasting isn't about cooking the bean through. It's about finding the curve where the bean finally decides to speak. Too little heat and it stays silent. Too much and it lies. The line between them is maybe half a millimeter wide.<br><br>What we learned in that little room wasn't just technique. It was patience. And humility — the kind that comes from starting fresh every single batch.",
+    "about.m2_title": "Good beans are waited for, not grown", "about.m2_text": "Ethiopia's Gedeo zone, two thousand meters above sea level. The coffee trees here aren't in neat rows like a plantation — they grow wild among banana, avocado, and shade trees. The locals call it forest coffee. Sunlight drips through the canopy. Every cherry has to turn deep red on the branch before anyone touches it. Not orange. Not half-red.<br><br>We met a farmer named Tesfaye. A family of five, two thousand coffee trees. During harvest, he's on the hillside before sunrise. Some trees he circles three or four times — because the cherries don't all ripen at once. He once told us: Good beans are waited for, not grown. That line ended up on the back of our very first coffee bag.<br><br>Maybe that's what specialty coffee really comes down to at its core. Not machines, not parameters — just one person deciding when to reach out their hand.",
+    "about.m3_title": "We don't call it sourcing", "about.m3_text": "Every harvest season, our green buyer stays right on the farms — not in hotels, but in the tin-roofed houses the farming families live in. Days spent on the hillside picking together. Nights spent at the washing station, watching pH levels in the fermentation tanks, cupping at 3am to recalibrate.<br><br>We pay 25% above Fair Trade baseline. And we sign contracts before harvest — no matter what happens to international futures prices that year. Last year, that premium helped Tesfaye's village build a gravel road to their washing station. Before, when it rained, they'd carry cherry sacks through forty minutes of mud on foot. Now they push a tricycle.<br><br>We don't package this as some kind of charity story. It's simpler than that: if you're going to take the best thing someone's land produces, you'd better leave something behind. A road. A co-op. A young person who knows how to cup. Whatever works.",
+    "about.m4_title": "Where young people stay", "about.m4_text": "Colombia's Huila region has a different problem from Ethiopia. They have roads. They have washing stations. What they don't have is young people. They leave for Bogota. From the hillside, you can look down and see coffee plots already half-wild.<br><br>So we started a Youth Barista Program with the local co-op: fund five young people each year to train in roasting and cupping in Bogota. Six months of training, then two years serving their home village. This is year three.<br><br>The first cohort included a young woman named Maria. She now runs cupping training for seven surrounding villages. She said something that really got to us: People here used to think growing coffee was a dead end. Now they line up to learn quality control from me. Line up. For quality control. That's a girl who three years ago was wondering if she should just go work in Bogota.<br><br>The program's budget is tiny — maybe what we'd make selling a few hundred fewer bags a year. Worth every penny. Keeping young people is more important than any road you could build.",
+    "about.m5_title": "What does any of this have to do with selling coffee", "about.m5_text": "Someone once asked us: you spend all this money on roads and training and premium pricing — what does that have to do with making coffee taste better? Fair question. Maybe nothing directly.<br><br>But when you drink a cup of Yirgacheffe, you're not just tasting citrus and jasmine. There's Tesfaye in that cup, picking cherries before sunrise. There's Maria at her cupping table, recalibrating curve after curve. There's a gravel road that means coffee cherries don't have to bounce through forty minutes of mud anymore. There's Old Zhou staring at roasting curves in that forty-square-meter room for eight years.<br><br>We don't think any of this is heroic. It just feels right: if you're going to walk onto someone's land and take away the best thing it produces, you should leave something behind.<br><br>A road. A bridge. A washing station. A new coffee tree. A young woman who can cup. Whatever works.",
     "stores.tag": "Find Us", "stores.title": "Find a BeanLeaf Near You",
     "stores.desc": "12 stores across 5 cities — each one a warm corner for your specialty coffee moment.",
     "stores.s1_name": "Shanghai Jing'an", "stores.s1_addr": "1688 West Nanjing Rd, Jing'an, Shanghai", "stores.s1_hours": "Daily 8:00 - 22:00",
@@ -1887,6 +1954,10 @@ window.toggleWechatModal=function(){
   const modal=document.getElementById('wechatModal');
   modal.classList.toggle('show');
 };
+
+// Story accordion
+function toggleStory(el){el.classList.toggle('open')}
+
 </script>
 </body>
 </html>
