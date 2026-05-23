@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下单成功 — BeanLeaf Coffee</title>
+<style>
+:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-md:0 4px 20px rgba(0,0,0,.08);--radius-md:16px;--radius-lg:24px;--radius-full:999px;--radius-sm:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--clr-text);background:linear-gradient(170deg,#F0F7F2 0%,var(--clr-bg) 30%,var(--clr-bg) 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit}
+
+.card{background:var(--clr-white);border-radius:var(--radius-lg);padding:3rem 2.5rem;max-width:550px;width:100%;margin:2rem;box-shadow:var(--shadow-md);text-align:center;border:1px solid var(--clr-border)}
+h1{font-family:var(--font-heading);font-size:1.8rem;font-weight:700;margin:1rem 0 .5rem;color:var(--clr-primary-dark)}
+.sub{color:var(--clr-text-light);font-size:.95rem;margin-bottom:1.5rem}
+
+.check-circle{width:72px;height:72px;border-radius:50%;background:rgba(82,183,136,.12);display:flex;align-items:center;justify-content:center;margin:0 auto}
+
+.order-info{background:var(--clr-bg);border-radius:var(--radius-md);padding:1.5rem;text-align:left;margin:1.5rem 0}
+.order-info .row{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.9rem;border-bottom:1px solid var(--clr-border)}
+.order-info .row:last-child{border-bottom:none}
+.order-info .row .lbl{color:var(--clr-text-muted)}
+.order-info .row .val{font-weight:600;color:var(--clr-text);text-align:right}
+
+.item-list{margin-top:.8rem;font-size:.85rem}
+.item-list .it{display:flex;justify-content:space-between;padding:.3rem 0;color:var(--clr-text-light)}
+
+.actions{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.9rem;padding:.75em 2em;border-radius:var(--radius-full);transition:all .25s;cursor:pointer}
+.btn-primary{background:var(--clr-primary);color:var(--clr-white)}
+.btn-primary:hover{background:var(--clr-primary-dark);transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
+.btn-outline:hover{background:var(--clr-primary);color:var(--clr-white)}
+
+footer{margin-top:2rem;color:var(--clr-text-muted);font-size:.8rem}
+footer a{color:var(--clr-primary);text-decoration:underline}
+
+@media(max-width:480px){.card{padding:2rem 1.5rem;margin:1rem}.actions{flex-direction:column}.btn{justify-content:center;width:100%}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="check-circle">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  </div>
+  <h1 id="headerTitle">下单成功！</h1>
+  <p class="sub" id="headerSub">感谢你的购买，我们会尽快为你发货。</p>
+
+  <div class="order-info" id="orderInfo">
+    <div class="row"><span class="lbl" id="lblOrderId">订单编号</span><span class="val" id="orderId">—</span></div>
+    <div class="row"><span class="lbl" id="lblDate">下单时间</span><span class="val" id="orderDate">—</span></div>
+    <div class="row"><span class="lbl" id="lblName">收件人</span><span class="val" id="orderName">—</span></div>
+    <div class="row"><span class="lbl" id="lblPhone">联系电话</span><span class="val" id="orderPhone">—</span></div>
+    <div class="row"><span class="lbl" id="lblAddr">收货地址</span><span class="val" id="orderAddr">—</span></div>
+    <div class="row"><span class="lbl" id="lblTotal">支付金额</span><span class="val" id="orderTotal" style="color:var(--clr-primary-dark);font-size:1.1rem">—</span></div>
+    <div class="item-list" id="itemList"></div>
+  </div>
+
+  <div class="actions">
+    <a href="../beanleaf-coffee.html" class="btn btn-primary" id="btnHome">返回首页</a>
+    <a href="../beanleaf-coffee.html#products" class="btn btn-outline" id="btnShop">继续逛逛</a>
+  </div>
+
+  <footer>
+    <p>BeanLeaf Coffee &copy; 2024 &nbsp;|&nbsp; <a href="#" id="footerContact">联系我们</a></p>
+  </footer>
+</div>
+
+<script>
+const i18n={zh:{title:"下单成功！",sub:"感谢你的购买，我们会尽快为你发货。",orderId:"订单编号",date:"下单时间",name:"收件人",phone:"联系电话",addr:"收货地址",total:"支付金额",home:"返回首页",shop:"继续逛逛",contact:"联系我们"},en:{title:"Order Confirmed!",sub:"Thank you for your purchase. We'll ship your order soon.",orderId:"Order ID",date:"Order Date",name:"Recipient",phone:"Phone",addr:"Address",total:"Amount Paid",home:"Back to Home",shop:"Continue Shopping",contact:"Contact Us"}};
+let cl='zh';
+
+function loadOrder(){
+  try{
+    const raw=localStorage.getItem('beanleaf_last_order');
+    if(!raw){document.getElementById('headerTitle').textContent=i18n[cl].title;return}
+    const o=JSON.parse(raw),idEl=document.getElementById('orderId'),dateEl=document.getElementById('orderDate'),nameEl=document.getElementById('orderName'),phoneEl=document.getElementById('orderPhone'),addrEl=document.getElementById('orderAddr'),totalEl=document.getElementById('orderTotal');
+    idEl.textContent=o.id;dateEl.textContent=new Date(o.date).toLocaleString('zh-CN');nameEl.textContent=o.name;phoneEl.textContent=o.phone;addrEl.textContent=o.address;totalEl.textContent='¥'+o.total;
+    document.getElementById('itemList').innerHTML='<div style="border-top:1px solid var(--clr-border);padding-top:.5rem;margin-top:.5rem">'+o.items.map(i=>'<div class="it"><span>'+i.name+' ('+i.size+' × '+i.qty+')</span><span>¥'+(i.price*i.qty)+'</span></div>').join('')+'</div>';
+  }catch(e){}
+}
+loadOrder();
+
+// Detect language from URL or default to zh
+if(window.location.search.includes('lang=en'))cl='en';
+updateUI();
+function updateUI(){
+  document.getElementById('headerTitle').textContent=i18n[cl].title;
+  document.getElementById('headerSub').textContent=i18n[cl].sub;
+  document.getElementById('lblOrderId').textContent=i18n[cl].orderId;
+  document.getElementById('lblDate').textContent=i18n[cl].date;
+  document.getElementById('lblName').textContent=i18n[cl].name;
+  document.getElementById('lblPhone').textContent=i18n[cl].phone;
+  document.getElementById('lblAddr').textContent=i18n[cl].addr;
+  document.getElementById('lblTotal').textContent=i18n[cl].total;
+  document.getElementById('btnHome').textContent=i18n[cl].home;
+  document.getElementById('btnShop').textContent=i18n[cl].shop;
+  document.getElementById('footerContact').textContent=i18n[cl].contact;
+}
+</script>
+</body>
+</html>

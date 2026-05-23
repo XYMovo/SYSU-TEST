@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全部产品 — BeanLeaf Coffee</title>
+<meta name="description" content="探索BeanLeaf Coffee全部咖啡产品：单品咖啡、拼配咖啡、限量系列。从耶加雪菲到巴拿马瑰夏，找到属于你的那一杯。">
+<meta property="og:title" content="全部产品 — BeanLeaf Coffee"><meta property="og:description" content="探索BeanLeaf Coffee全部咖啡产品">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z' fill='%232D6A4F'/></svg>">
+<style>
+:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-accent-light:#E8D0B3;--clr-cream:#FEFAE0;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-limited:#E76F51;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:1200px;--nav-height:64px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}
+a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;background:none;font:inherit}h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-logo svg{width:28px;height:28px}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light);transition:color .2s}
+.nav-back:hover{color:var(--clr-primary)}
+.cart-icon{position:relative;cursor:pointer;padding:4px}
+.cart-icon svg{width:22px;height:22px;color:var(--clr-text)}
+.cart-count{position:absolute;top:-2px;right:-6px;background:var(--clr-primary);color:var(--clr-white);font-size:.65rem;font-weight:700;min-width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+
+.page{padding-top:calc(var(--nav-height) + 2rem);padding-bottom:4rem}
+.page-header{text-align:center;margin-bottom:2rem}
+.page-header h1{font-size:2rem;color:var(--clr-primary-dark)}
+.page-header p{color:var(--clr-text-muted);font-size:.95rem}
+
+/* Filters */
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2rem;background:var(--clr-white);padding:1rem 1.3rem;border-radius:var(--radius-md);border:1px solid var(--clr-border);box-shadow:var(--shadow-sm)}
+.filter-tabs{display:flex;gap:.4rem;flex-wrap:wrap}
+.filter-tab{padding:.4em 1em;border-radius:var(--radius-full);font-size:.82rem;font-weight:600;color:var(--clr-text-light);background:var(--clr-bg);transition:all .2s}
+.filter-tab.active{background:var(--clr-primary);color:var(--clr-white)}
+.filter-tab:hover:not(.active){background:var(--clr-border)}
+.filter-right{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.filter-right select,.filter-right input{padding:.45em .8em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-size:.82rem;font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);outline:none}
+.filter-right input:focus,.filter-right select:focus{border-color:var(--clr-primary);box-shadow:0 0 0 2px rgba(45,106,79,.1)}
+.result-count{font-size:.8rem;color:var(--clr-text-muted)}
+
+/* Products Grid */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.product-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .35s;border:1px solid var(--clr-border)}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.product-card a{display:block;color:inherit}
+.product-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.badge{position:absolute;top:12px;right:12px;color:var(--clr-white);font-size:.68rem;font-weight:700;padding:.25em .85em;border-radius:var(--radius-full);letter-spacing:.05em}
+.badge-bs{background:var(--clr-primary)}.badge-new{background:var(--clr-accent)}.badge-ltd{background:var(--clr-limited)}
+.product-info{padding:1rem 1.2rem .5rem}
+.product-info .cat{font-size:.68rem;font-weight:600;color:var(--clr-primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.product-info h3{font-size:1.05rem;margin-bottom:.15rem}
+.product-info .desc{font-size:.8rem;color:var(--clr-text-muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.6rem}
+.product-info .meta{display:flex;align-items:center;justify-content:space-between}
+.product-info .price{font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
+.product-info .price .unit{font-size:.65rem;color:var(--clr-text-muted);font-weight:400}
+.product-info .rating{font-size:.75rem;color:var(--clr-accent)}
+.product-card .atc-btn{display:block;width:calc(100% - 2.4rem);margin:.4rem 1.2rem .8rem;padding:.5rem;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);font-size:.78rem;font-weight:600;text-align:center;transition:all .2s}
+.product-card .atc-btn:hover{background:var(--clr-primary-dark)}
+
+/* Empty state */
+.empty-state{text-align:center;padding:4rem 1rem;grid-column:1/-1}
+.empty-state .icon{font-size:3rem;margin-bottom:1rem}
+.empty-state p{color:var(--clr-text-muted)}
+
+.no-results{display:none;text-align:center;padding:3rem;grid-column:1/-1}
+.no-results.show{display:block}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--clr-primary-dark);color:var(--clr-white);padding:.85rem 1.8rem;border-radius:var(--radius-full);font-size:.9rem;font-weight:600;z-index:3000;opacity:0;transition:all .35s;white-space:nowrap;box-shadow:var(--shadow-lg)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Cart sidebar */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:380px;background:var(--clr-white);z-index:2001;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid var(--clr-border)}
+.cart-close{width:32px;height:32px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--clr-text-muted)}
+.cart-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--clr-border)}
+.cart-item-img{width:44px;height:44px;border-radius:8px;flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-info .nm{font-size:.85rem;font-weight:600}
+.cart-item-info .sz{font-size:.7rem;color:var(--clr-text-muted)}
+.cart-item-qty{display:flex;align-items:center;gap:.3rem}
+.cart-item-qty button{width:24px;height:24px;border-radius:50%;background:var(--clr-bg);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+.cart-item-price{font-family:var(--font-heading);font-size:.9rem;font-weight:700;color:var(--clr-primary-dark);min-width:55px;text-align:right}
+.cart-item-rm{color:var(--clr-text-muted);font-size:.75rem;padding:2px 4px}
+.cart-item-rm:hover{color:var(--clr-limited)}
+.cart-footer{padding:1.2rem 1.5rem;border-top:1px solid var(--clr-border)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:1rem}
+.cart-total .amt{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--clr-primary-dark)}
+.cart-checkout{display:block;width:100%;padding:.8rem;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);font-weight:600;text-align:center;text-decoration:none}
+
+footer{margin-top:3rem;padding:2rem 0;background:var(--clr-primary-dark);color:rgba(255,255,255,.6);text-align:center;font-size:.85rem}
+footer a{color:rgba(255,255,255,.5);transition:color .2s}
+footer a:hover{color:var(--clr-accent)}
+
+@media(max-width:640px){.filter-bar{flex-direction:column;align-items:stretch}.filter-right{justify-content:space-between}.products-grid{grid-template-columns:1fr}}
+/* Skeleton loader */
+.skeleton{background:linear-gradient(90deg,var(--clr-border) 25%,#f0ece4 50%,var(--clr-border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skeleton-card{background:var(--clr-white);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--clr-border)}
+.skeleton-card .s-img{height:200px}.skeleton-card .s-text{padding:1rem}.skeleton-card .s-line{height:14px;margin-bottom:8px}.skeleton-card .s-line.short{width:60%}.skeleton-card .s-price{height:22px;width:45%;margin-top:12px}
+</style>
+</head>
+<body>
+
+<nav class="navbar"><div class="container">
+  <a href="../../beanleaf-coffee.html" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/></svg>
+    BeanLeaf Coffee
+  </a>
+  <div class="nav-right">
+    <a href="../../beanleaf-coffee.html" class="nav-back">← 返回首页</a>
+    <div class="cart-icon" id="cartIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count" id="cartCount" style="display:none">0</span></div>
+  </div>
+</div></nav>
+
+<div class="page"><div class="container">
+  <div class="page-header"><h1>全部产品</h1><p>从单品到限量，找到属于你的那一杯</p></div>
+
+  <div class="filter-bar">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-cat="all">全部</button>
+      <button class="filter-tab" data-cat="single">单品咖啡</button>
+      <button class="filter-tab" data-cat="blend">拼配咖啡</button>
+      <button class="filter-tab" data-cat="limited">限量系列</button>
+    </div>
+    <div class="filter-right">
+      <input type="text" id="searchInput" placeholder="🔍 搜索产品..." style="width:160px">
+      <select id="sortSelect"><option value="default">默认排序</option><option value="price-asc">价格 低→高</option><option value="price-desc">价格 高→低</option><option value="rating">评分最高</option></select>
+    </div>
+  </div>
+
+  <div class="result-count" id="resultCount">共 6 款产品</div>
+
+  <div class="products-grid" id="productsGrid"></div>
+  <div class="no-results" id="noResults"><div class="icon">🔍</div><p>没有找到匹配的产品</p></div>
+</div></div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><h3>购物车</h3><button class="cart-close" id="cartClose">&times;</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">购物车是空的</div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>合计</span><span class="amt" id="cartTotal">¥0</span></div>
+    <a href="../checkout.html" class="cart-checkout">去结算</a>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<footer>
+  <p>&copy; 2024 BeanLeaf Coffee &nbsp;|&nbsp; <a href="../../beanleaf-coffee.html">返回首页</a> &nbsp;|&nbsp; <a href="../../beanleaf-coffee.html#contact">联系我们</a></p>
+</footer>
+
+<script>
+// Product data
+const products=[
+  {id:'yirgacheffe',name:'埃塞俄比亚 耶加雪菲',cat:'single',page:'yirgacheffe.html',price:128,unit:'250g',rating:4.9,badge:'热卖',badgeClass:'badge-bs',desc:'水洗处理，柑橘与茉莉花香，明亮酸质，回甘悠长',
+   bgImg:'linear-gradient(135deg,#F5E6D3,#E8D5B7)',emoji:'ETHIOPIA',emojiClr:'#FEFAE0',emojiSize:13},
+  {id:'huila',name:'哥伦比亚 慧兰',cat:'single',page:'huila.html',price:98,unit:'250g',rating:4.8,badge:'',badgeClass:'',desc:'水洗处理，焦糖甜感与坚果风味，口感醇厚均衡',
+   bgImg:'linear-gradient(135deg,#E8D5B7,#D4A574)',emoji:'COLOMBIA',emojiClr:'#FEFAE0',emojiSize:12},
+  {id:'kenya-aa',name:'肯尼亚 AA',cat:'single',page:'kenya-aa.html',price:118,unit:'250g',rating:4.7,badge:'新品',badgeClass:'badge-new',desc:'水洗处理，黑加仑与番茄酸甜感，层次丰富',
+   bgImg:'linear-gradient(135deg,#D4C4A8,#C4A882)',emoji:'KENYA',emojiClr:'#FEFAE0',emojiSize:14},
+  {id:'good-morning',name:'早安拼配',cat:'blend',page:'good-morning.html',price:78,unit:'250g',rating:4.9,badge:'',badgeClass:'',desc:'巴西+埃塞俄比亚，坚果巧克力调，适合每日唤醒',
+   bgImg:'linear-gradient(135deg,#EAD7C3,#D4B896)',emoji:'GOOD MORNING',emojiClr:'#1A1A2E',emojiSize:11},
+  {id:'good-night',name:'晚安拼配',cat:'blend',page:'good-night.html',price:88,unit:'250g',rating:4.6,badge:'低因',badgeClass:'badge-bs',desc:'低因处理，柔和顺滑，可可与烤杏仁风味',
+   bgImg:'linear-gradient(135deg,#4A4458,#3A3448)',emoji:'GOOD NIGHT',emojiClr:'#FEFAE0',emojiSize:12},
+  {id:'geisha',name:'巴拿马 瑰夏',cat:'limited',page:'geisha.html',price:298,unit:'100g',rating:5.0,badge:'限量',badgeClass:'badge-ltd',desc:'日晒处理，茉莉花与蜜桃香气，茶感回甘',
+   bgImg:'linear-gradient(135deg,#C9A96E,#B8944E)',emoji:'GEISHA',emojiClr:'#1B4332',emojiSize:14}
+];
+
+// State
+let activeCat='all',sortBy='default',searchTerm='';
+const CAT_NAMES={single:'单品咖啡',blend:'拼配咖啡',limited:'限量系列',all:'全部'};
+
+// Rendering
+function render(){
+  let filtered=products;
+
+  if(activeCat!=='all') filtered=filtered.filter(p=>p.cat===activeCat);
+  if(searchTerm) filtered=filtered.filter(p=>p.name.includes(searchTerm)||p.desc.includes(searchTerm)||p.cat.includes(searchTerm));
+
+  if(sortBy==='price-asc') filtered.sort((a,b)=>a.price-b.price);
+  else if(sortBy==='price-desc') filtered.sort((a,b)=>b.price-a.price);
+  else if(sortBy==='rating') filtered.sort((a,b)=>b.rating-a.rating);
+
+  document.getElementById('resultCount').textContent='共 '+filtered.length+' 款产品';
+  const grid=document.getElementById('productsGrid');
+  const nr=document.getElementById('noResults');
+
+  if(filtered.length===0){nr.classList.add('show');grid.innerHTML=''}
+  else{
+    nr.classList.remove('show');
+    grid.innerHTML=filtered.map(p=>'<div class="product-card">'+
+      '<a href="'+p.page+'"><div class="product-img" style="background:'+p.bgImg+'">'+
+      (p.emoji?'<span style="font-family:Georgia,serif;font-size:'+p.emojiSize+'px;font-weight:700;color:'+p.emojiClr+'">'+p.emoji+'</span>':'')+
+      (p.badge?'<span class="badge '+p.badgeClass+'">'+p.badge+'</span>':'')+
+      '</div><div class="product-info">'+
+      '<p class="cat">'+CAT_NAMES[p.cat]+'</p>'+
+      '<h3>'+p.name+'</h3>'+
+      '<p class="desc">'+p.desc+'</p>'+
+      '<div class="meta"><span class="price">¥'+p.price+' <span class="unit">/ '+p.unit+'</span></span><span class="rating">★ '+p.rating+'</span></div></div></a>'+
+      '<button class="atc-btn" onclick="event.preventDefault();addToCart(\''+p.id+'\',\''+p.name+'\',\''+p.unit+'\','+p.price+')">加入购物车</button></div>'
+    ).join('');
+  }
+}
+
+// Filter tabs
+document.querySelectorAll('#filterTabs .filter-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('#filterTabs .filter-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    activeCat=tab.dataset.cat;
+    render();
+  });
+});
+
+// Sort
+document.getElementById('sortSelect').addEventListener('change',e=>{sortBy=e.target.value;render()});
+
+// Search
+document.getElementById('searchInput').addEventListener('input',e=>{searchTerm=e.target.value.trim();render()});
+
+// Cart system
+const CART_KEY='beanleaf_cart';
+function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return[]}}
+function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));updateCartUI()}
+
+window.addToCart=function(id,name,size,price){
+  const c=getCart(),ex=c.find(i=>i.id===id);
+  if(ex&&ex.size===size)ex.qty++;else c.push({id,name,size,price,qty:1});
+  saveCart(c);showToast('已加入购物车');
+};
+
+function updateCartUI(){
+  const c=getCart(),total=c.reduce((s,i)=>s+i.price*i.qty,0),cnt=c.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').style.display=cnt>0?'flex':'none';
+  document.getElementById('cartCount').textContent=cnt;
+  const ci=document.getElementById('cartItems'),cf=document.getElementById('cartFooter');
+  if(c.length===0){ci.innerHTML='<div class="cart-empty">购物车是空的</div>';cf.style.display='none'}
+  else{
+    ci.innerHTML=c.map((it,i)=>'<div class="cart-item"><div class="cart-item-img" style="background:'+itemBg(it.id)+'"></div><div class="cart-item-info"><div class="nm">'+it.name+'</div><div class="sz">'+it.size+'</div></div><div class="cart-item-qty"><button onclick="chgQty('+i+',-1)">-</button><span>'+it.qty+'</span><button onclick="chgQty('+i+',1)">+</button></div><div class="cart-item-price">¥'+(it.price*it.qty)+'</div><button class="cart-item-rm" onclick="rmItem('+i+')">✕</button></div>').join('');
+    cf.style.display='block';
+  }
+  document.getElementById('cartTotal').textContent='¥'+total;
+}
+function itemBg(id){return {yirgacheffe:'#F5E6D3',huila:'#E8D5B7','kenya-aa':'#D4C4A8','good-morning':'#EAD7C3','good-night':'#4A4458',geisha:'#C9A96E'}[id]||'#FEFAE0'}
+function chgQty(i,d){const c=getCart();c[i].qty+=d;if(c[i].qty<=0)c.splice(i,1);saveCart(c)}
+function rmItem(i){const c=getCart();c.splice(i,1);saveCart(c)}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+
+// Cart drawer
+const co=document.getElementById('cartOverlay'),cd=document.getElementById('cartDrawer');
+document.getElementById('cartIcon').addEventListener('click',()=>{updateCartUI();co.classList.add('open');cd.classList.add('open')});
+document.getElementById('cartClose').addEventListener('click',()=>{co.classList.remove('open');cd.classList.remove('open')});
+co.addEventListener('click',()=>{co.classList.remove('open');cd.classList.remove('open')});
+
+// Init
+// Init - show skeleton first, then render
+(function initLoad(){
+  const grid=document.getElementById('productsGrid');
+  grid.innerHTML=Array(6).fill(0).map(()=>'<div class="skeleton-card"><div class="skeleton s-img"></div><div class="s-text"><div class="skeleton s-line"></div><div class="skeleton s-line short"></div><div class="skeleton s-line"></div><div class="skeleton s-price"></div></div></div>').join('');
+  setTimeout(()=>{render();updateCartUI()},400);
+})();
+</script>
+</body>
+</html>

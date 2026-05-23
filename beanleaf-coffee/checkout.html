@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结账 — BeanLeaf Coffee</title>
+<style>
+:root{--clr-primary:#2D6A4F;--clr-primary-dark:#1B4332;--clr-accent:#D4A574;--clr-cream:#FEFAE0;--clr-bg:#FAF9F6;--clr-white:#FFF;--clr-text:#1A1A2E;--clr-text-light:#5C6370;--clr-text-muted:#8B8E96;--clr-border:#E5E0D5;--clr-success:#52B788;--clr-error:#E76F51;--font-heading:'Georgia','Noto Serif SC',serif;--font-body:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.1);--radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-full:999px;--max-width:900px;--nav-height:64px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--clr-text);background:var(--clr-bg);line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+h1{font-size:2rem}h2{font-size:1.4rem}h3{font-size:1.1rem}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,249,246,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);z-index:100;display:flex;align-items:center}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary-dark)}
+.nav-logo svg{width:28px;height:28px}
+.nav-back{font-size:.85rem;font-weight:600;color:var(--clr-text-light);display:flex;align-items:center;gap:.3rem;transition:color .2s}
+.nav-back:hover{color:var(--clr-primary)}
+
+.page{padding-top:calc(var(--nav-height) + 2rem);padding-bottom:4rem}
+.checkout-grid{display:grid;grid-template-columns:1fr 380px;gap:2rem;align-items:start}
+.card{background:var(--clr-white);border-radius:var(--radius-md);padding:1.8rem;border:1px solid var(--clr-border);box-shadow:var(--shadow-sm)}
+.card h2{margin-bottom:1.2rem;font-size:1.2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;margin-bottom:.35rem;color:var(--clr-text)}
+.form-group input,.form-group textarea{width:100%;padding:.7em .9em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.9rem;color:var(--clr-text);background:var(--clr-bg);transition:all .2s}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px rgba(45,106,79,.1);background:var(--clr-white)}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-group .hint{font-size:.7rem;color:var(--clr-text-muted);margin-top:.25rem}
+
+.summary-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.summary-title .count{font-size:.8rem;color:var(--clr-text-muted)}
+.summary-item{display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--clr-border)}
+.summary-item:last-child{border-bottom:none}
+.summary-item .img{width:44px;height:44px;border-radius:8px;flex-shrink:0}
+.summary-item .info{flex:1;min-width:0}
+.summary-item .nm{font-size:.85rem;font-weight:600}
+.summary-item .sz{font-size:.7rem;color:var(--clr-text-muted)}
+.summary-item .pr{font-family:var(--font-heading);font-size:.9rem;font-weight:700;color:var(--clr-primary-dark)}
+.summary-divider{margin:1rem 0;border-top:1px dashed var(--clr-border)}
+.summary-total{font-size:1rem;display:flex;justify-content:space-between;align-items:center}
+.summary-total .amt{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--clr-primary-dark)}
+
+.pay-btn{width:100%;padding:.9rem;background:var(--clr-primary);color:var(--clr-white);border-radius:var(--radius-full);font-weight:700;font-size:.95rem;text-align:center;transition:all .3s;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.pay-btn:hover{background:var(--clr-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pay-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.pay-btn .spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--clr-white);border-radius:50%;animation:spin .6s linear infinite}
+.pay-btn.loading .spinner{display:block}
+.pay-btn.loading .text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.empty-state{text-align:center;padding:4rem 1rem}
+.empty-state .icon{font-size:3rem;margin-bottom:1rem}
+.empty-state p{color:var(--clr-text-muted);margin-bottom:1.5rem}
+
+.err-msg{color:var(--clr-error);font-size:.78rem;margin-top:.25rem;display:none}
+.err-msg.show{display:block}
+.form-group input.valid{border-color:var(--clr-success);background:#f6fdf8}
+.form-group input.invalid{border-color:var(--clr-error)}
+.coupon-success{color:var(--clr-success)}.coupon-error{color:var(--clr-error)}
+
+.lang-btn{font-size:.8rem;font-weight:600;padding:.35em .9em;border-radius:var(--radius-full);transition:all .2s;background:var(--clr-border);color:var(--clr-text-light);margin-left:4px}
+.lang-btn.active{background:var(--clr-primary);color:var(--clr-white)}
+
+.mobile-only-pay{display:none}
+
+@media(max-width:768px){
+  .checkout-grid{grid-template-columns:1fr}
+  .mobile-only-pay{display:block;position:fixed;bottom:0;left:0;right:0;background:var(--clr-white);padding:1rem 1.5rem;border-top:1px solid var(--clr-border);z-index:99;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+  .mobile-only-pay .pay-btn{margin-top:0}
+  .page{padding-bottom:6rem}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar"><div class="container">
+  <a href="../beanleaf-coffee.html" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none"><path d="M6 26C6 26 10 10 16 6C22 10 26 26 16 28C10 26 6 26 6 26Z" fill="#2D6A4F"/><ellipse cx="16" cy="17" rx="8" ry="6" fill="#40916C" opacity="0.3"/></svg>
+    BeanLeaf Coffee
+  </a>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="../beanleaf-coffee.html#products" class="nav-back" data-i18n="nav.back">← 返回商城</a>
+    <button class="lang-btn active" onclick="setLang('zh')">中</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div></nav>
+
+<div class="page"><div class="container">
+  <h1 style="margin-bottom:1.5rem" data-i18n="page.title">订单结账</h1>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="icon">🛒</div>
+    <h2 data-i18n="empty.title">购物车是空的</h2>
+    <p data-i18n="empty.desc">先去逛逛，找到你喜欢的咖啡吧</p>
+    <a href="../beanleaf-coffee.html" class="pay-btn" style="max-width:250px;margin:0 auto;display:inline-flex" data-i18n="empty.cta">去选购</a>
+  </div>
+
+  <div id="checkoutContent">
+    <div class="checkout-grid">
+      <!-- Left: Form -->
+      <div>
+        <div class="card">
+          <h2 data-i18n="form.shipping_title">收货信息</h2>
+          <div class="form-row">
+            <div class="form-group"><label data-i18n="form.name">收件人姓名</label><input type="text" id="name" required placeholder="请输入收件人姓名"><div class="err-msg" id="errName" data-i18n="err.name">请填写收件人姓名</div></div>
+            <div class="form-group"><label data-i18n="form.phone">手机号码</label><input type="tel" id="phone" required placeholder="请输入手机号码"><div class="err-msg" id="errPhone" data-i18n="err.phone">请填写有效的手机号码</div></div>
+          </div>
+          <div class="form-group"><label data-i18n="form.address">收货地址</label><input type="text" id="address" required placeholder="省/市/区/详细地址"><div class="err-msg" id="errAddr" data-i18n="err.address">请填写收货地址</div></div>
+          <div class="form-group"><label data-i18n="form.note">备注（选填）</label><textarea id="note" placeholder="如有特殊需求请在此说明"></textarea></div>
+        </div>
+
+        <div class="card" style="margin-top:1rem">
+          <h2 data-i18n="form.sub_title">订阅计划</h2>
+          <label style="display:flex;align-items:center;gap:.8rem;cursor:pointer;font-size:.9rem">
+            <input type="checkbox" id="subscribe" style="width:18px;height:18px;accent-color:var(--clr-primary)">
+            <span data-i18n="form.sub_desc">每月自动配送 — 95折优惠，随时可取消</span>
+          </label>
+        </div>
+
+        <div class="card" style="margin-top:1rem">
+          <h2 data-i18n="form.coupon_title">优惠码</h2>
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="coupon" placeholder="请输入优惠码" style="flex:1;padding:.6em .9em;border:1.5px solid var(--clr-border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.85rem">
+            <button onclick="applyCoupon()" style="padding:.6em 1.2em;background:var(--clr-accent);color:var(--clr-white);border-radius:var(--radius-full);font-size:.85rem;font-weight:600;white-space:nowrap" data-i18n="form.coupon_btn">使用</button>
+          </div>
+          <div id="couponMsg" style="font-size:.8rem;margin-top:.5rem;display:none"></div>
+          <p style="font-size:.7rem;color:var(--clr-text-muted);margin-top:.4rem">试试：WELCOME10（9折） / BEANLEAF5（减5元） / FREESHIP（免运费）</p>
+        </div>
+
+        <div class="card" style="margin-top:1rem">
+          <h2 data-i18n="form.payment_title">支付方式</h2>
+          <p style="color:var(--clr-text-muted);font-size:.9rem" data-i18n="form.payment_desc">模拟支付 — 点击按钮后将模拟2秒支付处理</p>
+        </div>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="card" style="position:sticky;top:calc(var(--nav-height) + 1.5rem)" id="orderSummary">
+        <div class="summary-title"><h2 data-i18n="summary.title">订单摘要</h2><span class="count" id="itemCount">0 件商品</span></div>
+        <div id="summaryItems"></div>
+        <div class="summary-divider"></div>
+        <div class="summary-total"><span data-i18n="summary.total">合计</span><span class="amt" id="summaryTotal">¥0</span></div>
+        <button class="pay-btn" id="payBtn" onclick="submitOrder()">
+          <span class="text" data-i18n="pay.btn">确认支付</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile fixed pay button -->
+    <div class="mobile-only-pay">
+      <div class="summary-total" style="margin-bottom:.8rem"><span data-i18n="summary.total">合计</span><span class="amt" id="mobileTotal">¥0</span></div>
+      <button class="pay-btn" id="mobilePayBtn" onclick="submitOrder()">
+        <span class="text" data-i18n="pay.btn">确认支付</span>
+        <span class="spinner"></span>
+      </button>
+    </div>
+  </div>
+</div></div>
+
+<script>
+const i18n={zh:{"nav.back":"← 返回商城","page.title":"订单结账","empty.title":"购物车是空的","empty.desc":"先去逛逛，找到你喜欢的咖啡吧","empty.cta":"去选购","form.shipping_title":"收货信息","form.name":"收件人姓名","form.phone":"手机号码","form.address":"收货地址","form.note":"备注（选填）","form.payment_title":"支付方式","form.payment_desc":"模拟支付 — 点击按钮后将模拟2秒支付处理","err.name":"请填写收件人姓名","err.phone":"请填写有效的手机号码","err.address":"请填写收货地址","summary.title":"订单摘要","summary.total":"合计","pay.btn":"确认支付","pay.processing":"支付处理中..."},en:{"nav.back":"← Back to Shop","page.title":"Checkout","empty.title":"Your cart is empty","empty.desc":"Browse our products to find your favorite coffee","empty.cta":"Shop Now","form.shipping_title":"Shipping Information","form.name":"Recipient Name","form.phone":"Phone Number","form.address":"Shipping Address","form.note":"Note (optional)","form.payment_title":"Payment Method","form.payment_desc":"Mock payment — 2 second processing simulation","err.name":"Please enter recipient name","err.phone":"Please enter a valid phone number","err.address":"Please enter shipping address","summary.title":"Order Summary","summary.total":"Total","pay.btn":"Confirm Payment","pay.processing":"Processing..."}};
+let cl='zh';
+function t(k){return i18n[cl]&&i18n[cl][k]?i18n[cl][k]:k}
+function setLang(l){cl=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='zh'?'中':'EN')));document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(i18n[cl]&&i18n[cl][k])el.textContent=i18n[cl][k]});document.documentElement.lang=cl==='zh'?'zh-CN':'en'}
+
+function getCart(){try{return JSON.parse(localStorage.getItem('beanleaf_cart')||'[]')}catch(e){return[]}}
+
+// Coupon system
+let couponDiscount=0,couponLabel='';
+window.applyCoupon=function(){
+  const code=document.getElementById('coupon').value.trim().toUpperCase(),msg=document.getElementById('couponMsg');
+  const coupons={WELCOME10:{d:0.1,l:'9折优惠'},BEANLEAF5:{d:5,l:'减¥5'},FREESHIP:{d:0,l:'免运费'}};
+  const c=coupons[code];
+  if(c){couponDiscount=c.d;couponLabel=c.l;msg.className='coupon-success';msg.textContent='✅ '+c.l+'已生效！';msg.style.display='block';buildSummary()}
+  else{couponDiscount=0;couponLabel='';msg.className='coupon-error';msg.textContent='❌ 优惠码无效';msg.style.display='block'}
+};
+
+function buildSummary(){
+  const c=getCart(),si=document.getElementById('summaryItems'),st=document.getElementById('summaryTotal'),mt=document.getElementById('mobileTotal'),ic=document.getElementById('itemCount');
+  if(c.length===0){document.getElementById('emptyState').style.display='block';document.getElementById('checkoutContent').style.display='none';return}
+  let total=c.reduce((s,i)=>s+i.price*i.qty,0);
+  let finalTotal=total;
+  if(typeof couponDiscount==='number'&&couponDiscount<1)finalTotal=Math.round(total*(1-couponDiscount));
+  else finalTotal=Math.max(0,total-couponDiscount);
+  const cnt=c.reduce((s,i)=>s+i.qty,0);
+  ic.textContent=cnt+' '+(cl==='zh'?'件商品':'items');
+  si.innerHTML=c.map(i=>'<div class="summary-item"><div class="img" style="background:'+itemBg(i.id)+'"></div><div class="info"><div class="nm">'+i.name+'</div><div class="sz">'+i.size+' × '+i.qty+'</div></div><div class="pr">¥'+(i.price*i.qty)+'</div></div>').join('');
+  if(couponDiscount){si.innerHTML+=`<div style="text-align:right;font-size:.8rem;color:var(--clr-success);margin-top:.5rem">${couponLabel}: -¥${total-finalTotal}</div>`}
+  st.textContent='¥'+finalTotal;mt.textContent='¥'+finalTotal;
+}
+function itemBg(id){return {yirgacheffe:'#F5E6D3',huila:'#E8D5B7','kenya-aa':'#D4C4A8','good-morning':'#EAD7C3','good-night':'#4A4458',geisha:'#C9A96E'}[id]||'#FEFAE0'}
+
+function showErr(id){const el=document.getElementById(id);if(el)el.classList.add('show');setTimeout(()=>el&&el.classList.remove('show'),3000)}
+
+// Real-time validation
+document.getElementById('phone').addEventListener('input',function(){
+  const v=this.value.trim(),valid=/^1[3-9]\d{9}$/.test(v);
+  this.classList.toggle('valid',valid&&v.length>=11);this.classList.toggle('invalid',!valid&&v.length>=11)});
+document.getElementById('name').addEventListener('input',function(){
+  const v=this.value.trim();this.classList.toggle('valid',v.length>=2)});
+
+function submitOrder(){
+  const name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim(),addr=document.getElementById('address').value.trim();
+  let valid=true;
+  if(!name||name.length<2){showErr('errName');valid=false}
+  if(!phone||!/^1[3-9]\d{9}$/.test(phone)){showErr('errPhone');valid=false}
+  if(!addr||addr.length<5){showErr('errAddr');valid=false}
+  if(!valid)return;
+
+  const cart=getCart();if(cart.length===0)return;
+  let total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  let finalTotal=total;
+  if(typeof couponDiscount==='number'&&couponDiscount<1)finalTotal=Math.round(total*(1-couponDiscount));
+  else finalTotal=Math.max(0,total-couponDiscount);
+  const cnt=cart.reduce((s,i)=>s+i.qty,0),note=document.getElementById('note').value.trim();
+  const isSub=document.getElementById('subscribe').checked;
+
+  // Show loading
+  [document.getElementById('payBtn'),document.getElementById('mobilePayBtn')].forEach(b=>{if(b){b.classList.add('loading');b.disabled=true}});
+  
+  setTimeout(()=>{
+    const orderId='BL'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).substring(2,5).toUpperCase();
+    const order={id:orderId,date:new Date().toISOString(),name,phone,address:addr,note,items:cart,total:finalTotal,originalTotal:total,count:cnt,subscription:isSub,coupon:couponLabel};
+    localStorage.setItem('beanleaf_last_order',JSON.stringify(order));
+    localStorage.removeItem('beanleaf_cart');
+    window.location.href='checkout-success.html';
+  },2000);
+}
+buildSummary();
+</script>
+</body>
+</html>
